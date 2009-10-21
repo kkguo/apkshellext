@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F8975BEA-067A-4D06-8808-863ABA4FBEB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KKHomeProj.ApkShellExt</RootNamespace>
+    <AssemblyName>apkshellext</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>apkshellext_key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApkShellExt.cs" />
+    <Compile Include="SharpZLib\Checksums\Adler32.cs" />
+    <Compile Include="SharpZLib\Checksums\CRC32.cs" />
+    <Compile Include="SharpZLib\Checksums\IChecksum.cs" />
+    <Compile Include="SharpZLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="SharpZLib\Core\FileSystemScanner.cs" />
+    <Compile Include="SharpZLib\Core\INameTransform.cs" />
+    <Compile Include="SharpZLib\Core\IScanFilter.cs" />
+    <Compile Include="SharpZLib\Core\NameFilter.cs" />
+    <Compile Include="SharpZLib\Core\PathFilter.cs" />
+    <Compile Include="SharpZLib\Core\StreamUtils.cs" />
+    <Compile Include="SharpZLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="SharpZLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SharpZLib\SharpZipBaseException.cs" />
+    <Compile Include="ShellExtInts.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="SharpZLib\Zip\FastZip.cs" />
+    <Compile Include="SharpZLib\Zip\IEntryFactory.cs" />
+    <Compile Include="SharpZLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="SharpZLib\Zip\ZipConstants.cs" />
+    <Compile Include="SharpZLib\Zip\ZipEntry.cs" />
+    <Compile Include="SharpZLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="SharpZLib\Zip\ZipException.cs" />
+    <Compile Include="SharpZLib\Zip\ZipExtraData.cs" />
+    <Compile Include="SharpZLib\Zip\ZipFile.cs" />
+    <Compile Include="SharpZLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="SharpZLib\Zip\ZipInputStream.cs" />
+    <Compile Include="SharpZLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="SharpZLib\Zip\ZipOutputStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="apkshellext_key.snk" />
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deficon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aapt.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mgwz.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
