@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using KKHomeProj.ShellExtInts;
 using Microsoft.CSharp;
 using System.Windows.Forms;
@@ -31,7 +32,6 @@ namespace KKHomeProj.ApkShellExt
         #endregion
 
         private string sFileName;
-        private FileStream fs;
 
         #region IPersistFile 成员
 
@@ -70,7 +70,7 @@ namespace KKHomeProj.ApkShellExt
         #endregion
 
         #region IExtractIcon 成员
-
+        
         public uint GetIconLocation(ExtractIconOptions uFlags, IntPtr szIconFile, uint cchMax, out int piIndex, out ExtractIconFlags pwFlags)
         {
             piIndex = -1;
@@ -159,38 +159,72 @@ namespace KKHomeProj.ApkShellExt
         /// </summary>
         /// <returns>Icon object</returns>
         private Icon GetApkIcon()
-        {       
+        {
+            const int BUFF_SIZE = 1024;
             Bitmap bmp = null;
             string icon_path;
+            ZipFile zip = null;
+            FileStream fs = null;
+
             try
             {
                 string aapt = Path.GetTempPath() + @"aapt.exe";
-                if (!File.Exists(aapt))
-                {
-                    File.WriteAllBytes(aapt, Properties.Resources.aapt);
-                }
                 string mgwz = Path.GetTempPath() + @"mgwz.dll";
-                if (!File.Exists(mgwz))
+                bool extract_aapt = !File.Exists(aapt);
+                bool extract_mgwz = !File.Exists(mgwz);
+
+                
+                //extract aapt.exe and mgwz.dll
+                if (extract_aapt | extract_mgwz)
                 {
-                    File.WriteAllBytes(mgwz, Properties.Resources.mgwz);
+                    Stream inStream;
+                    int read_count;
+
+                    zip = new ZipFile(new MemoryStream(Properties.Resources.aapt));
+                    byte[] buff = new byte[BUFF_SIZE];
+                    if (extract_aapt) {
+                        inStream = zip.GetInputStream(zip.GetEntry(@"aapt.exe"));
+                        fs = new FileStream(aapt, FileMode.Create);
+                        while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                        {
+                            fs.Write(buff, 0, read_count);
+                        }
+                        inStream.Close();
+                        fs.Close();
+                        inStream.Dispose();
+                        fs.Dispose();
+                    };
+                    if (extract_mgwz) {
+                        inStream = zip.GetInputStream(zip.GetEntry(@"mgwz.dll"));
+                        fs = new FileStream(mgwz, FileMode.Create);
+                        while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                        {
+                            fs.Write(buff, 0, read_count);
+                        }
+                        inStream.Close();
+                        fs.Close();
+                        inStream.Dispose();
+                        fs.Dispose();
+                    };
                 }
                 Process p = new Process();
                 p.StartInfo.FileName = aapt;
-                p.StartInfo.Arguments = @"dump badging " + sFileName;
+                p.StartInfo.Arguments = @"dump badging " + "\"" + sFileName + "\"";
                 p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 p.StartInfo.CreateNoWindow = true;
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.WorkingDirectory = Path.GetTempPath();
                 p.Start();
                 icon_path = p.StandardOutput.ReadLine();
-                while (icon_path != string.Empty)
+                while (!String.IsNullOrEmpty(icon_path))
                 {
                     icon_path = p.StandardOutput.ReadLine();
                     if (icon_path.Contains("application:"))
                     {
                         int icon_ind = icon_path.IndexOf("icon=") + 5 + 1;//1 for "'"
                         icon_path = icon_path.Substring(icon_ind, icon_path.Length - icon_ind - 1);
+                        //MessageBox.Show(icon_path);
                         break;
                     }
                 }
@@ -198,18 +232,13 @@ namespace KKHomeProj.ApkShellExt
                 {
                     throw new Exception("Cannot find icon path!");
                 }
-                fs = new FileStream(sFileName, FileMode.Open);
-                ZipFile zip = new ZipFile(fs);
-                bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, false)));
-                fs.Close();
-
+                zip = new ZipFile(new FileStream(sFileName, FileMode.Open));
+                bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, true)));
+                zip.Close();
             }
-            catch
+            catch(Exception e)
             {
-                if (fs != null)
-                {
-                    fs.Close();
-                }
+                //MessageBox.Show(e.Message);
                 bmp = new Bitmap(Properties.Resources.deficon);
             }
             return Icon.FromHandle(bmp.GetHicon());                        
@@ -231,6 +260,13 @@ namespace KKHomeProj.ApkShellExt
             rk = root.CreateSubKey(@".apk\shellex\IconHandler");
             rk.SetValue("", GUID);
             rk.Close();
+
+            root = Registry.LocalMachine;
+            rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+            rk.SetValue(GUID, "Android Package file, shell extention");
+            rk.Close();
+
+            root.Close();
         }
 
         private static void UnregApk()
@@ -239,6 +275,8 @@ namespace KKHomeProj.ApkShellExt
 
             root = Registry.ClassesRoot;
             root.DeleteSubKey(".apk");
+            root.DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
+            root.Close();
         }
     }
 }
