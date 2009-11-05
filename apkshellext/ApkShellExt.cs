@@ -113,15 +113,6 @@ namespace KKHomeProj.ApkShellExt
         {
             try
             {
-                //register this dll
-                RegistryKey root;
-                RegistryKey rk;
-                root = Registry.LocalMachine;
-                rk = root.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved", true);
-                rk.SetValue(GUID, KeyName);
-                rk.Close();
-                root.Close();
-
                 //Register APK file type
                 RegApk();
             }
@@ -135,15 +126,6 @@ namespace KKHomeProj.ApkShellExt
         {
             try
             {
-                //unregister dll
-                RegistryKey root;
-                RegistryKey rk;
-                root = Registry.LocalMachine;
-                rk = root.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved", true);
-                rk.DeleteValue(GUID);
-                rk.Close();
-                root.Close();
-
                 //unregister file type association
                 UnregApk();
             }
@@ -177,35 +159,58 @@ namespace KKHomeProj.ApkShellExt
                 //extract aapt.exe and mgwz.dll
                 if (extract_aapt | extract_mgwz)
                 {
-                    Stream inStream;
+                    Stream inStream=null;
                     int read_count;
 
-                    zip = new ZipFile(new MemoryStream(Properties.Resources.aapt));
-                    byte[] buff = new byte[BUFF_SIZE];
-                    if (extract_aapt) {
-                        inStream = zip.GetInputStream(zip.GetEntry(@"aapt.exe"));
-                        fs = new FileStream(aapt, FileMode.Create);
-                        while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                    try
+                    {
+                        zip = new ZipFile(new MemoryStream(Properties.Resources.aapt));
+                        byte[] buff = new byte[BUFF_SIZE];
+                        if (extract_aapt)
                         {
-                            fs.Write(buff, 0, read_count);
-                        }
-                        inStream.Close();
-                        fs.Close();
-                        inStream.Dispose();
-                        fs.Dispose();
-                    };
-                    if (extract_mgwz) {
-                        inStream = zip.GetInputStream(zip.GetEntry(@"mgwz.dll"));
-                        fs = new FileStream(mgwz, FileMode.Create);
-                        while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                            inStream = zip.GetInputStream(zip.GetEntry(@"aapt.exe"));
+                            fs = new FileStream(aapt, FileMode.Create);
+                            while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                            {
+                                fs.Write(buff, 0, read_count);
+                            }
+                            inStream.Close();
+                            fs.Close();
+                            inStream.Dispose();
+                            fs.Dispose();
+                        };
+                        if (extract_mgwz)
                         {
-                            fs.Write(buff, 0, read_count);
+                            inStream = zip.GetInputStream(zip.GetEntry(@"mgwz.dll"));
+                            fs = new FileStream(mgwz, FileMode.Create);
+                            while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                            {
+                                fs.Write(buff, 0, read_count);
+                            }
+                            inStream.Close();
+                            fs.Close();
+                            inStream.Dispose();
+                            fs.Dispose();
+                        };
+                        zip.Close();
+                    }
+                    catch (ICSharpCode.SharpZipLib.Zip.ZipException e)
+                    {
+                        if (zip != null)
+                        {
+                            zip.Close();
                         }
-                        inStream.Close();
-                        fs.Close();
-                        inStream.Dispose();
-                        fs.Dispose();
-                    };
+                        if (fs != null)
+                        {
+                            fs.Close();
+                            fs.Dispose();
+                        }
+                        if (inStream != null)
+                        {
+                            inStream.Close();
+                            inStream.Dispose();
+                        }
+                    }
                 }
                 Process p = new Process();
                 p.StartInfo.FileName = aapt;
@@ -219,15 +224,15 @@ namespace KKHomeProj.ApkShellExt
                 icon_path = p.StandardOutput.ReadLine();
                 while (!String.IsNullOrEmpty(icon_path))
                 {
-                    icon_path = p.StandardOutput.ReadLine();
                     if (icon_path.Contains("application:"))
                     {
                         int icon_ind = icon_path.IndexOf("icon=") + 5 + 1;//1 for "'"
                         icon_path = icon_path.Substring(icon_ind, icon_path.Length - icon_ind - 1);
-                        //MessageBox.Show(icon_path);
                         break;
                     }
+                    icon_path = p.StandardOutput.ReadLine();
                 }
+                p.Close();
                 if (string.IsNullOrEmpty(icon_path))
                 {
                     throw new Exception("Cannot find icon path!");
@@ -238,19 +243,24 @@ namespace KKHomeProj.ApkShellExt
             }
             catch(Exception e)
             {
+                if (zip != null) {
+                    zip.Close();
+                }
                 //MessageBox.Show(e.Message);
                 bmp = new Bitmap(Properties.Resources.deficon);
             }
             return Icon.FromHandle(bmp.GetHicon());                        
         }
-
+        /// <summary>
+        /// register this dll
+        /// </summary>
         private static void RegApk()
         {
             RegistryKey root;
             RegistryKey rk;
-
             root = Registry.ClassesRoot;
-            rk = root.CreateSubKey(".apk");
+            rk = root.CreateSubKey(@".apk");
+            rk.SetValue("", "Android Package File");
             rk.Close();
 
             rk = root.CreateSubKey(@".apk\DefaultIcon");
@@ -261,22 +271,58 @@ namespace KKHomeProj.ApkShellExt
             rk.SetValue("", GUID);
             rk.Close();
 
-            root = Registry.LocalMachine;
-            rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-            rk.SetValue(GUID, "Android Package file, shell extention");
+            // for 64bit windows
+            rk = root.CreateSubKey(@"Wow6432Node\.apk");
+            rk.SetValue("", "Android Package File");
+            rk.Close();
+
+            rk = root.CreateSubKey(@"Wow6432Node\.apk\DefaultIcon");
+            rk.SetValue("", "%1");
+            rk.Close();
+
+            rk = root.CreateSubKey(@"Wow6432Node\.apk\shellex\IconHandler");
+            rk.SetValue("", GUID);
             rk.Close();
 
             root.Close();
-        }
 
+            ////////////////////////////////////////
+            root = Registry.LocalMachine;
+            try
+            {
+                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                rk.SetValue(GUID, "Android Package file, shell extention");
+                rk.Close();
+
+                rk = root.OpenSubKey(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                rk.SetValue(GUID, "Android Package file, shell extention");
+                rk.Close();
+            }
+            catch { }
+            root.Close();
+        }
+       
+        /// <summary>
+        /// unregister
+        /// </summary>
         private static void UnregApk()
         {
-            RegistryKey root;
+            try
+            {
+                RegistryKey root;
 
-            root = Registry.ClassesRoot;
-            root.DeleteSubKey(".apk");
-            root.DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
-            root.Close();
+                root = Registry.ClassesRoot;
+                root.DeleteSubKey(@".apk");
+                root.DeleteSubKey(@"Wow6432Node\.apk");
+                root.Close();
+                root = Registry.LocalMachine;
+                root.DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
+                root.DeleteValue(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
+                root.Close();
+            }
+            catch
+            {
+            }
         }
     }
 }
