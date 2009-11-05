@@ -4,7 +4,15 @@
     <StartWorkingDirectory>E:\apkshellext\apkshellext\bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <StartArguments>explorer.exe</StartArguments>
+    <StartArguments>c:\windows\explorer.exe</StartArguments>
+    <StartWorkingDirectory>D:\Projects\99_Projects\apkshellext\apkshellext\bin\Release\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <StartWorkingDirectory>E:\apkshellext\apkshellext\bin\Debug\</StartWorkingDirectory>
+    <StartArguments>explorer.exe</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <StartWorkingDirectory>E:\apkshellext\apkshellext\bin\Debug\</StartWorkingDirectory>
+    <StartArguments>explorer.exe</StartArguments>
   </PropertyGroup>
 </Project>
