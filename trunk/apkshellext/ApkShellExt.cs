@@ -307,21 +307,29 @@ namespace KKHomeProj.ApkShellExt
         /// </summary>
         private static void UnregApk()
         {
+            int key=0;
             try
-            {
+            { 
                 RegistryKey root;
-
+                RegistryKey rk;
                 root = Registry.ClassesRoot;
-                root.DeleteSubKey(@".apk");
-                root.DeleteSubKey(@"Wow6432Node\.apk");
+                root.DeleteSubKeyTree(@".apk");
+                root.DeleteSubKeyTree(@"Wow6432Node\.apk");
                 root.Close();
+
                 root = Registry.LocalMachine;
-                root.DeleteValue(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
-                root.DeleteValue(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + GUID);
+                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                rk.DeleteValue(GUID);
+                rk.Close();
+                rk = root.OpenSubKey(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                rk.DeleteValue(GUID);
+                rk.Close();
+
                 root.Close();
             }
-            catch
+            catch (Exception e)
             {
+                //MessageBox.Show(e.Message);
             }
         }
     }
