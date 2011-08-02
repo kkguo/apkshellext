@@ -155,7 +155,6 @@ namespace KKHomeProj.ApkShellExt
                 bool extract_aapt = !File.Exists(aapt);
                 bool extract_mgwz = !File.Exists(mgwz);
 
-                
                 //extract aapt.exe and mgwz.dll
                 if (extract_aapt | extract_mgwz)
                 {
@@ -237,19 +236,17 @@ namespace KKHomeProj.ApkShellExt
                 {
                     throw new Exception("Cannot find icon path!");
                 }
-                zip = new ZipFile(new FileStream(sFileName, FileMode.Open));
+                zip = new ZipFile(sFileName);
                 bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, true)));
                 zip.Close();
-            }
-            catch(Exception e)
-            {
+            } catch {
                 if (zip != null) {
                     zip.Close();
                 }
                 //MessageBox.Show(e.Message);
                 bmp = new Bitmap(Properties.Resources.deficon);
             }
-            return Icon.FromHandle(bmp.GetHicon());                        
+            return Icon.FromHandle(bmp.GetHicon());
         }
         /// <summary>
         /// register this dll
@@ -297,19 +294,17 @@ namespace KKHomeProj.ApkShellExt
                 rk = root.OpenSubKey(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
                 rk.SetValue(GUID, "Android Package file, shell extention");
                 rk.Close();
-            }
-            catch { }
+            } catch { }
             root.Close();
         }
-       
+
         /// <summary>
         /// unregister
         /// </summary>
         private static void UnregApk()
         {
             int key=0;
-            try
-            { 
+            try{
                 RegistryKey root;
                 RegistryKey rk;
                 root = Registry.ClassesRoot;
@@ -326,11 +321,8 @@ namespace KKHomeProj.ApkShellExt
                 rk.Close();
 
                 root.Close();
-            }
-            catch (Exception e)
-            {
-                //MessageBox.Show(e.Message);
-            }
+            } catch {}
         }
     }
 }
+// vim: expandtab tabstop=4 softtabstop=4 shiftwidth=4
