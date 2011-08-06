@@ -1,6 +1,6 @@
 #labels Featured
 如何安装
 
-*下载并且解压到什么地方
-*确认安装了.net framwork 3.5或以上,没有的到这里下载...
-*执行reg.bat 注册dll
+ * 下载并且解压到什么地方
+ * 确认安装了.net framwork 3.5或以上,没有的到这里下载...
+ * 执行reg.bat 注册dll
