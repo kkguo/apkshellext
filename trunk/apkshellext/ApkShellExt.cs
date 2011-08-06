@@ -303,7 +303,6 @@ namespace KKHomeProj.ApkShellExt
         /// </summary>
         private static void UnregApk()
         {
-            int key=0;
             try{
                 RegistryKey root;
                 RegistryKey rk;
