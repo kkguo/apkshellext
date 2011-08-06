@@ -1,0 +1,6 @@
+#How to install and use the shell extension for APK files
+
+Follow those steps
+  * Download the zip package, and unzip to somewhere
+  * Make sure you have installed .net framework
+  * register the dll with reg.bat.
