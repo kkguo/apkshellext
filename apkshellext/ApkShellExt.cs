@@ -29,6 +29,7 @@ namespace KKHomeProj.ApkShellExt
         private const int S_FALSE = 1;
         private const uint E_PENDING = 0x8000000A;
         private const uint E_NOTIMPL = 0x80004001;
+        private const int BUFF_SIZE = 1024;
         #endregion
 
         private string sFileName;
@@ -142,77 +143,18 @@ namespace KKHomeProj.ApkShellExt
         /// <returns>Icon object</returns>
         private Icon GetApkIcon()
         {
-            const int BUFF_SIZE = 1024;
             Bitmap bmp = null;
-            string icon_path;
             ZipFile zip = null;
-            FileStream fs = null;
 
             try
             {
-                string aapt = Path.GetTempPath() + @"aapt.exe";
-                string mgwz = Path.GetTempPath() + @"mgwz.dll";
-                bool extract_aapt = !File.Exists(aapt);
-                bool extract_mgwz = !File.Exists(mgwz);
+                ExtractResource(Properties.Resources.aapt, @"aapt.exe");
+                ExtractResource(Properties.Resources.aapt, @"mgwz.dll");
+                //extract_resource(Properties.Resources.adb, @"adb.exe");
+                //extract_resource(Properties.Resources.adb, @"AdbWinApi.dll");
 
-                //extract aapt.exe and mgwz.dll
-                if (extract_aapt | extract_mgwz)
-                {
-                    Stream inStream=null;
-                    int read_count;
-
-                    try
-                    {
-                        zip = new ZipFile(new MemoryStream(Properties.Resources.aapt));
-                        byte[] buff = new byte[BUFF_SIZE];
-                        if (extract_aapt)
-                        {
-                            inStream = zip.GetInputStream(zip.GetEntry(@"aapt.exe"));
-                            fs = new FileStream(aapt, FileMode.Create);
-                            while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
-                            {
-                                fs.Write(buff, 0, read_count);
-                            }
-                            inStream.Close();
-                            fs.Close();
-                            inStream.Dispose();
-                            fs.Dispose();
-                        };
-                        if (extract_mgwz)
-                        {
-                            inStream = zip.GetInputStream(zip.GetEntry(@"mgwz.dll"));
-                            fs = new FileStream(mgwz, FileMode.Create);
-                            while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
-                            {
-                                fs.Write(buff, 0, read_count);
-                            }
-                            inStream.Close();
-                            fs.Close();
-                            inStream.Dispose();
-                            fs.Dispose();
-                        };
-                        zip.Close();
-                    }
-                    catch (ICSharpCode.SharpZipLib.Zip.ZipException e)
-                    {
-                        if (zip != null)
-                        {
-                            zip.Close();
-                        }
-                        if (fs != null)
-                        {
-                            fs.Close();
-                            fs.Dispose();
-                        }
-                        if (inStream != null)
-                        {
-                            inStream.Close();
-                            inStream.Dispose();
-                        }
-                    }
-                }
                 Process p = new Process();
-                p.StartInfo.FileName = aapt;
+                p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
                 p.StartInfo.Arguments = @"dump badging " + "\"" + sFileName + "\"";
                 p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
@@ -220,7 +162,7 @@ namespace KKHomeProj.ApkShellExt
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.WorkingDirectory = Path.GetTempPath();
                 p.Start();
-                icon_path = p.StandardOutput.ReadLine();
+                string icon_path = p.StandardOutput.ReadLine();
                 while (!String.IsNullOrEmpty(icon_path))
                 {
                     if (icon_path.Contains("application:"))
@@ -236,18 +178,75 @@ namespace KKHomeProj.ApkShellExt
                 {
                     throw new Exception("Cannot find icon path!");
                 }
-                zip = new ZipFile(sFileName);
-                bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, true)));
-                zip.Close();
-            } catch {
-                if (zip != null) {
-                    zip.Close();
+                else
+                {
+                    zip = new ZipFile(sFileName);
+                    bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, true)));
                 }
+            }
+            catch
+            {
                 //MessageBox.Show(e.Message);
                 bmp = new Bitmap(Properties.Resources.deficon);
             }
+            finally
+            {
+                if (zip != null)
+                {
+                    zip.Close();
+                }
+            }
             return Icon.FromHandle(bmp.GetHicon());
         }
+
+        /// <summary>
+        /// extract file from zipped resource, and place to temp folder
+        /// </summary>
+        /// <param name="resource">resource name</param>
+        /// <param name="fileName">output name</param>
+        /// <param name="OverWriteIfExists">if true,will overwrite the file even if the file exists</param>
+        private static void ExtractResource(byte[] resource, string fileName,bool OverWriteIfExists=false)
+        {
+            string target = Path.GetTempPath() + fileName;
+            if (OverWriteIfExists || !File.Exists(target))
+            {
+                ZipFile zip = null;
+                FileStream fs = null;
+                Stream inStream = null;
+                try
+                {
+                    zip = new ZipFile(new MemoryStream(resource));
+                    inStream = zip.GetInputStream(zip.GetEntry(fileName));
+                    fs = new FileStream(target, FileMode.Create);
+                    byte[] buff = new byte[BUFF_SIZE];
+                    int read_count;
+                    while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
+                    {
+                        fs.Write(buff, 0, read_count);
+                    }
+                }
+                catch
+                { }
+                finally
+                {
+                    if (zip != null)
+                    {
+                        zip.Close();
+                    }
+                    if (fs != null)
+                    {
+                        fs.Close();
+                        fs.Dispose();
+                    }
+                    if (inStream != null)
+                    {
+                        inStream.Close();
+                        inStream.Dispose();
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// register this dll
         /// </summary>
@@ -260,26 +259,26 @@ namespace KKHomeProj.ApkShellExt
             rk.SetValue("", "Android Package File");
             rk.Close();
 
-            rk = root.CreateSubKey(@".apk\DefaultIcon");
-            rk.SetValue("", "%1");
-            rk.Close();
+            //rk = root.CreateSubKey(@".apk\DefaultIcon");
+            //rk.SetValue("", "%1");
+            //rk.Close();
 
             rk = root.CreateSubKey(@".apk\shellex\IconHandler");
             rk.SetValue("", GUID);
             rk.Close();
 
-            // for 64bit windows
-            rk = root.CreateSubKey(@"Wow6432Node\.apk");
-            rk.SetValue("", "Android Package File");
-            rk.Close();
+            //// for 64bit windows
+            //rk = root.CreateSubKey(@"Wow6432Node\.apk");
+            //rk.SetValue("", "Android Package File");
+            //rk.Close();
 
-            rk = root.CreateSubKey(@"Wow6432Node\.apk\DefaultIcon");
-            rk.SetValue("", "%1");
-            rk.Close();
+            //rk = root.CreateSubKey(@"Wow6432Node\.apk\DefaultIcon");
+            //rk.SetValue("", "%1");
+            //rk.Close();
 
-            rk = root.CreateSubKey(@"Wow6432Node\.apk\shellex\IconHandler");
-            rk.SetValue("", GUID);
-            rk.Close();
+            //rk = root.CreateSubKey(@"Wow6432Node\.apk\shellex\IconHandler");
+            //rk.SetValue("", GUID);
+            //rk.Close();
 
             root.Close();
 
@@ -288,14 +287,16 @@ namespace KKHomeProj.ApkShellExt
             try
             {
                 rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                rk.SetValue(GUID, "Android Package file, shell extention");
+                rk.SetValue(GUID, "Shell Extention for Android Package files");
                 rk.Close();
 
-                rk = root.OpenSubKey(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                rk.SetValue(GUID, "Android Package file, shell extention");
-                rk.Close();
+                //rk = root.OpenSubKey(@"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                //rk.SetValue(GUID, "Android Package file, shell extention");
+                //rk.Close();
             } catch { }
             root.Close();
+            ExtractResource(Properties.Resources.aapt, @"aapt.exe",true);
+            ExtractResource(Properties.Resources.aapt, @"mgwz.dll",true);
         }
 
         /// <summary>
@@ -308,20 +309,21 @@ namespace KKHomeProj.ApkShellExt
                 RegistryKey rk;
                 root = Registry.ClassesRoot;
                 root.DeleteSubKeyTree(@".apk");
-                root.DeleteSubKeyTree(@"Wow6432Node\.apk");
+                //root.DeleteSubKeyTree(@"Wow6432Node\.apk");
                 root.Close();
 
                 root = Registry.LocalMachine;
                 rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
                 rk.DeleteValue(GUID);
                 rk.Close();
-                rk = root.OpenSubKey(@"Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                rk.DeleteValue(GUID);
-                rk.Close();
+                //rk = root.OpenSubKey(@"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
+                //rk.DeleteValue(GUID);
+                //rk.Close();
 
                 root.Close();
             } catch {}
         }
+
     }
 }
 // vim: expandtab tabstop=4 softtabstop=4 shiftwidth=4
