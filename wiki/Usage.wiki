@@ -9,5 +9,5 @@
   * force end and restart explorer from taskmanager, you should see the icons now. If you don't know what I'm saying now, just reboot your computer.
 
 ==Uninstall==
-  * execute [http://apkshellext.googlecode.com/files/unreg32.bat unreg32.bat](for 32bit windows) or [http://apkshellext.googlecode.com/files/unreg_64.bat unreg_64.bat](for 64bit windows needs administrator mode)
+  * execute [http://apkshellext.googlecode.com/files/unreg32.bat unreg32.bat](for 32bit windows) or [http://apkshellext.googlecode.com/files/unreg_64.bat unreg_64.bat](for 64bit, *Run As Administrator*)
   * delete C:\Windows\System32\apkshellext.dll
