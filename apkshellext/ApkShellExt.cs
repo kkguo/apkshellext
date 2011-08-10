@@ -150,8 +150,8 @@ namespace KKHomeProj.ApkShellExt
             {
                 ExtractResource(Properties.Resources.aapt, @"aapt.exe");
                 ExtractResource(Properties.Resources.aapt, @"mgwz.dll");
-                //extract_resource(Properties.Resources.adb, @"adb.exe");
-                //extract_resource(Properties.Resources.adb, @"AdbWinApi.dll");
+                ExtractResource(Properties.Resources.adb, @"adb.exe");
+                ExtractResource(Properties.Resources.adb, @"AdbWinApi.dll");
 
                 Process p = new Process();
                 p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
@@ -297,6 +297,8 @@ namespace KKHomeProj.ApkShellExt
             root.Close();
             ExtractResource(Properties.Resources.aapt, @"aapt.exe",true);
             ExtractResource(Properties.Resources.aapt, @"mgwz.dll",true);
+            ExtractResource(Properties.Resources.adb, @"adb.exe",true);
+            ExtractResource(Properties.Resources.adb, @"AdbWinApi.dll",true);
         }
 
         /// <summary>
