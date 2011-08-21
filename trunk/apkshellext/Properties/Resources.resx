@@ -127,10 +127,10 @@
   <data name="deficon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\deficon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Menu1" xml:space="preserve">
-    <value>Install to Phone</value>
+  <data name="menu_comment_InstallToPhone" xml:space="preserve">
+    <value>Install to your phone via adb</value>
   </data>
-  <data name="MenuComment1" xml:space="preserve">
-    <value>Install to your phone</value>
+  <data name="menu_InstallToPhone" xml:space="preserve">
+    <value>Install to Phone</value>
   </data>
 </root>
