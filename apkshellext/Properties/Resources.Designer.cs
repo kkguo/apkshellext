@@ -80,5 +80,23 @@ namespace KKHomeProj.ApkShellExt.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install to Phone.
+        /// </summary>
+        internal static string Menu1 {
+            get {
+                return ResourceManager.GetString("Menu1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install to your phone.
+        /// </summary>
+        internal static string MenuComment1 {
+            get {
+                return ResourceManager.GetString("MenuComment1", resourceCulture);
+            }
+        }
     }
 }
