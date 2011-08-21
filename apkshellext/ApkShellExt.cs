@@ -27,11 +27,10 @@ namespace KKHomeProj.ApkShellExt
         #region Constants
         private const string GUID = "{66391a18-f480-413b-9592-a10044de6cf4}";
         private const string KeyName = "apkshellext";
-        private const uint IDM_DISPLAY = 0;
-
         private const int BUFF_SIZE = 1024;
         #endregion
 
+        private uint IDM_DISPLAY = 0;
         private string sFileName;
         private uint QITIPF_DEFAULT = 0;
 
@@ -175,6 +174,7 @@ namespace KKHomeProj.ApkShellExt
             {
                 return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0, 0);
             }
+
             // Use either InsertMenu or InsertMenuItem to add menu items.
             MENUITEMINFO mii = new MENUITEMINFO();
             mii.cbSize = (uint)Marshal.SizeOf(mii);
@@ -182,29 +182,29 @@ namespace KKHomeProj.ApkShellExt
                 MIIM.MIIM_ID | MIIM.MIIM_STATE;
             mii.wID = idCmdFirst + IDM_DISPLAY;
             mii.fType = MFT.MFT_STRING;
-            mii.dwTypeData = Properties.Resources.Menu1;
+            mii.dwTypeData = Properties.Resources.menu_InstallToPhone;
             mii.fState = MFS.MFS_ENABLED;
-            mii.hbmpItem = GetApkIcon().Handle;
+            mii.hbmpItem = IntPtr.Zero;
             if (!NativeMethods.InsertMenuItem(hMenu, iMenu, true, ref mii))
             {
                 return Marshal.GetHRForLastWin32Error();
             }
+
+            // Add a separator.
+            MENUITEMINFO sep = new MENUITEMINFO();
+            sep.cbSize = (uint)Marshal.SizeOf(sep);
+            sep.fMask = MIIM.MIIM_TYPE;
+            sep.fType = MFT.MFT_SEPARATOR;
+            if (!NativeMethods.InsertMenuItem(hMenu, iMenu + 1, true, ref sep))
+            {
+                return Marshal.GetHRForLastWin32Error();
+            }
+
             // Return an HRESULT value with the severity set to SEVERITY_SUCCESS. 
             // Set the code value to the offset of the largest command identifier 
             // that was assigned, plus one (1).
             return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0,
                 IDM_DISPLAY + 1);
-            //int id = 0;
-            //if ((uFlags & (uint)(CMF.CMF_VERBSONLY | CMF.CMF_DEFAULTONLY | CMF.CMF_NOVERBS)) == 0 ||
-            //    (uFlags & (uint)CMF.CMF_EXPLORE) != 0)
-            //{
-            //    HMenu submenu = NativeMethods.CreatePopupMenu();
-            //    NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.Menu1);
-
-            //    NativeMethods.InsertMenu(new HMenu(hMenu), 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, submenu.handle, "ApkShellExt");
-            //}
-            //return id;
-
         }
 
         public void InvokeCommand(IntPtr pici)
@@ -306,26 +306,26 @@ namespace KKHomeProj.ApkShellExt
                 switch ((GCS)uFlags)
                 {
                     case GCS.GCS_VERBW:
-                        if (Properties.Resources.MenuComment1.Length > cchMax - 1)
+                        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
                         {
                             Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
                         }
                         else
                         {
                             pszName.Clear();
-                            pszName.Append(Properties.Resources.MenuComment1);
+                            pszName.Append(Properties.Resources.menu_comment_InstallToPhone);
                         }
                         break;
 
                     case GCS.GCS_HELPTEXTW:
-                        if (Properties.Resources.MenuComment1.Length > cchMax - 1)
+                        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
                         {
                             Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
                         }
                         else
                         {
                             pszName.Clear();
-                            pszName.Append(Properties.Resources.MenuComment1);
+                            pszName.Append(Properties.Resources.menu_comment_InstallToPhone);
                         }
                         break;
                 }
@@ -350,7 +350,7 @@ namespace KKHomeProj.ApkShellExt
                 p.StartInfo.WorkingDirectory = Path.GetTempPath();
                 p.Start();
                 string tip = p.StandardOutput.ReadToEnd();
-
+                
                 pszInfoTip = Marshal.StringToCoTaskMemUni(tip);
             }
             catch
@@ -408,9 +408,6 @@ namespace KKHomeProj.ApkShellExt
             try
             {
                 ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
-                ExtractResourceZip(Properties.Resources.aapt, @"mgwz.dll");
-                ExtractResourceZip(Properties.Resources.adb, @"adb.exe");
-                ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll");
 
                 Process p = new Process();
                 p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
@@ -540,10 +537,10 @@ namespace KKHomeProj.ApkShellExt
             root.Close();
 
             ////////////////////////////////////////
-            ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe",true);
-            ExtractResourceZip(Properties.Resources.aapt, @"mgwz.dll",true);
-            ExtractResourceZip(Properties.Resources.adb, @"adb.exe",true);
-            ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll",true);
+            ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe",true);        
+            ExtractResourceZip(Properties.Resources.adb,  @"adb.exe",true);
+            ExtractResourceZip(Properties.Resources.adb,  @"AdbWinApi.dll",true);
+            ExtractResourceZip(Properties.Resources.adb,  @"AdbWinUsbApi.dll", true);
         }
 
         /// <summary>
