@@ -1,69 +1,68 @@
-﻿/*
+﻿/************************************************************\
+ *
  * 
- * 
- * Reference to : lc_mtt's blog http://blog.csdn.net/lc_mtt
- * 
- */
+ * Reference : lc_mtt's blog http://blog.csdn.net/lc_mtt
+ *             All-In-One Code Framework http://www.codeproject.com/KB/dotnet/CSShellExtContextMenuHand.aspx?q=context+menu+shell+extension+.net
+ \**********************************************************/
 using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using KKHomeProj.ShellExtInts;
 using Microsoft.CSharp;
-using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Text;
 
 namespace KKHomeProj.ApkShellExt
 {
     [Guid("66391a18-f480-413b-9592-a10044de6cf4"),
     ComVisible(true)]
-    public class ApkShellExt : IExtractIcon, IPersistFile
+    [ClassInterface(ClassInterfaceType.None)]
+    public class ApkShellExt : IExtractIcon, IPersistFile, IShellExtInit, IContextMenu, IQueryInfo
     {
         #region Constants
         private const string GUID = "{66391a18-f480-413b-9592-a10044de6cf4}";
         private const string KeyName = "apkshellext";
-        private const int S_OK = 0;
-        private const int S_FALSE = 1;
-        private const uint E_PENDING = 0x8000000A;
-        private const uint E_NOTIMPL = 0x80004001;
+        private const uint IDM_DISPLAY = 0;
+
         private const int BUFF_SIZE = 1024;
         #endregion
 
         private string sFileName;
+        private uint QITIPF_DEFAULT = 0;
 
         #region IPersistFile 成员
 
-        public uint GetClassID(out Guid pClassID)
+        public void GetClassID(out Guid pClassID)
         {
             pClassID = new Guid(GUID);
-            return S_OK;
         }
 
-        public uint IsDirty()
+        public void GetCurFile(out string ppszFileName)
         {
             throw new NotImplementedException();
         }
 
-        public uint Load(string pszFileName, uint dwMode)
+        public int IsDirty()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load(string pszFileName, int dwMode)
         {
             sFileName = pszFileName;
-            return S_OK;
         }
 
-        public uint Save(string pszFileName, bool fRemember)
+        public void Save(string pszFileName, bool fRemember)
         {
             throw new NotImplementedException();
         }
 
-        public uint SaveCompleted(string pszFileName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public uint GetCurFile(out string ppszFileName)
+        public void SaveCompleted(string pszFileName)
         {
             throw new NotImplementedException();
         }
@@ -79,12 +78,12 @@ namespace KKHomeProj.ApkShellExt
             try
             {
                 pwFlags = ExtractIconFlags.NotFilename | ExtractIconFlags.PerInstance | ExtractIconFlags.DontCache;
-                return ((uFlags & ExtractIconOptions.Async) != 0) ? E_PENDING : S_OK;
+                return ((uFlags & ExtractIconOptions.Async) != 0) ? WinError.E_PENDING : WinError.S_OK;
             }
             catch
             {
                 pwFlags = ExtractIconFlags.None;
-                return S_FALSE;
+                return WinError.S_FALSE;
             }
         }
 
@@ -97,38 +96,298 @@ namespace KKHomeProj.ApkShellExt
                 int l_size = (int)nIconSize & 0xffff;
                 phiconLarge = (new Icon(ico,l_size,l_size)).Handle;
                 phiconSmall = (new Icon(ico,s_size,s_size)).Handle;
-                return S_OK;
+                return WinError.S_OK;
             }
             catch
             {
                 phiconLarge = phiconSmall = IntPtr.Zero;
-                return S_FALSE;
+                return WinError.S_FALSE;
             }
         }
 
         #endregion
 
+        #region IShellExtInit Members
+        public void Initialize(IntPtr pidlFolder, IntPtr pDataObj, IntPtr hKeyProgID)
+        {
+            if (pDataObj == IntPtr.Zero)
+            {
+                throw new ArgumentException();
+            }
+
+            FORMATETC fe = new FORMATETC();
+            fe.cfFormat = (short)CLIPFORMAT.CF_HDROP;
+            fe.ptd = IntPtr.Zero;
+            fe.dwAspect = DVASPECT.DVASPECT_CONTENT;
+            fe.lindex = -1;
+            fe.tymed = TYMED.TYMED_HGLOBAL;
+            STGMEDIUM stm = new STGMEDIUM();
+
+            // The pDataObj pointer contains the objects being acted upon. In this 
+            // example, we get an HDROP handle for enumerating the selected files 
+            // and folders.
+            IDataObject dataObject = (IDataObject)Marshal.GetObjectForIUnknown(pDataObj);
+            dataObject.GetData(ref fe, out stm);
+
+            try
+            {
+                // Get an HDROP handle.
+                IntPtr hDrop = stm.unionmember;
+                if (hDrop == IntPtr.Zero)
+                {
+                    throw new ArgumentException();
+                }
+
+                // Determine how many files are involved in this operation.
+                uint nFiles = NativeMethods.DragQueryFile(hDrop, UInt32.MaxValue, null, 0);
+
+                // This code sample displays the custom context menu item when only 
+                // one file is selected. 
+                if (nFiles == 1)
+                {
+                    // Get the path of the file.
+                    StringBuilder fileName = new StringBuilder(260);
+                    if (0 == NativeMethods.DragQueryFile(hDrop, 0, fileName,
+                        fileName.Capacity))
+                    {
+                        Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                    }
+                    sFileName = fileName.ToString();
+                }
+                else
+                {
+                    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                }
+            }
+            finally
+            {
+                NativeMethods.ReleaseStgMedium(ref stm);
+            }
+
+        }
+        #endregion
+
+        #region IContextMenu Members
+        public int QueryContextMenu(IntPtr hMenu, uint iMenu, uint idCmdFirst, uint idCmdLast, uint uFlags)
+        {
+            // If uFlags include CMF_DEFAULTONLY then we should not do anything.
+            if (((uint)CMF.CMF_DEFAULTONLY & uFlags) != 0)
+            {
+                return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0, 0);
+            }
+            // Use either InsertMenu or InsertMenuItem to add menu items.
+            MENUITEMINFO mii = new MENUITEMINFO();
+            mii.cbSize = (uint)Marshal.SizeOf(mii);
+            mii.fMask = MIIM.MIIM_BITMAP | MIIM.MIIM_STRING | MIIM.MIIM_FTYPE |
+                MIIM.MIIM_ID | MIIM.MIIM_STATE;
+            mii.wID = idCmdFirst + IDM_DISPLAY;
+            mii.fType = MFT.MFT_STRING;
+            mii.dwTypeData = Properties.Resources.Menu1;
+            mii.fState = MFS.MFS_ENABLED;
+            mii.hbmpItem = GetApkIcon().Handle;
+            if (!NativeMethods.InsertMenuItem(hMenu, iMenu, true, ref mii))
+            {
+                return Marshal.GetHRForLastWin32Error();
+            }
+            // Return an HRESULT value with the severity set to SEVERITY_SUCCESS. 
+            // Set the code value to the offset of the largest command identifier 
+            // that was assigned, plus one (1).
+            return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0,
+                IDM_DISPLAY + 1);
+            //int id = 0;
+            //if ((uFlags & (uint)(CMF.CMF_VERBSONLY | CMF.CMF_DEFAULTONLY | CMF.CMF_NOVERBS)) == 0 ||
+            //    (uFlags & (uint)CMF.CMF_EXPLORE) != 0)
+            //{
+            //    HMenu submenu = NativeMethods.CreatePopupMenu();
+            //    NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.Menu1);
+
+            //    NativeMethods.InsertMenu(new HMenu(hMenu), 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, submenu.handle, "ApkShellExt");
+            //}
+            //return id;
+
+        }
+
+        public void InvokeCommand(IntPtr pici)
+        {
+            bool isUnicode = false;
+
+            // Determine which structure is being passed in, CMINVOKECOMMANDINFO or 
+            // CMINVOKECOMMANDINFOEX based on the cbSize member of lpcmi. Although 
+            // the lpcmi parameter is declared in Shlobj.h as a CMINVOKECOMMANDINFO 
+            // structure, in practice it often points to a CMINVOKECOMMANDINFOEX 
+            // structure. This struct is an extended version of CMINVOKECOMMANDINFO 
+            // and has additional members that allow Unicode strings to be passed.
+            CMINVOKECOMMANDINFO ici = (CMINVOKECOMMANDINFO)Marshal.PtrToStructure(
+                pici, typeof(CMINVOKECOMMANDINFO));
+            CMINVOKECOMMANDINFOEX iciex = new CMINVOKECOMMANDINFOEX();
+            if (ici.cbSize == Marshal.SizeOf(typeof(CMINVOKECOMMANDINFOEX)))
+            {
+                if ((ici.fMask & CMIC.CMIC_MASK_UNICODE) != 0)
+                {
+                    isUnicode = true;
+                    iciex = (CMINVOKECOMMANDINFOEX)Marshal.PtrToStructure(pici,
+                        typeof(CMINVOKECOMMANDINFOEX));
+                }
+            }
+            // Determines whether the command is identified by its offset or verb.
+            // There are two ways to identify commands:
+            // 
+            //   1) The command's verb string 
+            //   2) The command's identifier offset
+            // 
+            // If the high-order word of lpcmi->lpVerb (for the ANSI case) or 
+            // lpcmi->lpVerbW (for the Unicode case) is nonzero, lpVerb or lpVerbW 
+            // holds a verb string. If the high-order word is zero, the command 
+            // offset is in the low-order word of lpcmi->lpVerb.
+
+            // For the ANSI case, if the high-order word is not zero, the command's 
+            // verb string is in lpcmi->lpVerb. 
+            if (!isUnicode && NativeMethods.HighWord(ici.verb.ToInt32()) != 0)
+            {
+                // Is the verb supported by this context menu extension?
+                //if (Marshal.PtrToStringAnsi(ici.verb) == this.verb)
+                //{
+                //    OnVerbDisplayFileName(ici.hwnd);
+                //}
+                //else
+                //{
+                //    // If the verb is not recognized by the context menu handler, it 
+                //    // must return E_FAIL to allow it to be passed on to the other 
+                //    // context menu handlers that might implement that verb.
+                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                //}
+                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
+            }
+
+            // For the Unicode case, if the high-order word is not zero, the 
+            // command's verb string is in lpcmi->lpVerbW. 
+            else if (isUnicode && NativeMethods.HighWord(iciex.verbW.ToInt32()) != 0)
+            {
+                // Is the verb supported by this context menu extension?
+                //if (Marshal.PtrToStringUni(iciex.verbW) == this.verb)
+                //{
+                //    OnVerbDisplayFileName(ici.hwnd);
+                //}
+                //else
+                //{
+                //    // If the verb is not recognized by the context menu handler, it 
+                //    // must return E_FAIL to allow it to be passed on to the other 
+                //    // context menu handlers that might implement that verb.
+                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                //}
+                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
+            }
+
+            // If the command cannot be identified through the verb string, then 
+            // check the identifier offset.
+            else
+            {
+                // Is the command identifier offset supported by this context menu 
+                // extension?
+                //if (NativeMethods.LowWord(ici.verb.ToInt32()) == IDM_DISPLAY)
+                //{
+                //    OnVerbDisplayFileName(ici.hwnd);
+                //}
+                //else
+                //{
+                //    // If the verb is not recognized by the context menu handler, it 
+                //    // must return E_FAIL to allow it to be passed on to the other 
+                //    // context menu handlers that might implement that verb.
+                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                //}
+                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
+            }
+        }
+
+        public void GetCommandString(UIntPtr idCmd, uint uFlags, IntPtr pReserved, System.Text.StringBuilder pszName, uint cchMax)
+        {
+            if (idCmd.ToUInt32() == IDM_DISPLAY)
+            {
+                switch ((GCS)uFlags)
+                {
+                    case GCS.GCS_VERBW:
+                        if (Properties.Resources.MenuComment1.Length > cchMax - 1)
+                        {
+                            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
+                        }
+                        else
+                        {
+                            pszName.Clear();
+                            pszName.Append(Properties.Resources.MenuComment1);
+                        }
+                        break;
+
+                    case GCS.GCS_HELPTEXTW:
+                        if (Properties.Resources.MenuComment1.Length > cchMax - 1)
+                        {
+                            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
+                        }
+                        else
+                        {
+                            pszName.Clear();
+                            pszName.Append(Properties.Resources.MenuComment1);
+                        }
+                        break;
+                }
+            }
+
+        }
+        #endregion
+
+        #region IQuaryInfo Members
+        public uint GetInfoTip(uint dwFlags, out IntPtr pszInfoTip)
+        {
+            try
+            {
+                ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
+                Process p = new Process();
+                p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
+                p.StartInfo.Arguments = @"dump badging " + "\"" + sFileName + "\"";
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.WorkingDirectory = Path.GetTempPath();
+                p.Start();
+                string tip = p.StandardOutput.ReadToEnd();
+
+                pszInfoTip = Marshal.StringToCoTaskMemUni(tip);
+            }
+            catch
+            {
+                pszInfoTip = IntPtr.Zero;
+            }
+            return WinError.S_OK;
+        }
+
+        public uint GetInfoFlags(out uint dwFlags)
+        {
+            dwFlags = QITIPF_DEFAULT;
+            return WinError.S_OK;
+        }
+        #endregion
+
         #region Registeration
-        [System.Runtime.InteropServices.ComRegisterFunctionAttribute()]
-        static void RegisterServer(String str1)
+        [ComRegisterFunction()]
+        public static void Register(Type t)
         {
             try
             {
                 //Register APK file type
-                RegApk();
+                RegApk(t.GUID);
             }
             catch
             {
             }
         }
 
-        [System.Runtime.InteropServices.ComUnregisterFunctionAttribute()]
-        static void UnregisterServer(String str1)
+        [ComUnregisterFunction()]
+        public static void Unregister(Type t)
         {
             try
             {
                 //unregister file type association
-                UnregApk();
+                UnregApk(t.GUID);
             }
             catch
             {
@@ -148,10 +407,10 @@ namespace KKHomeProj.ApkShellExt
 
             try
             {
-                ExtractResource(Properties.Resources.aapt, @"aapt.exe");
-                ExtractResource(Properties.Resources.aapt, @"mgwz.dll");
-                ExtractResource(Properties.Resources.adb, @"adb.exe");
-                ExtractResource(Properties.Resources.adb, @"AdbWinApi.dll");
+                ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
+                ExtractResourceZip(Properties.Resources.aapt, @"mgwz.dll");
+                ExtractResourceZip(Properties.Resources.adb, @"adb.exe");
+                ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll");
 
                 Process p = new Process();
                 p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
@@ -205,7 +464,7 @@ namespace KKHomeProj.ApkShellExt
         /// <param name="resource">resource name</param>
         /// <param name="fileName">output name</param>
         /// <param name="OverWriteIfExists">if true,will overwrite the file even if the file exists</param>
-        private static void ExtractResource(byte[] resource, string fileName,bool OverWriteIfExists=false)
+        private static void ExtractResourceZip(byte[] resource, string fileName,bool OverWriteIfExists=false)
         {
             string target = Path.GetTempPath() + fileName;
             if (OverWriteIfExists || !File.Exists(target))
@@ -250,77 +509,59 @@ namespace KKHomeProj.ApkShellExt
         /// <summary>
         /// register this dll
         /// </summary>
-        private static void RegApk()
+        private static void RegApk(Guid guid)
         {
             RegistryKey root;
             RegistryKey rk;
+            root = Registry.LocalMachine;
+            try
+            {
+                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\",true);
+                rk.SetValue(guid.ToString("B"), "Shell Extention for Android Package files");
+                rk.Close();
+            }
+            catch { }
+            root.Close();
+
             root = Registry.ClassesRoot;
             rk = root.CreateSubKey(@".apk");
             rk.SetValue("", "Android Package File");
             rk.Close();
 
-            //rk = root.CreateSubKey(@".apk\DefaultIcon");
-            //rk.SetValue("", "%1");
-            //rk.Close();
-
             rk = root.CreateSubKey(@".apk\shellex\IconHandler");
-            rk.SetValue("", GUID);
+            rk.SetValue("", guid.ToString("B"));
             rk.Close();
-
-            //// for 64bit windows
-            //rk = root.CreateSubKey(@"Wow6432Node\.apk");
-            //rk.SetValue("", "Android Package File");
-            //rk.Close();
-
-            //rk = root.CreateSubKey(@"Wow6432Node\.apk\DefaultIcon");
-            //rk.SetValue("", "%1");
-            //rk.Close();
-
-            //rk = root.CreateSubKey(@"Wow6432Node\.apk\shellex\IconHandler");
-            //rk.SetValue("", GUID);
-            //rk.Close();
-
+            rk = root.CreateSubKey(@".apk\shellex\ContextMenuHandlers\"+KeyName);
+            rk.SetValue("", guid.ToString("B"));
+            rk.Close();
+            rk = root.CreateSubKey(@".apk\shellex\{00021500-0000-0000-C000-000000000046}");
+            rk.SetValue("", guid.ToString("B"));
+            rk.Close();
             root.Close();
 
             ////////////////////////////////////////
-            root = Registry.LocalMachine;
-            try
-            {
-                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                rk.SetValue(GUID, "Shell Extention for Android Package files");
-                rk.Close();
-
-                //rk = root.OpenSubKey(@"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                //rk.SetValue(GUID, "Android Package file, shell extention");
-                //rk.Close();
-            } catch { }
-            root.Close();
-            ExtractResource(Properties.Resources.aapt, @"aapt.exe",true);
-            ExtractResource(Properties.Resources.aapt, @"mgwz.dll",true);
-            ExtractResource(Properties.Resources.adb, @"adb.exe",true);
-            ExtractResource(Properties.Resources.adb, @"AdbWinApi.dll",true);
+            ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe",true);
+            ExtractResourceZip(Properties.Resources.aapt, @"mgwz.dll",true);
+            ExtractResourceZip(Properties.Resources.adb, @"adb.exe",true);
+            ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll",true);
         }
 
         /// <summary>
         /// unregister
         /// </summary>
-        private static void UnregApk()
+        private static void UnregApk(Guid guid)
         {
             try{
                 RegistryKey root;
                 RegistryKey rk;
                 root = Registry.ClassesRoot;
                 root.DeleteSubKeyTree(@".apk");
-                //root.DeleteSubKeyTree(@"Wow6432Node\.apk");
                 root.Close();
 
                 root = Registry.LocalMachine;
-                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                rk.DeleteValue(GUID);
+                rk = root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\",true);
+                rk.DeleteValue(guid.ToString("B"));
                 rk.Close();
-                //rk = root.OpenSubKey(@"Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\");
-                //rk.DeleteValue(GUID);
-                //rk.Close();
 
                 root.Close();
             } catch {}
