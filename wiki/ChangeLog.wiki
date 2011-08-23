@@ -1,0 +1,8 @@
+#labels Phase-Requirements
+*8/24/2011*
+_v2.0_ 
+*newer and smaller adb and aapt.
+*add context menu
+*install app from context menu
+*List connected devices 
+*connect device with TCP from context menu
