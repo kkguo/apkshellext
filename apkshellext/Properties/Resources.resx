@@ -128,9 +128,27 @@
     <value>..\resources\deficon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="menu_comment_InstallToPhone" xml:space="preserve">
-    <value>Install to your phone via adb</value>
+    <value>Install to your device via adb</value>
   </data>
   <data name="menu_InstallToPhone" xml:space="preserve">
-    <value>Install to Phone</value>
+    <value>Install to Device</value>
+  </data>
+  <data name="menu_ConnectViaWIFI" xml:space="preserve">
+    <value>Connect device via WIFI</value>
+  </data>
+  <data name="menu_CannotFindPhone" xml:space="preserve">
+    <value>Cannot find any device attached!</value>
+  </data>
+  <data name="menu_comment_ConnectViaWIFI" xml:space="preserve">
+    <value>Connect adb with TCP/IP via WIFI</value>
+  </data>
+  <data name="prompt_ConnectFail" xml:space="preserve">
+    <value>Cannot find any device on IP</value>
+  </data>
+  <data name="prompt_ConnectViaWIFI" xml:space="preserve">
+    <value>Input the IP and port number of your device:</value>
+  </data>
+  <data name="prompt_NotAnIP" xml:space="preserve">
+    <value>It's not an IP number , please enter as &lt;num&gt;.&lt;num&gt;.&lt;num&gt;.&lt;num&gt;[:port]</value>
   </data>
 </root>

@@ -416,6 +416,9 @@ namespace KKHomeProj.ShellExtInts
         [DllImport("user32")]
         public static extern int SetMenuItemBitmaps(HMenu hmenu, int nPosition, MFMENU uflags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
 
+        [DllImport("shell32")]
+        internal static extern uint DragQueryFile(uint hDrop, uint iFile, StringBuilder buffer, int cch);
+
         public static int HighWord(int number)
         {
             return ((number & 0x80000000) == 0x80000000) ?

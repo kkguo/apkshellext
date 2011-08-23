@@ -5,17 +5,17 @@
  *             All-In-One Code Framework http://www.codeproject.com/KB/dotnet/CSShellExtContextMenuHand.aspx?q=context+menu+shell+extension+.net
  \**********************************************************/
 using System;
+using System.Collections;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
-using KKHomeProj.ShellExtInts;
-using Microsoft.CSharp;
-using System.Diagnostics;
-using Microsoft.Win32;
 using System.Text;
+using System.Text.RegularExpressions;
+using ICSharpCode.SharpZipLib.Zip;
+using KKHomeProj.ShellExtInts;
+using Microsoft.Win32;
 
 namespace KKHomeProj.ApkShellExt
 {
@@ -30,9 +30,10 @@ namespace KKHomeProj.ApkShellExt
         private const int BUFF_SIZE = 1024;
         #endregion
 
-        private uint IDM_DISPLAY = 0;
+        private uint MenuConnectWIFI_ID;
         private string sFileName;
         private uint QITIPF_DEFAULT = 0;
+        private ArrayList devices;
 
         #region IPersistFile 成员
 
@@ -169,47 +170,71 @@ namespace KKHomeProj.ApkShellExt
         #region IContextMenu Members
         public int QueryContextMenu(IntPtr hMenu, uint iMenu, uint idCmdFirst, uint idCmdLast, uint uFlags)
         {
-            // If uFlags include CMF_DEFAULTONLY then we should not do anything.
             if (((uint)CMF.CMF_DEFAULTONLY & uFlags) != 0)
             {
                 return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0, 0);
             }
 
-            // Use either InsertMenu or InsertMenuItem to add menu items.
-            MENUITEMINFO mii = new MENUITEMINFO();
-            mii.cbSize = (uint)Marshal.SizeOf(mii);
-            mii.fMask = MIIM.MIIM_BITMAP | MIIM.MIIM_STRING | MIIM.MIIM_FTYPE |
-                MIIM.MIIM_ID | MIIM.MIIM_STATE;
-            mii.wID = idCmdFirst + IDM_DISPLAY;
-            mii.fType = MFT.MFT_STRING;
-            mii.dwTypeData = Properties.Resources.menu_InstallToPhone;
-            mii.fState = MFS.MFS_ENABLED;
-            mii.hbmpItem = IntPtr.Zero;
-            if (!NativeMethods.InsertMenuItem(hMenu, iMenu, true, ref mii))
+            devices = new ArrayList();
+            try
             {
-                return Marshal.GetHRForLastWin32Error();
-            }
+                ExtractResourceZip(Properties.Resources.adb, @"adb.exe");
+                ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll");
+                ExtractResourceZip(Properties.Resources.adb, @"AdbWinUsbApi.dll");
 
-            // Add a separator.
-            MENUITEMINFO sep = new MENUITEMINFO();
-            sep.cbSize = (uint)Marshal.SizeOf(sep);
-            sep.fMask = MIIM.MIIM_TYPE;
-            sep.fType = MFT.MFT_SEPARATOR;
-            if (!NativeMethods.InsertMenuItem(hMenu, iMenu + 1, true, ref sep))
+                Process p = start_process(@"adb.exe", @"devices");
+
+                string line = p.StandardOutput.ReadLine();
+                Regex r = new Regex(@"^([\w-\.:]*)\s+device$");
+                while (!String.IsNullOrWhiteSpace(line))
+                {
+                    if (r.IsMatch(line))
+                    {
+                        devices.Add((string)r.Match(line).Groups[1].Value);
+                    }
+                    line = p.StandardOutput.ReadLine();
+                }
+                p.Close();
+            }
+            catch { }
+
+            uint id = 0;
+            try
             {
+                HMenu submenu = NativeMethods.CreatePopupMenu();
+                if (devices.Count > 0)
+                {
+                    foreach (string s in devices)
+                    {
+                        NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), s);
+                    }
+                }
+                else
+                {
+                    NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING | MFMENU.MF_DISABLED, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_CannotFindPhone);
+                }
+                // a separator
+                NativeMethods.AppendMenu(submenu, MFMENU.MF_SEPARATOR, new IntPtr(idCmdFirst + id++), "");
+                // Connect with WIFI
+                NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_ConnectViaWIFI);
+                MenuConnectWIFI_ID = id - 1;
+                // Insert to popup-menu
+                NativeMethods.InsertMenu(new HMenu(hMenu), 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, submenu.handle, Properties.Resources.menu_InstallToPhone);
+            }
+            catch {
                 return Marshal.GetHRForLastWin32Error();
             }
 
             // Return an HRESULT value with the severity set to SEVERITY_SUCCESS. 
             // Set the code value to the offset of the largest command identifier 
             // that was assigned, plus one (1).
-            return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0,
-                IDM_DISPLAY + 1);
+            return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0, id + 1);
+            
         }
 
         public void InvokeCommand(IntPtr pici)
         {
-            bool isUnicode = false;
+            //bool isUnicode = false;
 
             // Determine which structure is being passed in, CMINVOKECOMMANDINFO or 
             // CMINVOKECOMMANDINFOEX based on the cbSize member of lpcmi. Although 
@@ -219,117 +244,83 @@ namespace KKHomeProj.ApkShellExt
             // and has additional members that allow Unicode strings to be passed.
             CMINVOKECOMMANDINFO ici = (CMINVOKECOMMANDINFO)Marshal.PtrToStructure(
                 pici, typeof(CMINVOKECOMMANDINFO));
-            CMINVOKECOMMANDINFOEX iciex = new CMINVOKECOMMANDINFOEX();
-            if (ici.cbSize == Marshal.SizeOf(typeof(CMINVOKECOMMANDINFOEX)))
+            //CMINVOKECOMMANDINFOEX iciex = new CMINVOKECOMMANDINFOEX();
+            //if (ici.cbSize == Marshal.SizeOf(typeof(CMINVOKECOMMANDINFOEX)))
+            //{
+            //    if ((ici.fMask & CMIC.CMIC_MASK_UNICODE) != 0)
+            //    {
+            //        isUnicode = true;
+            //        iciex = (CMINVOKECOMMANDINFOEX)Marshal.PtrToStructure(pici,
+            //            typeof(CMINVOKECOMMANDINFOEX));
+            //    }
+            //}
+
+            // Is the command identifier offset supported by this context menu 
+            // extension?
+            int id = NativeMethods.LowWord(ici.verb.ToInt32());
+            if ((devices.Count==0 && NativeMethods.LowWord(ici.verb.ToInt32())==2)
+                || NativeMethods.LowWord(ici.verb.ToInt32()) == devices.Count + 1)
             {
-                if ((ici.fMask & CMIC.CMIC_MASK_UNICODE) != 0)
+                string s = Microsoft.VisualBasic.Interaction.InputBox(Properties.Resources.prompt_ConnectViaWIFI, Properties.Resources.menu_ConnectViaWIFI);
+                if (!String.IsNullOrEmpty(s))
                 {
-                    isUnicode = true;
-                    iciex = (CMINVOKECOMMANDINFOEX)Marshal.PtrToStructure(pici,
-                        typeof(CMINVOKECOMMANDINFOEX));
+                    Regex r = new Regex(@"(\d{1,3}\.){3}\d{1,3}(:\d+)?$");
+                    if (r.IsMatch(s))
+                    {
+                        Process p = start_process(@"adb.exe", "connect " + s);
+                        System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
+                        p.Close();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(Properties.Resources.prompt_NotAnIP);
+                    }
                 }
             }
-            // Determines whether the command is identified by its offset or verb.
-            // There are two ways to identify commands:
-            // 
-            //   1) The command's verb string 
-            //   2) The command's identifier offset
-            // 
-            // If the high-order word of lpcmi->lpVerb (for the ANSI case) or 
-            // lpcmi->lpVerbW (for the Unicode case) is nonzero, lpVerb or lpVerbW 
-            // holds a verb string. If the high-order word is zero, the command 
-            // offset is in the low-order word of lpcmi->lpVerb.
-
-            // For the ANSI case, if the high-order word is not zero, the command's 
-            // verb string is in lpcmi->lpVerb. 
-            if (!isUnicode && NativeMethods.HighWord(ici.verb.ToInt32()) != 0)
+            else if (id < devices.Count)//point to devices
             {
-                // Is the verb supported by this context menu extension?
-                //if (Marshal.PtrToStringAnsi(ici.verb) == this.verb)
-                //{
-                //    OnVerbDisplayFileName(ici.hwnd);
-                //}
-                //else
-                //{
-                //    // If the verb is not recognized by the context menu handler, it 
-                //    // must return E_FAIL to allow it to be passed on to the other 
-                //    // context menu handlers that might implement that verb.
-                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
-                //}
-                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
+                Process p = start_process(@"adb.exe", "-s " + (string)devices[id] + " install -r " + sFileName);
+                System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
             }
-
-            // For the Unicode case, if the high-order word is not zero, the 
-            // command's verb string is in lpcmi->lpVerbW. 
-            else if (isUnicode && NativeMethods.HighWord(iciex.verbW.ToInt32()) != 0)
-            {
-                // Is the verb supported by this context menu extension?
-                //if (Marshal.PtrToStringUni(iciex.verbW) == this.verb)
-                //{
-                //    OnVerbDisplayFileName(ici.hwnd);
-                //}
-                //else
-                //{
-                //    // If the verb is not recognized by the context menu handler, it 
-                //    // must return E_FAIL to allow it to be passed on to the other 
-                //    // context menu handlers that might implement that verb.
-                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
-                //}
-                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
-            }
-
-            // If the command cannot be identified through the verb string, then 
-            // check the identifier offset.
             else
             {
-                // Is the command identifier offset supported by this context menu 
-                // extension?
-                //if (NativeMethods.LowWord(ici.verb.ToInt32()) == IDM_DISPLAY)
-                //{
-                //    OnVerbDisplayFileName(ici.hwnd);
-                //}
-                //else
-                //{
-                //    // If the verb is not recognized by the context menu handler, it 
-                //    // must return E_FAIL to allow it to be passed on to the other 
-                //    // context menu handlers that might implement that verb.
-                //    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
-                //}
-                System.Windows.Forms.MessageBox.Show(ici.verb.ToInt32().ToString());
+                // If the verb is not recognized by the context menu handler, it 
+                // must return E_FAIL to allow it to be passed on to the other 
+                // context menu handlers that might implement that verb.
+                Marshal.ThrowExceptionForHR(WinError.E_FAIL);
             }
         }
 
         public void GetCommandString(UIntPtr idCmd, uint uFlags, IntPtr pReserved, System.Text.StringBuilder pszName, uint cchMax)
         {
-            if (idCmd.ToUInt32() == IDM_DISPLAY)
-            {
-                switch ((GCS)uFlags)
-                {
-                    case GCS.GCS_VERBW:
-                        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
-                        {
-                            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
-                        }
-                        else
-                        {
-                            pszName.Clear();
-                            pszName.Append(Properties.Resources.menu_comment_InstallToPhone);
-                        }
-                        break;
+            pszName.Clear();
+            //if ((GCS)uFlags == GCS.GCS_HELPTEXTW) {
+            //    if (idCmd.ToUInt32() < devices.Count)
+            //    {
 
-                    case GCS.GCS_HELPTEXTW:
-                        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
-                        {
-                            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
-                        }
-                        else
-                        {
-                            pszName.Clear();
-                            pszName.Append(Properties.Resources.menu_comment_InstallToPhone);
-                        }
-                        break;
-                }
-            }
+            //        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
+            //        {
+            //            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
+            //        }
+            //        else
+            //        {
+            //            pszName.Clear();
+            //            pszName.Append(Properties.Resources.menu_comment_InstallToPhone);
+            //        }
+
+            //    }
+            //    else if (idCmd.ToUInt32() == devices.Count + 1)
+            //    {
+            //        if (Properties.Resources.menu_comment_ConnectViaWIFI.Length > cchMax -1){
+            //            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
+            //        }
+            //        else
+            //        {
+            //            pszName.Clear();
+            //            pszName.Append(Properties.Resources.menu_comment_ConnectViaWIFI);
+            //        }
+            //    }
+            //}
 
         }
         #endregion
@@ -409,22 +400,14 @@ namespace KKHomeProj.ApkShellExt
             {
                 ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
 
-                Process p = new Process();
-                p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
-                p.StartInfo.Arguments = @"dump badging " + "\"" + sFileName + "\"";
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                p.StartInfo.CreateNoWindow = true;
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.WorkingDirectory = Path.GetTempPath();
-                p.Start();
+                Process p = start_process(@"aapt.exe",@"dump badging " + "\"" + sFileName + "\"");
                 string icon_path = p.StandardOutput.ReadLine();
+                Regex r = new Regex(@"^application.*icon='([\w/.]*)'$");
                 while (!String.IsNullOrEmpty(icon_path))
                 {
-                    if (icon_path.Contains("application:"))
+                    if (r.IsMatch(icon_path))
                     {
-                        int icon_ind = icon_path.IndexOf("icon=") + 5 + 1;//1 for "'"
-                        icon_path = icon_path.Substring(icon_ind, icon_path.Length - icon_ind - 1);
+                        icon_path = (string)r.Match(icon_path).Groups[1].Value;
                         break;
                     }
                     icon_path = p.StandardOutput.ReadLine();
@@ -552,7 +535,9 @@ namespace KKHomeProj.ApkShellExt
                 RegistryKey root;
                 RegistryKey rk;
                 root = Registry.ClassesRoot;
-                root.DeleteSubKeyTree(@".apk");
+                root.DeleteSubKeyTree(@".apk\shellex\IconHandler");
+                root.DeleteSubKeyTree(@".apk\shellex\ContextMenuHandlers\" + KeyName);
+                root.DeleteSubKeyTree(@".apk\shellex\{00021500-0000-0000-C000-000000000046}");
                 root.Close();
 
                 root = Registry.LocalMachine;
@@ -564,6 +549,26 @@ namespace KKHomeProj.ApkShellExt
             } catch {}
         }
 
+        /// <summary>
+        /// start a process under backgroud, the process should be in %TMP%, and working directory will be 
+        /// %TMP as well
+        /// </summary>
+        /// <param name="cmd">command to execute</param>
+        /// <param name="arg">arguments pass to the command</param>
+        /// <returns>the process</returns>
+        private Process start_process(string cmd, string arg)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = Path.GetTempPath() + cmd;
+            p.StartInfo.Arguments = arg;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.WorkingDirectory = Path.GetTempPath();
+            p.Start();
+            return p;
+        }
     }
 }
 // vim: expandtab tabstop=4 softtabstop=4 shiftwidth=4
