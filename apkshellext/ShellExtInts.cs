@@ -8,6 +8,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace KKHomeProj.ShellExtInts
 {
@@ -429,6 +430,14 @@ namespace KKHomeProj.ShellExtInts
         {
             return number & 0xffff;
         }
+
+
+        public static bool isIPAddress(string s)
+        {
+            if (String.IsNullOrWhiteSpace(s)) return false;
+            Regex r = new Regex(@"(\d{1,3}\.){3}\d{1,3}(:\d+)?$");
+            return r.IsMatch(s);
+        }
     }
 
     internal static class WinError
@@ -459,5 +468,22 @@ namespace KKHomeProj.ShellExtInts
         }
     }
 
+    #endregion
+
+    #region AndroidDevice Class
+    internal class AndroidDevice
+    {
+        public string Serialno = "";
+        public uint menuID_1 = 0;
+        public uint menuID_2 = 0;
+        public uint menuID_3 = 0;
+        public bool ConnectFromWIFI
+        {
+            get
+            {
+                return NativeMethods.isIPAddress(Serialno);
+            }
+        }
+    }
     #endregion
 }
