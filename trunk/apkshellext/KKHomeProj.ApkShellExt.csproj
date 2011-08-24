@@ -150,6 +150,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\aapt.zip" />
     <None Include="Resources\adb.zip" />
     <None Include="Resources\deficon.jpg" />

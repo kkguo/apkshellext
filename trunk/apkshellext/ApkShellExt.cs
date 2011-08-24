@@ -1,9 +1,15 @@
-﻿/************************************************************\
+﻿/***************************************************************************************************************\
  *
  * 
  * Reference : lc_mtt's blog http://blog.csdn.net/lc_mtt
  *             All-In-One Code Framework http://www.codeproject.com/KB/dotnet/CSShellExtContextMenuHand.aspx?q=context+menu+shell+extension+.net
- \**********************************************************/
+ *             
+ * Changelog :
+ *             2011-8-25   Base on v2.0
+ *                         Remeber last typed in IP, stored in registry
+ *                         Select install path, internal memory or SD card.
+ *                         Disconnect
+ \**************************************************************************************************************/
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -182,7 +188,7 @@ namespace KKHomeProj.ApkShellExt
                 ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll");
                 ExtractResourceZip(Properties.Resources.adb, @"AdbWinUsbApi.dll");
 
-                Process p = start_process(@"adb.exe", @"devices");
+                Process p = StartProcess(@"adb.exe", @"devices");
 
                 string line = p.StandardOutput.ReadLine();
                 Regex r = new Regex(@"^([\w-\.:]*)\s+device$");
@@ -190,7 +196,9 @@ namespace KKHomeProj.ApkShellExt
                 {
                     if (r.IsMatch(line))
                     {
-                        devices.Add((string)r.Match(line).Groups[1].Value);
+                        AndroidDevice d = new AndroidDevice();
+                        d.Serialno = (string)r.Match(line).Groups[1].Value;                        
+                        devices.Add(d);
                     }
                     line = p.StandardOutput.ReadLine();
                 }
@@ -204,14 +212,26 @@ namespace KKHomeProj.ApkShellExt
                 HMenu submenu = NativeMethods.CreatePopupMenu();
                 if (devices.Count > 0)
                 {
-                    foreach (string s in devices)
+                    foreach (AndroidDevice d in devices)
                     {
-                        NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), s);
+                        HMenu subsubmenu = NativeMethods.CreatePopupMenu();
+                        d.menuID_1 = id;
+                        NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToInternalMemory);
+                        d.menuID_2 = id;
+                        NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToSDCard);
+                        if (d.ConnectFromWIFI)
+                        {
+                            d.menuID_3 = id;
+                            NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_DisconnectWIFI);
+                        }
+
+                        NativeMethods.InsertMenu(submenu, 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, subsubmenu.handle, d.Serialno);
+                        //NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), s);
                     }
                 }
                 else
                 {
-                    NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING | MFMENU.MF_DISABLED, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_CannotFindPhone);
+                    NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING | MFMENU.MF_DISABLED | MFMENU.MF_GRAYED, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_CannotFindPhone);
                 }
                 // a separator
                 NativeMethods.AppendMenu(submenu, MFMENU.MF_SEPARATOR, new IntPtr(idCmdFirst + id++), "");
@@ -258,36 +278,58 @@ namespace KKHomeProj.ApkShellExt
             // Is the command identifier offset supported by this context menu 
             // extension?
             int id = NativeMethods.LowWord(ici.verb.ToInt32());
-            if ((devices.Count==0 && NativeMethods.LowWord(ici.verb.ToInt32())==2)
-                || NativeMethods.LowWord(ici.verb.ToInt32()) == devices.Count + 1)
+            if (id == MenuConnectWIFI_ID)
             {
-                string s = Microsoft.VisualBasic.Interaction.InputBox(Properties.Resources.prompt_ConnectViaWIFI, Properties.Resources.menu_ConnectViaWIFI);
-                if (!String.IsNullOrEmpty(s))
+                string s = "";
+                RegistryKey rk = Registry.ClassesRoot.OpenSubKey(@".apk\shellex\ContextMenuHandlers\" + KeyName);
+                if (rk != null)
                 {
-                    Regex r = new Regex(@"(\d{1,3}\.){3}\d{1,3}(:\d+)?$");
-                    if (r.IsMatch(s))
-                    {
-                        Process p = start_process(@"adb.exe", "connect " + s);
-                        System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
-                        p.Close();
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show(Properties.Resources.prompt_NotAnIP);
-                    }
+                    s = (string)rk.GetValue("LastConnectedIP");
                 }
-            }
-            else if (id < devices.Count)//point to devices
-            {
-                Process p = start_process(@"adb.exe", "-s " + (string)devices[id] + " install -r " + sFileName);
-                System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
+                s = Microsoft.VisualBasic.Interaction.InputBox(Properties.Resources.prompt_ConnectViaWIFI,
+                     Properties.Resources.menu_ConnectViaWIFI,
+                     s);
+                if (NativeMethods.isIPAddress(s))
+                {
+                    Registry.ClassesRoot.CreateSubKey(@".apk\shellex\ContextMenuHandlers\" + KeyName).SetValue("LastConnectedIP", s);
+
+                    Process p = StartProcess(@"adb.exe", "connect " + s);
+                    System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
+                    p.Close();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show(Properties.Resources.prompt_NotAnIP);
+                }
             }
             else
             {
-                // If the verb is not recognized by the context menu handler, it 
-                // must return E_FAIL to allow it to be passed on to the other 
-                // context menu handlers that might implement that verb.
-                Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                bool flag = false;
+                foreach (AndroidDevice d in devices)
+                {
+                    if (d.menuID_1 == id || d.menuID_2 == id)
+                    {
+                        Process p = StartProcess(@"adb.exe", "-s " + d.Serialno + " install -r " +((d.menuID_2==id)?"-s ":"") + sFileName);
+                        System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
+                        p.Close();
+                        flag = true;
+                        break;
+                    }
+                    else if (d.menuID_3 == id)
+                    {
+                        Process p = StartProcess(@"adb.exe", "disconnect " + d.Serialno);
+                        p.Close();
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                {
+                    // If the verb is not recognized by the context menu handler, it 
+                    // must return E_FAIL to allow it to be passed on to the other 
+                    // context menu handlers that might implement that verb.
+                    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
+                }
             }
         }
 
@@ -400,7 +442,7 @@ namespace KKHomeProj.ApkShellExt
             {
                 ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
 
-                Process p = start_process(@"aapt.exe",@"dump badging " + "\"" + sFileName + "\"");
+                Process p = StartProcess(@"aapt.exe",@"dump badging " + "\"" + sFileName + "\"");
                 string icon_path = p.StandardOutput.ReadLine();
                 Regex r = new Regex(@"^application.*icon='([\w/.]*)'$");
                 while (!String.IsNullOrEmpty(icon_path))
@@ -556,7 +598,7 @@ namespace KKHomeProj.ApkShellExt
         /// <param name="cmd">command to execute</param>
         /// <param name="arg">arguments pass to the command</param>
         /// <returns>the process</returns>
-        private Process start_process(string cmd, string arg)
+        private Process StartProcess(string cmd, string arg)
         {
             Process p = new Process();
             p.StartInfo.FileName = Path.GetTempPath() + cmd;
