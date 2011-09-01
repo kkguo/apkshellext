@@ -8,7 +8,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections;
+using ICSharpCode.SharpZipLib.Zip;
+using System.Diagnostics;
 
 namespace KKHomeProj.ShellExtInts
 {
@@ -191,6 +195,17 @@ namespace KKHomeProj.ShellExtInts
         CMIC_MASK_CONTROL_DOWN = 0x40000000
     }
 
+    [Flags]
+    internal enum QuaryInfoFlags : uint
+    {
+        QITIPF_DEFAULT = 0,
+        QITIPF_USENAME = 1,
+        QITIPF_LINKNOTARGET = 2,
+        QITIPF_LINKUSETARGET = 4,
+        QITIPF_USESLOWTIP = 8,
+        QITIPF_SINGLELINE = 0x10
+    }
+
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     internal struct CMINVOKECOMMANDINFO
     {
@@ -245,6 +260,7 @@ namespace KKHomeProj.ShellExtInts
         }
         public IntPtr handle;
     }
+
     #endregion
 
     #region IExtractIcon
@@ -417,9 +433,6 @@ namespace KKHomeProj.ShellExtInts
         [DllImport("user32")]
         public static extern int SetMenuItemBitmaps(HMenu hmenu, int nPosition, MFMENU uflags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
 
-        [DllImport("shell32")]
-        internal static extern uint DragQueryFile(uint hDrop, uint iFile, StringBuilder buffer, int cch);
-
         public static int HighWord(int number)
         {
             return ((number & 0x80000000) == 0x80000000) ?
@@ -468,22 +481,5 @@ namespace KKHomeProj.ShellExtInts
         }
     }
 
-    #endregion
-
-    #region AndroidDevice Class
-    internal class AndroidDevice
-    {
-        public string Serialno = "";
-        public uint menuID_1 = 0;
-        public uint menuID_2 = 0;
-        public uint menuID_3 = 0;
-        public bool ConnectFromWIFI
-        {
-            get
-            {
-                return NativeMethods.isIPAddress(Serialno);
-            }
-        }
-    }
     #endregion
 }

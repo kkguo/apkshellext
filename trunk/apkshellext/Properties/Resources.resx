@@ -160,4 +160,7 @@
   <data name="menu_DisconnectWIFI" xml:space="preserve">
     <value>Disconnect</value>
   </data>
+  <data name="menu_Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
 </root>

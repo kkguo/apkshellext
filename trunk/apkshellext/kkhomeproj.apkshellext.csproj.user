@@ -6,7 +6,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <StartArguments>c:\windows\explorer.exe</StartArguments>
-    <StartWorkingDirectory>D:\Projects\99_Projects\apkshellext\apkshellext\bin\Release\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\guojin\Private\apkshellext\apkshellext\bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <StartWorkingDirectory>E:\apkshellext\apkshellext\bin\Debug\</StartWorkingDirectory>
@@ -25,5 +25,6 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>zh-CN</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>
