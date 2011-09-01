@@ -51,14 +51,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>true</RegisterForComInterop>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
     <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,7 +91,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidDevice.cs" />
+    <Compile Include="AndroidToolAgent.cs" />
     <Compile Include="ApkShellExt.cs" />
+    <Compile Include="AndroidPackage.cs" />
     <Compile Include="SharpZLib\Checksums\Adler32.cs" />
     <Compile Include="SharpZLib\Checksums\CRC32.cs" />
     <Compile Include="SharpZLib\Checksums\IChecksum.cs" />
@@ -150,7 +153,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\aapt.zip" />
     <None Include="Resources\adb.zip" />
     <None Include="Resources\deficon.jpg" />

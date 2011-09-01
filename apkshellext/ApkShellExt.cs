@@ -9,6 +9,7 @@
  *                         Remeber last typed in IP, stored in registry
  *                         Select install path, internal memory or SD card.
  *                         Disconnect
+ *             2011-8-25   Let system cache the icon
  \**************************************************************************************************************/
 using System;
 using System.Collections;
@@ -19,8 +20,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
-using ICSharpCode.SharpZipLib.Zip;
 using KKHomeProj.ShellExtInts;
+using KKHomeProj.Android;
 using Microsoft.Win32;
 
 namespace KKHomeProj.ApkShellExt
@@ -33,19 +34,30 @@ namespace KKHomeProj.ApkShellExt
         #region Constants
         private const string GUID = "{66391a18-f480-413b-9592-a10044de6cf4}";
         private const string KeyName = "apkshellext";
-        private const int BUFF_SIZE = 1024;
         #endregion
 
         private uint MenuConnectWIFI_ID;
         private string sFileName;
-        private uint QITIPF_DEFAULT = 0;
         private ArrayList devices;
+        private AndroidPackage curApk;
+        private uint [,] menu_id;
+
+        public ApkShellExt()
+        {
+            //// Creates the text file that the trace listener will write to.
+            //FileStream myTraceLog = new FileStream("C:\\myTraceLog.txt", FileMode.OpenOrCreate);
+            //// Creates the new trace listener.
+            //TextWriterTraceListener myListener = new TextWriterTraceListener(myTraceLog);
+            //Trace.Listeners.Add(myListener);
+            //Trace.WriteLine("Construction");
+        }
 
         #region IPersistFile 成员
 
         public void GetClassID(out Guid pClassID)
         {
             pClassID = new Guid(GUID);
+            Trace.WriteLine("GetCLSID");
         }
 
         public void GetCurFile(out string ppszFileName)
@@ -61,6 +73,7 @@ namespace KKHomeProj.ApkShellExt
         public void Load(string pszFileName, int dwMode)
         {
             sFileName = pszFileName;
+            if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
         }
 
         public void Save(string pszFileName, bool fRemember)
@@ -76,39 +89,25 @@ namespace KKHomeProj.ApkShellExt
         #endregion
 
         #region IExtractIcon 成员
-        
+
         public uint GetIconLocation(ExtractIconOptions uFlags, IntPtr szIconFile, uint cchMax, out int piIndex, out ExtractIconFlags pwFlags)
         {
             piIndex = -1;
             szIconFile = IntPtr.Zero;
-            try
-            {
-                pwFlags = ExtractIconFlags.NotFilename | ExtractIconFlags.PerInstance | ExtractIconFlags.DontCache;
-                return ((uFlags & ExtractIconOptions.Async) != 0) ? WinError.E_PENDING : WinError.S_OK;
-            }
-            catch
-            {
-                pwFlags = ExtractIconFlags.None;
-                return WinError.S_FALSE;
-            }
+            pwFlags = ExtractIconFlags.NotFilename | ExtractIconFlags.PerInstance | ExtractIconFlags.DontCache;
+            return ((uFlags & ExtractIconOptions.Async) != 0) ? WinError.E_PENDING : WinError.S_OK;
+
         }
 
         public uint Extract(string pszFile, uint nIconIndex, out IntPtr phiconLarge, out IntPtr phiconSmall, uint nIconSize)
         {
-            try
-            {
-                Icon ico = GetApkIcon();   
-                int s_size = (int)nIconSize >> 16;
-                int l_size = (int)nIconSize & 0xffff;
-                phiconLarge = (new Icon(ico,l_size,l_size)).Handle;
-                phiconSmall = (new Icon(ico,s_size,s_size)).Handle;
-                return WinError.S_OK;
-            }
-            catch
-            {
-                phiconLarge = phiconSmall = IntPtr.Zero;
-                return WinError.S_FALSE;
-            }
+            if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+            AndroidPackage.default_icon = Icon.FromHandle(Properties.Resources.deficon.GetHicon());
+            int s_size = (int)nIconSize >> 16;
+            int l_size = (int)nIconSize & 0xffff;
+            phiconLarge = (new Icon(curApk.icon, l_size, l_size)).Handle;
+            phiconSmall = (new Icon(curApk.icon, s_size, s_size)).Handle;
+            return WinError.S_OK;
         }
 
         #endregion
@@ -146,9 +145,8 @@ namespace KKHomeProj.ApkShellExt
 
                 // Determine how many files are involved in this operation.
                 uint nFiles = NativeMethods.DragQueryFile(hDrop, UInt32.MaxValue, null, 0);
-
                 // This code sample displays the custom context menu item when only 
-                // one file is selected. 
+                // one file is selected.
                 if (nFiles == 1)
                 {
                     // Get the path of the file.
@@ -169,7 +167,6 @@ namespace KKHomeProj.ApkShellExt
             {
                 NativeMethods.ReleaseStgMedium(ref stm);
             }
-
         }
         #endregion
 
@@ -181,30 +178,7 @@ namespace KKHomeProj.ApkShellExt
                 return WinError.MAKE_HRESULT(WinError.SEVERITY_SUCCESS, 0, 0);
             }
 
-            devices = new ArrayList();
-            try
-            {
-                ExtractResourceZip(Properties.Resources.adb, @"adb.exe");
-                ExtractResourceZip(Properties.Resources.adb, @"AdbWinApi.dll");
-                ExtractResourceZip(Properties.Resources.adb, @"AdbWinUsbApi.dll");
-
-                Process p = StartProcess(@"adb.exe", @"devices");
-
-                string line = p.StandardOutput.ReadLine();
-                Regex r = new Regex(@"^([\w-\.:]*)\s+device$");
-                while (!String.IsNullOrWhiteSpace(line))
-                {
-                    if (r.IsMatch(line))
-                    {
-                        AndroidDevice d = new AndroidDevice();
-                        d.Serialno = (string)r.Match(line).Groups[1].Value;                        
-                        devices.Add(d);
-                    }
-                    line = p.StandardOutput.ReadLine();
-                }
-                p.Close();
-            }
-            catch { }
+            devices = AndroidDevice.GetAndroidDevices();
 
             uint id = 0;
             try
@@ -212,20 +186,24 @@ namespace KKHomeProj.ApkShellExt
                 HMenu submenu = NativeMethods.CreatePopupMenu();
                 if (devices.Count > 0)
                 {
-                    foreach (AndroidDevice d in devices)
+                    menu_id = new uint[devices.Count, 4];
+
+                    for (int i = 0; i<devices.Count; i++)
                     {
                         HMenu subsubmenu = NativeMethods.CreatePopupMenu();
-                        d.menuID_1 = id;
+                        menu_id[i, 0] = id;
                         NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToInternalMemory);
-                        d.menuID_2 = id;
+                        menu_id[i, 1] = id;
                         NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToSDCard);
-                        if (d.ConnectFromWIFI)
+                        menu_id[i, 2] = id;
+                        NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_Uninstall);
+                        if (((AndroidDevice)devices[i]).ConnectedFromWIFI)
                         {
-                            d.menuID_3 = id;
+                            menu_id[i,3] = id;
                             NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_DisconnectWIFI);
                         }
 
-                        NativeMethods.InsertMenu(submenu, 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, subsubmenu.handle, d.Serialno);
+                        NativeMethods.InsertMenu(submenu, 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, subsubmenu.handle, ((AndroidDevice)devices[i]).Serialno);
                         //NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), s);
                     }
                 }
@@ -236,8 +214,9 @@ namespace KKHomeProj.ApkShellExt
                 // a separator
                 NativeMethods.AppendMenu(submenu, MFMENU.MF_SEPARATOR, new IntPtr(idCmdFirst + id++), "");
                 // Connect with WIFI
+                MenuConnectWIFI_ID = id;
                 NativeMethods.AppendMenu(submenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_ConnectViaWIFI);
-                MenuConnectWIFI_ID = id - 1;
+                
                 // Insert to popup-menu
                 NativeMethods.InsertMenu(new HMenu(hMenu), 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, submenu.handle, Properties.Resources.menu_InstallToPhone);
             }
@@ -264,6 +243,7 @@ namespace KKHomeProj.ApkShellExt
             // and has additional members that allow Unicode strings to be passed.
             CMINVOKECOMMANDINFO ici = (CMINVOKECOMMANDINFO)Marshal.PtrToStructure(
                 pici, typeof(CMINVOKECOMMANDINFO));
+            #region unicode
             //CMINVOKECOMMANDINFOEX iciex = new CMINVOKECOMMANDINFOEX();
             //if (ici.cbSize == Marshal.SizeOf(typeof(CMINVOKECOMMANDINFOEX)))
             //{
@@ -274,61 +254,60 @@ namespace KKHomeProj.ApkShellExt
             //            typeof(CMINVOKECOMMANDINFOEX));
             //    }
             //}
-
+            #endregion
             // Is the command identifier offset supported by this context menu 
             // extension?
             int id = NativeMethods.LowWord(ici.verb.ToInt32());
+
             if (id == MenuConnectWIFI_ID)
             {
                 string s = "";
-                RegistryKey rk = Registry.ClassesRoot.OpenSubKey(@".apk\shellex\ContextMenuHandlers\" + KeyName);
-                if (rk != null)
+                string lastipfile = Path.GetTempPath() + "lastip.txt";
+                if (File.Exists(lastipfile))
                 {
-                    s = (string)rk.GetValue("LastConnectedIP");
+                    FileStream fs = new FileStream(lastipfile, FileMode.Open);
+                    StreamReader sr = new StreamReader(fs);
+                    s = sr.ReadLine();
+                    sr.Close();
+                    fs.Close();
                 }
                 s = Microsoft.VisualBasic.Interaction.InputBox(Properties.Resources.prompt_ConnectViaWIFI,
                      Properties.Resources.menu_ConnectViaWIFI,
                      s);
-                if (NativeMethods.isIPAddress(s))
+                if (!String.IsNullOrEmpty(s))
                 {
-                    Registry.ClassesRoot.CreateSubKey(@".apk\shellex\ContextMenuHandlers\" + KeyName).SetValue("LastConnectedIP", s);
+                    if (NativeMethods.isIPAddress(s))
+                    {
+                        File.Delete(lastipfile);
+                        FileStream fs = new FileStream(lastipfile, FileMode.CreateNew);
+                        StreamWriter sw = new StreamWriter(fs);
+                        sw.WriteLine(s);
+                        sw.Close();
+                        fs.Close();
 
-                    Process p = StartProcess(@"adb.exe", "connect " + s);
-                    System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
-                    p.Close();
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show(Properties.Resources.prompt_NotAnIP);
+                        (new AndroidToolAdb()).Connect(s);
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(Properties.Resources.prompt_NotAnIP);
+                    }
                 }
             }
             else
             {
-                bool flag = false;
-                foreach (AndroidDevice d in devices)
-                {
-                    if (d.menuID_1 == id || d.menuID_2 == id)
-                    {
-                        Process p = StartProcess(@"adb.exe", "-s " + d.Serialno + " install -r " +((d.menuID_2==id)?"-s ":"") + sFileName);
-                        System.Windows.Forms.MessageBox.Show(p.StandardOutput.ReadToEnd());
-                        p.Close();
-                        flag = true;
-                        break;
+                for (int i = 0; i < devices.Count; i++) {
+                    AndroidDevice d = (AndroidDevice)devices[i];
+                    AndroidToolAdb adb = new AndroidToolAdb();
+                    if (menu_id[i,0] == id) {
+                        adb.install(d.Serialno, sFileName);
+                    } else if (menu_id[i,1] == id) {
+                        adb.install(d.Serialno, sFileName, true);
+                    } else if (menu_id[i,2] == id ) {
+                        if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+                        adb.uninstall(d.Serialno, curApk.PackageName);
+                    } else if (menu_id[i,3] == id ) {
+                        adb.Disconnect(d.Serialno);
                     }
-                    else if (d.menuID_3 == id)
-                    {
-                        Process p = StartProcess(@"adb.exe", "disconnect " + d.Serialno);
-                        p.Close();
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag)
-                {
-                    // If the verb is not recognized by the context menu handler, it 
-                    // must return E_FAIL to allow it to be passed on to the other 
-                    // context menu handlers that might implement that verb.
-                    Marshal.ThrowExceptionForHR(WinError.E_FAIL);
                 }
             }
         }
@@ -336,8 +315,9 @@ namespace KKHomeProj.ApkShellExt
         public void GetCommandString(UIntPtr idCmd, uint uFlags, IntPtr pReserved, System.Text.StringBuilder pszName, uint cchMax)
         {
             pszName.Clear();
+            #region not_using_verb
             //if ((GCS)uFlags == GCS.GCS_HELPTEXTW) {
-            //    if (idCmd.ToUInt32() < devices.Count)
+            //    if (idCmd.ToUInt32() < Devices.Count)
             //    {
 
             //        if (Properties.Resources.menu_comment_InstallToPhone.Length > cchMax - 1)
@@ -351,7 +331,7 @@ namespace KKHomeProj.ApkShellExt
             //        }
 
             //    }
-            //    else if (idCmd.ToUInt32() == devices.Count + 1)
+            //    else if (idCmd.ToUInt32() == Devices.Count + 1)
             //    {
             //        if (Properties.Resources.menu_comment_ConnectViaWIFI.Length > cchMax -1){
             //            Marshal.ThrowExceptionForHR(WinError.STRSAFE_E_INSUFFICIENT_BUFFER);
@@ -363,6 +343,7 @@ namespace KKHomeProj.ApkShellExt
             //        }
             //    }
             //}
+            #endregion
 
         }
         #endregion
@@ -372,18 +353,8 @@ namespace KKHomeProj.ApkShellExt
         {
             try
             {
-                ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
-                Process p = new Process();
-                p.StartInfo.FileName = Path.GetTempPath() + @"aapt.exe";
-                p.StartInfo.Arguments = @"dump badging " + "\"" + sFileName + "\"";
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-                p.StartInfo.CreateNoWindow = true;
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.WorkingDirectory = Path.GetTempPath();
-                p.Start();
-                string tip = p.StandardOutput.ReadToEnd();
-                
+                if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+                string tip = "Package Name :" + curApk.PackageName;
                 pszInfoTip = Marshal.StringToCoTaskMemUni(tip);
             }
             catch
@@ -395,7 +366,7 @@ namespace KKHomeProj.ApkShellExt
 
         public uint GetInfoFlags(out uint dwFlags)
         {
-            dwFlags = QITIPF_DEFAULT;
+            dwFlags = (uint)QuaryInfoFlags.QITIPF_DEFAULT;
             return WinError.S_OK;
         }
         #endregion
@@ -427,107 +398,6 @@ namespace KKHomeProj.ApkShellExt
             }
         }
 
-        #endregion
-
-        /// <summary>
-        /// Get Icon from current APK package
-        /// </summary>
-        /// <returns>Icon object</returns>
-        private Icon GetApkIcon()
-        {
-            Bitmap bmp = null;
-            ZipFile zip = null;
-
-            try
-            {
-                ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe");
-
-                Process p = StartProcess(@"aapt.exe",@"dump badging " + "\"" + sFileName + "\"");
-                string icon_path = p.StandardOutput.ReadLine();
-                Regex r = new Regex(@"^application.*icon='([\w/.]*)'$");
-                while (!String.IsNullOrEmpty(icon_path))
-                {
-                    if (r.IsMatch(icon_path))
-                    {
-                        icon_path = (string)r.Match(icon_path).Groups[1].Value;
-                        break;
-                    }
-                    icon_path = p.StandardOutput.ReadLine();
-                }
-                p.Close();
-                if (string.IsNullOrEmpty(icon_path))
-                {
-                    throw new Exception("Cannot find icon path!");
-                }
-                else
-                {
-                    zip = new ZipFile(sFileName);
-                    bmp = (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.FindEntry(icon_path, true)));
-                }
-            }
-            catch
-            {
-                //MessageBox.Show(e.Message);
-                bmp = new Bitmap(Properties.Resources.deficon);
-            }
-            finally
-            {
-                if (zip != null)
-                {
-                    zip.Close();
-                }
-            }
-            return Icon.FromHandle(bmp.GetHicon());
-        }
-
-        /// <summary>
-        /// extract file from zipped resource, and place to temp folder
-        /// </summary>
-        /// <param name="resource">resource name</param>
-        /// <param name="fileName">output name</param>
-        /// <param name="OverWriteIfExists">if true,will overwrite the file even if the file exists</param>
-        private static void ExtractResourceZip(byte[] resource, string fileName,bool OverWriteIfExists=false)
-        {
-            string target = Path.GetTempPath() + fileName;
-            if (OverWriteIfExists || !File.Exists(target))
-            {
-                ZipFile zip = null;
-                FileStream fs = null;
-                Stream inStream = null;
-                try
-                {
-                    zip = new ZipFile(new MemoryStream(resource));
-                    inStream = zip.GetInputStream(zip.GetEntry(fileName));
-                    fs = new FileStream(target, FileMode.Create);
-                    byte[] buff = new byte[BUFF_SIZE];
-                    int read_count;
-                    while ((read_count = inStream.Read(buff, 0, BUFF_SIZE)) > 0)
-                    {
-                        fs.Write(buff, 0, read_count);
-                    }
-                }
-                catch
-                { }
-                finally
-                {
-                    if (zip != null)
-                    {
-                        zip.Close();
-                    }
-                    if (fs != null)
-                    {
-                        fs.Close();
-                        fs.Dispose();
-                    }
-                    if (inStream != null)
-                    {
-                        inStream.Close();
-                        inStream.Dispose();
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// register this dll
         /// </summary>
@@ -553,7 +423,7 @@ namespace KKHomeProj.ApkShellExt
             rk = root.CreateSubKey(@".apk\shellex\IconHandler");
             rk.SetValue("", guid.ToString("B"));
             rk.Close();
-            rk = root.CreateSubKey(@".apk\shellex\ContextMenuHandlers\"+KeyName);
+            rk = root.CreateSubKey(@".apk\shellex\ContextMenuHandlers\"+KeyName,RegistryKeyPermissionCheck.ReadWriteSubTree);
             rk.SetValue("", guid.ToString("B"));
             rk.Close();
             rk = root.CreateSubKey(@".apk\shellex\{00021500-0000-0000-C000-000000000046}");
@@ -562,10 +432,8 @@ namespace KKHomeProj.ApkShellExt
             root.Close();
 
             ////////////////////////////////////////
-            ExtractResourceZip(Properties.Resources.aapt, @"aapt.exe",true);        
-            ExtractResourceZip(Properties.Resources.adb,  @"adb.exe",true);
-            ExtractResourceZip(Properties.Resources.adb,  @"AdbWinApi.dll",true);
-            ExtractResourceZip(Properties.Resources.adb,  @"AdbWinUsbApi.dll", true);
+            new AndroidToolAapt();
+            new AndroidToolAdb();
         }
 
         /// <summary>
@@ -590,27 +458,7 @@ namespace KKHomeProj.ApkShellExt
                 root.Close();
             } catch {}
         }
-
-        /// <summary>
-        /// start a process under backgroud, the process should be in %TMP%, and working directory will be 
-        /// %TMP as well
-        /// </summary>
-        /// <param name="cmd">command to execute</param>
-        /// <param name="arg">arguments pass to the command</param>
-        /// <returns>the process</returns>
-        private Process StartProcess(string cmd, string arg)
-        {
-            Process p = new Process();
-            p.StartInfo.FileName = Path.GetTempPath() + cmd;
-            p.StartInfo.Arguments = arg;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.WorkingDirectory = Path.GetTempPath();
-            p.Start();
-            return p;
-        }
+        #endregion
     }
 }
 // vim: expandtab tabstop=4 softtabstop=4 shiftwidth=4
