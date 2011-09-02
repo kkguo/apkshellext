@@ -42,16 +42,6 @@ namespace KKHomeProj.ApkShellExt
         private AndroidPackage curApk;
         private uint [,] menu_id;
 
-        public ApkShellExt()
-        {
-            //// Creates the text file that the trace listener will write to.
-            //FileStream myTraceLog = new FileStream("C:\\myTraceLog.txt", FileMode.OpenOrCreate);
-            //// Creates the new trace listener.
-            //TextWriterTraceListener myListener = new TextWriterTraceListener(myTraceLog);
-            //Trace.Listeners.Add(myListener);
-            //Trace.WriteLine("Construction");
-        }
-
         #region IPersistFile 成员
 
         public void GetClassID(out Guid pClassID)
