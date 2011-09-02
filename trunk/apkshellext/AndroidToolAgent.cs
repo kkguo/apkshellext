@@ -15,6 +15,7 @@ namespace KKHomeProj.Android
     {
         public static string WorkingPath = Path.GetTempPath();
         private const int BUFFERSIZE = 4096;
+        private const bool debug = false;
 
         public string Binary;
         public string [] Dependency;
@@ -22,9 +23,16 @@ namespace KKHomeProj.Android
         
         public delegate void GotProcessOutHandler(string s);
 
-        public event EventHandler ExecuteStart;
-        public event EventHandler ExecuteEnd;
-        public event GotProcessOutHandler GotOutputLine;
+        public event EventHandler ExecuteStartEvent;
+        public event EventHandler ExecuteEndEvent;
+        public virtual void ExecuteStart(object sender, EventArgs e)
+        {
+            if (ExecuteStartEvent != null) ExecuteStartEvent(this, e);
+        }
+        public virtual void ExecuteEnd(object sender, EventArgs e)
+        {
+            if (ExecuteEndEvent != null) ExecuteEndEvent(this, e);
+        }
 
         /// <summary>
         /// extract file from zipped resource, and place to temp folder
@@ -92,37 +100,30 @@ namespace KKHomeProj.Android
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.WorkingDirectory = WorkingPath;
             p.EnableRaisingEvents = false;
-            p.Start();
+            p.Start();           
             return p;
         }
         /// <summary>
-        /// execute command
+        /// Execute a command
         /// </summary>
         /// <param name="cmd"></param>
         /// <param name="arg"></param>
-        /// <returns>result of command</returns>
+        /// <param name="async">execute process as async, 
+        /// in this case the ExecutedEnd should called by calling method to raise the event</param>
+        /// <returns>Process output stream</returns>
         protected Stream Execute(string cmd, string arg, bool async = false)
         {
-            if (ExecuteStart != null) ExecuteStart(this, new EventArgs());
+            NativeMethods.Log(cmd + " " + arg);
+            ExecuteStart(this, new EventArgs());            
             Process p = StartProcess(cmd, arg);
-            string s = "";
-            if (GotOutputLine != null)
+            Stream result = p.StandardOutput.BaseStream;
+            if (!async)
             {
-                while (!p.StandardOutput.EndOfStream)
-                {
-                    string ss = p.StandardOutput.ReadLine();
-                    GotOutputLine(ss);
-                    s += ss;
-                }
+                p.WaitForExit();
+                p.Close();
+                ExecuteEnd(this, new EventArgs());
             }
-            else
-            {
-                s = p.StandardOutput.ReadToEnd();
-            }
-            p.WaitForExit();
-            p.Close();
-            if (ExecuteEnd != null) ExecuteEnd(this, new EventArgs());
-            return new MemoryStream(ASCIIEncoding.UTF8.GetBytes(s));
+            return result;
         }
     }
 
@@ -178,6 +179,7 @@ namespace KKHomeProj.Android
         }
         public Stream Devices()
         {
+            StartServer();
             return Execute(Binary, "devices");
         }
         public void   Connect(string IP)
@@ -196,7 +198,11 @@ namespace KKHomeProj.Android
         }
         public void   StartServer()
         {
-            Execute(Binary, "start-server");
+            StreamReader sr = new StreamReader(Execute(Binary, "start-server", true));
+            NativeMethods.Log(sr.ReadLine()); 
+            NativeMethods.Log(sr.ReadLine());
+            sr.Close();
+            ExecuteEnd(this, new EventArgs());
         }
     }
 }

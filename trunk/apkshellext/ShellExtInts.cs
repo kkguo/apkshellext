@@ -451,6 +451,18 @@ namespace KKHomeProj.ShellExtInts
             Regex r = new Regex(@"(\d{1,3}\.){3}\d{1,3}(:\d+)?$");
             return r.IsMatch(s);
         }
+
+        private static string logfilename = Path.GetTempPath() + "extlog.txt";
+        public static void Log(string log)
+        {
+            #if DEBUG            
+                FileStream fs = new FileStream(logfilename, FileMode.Append);
+                StreamWriter sr = new StreamWriter(fs);
+                sr.WriteLine(DateTime.Now + ": " + log);
+                sr.Close();
+                fs.Close();
+            #endif
+        }
     }
 
     internal static class WinError

@@ -38,14 +38,8 @@ namespace KKHomeProj.Android
 
         public static ArrayList GetAndroidDevices()
         {
-            AndroidToolAdb adb = new AndroidToolAdb();
-            adb.StartServer();
-            return GetAndroidDevices(adb.Devices());
-        }
-        public static ArrayList GetAndroidDevices(Stream adbinfo)
-        {
             ArrayList devices = new ArrayList();
-            StreamReader sr = new StreamReader(adbinfo);
+            StreamReader sr = new StreamReader((new AndroidToolAdb()).Devices());
             
             Regex r1 = new Regex(@"^(\S*)\s+(device|offline|bootloader)$");
 
