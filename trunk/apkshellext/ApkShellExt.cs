@@ -19,9 +19,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
-using System.Text.RegularExpressions;
-using KKHomeProj.ShellExtInts;
 using KKHomeProj.Android;
+using KKHomeProj.ShellExtInts;
 using Microsoft.Win32;
 
 namespace KKHomeProj.ApkShellExt
@@ -36,11 +35,15 @@ namespace KKHomeProj.ApkShellExt
         private const string KeyName = "apkshellext";
         #endregion
 
-        private uint MenuConnectWIFI_ID;
+        private uint   MenuConnectWIFI_ID;
+        private uint[] MenuInstall2Memory_ID;
+        private uint[] MenuInstall2SD_ID;
+        private uint[] MenuUninstall_ID;
+        private uint[] MenuDisconnect_ID;
+
         private string sFileName;
         private ArrayList devices;
         private AndroidPackage curApk;
-        private uint [,] menu_id;
 
         #region IPersistFile 成员
 
@@ -175,22 +178,29 @@ namespace KKHomeProj.ApkShellExt
             {
                 HMenu submenu = NativeMethods.CreatePopupMenu();
                 if (devices.Count > 0)
-                {
-                    menu_id = new uint[devices.Count, 4];
+                {                 
+                    MenuInstall2Memory_ID = new uint[devices.Count];
+                    MenuInstall2SD_ID = new uint[devices.Count];
+                    MenuUninstall_ID = new uint[devices.Count];
+                    MenuDisconnect_ID = new uint[devices.Count];
 
                     for (int i = 0; i<devices.Count; i++)
                     {
                         HMenu subsubmenu = NativeMethods.CreatePopupMenu();
-                        menu_id[i, 0] = id;
+                        MenuInstall2Memory_ID[i] = id;
                         NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToInternalMemory);
-                        menu_id[i, 1] = id;
+                        MenuInstall2SD_ID[i] = id;
                         NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_InstallToSDCard);
-                        menu_id[i, 2] = id;
+                        MenuUninstall_ID[i] = id;
                         NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_Uninstall);
                         if (((AndroidDevice)devices[i]).ConnectedFromWIFI)
                         {
-                            menu_id[i,3] = id;
+                            MenuDisconnect_ID[i] = id;
                             NativeMethods.AppendMenu(subsubmenu, MFMENU.MF_STRING, new IntPtr(idCmdFirst + id++), Properties.Resources.menu_DisconnectWIFI);
+                        }
+                        else
+                        {
+                            MenuDisconnect_ID[i] = 0;
                         }
 
                         NativeMethods.InsertMenu(submenu, 1, MFMENU.MF_BYPOSITION | MFMENU.MF_POPUP, subsubmenu.handle, ((AndroidDevice)devices[i]).Serialno);
@@ -288,14 +298,14 @@ namespace KKHomeProj.ApkShellExt
                 for (int i = 0; i < devices.Count; i++) {
                     AndroidDevice d = (AndroidDevice)devices[i];
                     AndroidToolAdb adb = new AndroidToolAdb();
-                    if (menu_id[i,0] == id) {
+                    if (MenuInstall2Memory_ID[i] == id) {
                         adb.install(d.Serialno, sFileName);
-                    } else if (menu_id[i,1] == id) {
+                    } else if (MenuInstall2SD_ID[i] == id) {
                         adb.install(d.Serialno, sFileName, true);
-                    } else if (menu_id[i,2] == id ) {
+                    } else if (MenuUninstall_ID[i] == id ) {
                         if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
                         adb.uninstall(d.Serialno, curApk.PackageName);
-                    } else if (menu_id[i,3] == id ) {
+                    } else if (MenuDisconnect_ID[i] == id ) {
                         adb.Disconnect(d.Serialno);
                     }
                 }
