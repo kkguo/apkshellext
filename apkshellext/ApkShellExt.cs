@@ -354,7 +354,7 @@ namespace KKHomeProj.ApkShellExt
             try
             {
                 if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
-                string tip = "Package Name :" + curApk.PackageName;
+                string tip = "Package Name : " + curApk.PackageName +"\nVersion Code : " + curApk.VersionCode +"\nVersion Name : " + curApk.VersionName;
                 pszInfoTip = Marshal.StringToCoTaskMemUni(tip);
             }
             catch
