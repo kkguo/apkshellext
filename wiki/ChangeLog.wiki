@@ -19,4 +19,4 @@
   * add context menu
   * install app from context menu
   * List connected devices 
-  * connect device with TCP from context menu
+  * connect device via network from context menu
