@@ -85,21 +85,36 @@ namespace KKHomeProj.ApkShellExt
 
         public uint GetIconLocation(ExtractIconOptions uFlags, IntPtr szIconFile, uint cchMax, out int piIndex, out ExtractIconFlags pwFlags)
         {
-            piIndex = -1;
-            szIconFile = IntPtr.Zero;
+            piIndex = 0;
             pwFlags = ExtractIconFlags.NotFilename | ExtractIconFlags.PerInstance | ExtractIconFlags.DontCache;
+            if (sFileName.Length < cchMax)
+            {
+                szIconFile = Marshal.StringToHGlobalAuto(sFileName); // return the name for icon cache
+            }
+            else
+            {
+                szIconFile = IntPtr.Zero;
+                pwFlags = pwFlags | ExtractIconFlags.DontCache;
+            }
+            NativeMethods.Log("GetIconLocation: pwFlags = " + pwFlags.ToString());
+            NativeMethods.Log("GetIconLocation: szIconFile = " + Marshal.PtrToStringAuto(szIconFile));
+            NativeMethods.Log("GetIconLocation: piIndex = " + piIndex.ToString());
+            NativeMethods.Log("GetIconLocation: ExtractIconOptions.Async = " + uFlags.ToString());
             return ((uFlags & ExtractIconOptions.Async) != 0) ? WinError.E_PENDING : WinError.S_OK;
-
         }
 
         public uint Extract(string pszFile, uint nIconIndex, out IntPtr phiconLarge, out IntPtr phiconSmall, uint nIconSize)
         {
+            NativeMethods.Log("Extract: sFilename = " + sFileName);
+            NativeMethods.Log("Extract: pszFile = " + pszFile);
+            NativeMethods.Log("Extract: nIconIndex = " + nIconIndex.ToString());
             if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
-            AndroidPackage.default_icon = Icon.FromHandle(Properties.Resources.deficon.GetHicon());
+            //AndroidPackage.default_icon = Icon.FromHandle(Properties.Resources.deficon.GetHicon());
             int s_size = (int)nIconSize >> 16;
             int l_size = (int)nIconSize & 0xffff;
             phiconLarge = (new Icon(curApk.icon, l_size, l_size)).Handle;
             phiconSmall = (new Icon(curApk.icon, s_size, s_size)).Handle;
+            NativeMethods.Log("Extract: Get icon and return");
             return WinError.S_OK;
         }
 
@@ -379,9 +394,12 @@ namespace KKHomeProj.ApkShellExt
             {
                 //Register APK file type
                 RegApk(t.GUID);
+                NativeMethods.Log("Register: Registered");
             }
-            catch
+            catch (Exception e)
             {
+                NativeMethods.Log("Register: Error happens while register");
+                NativeMethods.Log(e.Message);
             }
         }
 
@@ -392,9 +410,12 @@ namespace KKHomeProj.ApkShellExt
             {
                 //unregister file type association
                 UnregApk(t.GUID);
+                NativeMethods.Log("Unregister: Unregistered");
             }
-            catch
+            catch (Exception e)
             {
+                NativeMethods.Log("Unregister: Error happens while unregister");
+                NativeMethods.Log(e.Message);
             }
         }
 
@@ -419,7 +440,9 @@ namespace KKHomeProj.ApkShellExt
             rk = root.CreateSubKey(@".apk");
             rk.SetValue("", "Android Package File");
             rk.Close();
-
+            rk = root.CreateSubKey(@".apk\DefaultIcon");
+            rk.SetValue("", @"%1");
+            rk.Close();
             rk = root.CreateSubKey(@".apk\shellex\IconHandler");
             rk.SetValue("", guid.ToString("B"));
             rk.Close();
@@ -428,12 +451,18 @@ namespace KKHomeProj.ApkShellExt
             rk.Close();
             rk = root.CreateSubKey(@".apk\shellex\{00021500-0000-0000-C000-000000000046}");
             rk.SetValue("", guid.ToString("B"));
+            rk = root.CreateSubKey(@".apk\shellex\{BB2E617C-0920-11d1-9A0B-00C04FC2D6C1}");
+            rk.SetValue("","{c5a40261-cd64-4ccf-84cb-c394da41d590}");
+            rk = root.CreateSubKey(@".apk\shellex\{e357fccd-a995-4576-b01f-234630154e96}");
+            rk.SetValue("","{c5aec3ec-e812-4677-a9a7-4fee1f9aa000}");
             rk.Close();
             root.Close();
 
             ////////////////////////////////////////
             new AndroidToolAapt();
             new AndroidToolAdb();
+            NativeMethods.Log("RegApk: before SHChangeNotify");
+            NativeMethods.SHChangeNotify(0x08000000, 0,IntPtr.Zero,IntPtr.Zero);// refresh the shell
         }
 
         /// <summary>
@@ -448,6 +477,8 @@ namespace KKHomeProj.ApkShellExt
                 root.DeleteSubKeyTree(@".apk\shellex\IconHandler");
                 root.DeleteSubKeyTree(@".apk\shellex\ContextMenuHandlers\" + KeyName);
                 root.DeleteSubKeyTree(@".apk\shellex\{00021500-0000-0000-C000-000000000046}");
+                root.DeleteSubKeyTree(@".apk\shellex\{BB2E617C-0920-11d1-9A0B-00C04FC2D6C1}");
+                root.DeleteSubKeyTree(@".apk\shellex\{e357fccd-a995-4576-b01f-234630154e96}");
                 root.Close();
 
                 root = Registry.LocalMachine;
@@ -456,6 +487,7 @@ namespace KKHomeProj.ApkShellExt
                 rk.Close();
 
                 root.Close();
+                NativeMethods.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
             } catch {}
         }
         #endregion

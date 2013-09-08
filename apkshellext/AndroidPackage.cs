@@ -18,27 +18,31 @@ namespace KKHomeProj.Android
         public static Icon default_icon = null;
         public static AndroidPackage GetAndroidPackage(string filename)
         {
-            return new AndroidPackage(filename, (new AndroidToolAapt()).Dump(filename));
+            return new AndroidPackage(filename);
         }
         #endregion
 
         public readonly string FileName;
-        public readonly string IconPath;
-        public readonly string PackageName;
-        public readonly string VersionName;
-        public readonly string VersionCode;
-        public readonly string Label;
-        public readonly ArrayList UsesPermissions;
-        public readonly ArrayList UsesFeatures;
+        public string IconPath;
+        public string PackageName;
+        public string VersionName;
+        public string VersionCode;
+        public string Label;
+        public ArrayList UsesPermissions;
+        public ArrayList UsesFeatures;
 
         private Icon m_icon;
 
-        public AndroidPackage(string filename, Stream badginginfo)
+        public AndroidPackage(string filename)
         {
             FileName = filename;
+            getPackage();
+        }
+
+        public void getPackage() {
             UsesPermissions = new ArrayList();
             UsesFeatures = new ArrayList();
-            StreamReader sr = new StreamReader(badginginfo);
+            StreamReader sr = new StreamReader((new AndroidToolAapt()).Dump(FileName));
 
             Regex r1 = new Regex(@"^package:\sname='(.*)'\sversionCode='(.*)'\sversionName='(.*)'$");
             Regex r2 = new Regex(@"^application:\slabel='(.*)'\sicon='(.*)'$");

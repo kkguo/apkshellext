@@ -5,11 +5,13 @@ ECHO ##                                            ##
 ECHO ##     http://apkshellext.googlecode.com      ##
 ECHO ################################################
 
-SYSTEMINFO | FIND /i "x64-based pc"
+REM SYSTEMINFO | FIND /i "x64-based pc"
+echo %PROCESSOR_IDENTIFIER% | FIND /i "x86"
 
-IF %ERRORLEVEL%==0 (
+IF %ERRORLEVEL%==1 (
   ECHO.
-  ECHO NOTE: You are using 64bit OS, For WIN7 User, you need "RUN AS ADMINISTRATOR" to run uninstall!
+  ECHO !!!! ATTENTION !!!!: You are using 64bit OS, 
+  ECHO       For WIN7/8 User, you need "RUN AS ADMINISTRATOR"
   ECHO.
   "%windir%\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" /unregister %~dp0\apkshellext.dll"
 ) ELSE (
@@ -17,14 +19,8 @@ IF %ERRORLEVEL%==0 (
   "%windir%\Microsoft.NET\Framework\v4.0.30319\regasm.exe" /unregister %~dp0\apkshellext.dll"
 )
 ECHO.
-ECHO The dll can't be deleted before explorer restart.
-CHOICE /M "Restart explorer process?"
-IF %ERRORLEVEL%==1 (
-  TASKKILL /F /IM explorer.exe
-  START explorer.exe
-) ELSE (
-  ECHO Please delete the dll after restart explorer or reboot!
-)
+ECHO The apkshellext.dll can't be deleted before explorer restart.
+
 ECHO.
 ECHO /-------------------------------------------------------------------\
 ECHO  apkshellext is an open-source project,

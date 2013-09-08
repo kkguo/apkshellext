@@ -111,9 +111,9 @@ namespace KKHomeProj.Android
         /// <param name="async">execute process as async, 
         /// in this case the ExecutedEnd should called by calling method to raise the event</param>
         /// <returns>Process output stream</returns>
-        protected Stream Execute(string cmd, string arg, bool async = false)
+        protected Stream Execute(string cmd, string arg, bool async = true)
         {
-            NativeMethods.Log(cmd + " " + arg);
+            NativeMethods.Log("Execute： " + cmd + " " + arg);
             ExecuteStart(this, new EventArgs());            
             Process p = StartProcess(cmd, arg);
             Stream result = p.StandardOutput.BaseStream;
@@ -133,7 +133,9 @@ namespace KKHomeProj.Android
         {
             Binary = @"aapt.exe";
             Dependency = new string[] { };
-            _resource = KKHomeProj.ApkShellExt.Properties.Resources.aapt;
+            // Change use fast aapt
+            // see http://forum.xda-developers.com/showthread.php?t=1907281
+            _resource = KKHomeProj.ApkShellExt.Properties.Resources.faapt;
             Extract();
         }
 
@@ -199,8 +201,8 @@ namespace KKHomeProj.Android
         public void   StartServer()
         {
             StreamReader sr = new StreamReader(Execute(Binary, "start-server", true));
-            NativeMethods.Log(sr.ReadLine()); 
-            NativeMethods.Log(sr.ReadLine());
+            NativeMethods.Log("StartServer: "+sr.ReadLine()); 
+            NativeMethods.Log("StartServer: "+sr.ReadLine());
             sr.Close();
             ExecuteEnd(this, new EventArgs());
         }
