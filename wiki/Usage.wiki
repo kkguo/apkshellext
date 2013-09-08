@@ -6,7 +6,7 @@
   * Extract all the files in the zip at somewhere, you cannot remove it before you uninstall the extension.
   * Make sure you have installed *.net framework 4*, if not, download [http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe here]
   * Run install.bat (if you are running WIN7/8, *RUN AS ADMINISTRATOR* )
-  ~~* The install.bat will ask you to restart explorer, type Y to confirm.~~
+  ~~ The install.bat will ask you to restart explorer, type Y to confirm.~~
   * Now you should see the icons. If not, try Administrator privilege. and restart the explorer by restart_explorer.bat 
 
 ==Uninstall==
