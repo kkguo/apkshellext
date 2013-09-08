@@ -1,7 +1,7 @@
 #labels Featured
 *9/9/2013*
   _v2.3_
-  * fix dll occupy by explorer.
+  * fix dll occupied by explorer.
   * use faapt from [http://forum.xda-developers.com/showthread.php?t=1907281]
   * refresh shell after register
 
