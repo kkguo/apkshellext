@@ -146,6 +146,7 @@
   <ItemGroup>
     <None Include="apkshellext_key.snk" />
     <None Include="app.config" />
+    <None Include="Resources\faapt.zip" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

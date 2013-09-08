@@ -36,7 +36,8 @@ namespace KKHomeProj.ShellExtInts
         PerInstance = 0x0002,	// icons from this class are per instance (each file has its own)}
         PerClass = 0x0004,	// icons from this class per class (shared for all files of this type)
         NotFilename = 0x0008,	// location is not a filename, must call ::ExtractIcon
-        DontCache = 0x0010	// this icon should not be cached
+        DontCache = 0x0010,	// this icon should not be cached
+        Shield = 0x200 // display the shield
     }
 
     internal enum CLIPFORMAT : uint
@@ -260,7 +261,15 @@ namespace KKHomeProj.ShellExtInts
         }
         public IntPtr handle;
     }
+    [Flags]
+    internal enum SHCNE : uint {
+        SHCNE_ASSOCCHANGED = 0x08000000
+    }
 
+    [Flags]
+    internal enum SHCNF : uint {
+        SHCNF_IDLIST = 0x0
+    }
     #endregion
 
     #region IExtractIcon
@@ -433,6 +442,10 @@ namespace KKHomeProj.ShellExtInts
         [DllImport("user32")]
         public static extern int SetMenuItemBitmaps(HMenu hmenu, int nPosition, MFMENU uflags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
 
+
+        [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
+
         public static int HighWord(int number)
         {
             return ((number & 0x80000000) == 0x80000000) ?
@@ -452,13 +465,15 @@ namespace KKHomeProj.ShellExtInts
             return r.IsMatch(s);
         }
 
-        private static string logfilename = Path.GetTempPath() + "extlog.txt";
+#if DEBUG
+        private static string logfilename = Path.GetTempPath() + "apkshellext.log";
+#endif
         public static void Log(string log)
         {
             #if DEBUG            
                 FileStream fs = new FileStream(logfilename, FileMode.Append);
                 StreamWriter sr = new StreamWriter(fs);
-                sr.WriteLine(DateTime.Now + ": " + log);
+                sr.WriteLine(DateTime.Now.ToString() + ": " + log);
                 sr.Close();
                 fs.Close();
             #endif

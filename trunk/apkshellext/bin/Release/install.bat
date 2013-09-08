@@ -5,11 +5,13 @@ ECHO ##                                            ##
 ECHO ##     http://apkshellext.googlecode.com      ##
 ECHO ################################################
 
-SYSTEMINFO | FIND /i "x64-based pc"
+REM SYSTEMINFO | FIND /i "x64-based pc"
+echo %PROCESSOR_IDENTIFIER% | FIND /i "x86"
 
-IF %ERRORLEVEL%==0 (
+IF %ERRORLEVEL%==1 (
   ECHO.
-  ECHO NOTE: You are using 64bit OS, For WIN7 User, you need "RUN AS ADMINISTRATOR" to run install!
+  ECHO !!!! ATTENTION !!!!: You are using 64bit OS, 
+  ECHO         For WIN7/8 User, you need "RUN AS ADMINISTRATOR"
   ECHO.
   "%windir%\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" /codebase "%~dp0\apkshellext.dll"
 ) ELSE (
