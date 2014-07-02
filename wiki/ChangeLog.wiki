@@ -1,7 +1,7 @@
 #labels Featured
 *7/2/2014*
   _minor_
-  * add UAC prompt in install.bat, not released, download it yourself here [https://code.google.com/p/apkshellext/source/browse/trunk/apkshellext/bin/Release/install.bat]
+  * add UAC prompt in [https://code.google.com/p/apkshellext/source/browse/trunk/apkshellext/bin/Release/install.bat install.bat], not released, download it yourself from the [https://code.google.com/p/apkshellext/source/browse/trunk/apkshellext/bin/Release/install.bat trunk]
 *9/9/2013*
   _v2.3_
   * fix dll occupied by explorer.
