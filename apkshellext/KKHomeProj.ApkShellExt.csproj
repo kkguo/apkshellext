@@ -51,8 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>true</RegisterForComInterop>
@@ -96,6 +95,10 @@
     <Compile Include="AndroidToolAgent.cs" />
     <Compile Include="ApkShellExt.cs" />
     <Compile Include="AndroidPackage.cs" />
+    <Compile Include="Iteedee.ApkReader\ApkInfo.cs" />
+    <Compile Include="Iteedee.ApkReader\APKManifest.cs" />
+    <Compile Include="Iteedee.ApkReader\ApkReader.cs" />
+    <Compile Include="Iteedee.ApkReader\ApkResourceFinder.cs" />
     <Compile Include="SharpZLib\Checksums\Adler32.cs" />
     <Compile Include="SharpZLib\Checksums\CRC32.cs" />
     <Compile Include="SharpZLib\Checksums\IChecksum.cs" />
@@ -146,7 +149,6 @@
   <ItemGroup>
     <None Include="apkshellext_key.snk" />
     <None Include="app.config" />
-    <None Include="Resources\faapt.zip" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -155,7 +157,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\aapt.zip" />
     <None Include="Resources\adb.zip" />
     <None Include="Resources\deficon.jpg" />
   </ItemGroup>
