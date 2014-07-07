@@ -126,25 +126,27 @@ namespace KKHomeProj.Android
             return result;
         }
     }
+#if _USE_AAPT_BIN_
+    class AndroidToolAapt : AndroidToolAgent
+    {
+        public AndroidToolAapt()
+        {
+            Binary = @"aapt.exe";
+            Dependency = new string[] { };
+            // Change use fast aapt
+            // see http://forum.xda-developers.com/showthread.php?t=1907281
+            _resource = KKHomeProj.ApkShellExt.Properties.Resources.aapt;
+            Extract();
+        }
 
-    //class AndroidToolAapt : AndroidToolAgent
-    //{
-    //    public AndroidToolAapt()
-    //    {
-    //        Binary = @"aapt.exe";
-    //        Dependency = new string[] { };
-    //        // Change use fast aapt
-    //        // see http://forum.xda-developers.com/showthread.php?t=1907281
-    //        //_resource = KKHomeProj.ApkShellExt.Properties.Resources.faapt;
-    //        Extract();
-    //    }
+        public Stream Dump(string apkfile)
+        {
+            return Execute(Binary, "dump badging \"" + apkfile + "\"");
+        }
+    }
+#endif
 
-    //    public Stream Dump(string apkfile)
-    //    {
-    //        return Execute(Binary, "dump badging \"" + apkfile + "\"");
-    //    }
-    //}
-
+#if _USE_ADB_BIN_
     class AndroidToolAdb : AndroidToolAgent
     {
         public AndroidToolAdb()
@@ -207,4 +209,5 @@ namespace KKHomeProj.Android
             ExecuteEnd(this, new EventArgs());
         }
     }
+#endif
 }

@@ -16,4 +16,12 @@ Public Class Form1
         PictureBox1.Image = icon.ToBitmap
 
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim devices As ArrayList
+        devices = AndroidDevice.GetAndroidDevices()
+        For Each d As AndroidDevice In devices
+            TextBox1.Text = TextBox1.Text & vbCrLf & d.Serialno
+        Next
+    End Sub
 End Class

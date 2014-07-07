@@ -41,39 +41,42 @@ namespace KKHomeProj.Android
             getPackage();
         }
 
-        public void getPackage() {
-            //UsesPermissions = new ArrayList();
-            //UsesFeatures = new ArrayList();
-            //StreamReader sr = new StreamReader((new AndroidToolAapt()).Dump(FileName));
+        public virtual void getPackage() {
+#if _USE_AAPT_BIN_
+            UsesPermissions = new ArrayList();
+            UsesFeatures = new ArrayList();
+            StreamReader sr = new StreamReader((new AndroidToolAapt()).Dump(FileName));
 
-            //Regex r1 = new Regex(@"^package:\sname='(.*)'\sversionCode='(.*)'\sversionName='(.*)'$");
-            //Regex r2 = new Regex(@"^application:\slabel='(.*)'\sicon='(.*)'$");
-            //Regex r3 = new Regex(@"^uses-permission:'(.*)'$");
-            //Regex r4 = new Regex(@"^uses-feature:'(.*)'$");
-            //while (!sr.EndOfStream)
-            //{
-            //    string s = sr.ReadLine();
+            Regex r1 = new Regex(@"^package:\sname='(.*)'\sversionCode='(.*)'\sversionName='(.*)'$");
+            Regex r2 = new Regex(@"^application:\slabel='(.*)'\sicon='(.*)'$");
+            Regex r3 = new Regex(@"^uses-permission:'(.*)'$");
+            Regex r4 = new Regex(@"^uses-feature:'(.*)'$");
+            while (!sr.EndOfStream)
+            {
+                string s = sr.ReadLine();
 
-            //    if (r1.IsMatch(s)) {
-            //        PackageName = r1.Match(s).Groups[1].Value;
-            //        VersionCode = r1.Match(s).Groups[2].Value;
-            //        VersionName = r1.Match(s).Groups[3].Value;
-            //    }
-            //    else if (r2.IsMatch(s))
-            //    {
-            //        Label = r2.Match(s).Groups[1].Value;
-            //        IconPath = r2.Match(s).Groups[2].Value;
-            //        hasIcon = true;
-            //    }
-            //    else if (r3.IsMatch(s))
-            //    {
-            //        UsesPermissions.Add(r3.Match(s).Groups[1].Value);
-            //    }
-            //    else if (r4.IsMatch(s))
-            //    {
-            //        UsesFeatures.Add(r4.Match(s).Groups[1].Value);
-            //    }
-            //}
+                if (r1.IsMatch(s))
+                {
+                    PackageName = r1.Match(s).Groups[1].Value;
+                    VersionCode = r1.Match(s).Groups[2].Value;
+                    VersionName = r1.Match(s).Groups[3].Value;
+                }
+                else if (r2.IsMatch(s))
+                {
+                    Label = r2.Match(s).Groups[1].Value;
+                    IconPath = r2.Match(s).Groups[2].Value;
+                    hasIcon = true;
+                }
+                else if (r3.IsMatch(s))
+                {
+                    UsesPermissions.Add(r3.Match(s).Groups[1].Value);
+                }
+                else if (r4.IsMatch(s))
+                {
+                    UsesFeatures.Add(r4.Match(s).Groups[1].Value);
+                }
+            }
+#endif
         }        
 
         ~AndroidPackage() {
@@ -88,7 +91,7 @@ namespace KKHomeProj.Android
         {
             get
             {
-                if (m_icon == null)
+                if (hasIcon && m_icon == null)
                 {
                     try
                     {
@@ -115,7 +118,7 @@ namespace KKHomeProj.Android
         }
         public AndroidPackage2(string filename) : base(filename)
         {
-            getPackage2();
+
         }
         ~AndroidPackage2()
         {
@@ -164,7 +167,7 @@ namespace KKHomeProj.Android
             return info;
         }
 
-        public void getPackage2() {
+        public override void getPackage() {
             ApkInfo apkInfo = ReadApkFromPath(FileName);
 
             UsesPermissions = new ArrayList();
