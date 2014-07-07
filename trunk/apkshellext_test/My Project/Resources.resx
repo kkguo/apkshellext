@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,52 +109,9 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="adb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\adb.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="deficon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\deficon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_comment_InstallToPhone" xml:space="preserve">
-    <value>Install to your device via adb</value>
-  </data>
-  <data name="menu_InstallToPhone" xml:space="preserve">
-    <value>Install to Device</value>
-  </data>
-  <data name="menu_ConnectViaWIFI" xml:space="preserve">
-    <value>Connect device via WIFI</value>
-  </data>
-  <data name="menu_CannotFindPhone" xml:space="preserve">
-    <value>No device attached!</value>
-  </data>
-  <data name="menu_comment_ConnectViaWIFI" xml:space="preserve">
-    <value>Connect adb with TCP/IP via WIFI</value>
-  </data>
-  <data name="prompt_ConnectFail" xml:space="preserve">
-    <value>Cannot connect this IP.</value>
-  </data>
-  <data name="prompt_ConnectViaWIFI" xml:space="preserve">
-    <value>Input the IP and port number of your device:</value>
-  </data>
-  <data name="prompt_NotAnIP" xml:space="preserve">
-    <value>Please type the IP of your device, like 192.168.0.11:5555</value>
-  </data>
-  <data name="menu_InstallToInternalMemory" xml:space="preserve">
-    <value>To Memory</value>
-  </data>
-  <data name="menu_InstallToSDCard" xml:space="preserve">
-    <value>To SD card</value>
-  </data>
-  <data name="menu_DisconnectWIFI" xml:space="preserve">
-    <value>Disconnect</value>
-  </data>
-  <data name="menu_Uninstall" xml:space="preserve">
-    <value>Uninstall</value>
-  </data>
 </root>

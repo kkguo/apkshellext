@@ -43,7 +43,7 @@ namespace KKHomeProj.ApkShellExt
 
         private string sFileName;
         private ArrayList devices;
-        private AndroidPackage curApk;
+        private AndroidPackage2 curApk;
 
         #region IPersistFile 成员
 
@@ -66,7 +66,7 @@ namespace KKHomeProj.ApkShellExt
         public void Load(string pszFileName, int dwMode)
         {
             sFileName = pszFileName;
-            if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+            if (curApk == null) curApk = AndroidPackage2.GetAndroidPackage(sFileName);
         }
 
         public void Save(string pszFileName, bool fRemember)
@@ -108,7 +108,7 @@ namespace KKHomeProj.ApkShellExt
             NativeMethods.Log("Extract: sFilename = " + sFileName);
             NativeMethods.Log("Extract: pszFile = " + pszFile);
             NativeMethods.Log("Extract: nIconIndex = " + nIconIndex.ToString());
-            if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+            if (curApk == null) curApk = AndroidPackage2.GetAndroidPackage(sFileName);
             //AndroidPackage.default_icon = Icon.FromHandle(Properties.Resources.deficon.GetHicon());
             int s_size = (int)nIconSize >> 16;
             int l_size = (int)nIconSize & 0xffff;
@@ -318,7 +318,7 @@ namespace KKHomeProj.ApkShellExt
                     } else if (MenuInstall2SD_ID[i] == id) {
                         adb.install(d.Serialno, sFileName, true);
                     } else if (MenuUninstall_ID[i] == id ) {
-                        if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+                        if (curApk == null) curApk = AndroidPackage2.GetAndroidPackage(sFileName);
                         adb.uninstall(d.Serialno, curApk.PackageName);
                     } else if (MenuDisconnect_ID[i] == id ) {
                         adb.Disconnect(d.Serialno);
@@ -368,7 +368,7 @@ namespace KKHomeProj.ApkShellExt
         {
             try
             {
-                if (curApk == null) curApk = AndroidPackage.GetAndroidPackage(sFileName);
+                if (curApk == null) curApk = AndroidPackage2.GetAndroidPackage(sFileName);
                 string tip = "Package Name : " + curApk.PackageName +"\nVersion Code : " + curApk.VersionCode +"\nVersion Name : " + curApk.VersionName;
                 pszInfoTip = Marshal.StringToCoTaskMemUni(tip);
             }
@@ -459,7 +459,7 @@ namespace KKHomeProj.ApkShellExt
             root.Close();
 
             ////////////////////////////////////////
-            new AndroidToolAapt();
+            //new AndroidToolAapt();
             new AndroidToolAdb();
             NativeMethods.Log("RegApk: before SHChangeNotify");
             NativeMethods.SHChangeNotify(0x08000000, 0,IntPtr.Zero,IntPtr.Zero);// refresh the shell

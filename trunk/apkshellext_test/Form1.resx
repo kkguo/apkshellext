@@ -117,47 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="adb" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\adb.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="deficon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\deficon.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="menu_comment_InstallToPhone" xml:space="preserve">
-    <value>Install to your device via adb</value>
-  </data>
-  <data name="menu_InstallToPhone" xml:space="preserve">
-    <value>Install to Device</value>
-  </data>
-  <data name="menu_ConnectViaWIFI" xml:space="preserve">
-    <value>Connect device via WIFI</value>
-  </data>
-  <data name="menu_CannotFindPhone" xml:space="preserve">
-    <value>No device attached!</value>
-  </data>
-  <data name="menu_comment_ConnectViaWIFI" xml:space="preserve">
-    <value>Connect adb with TCP/IP via WIFI</value>
-  </data>
-  <data name="prompt_ConnectFail" xml:space="preserve">
-    <value>Cannot connect this IP.</value>
-  </data>
-  <data name="prompt_ConnectViaWIFI" xml:space="preserve">
-    <value>Input the IP and port number of your device:</value>
-  </data>
-  <data name="prompt_NotAnIP" xml:space="preserve">
-    <value>Please type the IP of your device, like 192.168.0.11:5555</value>
-  </data>
-  <data name="menu_InstallToInternalMemory" xml:space="preserve">
-    <value>To Memory</value>
-  </data>
-  <data name="menu_InstallToSDCard" xml:space="preserve">
-    <value>To SD card</value>
-  </data>
-  <data name="menu_DisconnectWIFI" xml:space="preserve">
-    <value>Disconnect</value>
-  </data>
-  <data name="menu_Uninstall" xml:space="preserve">
-    <value>Uninstall</value>
-  </data>
+  <metadata name="OpenFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
