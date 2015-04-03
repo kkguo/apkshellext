@@ -1,37 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Apkshellext by allangoing</title>
+    <meta name="viewport" content="width=640">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Apkshellext by allangoing</title>
   </head>
+
   <body>
-    <div class="wrapper">
+    <a id="forkme_banner" href="https://github.com/allangoing/apkshellext">View on GitHub</a>
+    <div class="shell">
+
       <header>
-        <h1>Apkshellext</h1>
-        <p>Shell Extension for APK Files, exported from code.google.com/p/apkshellext</p>
-
-        <p class="view"><a href="https://github.com/allangoing/apkshellext">View the Project on GitHub <small>allangoing/apkshellext</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/allangoing/apkshellext/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/allangoing/apkshellext/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/allangoing/apkshellext">View On <strong>GitHub</strong></a></li>
-        </ul>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Apkshellext</h1>
+            <h2>Shell Extension for APK Files, exported from code.google.com/p/apkshellext</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
       </header>
-      <section>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/allangoing/apkshellext/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/allangoing/apkshellext/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
         <p>Shell Extension for APK Files 
 == 2015-4-03 ==
-Moved to GitHub:
-[<a href="https://github.com/allangoing/apkshellext">https://github.com/allangoing/apkshellext</a>]</p>
+Moved to <a href="GitHub">https://github.com/allangoing/apkshellext</a>:</p>
 
 <p>== 2014-7-11 ==
 Make an icon, shows android within windows. [<a href="https://code.google.com/p/apkshellext/logo?cct=1405098752&amp;nonsense=something_that_ends_with.png">https://code.google.com/p/apkshellext/logo?cct=1405098752&amp;nonsense=something_that_ends_with.png</a>]</p>
@@ -145,12 +162,21 @@ here is a snapshot:
 [<a href="http://apkshellext.googlecode.com/files/Windows_7_snapshot.jpg">http://apkshellext.googlecode.com/files/Windows_7_snapshot.jpg</a>]</li>
 </ul>
       </section>
+
       <footer>
-        <p>This project is maintained by <a href="https://github.com/allangoing">allangoing</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/allangoing">allangoing</a> can be found on <a href="https://github.com/allangoing/apkshellext">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
       </footer>
+
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
