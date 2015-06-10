@@ -94,5 +94,7 @@ TODO list :
   * Update notification or auto update?
   * more option.
 here is a snapshot:
+
   ![snapshot1](http://apkshellext.googlecode.com/files/snapshot.JPG)
+  
   ![win7snapshot](http://apkshellext.googlecode.com/files/Windows_7_snapshot.jpg)
