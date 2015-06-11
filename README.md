@@ -1,7 +1,9 @@
+# apkshellext
 Shell Extension for APK Files
 
-# apkshellext
-This repository oringinally host on code.google.com/p/apkshellext
+This is a windows extension for APK Files, enable windows explorer to have ability to show Icon of Android app file.
+Tested on WinXP/Win7/Win8 32bit/64bit 
+please follow [wiki page](https://github.com/allangoing/apkshellext/wiki/How-to-install-and-use-the-shell-extension-for-APK-files) to install and uninstall.
 
 **2015-4-03**
 
