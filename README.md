@@ -3,13 +3,10 @@ Shell Extension for APK Files
 # apkshellext
 This repository oringinally host on code.google.com/p/apkshellext
 
-Here is the history from Google Code
-
 **2015-4-03**
 
-Actually I like this place, but time to move...
-
-[GitHub](https://github.com/allangoing/apkshellext)
+Actually I like this place (google code), but time to move : [GitHub](https://github.com/allangoing/apkshellext)
+from [google code](https://code.google.com/p/apkshellext)
 
 **2014-7-11**
 
