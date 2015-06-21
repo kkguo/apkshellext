@@ -5,6 +5,13 @@ This is a windows extension for APK Files, enable windows explorer to have abili
 Tested on WinXP/Win7/Win8 32bit/64bit 
 please follow [wiki page](https://github.com/allangoing/apkshellext/wiki/How-to-install-and-use-the-shell-extension-for-APK-files) to install and uninstall.
 
+**2015-6-21**
+After move to Github, I decied re-write the extension with more robost existing code, as my code to shell operation is messy and I don't want to see them anymore. 
+
+Now a new reposity is here: 
+
+##>>[ApkShellext2](https://github.com/allangoing/ApkShellext2)<<
+
 **2015-4-03**
 
 Actually I like this place (google code), but time to move : [GitHub](https://github.com/allangoing/apkshellext)
