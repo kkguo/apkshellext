@@ -1,183 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640">
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Apkshellext by allangoing</title>
+    <meta charset="UTF-8">
+    <title>Apkshellext2 by kkguo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
-    <a id="forkme_banner" href="https://github.com/allangoing/apkshellext">View on GitHub</a>
-    <div class="shell">
+    <section class="page-header">
+      <h1 class="project-name">Apkshellext2</h1>
+      <h2 class="project-tagline">Show .apk icons in windows</h2>
+      <a href="https://github.com/kkguo/ApkShellext2" class="btn">View on GitHub</a>
+      <a href="download/apkshellext2_relv01.zip" class="btn">Download assembly Zip</a>
+      <a href="https://github.com/kkguo/ApkShellext2/zipball/master" class="btn">Download Source Code in Zip</a>
+    </section>
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Apkshellext</h1>
-            <h2>Shell Extension for APK Files, exported from code.google.com/p/apkshellext</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+    <section class="main-content">
+      <h1>
+<a id="apkshellext2" class="anchor" href="#apkshellext2" aria-hidden="true"><span class="octicon octicon-link"></span></a>ApkShellext2</h1>
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/allangoing/apkshellext/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/allangoing/apkshellext/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+<p>Apk shell extension re-write.</p>
 
+<p>Extract icon and other information direct from apk files and showing on windows explorer<br>
+<img src="images/Capture.PNG" alt="snapshot"></p>
 
-      <span class="banner-fix"></span>
+<p>more feature is coming...</p>
 
-
-      <section id="main_content">
-        <p>Shell Extension for APK Files 
-== 2015-4-03 ==
-Moved to <a href="GitHub">https://github.com/allangoing/apkshellext</a>:</p>
-
-<p>== 2014-7-11 ==
-Make an icon, shows android within windows. [<a href="https://code.google.com/p/apkshellext/logo?cct=1405098752&amp;nonsense=something_that_ends_with.png">https://code.google.com/p/apkshellext/logo?cct=1405098752&amp;nonsense=something_that_ends_with.png</a>]</p>
-
-<p>== 2014-7-7 V2.4 ==
-Update v2.4</p>
-
-<p>===Changes===</p>
+<blockquote>
+<h5>
+<a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install:</h5>
 
 <ul>
-<li>use native [<a href="https://github.com/hylander0/Iteedee.ApkReader">https://github.com/hylander0/Iteedee.ApkReader</a> Iteedee.ApkReader] instead of aapt.exe, to resolve path encoding issue, and should have better performance.</li>
-<li>update newest adb executable.</li>
-<li>Install to device is not working stable, thinking another way. don't use it for now.</li>
+<li>Download package (zip): <a href="https://drive.google.com/open?id=0B6ZEW0Or_P6gam15cTZqOS1tbnc&amp;authuser=0">v0.1 from google drive</a>
+</li>
+<li>
+<a href="https://www.microsoft.com/en-us/download/details.aspx?id=30653">Download latest .net framework</a> if you don't have it.</li>
+<li>Execute install.bat</li>
+<li>You should see icons now</li>
 </ul>
 
-<p>Google code doesn't allow to download anymore, so I hide the tab, you could find the download in [<a href="https://drive.google.com/folderview?id=0B6ZEW0Or_P6gSzQ3Z1JrZVNUMkk&amp;usp=sharing">https://drive.google.com/folderview?id=0B6ZEW0Or_P6gSzQ3Z1JrZVNUMkk&amp;usp=sharing</a> GOOGLEDRIVE]</p>
-
-<p>I create [<a href="https://code.google.com/p/apkshellext/issues/detail?id=28">https://code.google.com/p/apkshellext/issues/detail?id=28</a> an ISSUE TRACKER] for new release, please start it and subscribe update.</p>
-
-<p>== 2014-7-2 ==
-It's another year passed. </p>
-
-<p>I was quite busy on collecting my hearthstone cards (LoL), while I really feel nervous when seeing people still raise issue to this page(which means I still have users), I will restart (continue on) this project SOON(c) &lt;- Blizzard reserved this word LoL</p>
-
-<p>== 2013-9-9 ==
-Hey, I got time to fix several issue, try the newest [<a href="https://apkshellext.googlecode.com/files/apkshellext_2_3.zip">https://apkshellext.googlecode.com/files/apkshellext_2_3.zip</a> release].</p>
-
-<p><em>I assume you know what is ADB and what is administrator</em> </p>
-
-<p>Win7/8 user please use <em>Administrator privilege !!!</em></p>
-
-<p>You don't need to kill n restart explorer anymore, just use install.bat in the zip package.</p>
-
-<p>===Feature===</p>
+<h5>
+<a id="how-to-uninstall" class="anchor" href="#how-to-uninstall" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to uninstall:</h5>
 
 <ul>
-<li>Support WIN8 64bit</li>
-<li>Easy install &amp; uninstall
-===Known issue===</li>
-<li>Doesn't read Chinese character in the path</li>
-<li>ADB doesn't list device for some time</li>
+<li>Execute uninstall.bat</li>
+<li>You may need run restart_explorer.bat before you can delete the dll file.</li>
 </ul>
+</blockquote>
 
-<p>===Q &amp; A===</p>
+<h5>
+<a id="2015-june-26" class="anchor" href="#2015-june-26" aria-hidden="true"><span class="octicon octicon-link"></span></a>[2015-June-26]</h5>
+
+<p>Using home made the APK parser, get resource from manifest and resource without parsing the whole package, and get 10 times performance.
+also add info tip handler.</p>
+
+<hr>
+
+<p>Powered by the code from:</p>
 
 <ul>
 <li>
-<em>Q:</em>Why not use cache to speed up?</li>
+<a href="https://github.com/dwmkerr/sharpshell">SharpShell</a><br>
+</li>
 <li>
-<em>A:</em> the windows build-in icon cache mechanism will not allow individual icon for different file of same type (extension). I have to extract the icon every time when you do refresh. for those who has thousands APKs in one folder, please leave a message or drop a mail let me know how critical the situation is, I would like to think about creating a file cache in your temp folder for each icon.</li>
-<li>
-<em>Q:</em>Cannot delete the dll after uninstall?</li>
-<li>
-<em>A:</em> Kill the explorer and restart it. The latest release (v2.3) solved this, basically it caused by some process handler leak. But in case, I left a restart_explorer.bat in v2.3 package</li>
-<li>
-<em>Q:</em>How often this project got updated?</li>
-<li>
-<em>A:</em> it's a home-brew project, and I cannot guarantee frequently update, let me know if you have idea or you want to help.</li>
-<li>
-<em>Q:</em>How to connect phone to adb via wifi?</li>
-<li>
-<em>A:</em> I don't think it's a question for now, search wireless ADB in google play</li>
-<li>
-<em>Q:</em>Cannot see icon when phone connected as media device</li>
-<li>
-<em>A:</em> Basically the shell extension needs to read your app file as file, so you have to set your phone as MSD(Massive Storage Device, USB device mode), at least for now. For some brand, you need to install driver to enable ADB. </li>
+<a href="https://github.com/icsharpcode/SharpZipLib">SharpZip</a><br>
+</li>
+<li><a href="https://github.com/hylander0/Iteedee.ApkReader"><del>Iteedee.ApkReader</del></a></li>
 </ul>
 
-<p>==2013-9-8 ==</p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/kkguo/ApkShellext2">Apkshellext2</a> is maintained by <a href="https://github.com/kkguo">kkguo</a>.</span>
 
-<p>So surprise you guys still here, I will restart this small project soon...
-So on the list:</p>
-
-<ul>
-<li>add google play menu</li>
-<li>permission details.</li>
-<li>etc...</li>
-</ul>
-
-<p>==2011-9-1 v2.1==</p>
-
-<p>If you find the explorer no response for long time, please re-plug in your device and retry. Please use cable connect as possible as you can to get more stable.</p>
-
-<p>Support 32bit and 64bit windows7, require .net framework 4.
-Please see detail in [<a href="http://code.google.com/p/apkshellext/wiki/Usage">http://code.google.com/p/apkshellext/wiki/Usage</a> wiki page].</p>
-
-<p>First post is on [<a href="http://forum.xda-developers.com/showthread.php?t=577735&amp;page=1">http://forum.xda-developers.com/showthread.php?t=577735&amp;page=1</a> XDA Dream forum], but please leave your comment in this project. </p>
-
-<h2>
-<a id="cannot-install-probably-the-httpcodegooglecompapkshellextissueslistcan1qcolspecidtypestatusprioritymilestoneownersummarycellstiles-issues-list-can-help" class="anchor" href="#cannot-install-probably-the-httpcodegooglecompapkshellextissueslistcan1qcolspecidtypestatusprioritymilestoneownersummarycellstiles-issues-list-can-help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cannot install? Probably the [<a href="http://code.google.com/p/apkshellext/issues/list?can=1&amp;q=&amp;colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&amp;cells=tiles">http://code.google.com/p/apkshellext/issues/list?can=1&amp;q=&amp;colspec=ID+Type+Status+Priority+Milestone+Owner+Summary&amp;cells=tiles</a> Issues list] can help.</h2>
-
-<p>Support :</p>
-
-<ul>
-<li>Icon display</li>
-<li>Context menu to install/uninstall apk files, support ADB via WIFI</li>
-<li>Query message for apk detail information.</li>
-</ul>
-
-<p>TODO list :</p>
-
-<ul>
-<li>show a busy window when adb was busy</li>
-<li>friendly pack information in tip bobble.</li>
-<li>Thumbnail for apk files</li>
-<li>A Property page?</li>
-<li>Update notification or auto update?</li>
-<li>more option.
-here is a snapshot:
-[<a href="http://apkshellext.googlecode.com/files/snapshot.JPG">http://apkshellext.googlecode.com/files/snapshot.JPG</a>]
-[<a href="http://apkshellext.googlecode.com/files/Windows_7_snapshot.jpg">http://apkshellext.googlecode.com/files/Windows_7_snapshot.jpg</a>]</li>
-</ul>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/allangoing">allangoing</a> can be found on <a href="https://github.com/allangoing/apkshellext">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
 
-    </div>
+    </section>
 
-              <script type="text/javascript">
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -190,3 +92,4 @@ here is a snapshot:
 
   </body>
 </html>
+
