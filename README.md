@@ -10,8 +10,9 @@ Extract icon and other information direct from apk files and showing on windows 
 * Show Package information in Infotip
 * and.. more feature is coming
 
-
 Check the [Wiki](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall) for how to install / uninstall
+
+Check the __[ProjectSite](http://kkguo.github.io/apkshellext)__ for Download & History
 
 ----------------------------------------------------------------------------
 
