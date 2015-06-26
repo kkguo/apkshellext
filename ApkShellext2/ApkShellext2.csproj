@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="ApkQuickReader.cs" />
     <Compile Include="ApkShellExt2.cs" />
-    <Compile Include="MultiHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\Attributes\COMServerAssociationAttribute.cs" />
@@ -361,6 +360,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="key.pfx" />
+    <None Include="README.md" />
     <None Include="SharpShell\LICENSE.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
