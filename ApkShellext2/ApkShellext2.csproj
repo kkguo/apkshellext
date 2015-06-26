@@ -360,7 +360,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="key.pfx" />
-    <None Include="README.md" />
     <None Include="SharpShell\LICENSE.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
