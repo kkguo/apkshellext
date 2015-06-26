@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{091659BA-A36B-45D5-AAF2-3CE764453FF2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApkShellext2</RootNamespace>
+    <AssemblyName>ApkShellext2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApkQuickReader.cs" />
+    <Compile Include="ApkShellExt2.cs" />
+    <Compile Include="MultiHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpShell\Attributes\AssociationType.cs" />
+    <Compile Include="SharpShell\Attributes\COMServerAssociationAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\CustomUnregisterFunctionAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\DisplayNameAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\HandlerSubkeyAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\ServerTypeAttribute.cs" />
+    <Compile Include="SharpShell\Attributes\SpecialClassKeyAttribute.cs" />
+    <Compile Include="SharpShell\Components\CategoryManager.cs" />
+    <Compile Include="SharpShell\Components\ExtractIconImpl.cs" />
+    <Compile Include="SharpShell\Configuration\LoggingMode.cs" />
+    <Compile Include="SharpShell\Configuration\SystemConfiguration.cs" />
+    <Compile Include="SharpShell\Configuration\SystemConfigurationProvider.cs" />
+    <Compile Include="SharpShell\Diagnostics\ExplorerConfigurationManager.cs" />
+    <Compile Include="SharpShell\Diagnostics\ExplorerManager.cs" />
+    <Compile Include="SharpShell\Diagnostics\Loggers\DebugLogger.cs" />
+    <Compile Include="SharpShell\Diagnostics\Loggers\EventLogLogger.cs" />
+    <Compile Include="SharpShell\Diagnostics\Loggers\FileLogger.cs" />
+    <Compile Include="SharpShell\Diagnostics\Loggers\ILogger.cs" />
+    <Compile Include="SharpShell\Diagnostics\Logging.cs" />
+    <Compile Include="SharpShell\Exceptions\ServerRegistrationException.cs" />
+    <Compile Include="SharpShell\Extensions\ControlExtensions.cs" />
+    <Compile Include="SharpShell\Extensions\EnumExtensions.cs" />
+    <Compile Include="SharpShell\Extensions\GuidExtensions.cs" />
+    <Compile Include="SharpShell\Extensions\IDataObjectExtensions.cs" />
+    <Compile Include="SharpShell\Helpers\BitmapHelper.cs" />
+    <Compile Include="SharpShell\Helpers\ComStream.cs" />
+    <Compile Include="SharpShell\Helpers\Win32Helper.cs" />
+    <Compile Include="SharpShell\InitializeWithStreamServer.cs" />
+    <Compile Include="SharpShell\Interop\ASSOCCLASS.cs" />
+    <Compile Include="SharpShell\Interop\ASSOCIATIONELEMENT.cs" />
+    <Compile Include="SharpShell\Interop\BITMAPV5HEADER.cs" />
+    <Compile Include="SharpShell\Interop\CATEGORYINFO.cs" />
+    <Compile Include="SharpShell\Interop\CLIPFORMAT.cs" />
+    <Compile Include="SharpShell\Interop\CLSCTX.cs" />
+    <Compile Include="SharpShell\Interop\CMF.cs" />
+    <Compile Include="SharpShell\Interop\CMIC.cs" />
+    <Compile Include="SharpShell\Interop\CMINVOKECOMMANDINFO.cs" />
+    <Compile Include="SharpShell\Interop\CMINVOKECOMMANDINFOEX.cs" />
+    <Compile Include="SharpShell\Interop\COLORREF.cs" />
+    <Compile Include="SharpShell\Interop\Comctl32.cs" />
+    <Compile Include="SharpShell\Interop\CSFV.cs" />
+    <Compile Include="SharpShell\Interop\CSIDL.cs" />
+    <Compile Include="SharpShell\Interop\DEFCONTEXTMENU.cs" />
+    <Compile Include="SharpShell\Interop\DESKBANDINFO.cs" />
+    <Compile Include="SharpShell\Interop\DIB.cs" />
+    <Compile Include="SharpShell\Interop\DLGTEMPLATE.cs" />
+    <Compile Include="SharpShell\Interop\DRAWITEMSTRUCT.cs" />
+    <Compile Include="SharpShell\Interop\EXTRASEARCH.cs" />
+    <Compile Include="SharpShell\Interop\FILE_ATTRIBUTE.cs" />
+    <Compile Include="SharpShell\Interop\FOLDERFLAGS.cs" />
+    <Compile Include="SharpShell\Interop\FOLDERSETTINGS.cs" />
+    <Compile Include="SharpShell\Interop\FOLDERVIEWMODE.cs" />
+    <Compile Include="SharpShell\Interop\FontCharSet.cs" />
+    <Compile Include="SharpShell\Interop\FontClipPrecision.cs" />
+    <Compile Include="SharpShell\Interop\FontPitchAndFamily.cs" />
+    <Compile Include="SharpShell\Interop\FontPrecision.cs" />
+    <Compile Include="SharpShell\Interop\FontQuality.cs" />
+    <Compile Include="SharpShell\Interop\FontWeight.cs" />
+    <Compile Include="SharpShell\Interop\GCS.cs" />
+    <Compile Include="SharpShell\Interop\GILInFlags.cs" />
+    <Compile Include="SharpShell\Interop\GILOutFlags.cs" />
+    <Compile Include="SharpShell\Interop\ICatRegister.cs" />
+    <Compile Include="SharpShell\Interop\ICommDlgBrowser.cs" />
+    <Compile Include="SharpShell\Interop\IContextMenu.cs" />
+    <Compile Include="SharpShell\Interop\IContextMenu2.cs" />
+    <Compile Include="SharpShell\Interop\IContextMenu3.cs" />
+    <Compile Include="SharpShell\Interop\IContextMenuCB.cs" />
+    <Compile Include="SharpShell\Interop\IDefaultExtractIconInit.cs" />
+    <Compile Include="SharpShell\Interop\IDeskBand.cs" />
+    <Compile Include="SharpShell\Interop\IDeskBand2.cs" />
+    <Compile Include="SharpShell\Interop\IDockingWindow.cs" />
+    <Compile Include="SharpShell\Interop\IDropTarget.cs" />
+    <Compile Include="SharpShell\Interop\IEnumExtraSearch.cs" />
+    <Compile Include="SharpShell\Interop\IEnumIDList.cs" />
+    <Compile Include="SharpShell\Interop\IExtractIconA.cs" />
+    <Compile Include="SharpShell\Interop\IExtractIconW.cs" />
+    <Compile Include="SharpShell\Interop\IFolderView.cs" />
+    <Compile Include="SharpShell\Interop\IImageList.cs" />
+    <Compile Include="SharpShell\Interop\IInitializeWithFile.cs" />
+    <Compile Include="SharpShell\Interop\IInitializeWithStream.cs" />
+    <Compile Include="SharpShell\Interop\IInputObject.cs" />
+    <Compile Include="SharpShell\Interop\IInputObjectSite.cs" />
+    <Compile Include="SharpShell\Interop\IMAGEINFO.cs" />
+    <Compile Include="SharpShell\Interop\IMAGELISTDRAWPARAMS.cs" />
+    <Compile Include="SharpShell\Interop\IObjectWithSite.cs" />
+    <Compile Include="SharpShell\Interop\IOleWindow.cs" />
+    <Compile Include="SharpShell\Interop\IPersist.cs" />
+    <Compile Include="SharpShell\Interop\IPersistFolder.cs" />
+    <Compile Include="SharpShell\Interop\IPersistFolder2.cs" />
+    <Compile Include="SharpShell\Interop\IPersistIDList.cs" />
+    <Compile Include="SharpShell\Interop\IPersistStream.cs" />
+    <Compile Include="SharpShell\Interop\IPreviewHandler.cs" />
+    <Compile Include="SharpShell\Interop\IPreviewHandlerFrame.cs" />
+    <Compile Include="SharpShell\Interop\IPreviewHandlerVisuals.cs" />
+    <Compile Include="SharpShell\Interop\IQueryInfo.cs" />
+    <Compile Include="SharpShell\Interop\IServiceProvider.cs" />
+    <Compile Include="SharpShell\Interop\IShellBrowser.cs" />
+    <Compile Include="SharpShell\Interop\IShellDetails.cs" />
+    <Compile Include="SharpShell\Interop\IShellExtInit.cs" />
+    <Compile Include="SharpShell\Interop\IShellFolder.cs" />
+    <Compile Include="SharpShell\Interop\IShellFolder2.cs" />
+    <Compile Include="SharpShell\Interop\IShellFolderViewCB.cs" />
+    <Compile Include="SharpShell\Interop\IShellIconOverlayIdentifier.cs" />
+    <Compile Include="SharpShell\Interop\IShellPropSheetExt.cs" />
+    <Compile Include="SharpShell\Interop\IShellView.cs" />
+    <Compile Include="SharpShell\Interop\ISIOI.cs" />
+    <Compile Include="SharpShell\Interop\IThumbnailProvider.cs" />
+    <Compile Include="SharpShell\Interop\Kernel32.cs" />
+    <Compile Include="SharpShell\Interop\KnownFolders.cs" />
+    <Compile Include="SharpShell\Interop\KNOWN_FOLDER_FLAG.cs" />
+    <Compile Include="SharpShell\Interop\LOGFONT.cs" />
+    <Compile Include="SharpShell\Interop\LVCFMT.cs" />
+    <Compile Include="SharpShell\Interop\MARGINS.cs" />
+    <Compile Include="SharpShell\Interop\MEASUREITEMSTRUCT.cs" />
+    <Compile Include="SharpShell\Interop\MENUITEMINFO.cs" />
+    <Compile Include="SharpShell\Interop\MFS.cs" />
+    <Compile Include="SharpShell\Interop\MFT.cs" />
+    <Compile Include="SharpShell\Interop\MIIM.cs" />
+    <Compile Include="SharpShell\Interop\MSG.cs" />
+    <Compile Include="SharpShell\Interop\NMHDR.cs" />
+    <Compile Include="SharpShell\Interop\Ole32.cs" />
+    <Compile Include="SharpShell\Interop\OLEMENUGROUPWIDTHS.cs" />
+    <Compile Include="SharpShell\Interop\POINT.cs" />
+    <Compile Include="SharpShell\Interop\PREVIEWHANDLERFRAMEINFO.cs" />
+    <Compile Include="SharpShell\Interop\PROPERTYKEY.cs" />
+    <Compile Include="SharpShell\Interop\PROPSHEETHEADER.cs" />
+    <Compile Include="SharpShell\Interop\PROPSHEETPAGE.cs" />
+    <Compile Include="SharpShell\Interop\PSH.cs" />
+    <Compile Include="SharpShell\Interop\PSN.cs" />
+    <Compile Include="SharpShell\Interop\PSP.cs" />
+    <Compile Include="SharpShell\Interop\PSPCB.cs" />
+    <Compile Include="SharpShell\Interop\QITIPF.cs" />
+    <Compile Include="SharpShell\Interop\RECT.cs" />
+    <Compile Include="SharpShell\Interop\SBSP.cs" />
+    <Compile Include="SharpShell\Interop\SCHIDS.cs" />
+    <Compile Include="SharpShell\Interop\SEE.cs" />
+    <Compile Include="SharpShell\Interop\SFGAO.cs" />
+    <Compile Include="SharpShell\Interop\SFV_CREATE.cs" />
+    <Compile Include="SharpShell\Interop\SHCOLSTATE.cs" />
+    <Compile Include="SharpShell\Interop\SHCOLUMNID.cs" />
+    <Compile Include="SharpShell\Interop\SHCONTF.cs" />
+    <Compile Include="SharpShell\Interop\Shell32.cs" />
+    <Compile Include="SharpShell\Interop\SHELLDETAILS.cs" />
+    <Compile Include="SharpShell\Interop\SHELLEXECUTEINFO.cs" />
+    <Compile Include="SharpShell\Interop\SHFILEINFO.cs" />
+    <Compile Include="SharpShell\Interop\SHGDNF.cs" />
+    <Compile Include="SharpShell\Interop\SHGFI.cs" />
+    <Compile Include="SharpShell\Interop\Shlwapi.cs" />
+    <Compile Include="SharpShell\Interop\SIZE.cs" />
+    <Compile Include="SharpShell\Interop\STGM.cs" />
+    <Compile Include="SharpShell\Interop\STRRET.cs" />
+    <Compile Include="SharpShell\Interop\SVUIA_STATUS.cs" />
+    <Compile Include="SharpShell\Interop\TBBUTTON.cs" />
+    <Compile Include="SharpShell\Interop\User32.cs" />
+    <Compile Include="SharpShell\Interop\Uxtheme.cs" />
+    <Compile Include="SharpShell\Interop\WindowsMessages.cs" />
+    <Compile Include="SharpShell\Interop\WindowStyles.cs" />
+    <Compile Include="SharpShell\Interop\WinError.cs" />
+    <Compile Include="SharpShell\Interop\WTS_ALPHATYPE.cs" />
+    <Compile Include="SharpShell\Interop\_SVGIO.cs" />
+    <Compile Include="SharpShell\Interop\_SVSIF.cs" />
+    <Compile Include="SharpShell\ISharpShellServer.cs" />
+    <Compile Include="SharpShell\NativeBridge\NativeBridge.cs" />
+    <Compile Include="SharpShell\PersistFileServer.cs" />
+    <Compile Include="SharpShell\Pidl\IdList.cs" />
+    <Compile Include="SharpShell\Pidl\PidlManager.cs" />
+    <Compile Include="SharpShell\Pidl\ShellId.cs" />
+    <Compile Include="SharpShell\ServerRegistration\ClassRegistration.cs" />
+    <Compile Include="SharpShell\ServerRegistration\RegistrationType.cs" />
+    <Compile Include="SharpShell\ServerRegistration\ServerRegistationType.cs" />
+    <Compile Include="SharpShell\ServerRegistration\ServerRegistrationManager.cs" />
+    <Compile Include="SharpShell\ServerRegistration\ShellExtensionRegistrationInfo.cs" />
+    <Compile Include="SharpShell\ServerRegistration\ShellExtensionType.cs" />
+    <Compile Include="SharpShell\ServerRegistration\SpecialRegistryClass.cs" />
+    <Compile Include="SharpShell\ServerType.cs" />
+    <Compile Include="SharpShell\SharpContextMenu\InvokeCommandInfo.cs" />
+    <Compile Include="SharpShell\SharpContextMenu\NativeContextMenuWrapper.cs" />
+    <Compile Include="SharpShell\SharpContextMenu\PARGB32.cs" />
+    <Compile Include="SharpShell\SharpContextMenu\SharpContextMenu.cs" />
+    <Compile Include="SharpShell\SharpDataHandler\SharpDataHandler.cs" />
+    <Compile Include="SharpShell\SharpDeskBand\BandOptions.cs" />
+    <Compile Include="SharpShell\SharpDeskBand\SharpDeskBand.cs" />
+    <Compile Include="SharpShell\SharpDropHandler\SharpDropHandler.cs" />
+    <Compile Include="SharpShell\SharpIconHandler\SharpIconHandler.cs" />
+    <Compile Include="SharpShell\SharpIconOverlayHandler\SharpIconOverlayHandler.cs" />
+    <Compile Include="SharpShell\SharpInfoTipHandler\SharpInfoTipHandler.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\AttributeFlags.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ColumnAlignment.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\CustomNamespaceFolderView.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\DefaultNamespaceFolderView.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\DisplayNameContext.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\IShellNamespaceFolder.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\IShellNamespaceFolderContextMenuProvider.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\IShellNamespaceItem.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\NamespaceExtensionAvailability.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\NamespaceExtensionJunctionPointAttribute.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\NamespaceExtensionRegistrationSettings.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\PropertyKey.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\PropertyKeyAttribute.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\RegistryKeyAttribute.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\SharpNamespaceExtension.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellDetailColumn.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellFolderImpl.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellFolderProxy.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellNamespaceEnumerationFlags.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellNamespaceFolderIdListEnumerator.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellNamespaceFolderView.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\ShellViewHost.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\StandardPropertyKey.cs" />
+    <Compile Include="SharpShell\SharpNamespaceExtension\VirtualFolder.cs" />
+    <Compile Include="SharpShell\SharpPreviewHandler\PreviewHandlerAttribute.cs" />
+    <Compile Include="SharpShell\SharpPreviewHandler\PreviewHandlerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpShell\SharpPreviewHandler\PreviewHandlerHost.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpShell\SharpPreviewHandler\PreviewHandlerRegistrar.cs" />
+    <Compile Include="SharpShell\SharpPreviewHandler\SharpPreviewHandler.cs" />
+    <Compile Include="SharpShell\SharpPropertySheet\PropertyPageProxy.cs" />
+    <Compile Include="SharpShell\SharpPropertySheet\SharpPropertyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpShell\SharpPropertySheet\SharpPropertySheet.cs" />
+    <Compile Include="SharpShell\SharpShellServer.cs" />
+    <Compile Include="SharpShell\SharpThumbnailHandler\SharpThumbnailHandler.cs" />
+    <Compile Include="SharpShell\ShellExtInitServer.cs" />
+    <Compile Include="SharpZLib\BZip2\BZip2.cs" />
+    <Compile Include="SharpZLib\BZip2\BZip2Constants.cs" />
+    <Compile Include="SharpZLib\BZip2\BZip2Exception.cs" />
+    <Compile Include="SharpZLib\BZip2\BZip2InputStream.cs" />
+    <Compile Include="SharpZLib\BZip2\BZip2OutputStream.cs" />
+    <Compile Include="SharpZLib\Checksums\Adler32.cs" />
+    <Compile Include="SharpZLib\Checksums\CRC32.cs" />
+    <Compile Include="SharpZLib\Checksums\IChecksum.cs" />
+    <Compile Include="SharpZLib\Checksums\StrangeCRC.cs" />
+    <Compile Include="SharpZLib\Core\FileSystemScanner.cs" />
+    <Compile Include="SharpZLib\Core\INameTransform.cs" />
+    <Compile Include="SharpZLib\Core\IScanFilter.cs" />
+    <Compile Include="SharpZLib\Core\NameFilter.cs" />
+    <Compile Include="SharpZLib\Core\PathFilter.cs" />
+    <Compile Include="SharpZLib\Core\StreamUtils.cs" />
+    <Compile Include="SharpZLib\Core\WindowsPathUtils.cs" />
+    <Compile Include="SharpZLib\Encryption\PkzipClassic.cs" />
+    <Compile Include="SharpZLib\Encryption\ZipAESStream.cs" />
+    <Compile Include="SharpZLib\Encryption\ZipAESTransform.cs" />
+    <Compile Include="SharpZLib\GZip\GZIPConstants.cs" />
+    <Compile Include="SharpZLib\GZip\GZipException.cs" />
+    <Compile Include="SharpZLib\GZip\GzipInputStream.cs" />
+    <Compile Include="SharpZLib\GZip\GzipOutputStream.cs" />
+    <Compile Include="SharpZLib\Lzw\LzwConstants.cs" />
+    <Compile Include="SharpZLib\Lzw\LzwException.cs" />
+    <Compile Include="SharpZLib\Lzw\LzwInputStream.cs" />
+    <Compile Include="SharpZLib\SharpZipBaseException.cs" />
+    <Compile Include="SharpZLib\Tar\InvalidHeaderException.cs" />
+    <Compile Include="SharpZLib\Tar\TarArchive.cs" />
+    <Compile Include="SharpZLib\Tar\TarBuffer.cs" />
+    <Compile Include="SharpZLib\Tar\TarEntry.cs" />
+    <Compile Include="SharpZLib\Tar\TarException.cs" />
+    <Compile Include="SharpZLib\Tar\TarHeader.cs" />
+    <Compile Include="SharpZLib\Tar\TarInputStream.cs" />
+    <Compile Include="SharpZLib\Tar\TarOutputStream.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Deflater.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Inflater.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="SharpZLib\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="SharpZLib\Zip\FastZip.cs" />
+    <Compile Include="SharpZLib\Zip\IEntryFactory.cs" />
+    <Compile Include="SharpZLib\Zip\WindowsNameTransform.cs" />
+    <Compile Include="SharpZLib\Zip\ZipConstants.cs" />
+    <Compile Include="SharpZLib\Zip\ZipEntry.cs" />
+    <Compile Include="SharpZLib\Zip\ZipEntryFactory.cs" />
+    <Compile Include="SharpZLib\Zip\ZipException.cs" />
+    <Compile Include="SharpZLib\Zip\ZipExtraData.cs" />
+    <Compile Include="SharpZLib\Zip\ZipFile.cs" />
+    <Compile Include="SharpZLib\Zip\ZipHelperStream.cs" />
+    <Compile Include="SharpZLib\Zip\ZipInputStream.cs" />
+    <Compile Include="SharpZLib\Zip\ZipNameTransform.cs" />
+    <Compile Include="SharpZLib\Zip\ZipOutputStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
+    <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SharpShell\SharpPreviewHandler\PreviewHandlerHost.resx">
+      <DependentUpon>PreviewHandlerHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharpShell\SharpPropertySheet\SharpPropertyPage.resx">
+      <DependentUpon>SharpPropertyPage.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.pfx" />
+    <None Include="SharpShell\LICENSE.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
