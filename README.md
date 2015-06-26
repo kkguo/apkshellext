@@ -8,9 +8,7 @@ please follow [wiki page](https://github.com/allangoing/apkshellext/wiki/How-to-
 **2015-6-21**
 After move to Github, I decied re-write the extension with more robost existing code, as my code to shell operation is messy and I don't want to see them anymore. 
 
-Now a new reposity is here: 
-
-##>>[ApkShellext2](https://github.com/allangoing/ApkShellext2)<<
+check the [ApkShellext2](https://github.com/kkguo/apkshellext/tree/ApkShellext2) Branch
 
 **2015-4-03**
 
