@@ -3,7 +3,7 @@
 Apk shell extension re-write.
 
 Extract icon and other information direct from apk files and showing on windows explorer  
-![snapshot](https://lh6.googleusercontent.com/8yqB9uwz4DlDNrc4hm1F2V5-LT9ZlEaJtWGAzFmiL6dIHVX-EpEzVys27mCyBKaz8BTjgvJhO7Sj33U=w1256-h843)
+![snapshot](http://kkguo.github.io/ApkShellext2/images/Capture.PNG)
 
 more feature is coming...
 
