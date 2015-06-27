@@ -9,6 +9,7 @@ namespace SharpShell.Attributes
     /// classes derived from the decorated class will be able to use
     /// the COMServerAssociationAttribute without any extra configuration.
     /// </summary>
+    //[AttributeUsage(AttributeTargets.Class,Inherited=false,AllowMultiple=true)]
     internal class ServerTypeAttribute : Attribute
     {
         /// <summary>

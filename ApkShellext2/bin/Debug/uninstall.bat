@@ -2,7 +2,7 @@
 ECHO #######################################################
 ECHO ##            APK Shell Extension  2                 ##
 ECHO ##                                                   ##
-ECHO ##    https://github.com/allangoing/APKShellExt2     ##
+ECHO ##    https://github.com/kkguo/apkshellext           ##
 ECHO #######################################################
 
 REM === check and get the UAC for administrator privilege ===
@@ -50,7 +50,7 @@ TASKKILL /F /IM adb.exe
 ECHO.
 ECHO /-------------------------------------------------------------------\
 ECHO  apkshellext is an open-source project,
-ECHO  Please visit https://github.com/allangoing/APKShellExt2 for more information
+ECHO  Please visit https://github.com/kkguo/apkshellext for more information
 ECHO \-------------------------------------------------------------------/
 
 PAUSE
