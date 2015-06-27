@@ -3,27 +3,29 @@
 Apk shell extension re-write.
 
 Extract icon and other information direct from apk files and showing on windows explorer  
-![snapshot](http://kkguo.github.io/apkshellext/images/Capture.PNG)
+![snapshot](http://kkguo.github.io/apkshellext/images/capture.png)
 
-more feature is coming...
+#####[Features]
+* Show Icon of apk files on windows explorer
+* Show Package information in Infotip
+* more
 
->#####How to install:
->* Download package (zip): [v0.1 from google drive](https://drive.google.com/open?id=0B6ZEW0Or_P6gam15cTZqOS1tbnc&authuser=0)
->* [Download latest .net framework](https://www.microsoft.com/en-us/download/details.aspx?id=30653) if you don't have it.
->* Execute install.bat
->* You should see icons now
->
->#####How to uninstall:
->* Execute uninstall.bat
->* You may need run restart_explorer.bat before you can delete the dll file.
+#####Check the [Wiki](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall) for how to install / uninstall
 
-#####[2015-June-26]
-Using home made the APK parser, get resource from manifest and resource without parsing the whole package, and get 10 times performance.
-also add info tip handler.
+#####Check the __[Project page](http://kkguo.github.io/apkshellext)__ for Download & History
+
+#####[Contributor]
+[KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
+
+Vince. M (Test)
 
 ----------------------------------------------------------------------------
 
-Powered by the code from:
-* [SharpShell](https://github.com/dwmkerr/sharpshell)  
-* [SharpZip](https://github.com/icsharpcode/SharpZipLib)  
-* [~~Iteedee.ApkReader~~](https://github.com/hylander0/Iteedee.ApkReader)
+#####[Last change on 2015-June-26]
+* Rewrite a new APK parser, get resource fast from manifest.xml and resources.arsc without parsing the whole package, 10 times faster than oringinal way in Lteedee.ApkReader.
+* Add info tip handler.
+
+----------------------------------------------------------------------------
+
+Referencing code from:
+__[SharpShell](https://github.com/dwmkerr/sharpshell)__ / __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ /  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__
