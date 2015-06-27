@@ -5,7 +5,7 @@ Apk shell extension re-write.
 Extract icon and other information direct from apk files and showing on windows explorer  
 ![snapshot](http://kkguo.github.io/apkshellext/images/capture.png)
 
-######[Features]
+#####[Features]
 * Show Icon of apk files on windows explorer
 * Show Package information in Infotip
 * more
@@ -14,7 +14,7 @@ Check the [Wiki](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-un
 
 Check the __[Project page](http://kkguo.github.io/apkshellext)__ for Download & History
 
-######[Contributor]
+#####[Contributor]
 [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
 
 Vince. M (Test)
