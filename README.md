@@ -14,6 +14,10 @@ Check the [Wiki](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-un
 
 Check the __[Project page](http://kkguo.github.io/apkshellext)__ for Download & History
 
+######[Contributor]
+[KKGuo](https://github.com/kkguo)(Author) email:kkguokk@gmail.com
+Vince. M (Test)
+
 ----------------------------------------------------------------------------
 
 #####[Last change on 2015-June-26]
