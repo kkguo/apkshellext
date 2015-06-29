@@ -354,16 +354,18 @@
     <Compile Include="SharpZLib\Zip\ZipOutputStream.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logo.png" />
     <Content Include="Resources\Android.png" />
-    <Content Include="Resources\google_play.png" />
+    <None Include="Resources\GitHub.png" />
+    <None Include="Resources\rename_16x16.png" />
+    <None Include="Resources\google_play_16x16.png" />
+    <None Include="Resources\logo_16x16.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpShell\SharpPreviewHandler\PreviewHandlerHost.resx">
       <DependentUpon>PreviewHandlerHost.cs</DependentUpon>
