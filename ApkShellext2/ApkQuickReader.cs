@@ -8,7 +8,7 @@ using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
 
-namespace KKHomeProj.ApkShellext2 {
+namespace ApkShellext2 {
     class ApkQuickReader {
         public string FileName { get; set; }
 
@@ -53,12 +53,16 @@ namespace KKHomeProj.ApkShellext2 {
             using (ZipFile zipfile = new ZipFile(filename)) {
 
                 ZipEntry en = zipfile.GetEntry("androidmanifest.xml");
-                BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
-                manifest = s.ReadBytes((int)en.Size);
+                if (en != null) {
+                    BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
+                    manifest = s.ReadBytes((int)en.Size);
+                }
 
                 en = zipfile.GetEntry("resources.arsc");
-                s = new BinaryReader(zipfile.GetInputStream(en));
-                resources = s.ReadBytes((int)en.Size);
+                if (en != null) {
+                    BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
+                    resources = s.ReadBytes((int)en.Size);
+                }
             }
 
 
