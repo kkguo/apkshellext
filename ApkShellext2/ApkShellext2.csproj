@@ -355,7 +355,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
-    <Content Include="Resources\gplay.jpg" />
+    <Content Include="Resources\Android.png" />
+    <Content Include="Resources\google_play.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>

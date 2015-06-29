@@ -41,9 +41,13 @@ namespace ApkShellext2
                 }
             }
 
-            ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
-            string iconPath = reader.getAttribute("application", "icon");
-            m_icon = reader.getImage(iconPath);
+            try {
+                ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
+                string iconPath = reader.getAttribute("application", "icon");
+                m_icon = reader.getImage(iconPath);
+            } catch {
+                m_icon = Properties.Resources.Android;
+            }
             return betterIcon((int)iconSize);
         }
 
