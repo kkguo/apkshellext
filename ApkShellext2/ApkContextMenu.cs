@@ -45,13 +45,13 @@ namespace ApkShellext2 {
 
             var playMenu = new ToolStripMenuItem {
                 Text = "Check GooglePlay",
-                Image = new Bitmap(Properties.Resources.gplay, 16, 16)
+                Image = new Bitmap(Properties.Resources.google_play, 16, 16)
             };
 
             playMenu.Click += (sender, args) => gotoGooglePlay();
 
             var checkUpdateMenu = new ToolStripMenuItem {
-                Text = "About ApkShellext",
+                Text = "About",
                 Image = mainMenu.Image
             };
 
@@ -100,7 +100,7 @@ namespace ApkShellext2 {
         }
 
         private void gotoGitHub() {
-            System.Diagnostics.Process.Start("http://kkguo.github.io/apkshellext");
+            System.Diagnostics.Process.Start("http://kkguo.github.io/apkshellext/index.html?version=" + GetType().Assembly.GetName().Version.ToString());
         }
     }
 }
