@@ -34,25 +34,34 @@ namespace ApkShellext2 {
 
             var mainMenu = new ToolStripMenuItem {
                 Text = "APK Shell Extension",
-                Image = new Bitmap(Properties.Resources.logo, 16, 16)
+                Image = new Bitmap(Properties.Resources.logo_16x16, 16, 16)
             };
 
-            var renameMenu = new ToolStripMenuItem {
-                Text = "Rename with version"
+            ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
+                Text = "Rename as Label_Version.apk",
+                Image = new Bitmap(Properties.Resources.rename_16x16, 16, 16)
             };
+            if (SelectedItemPaths.Count() == 1) {
+                ApkQuickReader reader = new ApkQuickReader(SelectedItemPaths.ElementAt(0));
+                string newfilename = reader.getAttribute("application", "label")
+                     + "_" + reader.getAttribute("manifest", "versionName") + ".apk";
+                Regex rgx = new Regex(@"[\/:*?""<>|\s]");
+                newfilename = rgx.Replace(newfilename, "_");
+                renameMenu.Text = "Rename as " + newfilename;                
+            }
 
             renameMenu.Click += (sender, args) => renameWithVersion();
 
             var playMenu = new ToolStripMenuItem {
                 Text = "Check GooglePlay",
-                Image = new Bitmap(Properties.Resources.google_play, 16, 16)
+                Image = new Bitmap(Properties.Resources.google_play_16x16, 16, 16)
             };
 
-            playMenu.Click += (sender, args) => gotoGooglePlay();
+            playMenu.Click += (sender, args) => gotoGooglePlay();            
 
             var checkUpdateMenu = new ToolStripMenuItem {
-                Text = "About",
-                Image = mainMenu.Image
+                Text = "ApkShellext2 on github",
+                Image = new Bitmap(Properties.Resources.github_16_16,16,16)
             };
 
             checkUpdateMenu.Click += (sender, args) => gotoGitHub();
