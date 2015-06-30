@@ -9,21 +9,10 @@ This is the code page of this extension, please visit [Project page](http://kkgu
 * Goto apk's google play page.
 
 #### [Wiki]
+* [History](https://github.com/kkguo/apkshellext/wiki/History)
 * [Install & uninstall](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall)
 * [Build & debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
 
-----------------------------------------------------------------------------
-#### [Last change on 2015-June-29]
-* add context menu
-  * rename apk files with app label name + version
-  * check the apk on google play
-  * menu goto [project page](http://kkguo.github.io/apkshellext).
-
-#### [2015-June-26]
-* Rewrite a new APK parser, get resource fast from manifest.xml and resources.arsc without parsing the whole package, 10 times faster than oringinal way in Lteedee.ApkReader.
-* Add info tip handler.
-
-#### [Older History](https://github.com/kkguo/apkshellext/blob/master/README.md)
 ----------------------------------------------------------------------------
 #### [Contributor]
   * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
