@@ -33,12 +33,38 @@ namespace ApkShellext2 {
         };
 
         enum DATA_TYPE : byte {
+            // Contains no data.
+            TYPE_NULL = 0x00,
+            // The 'data' holds an attribute resource identifier.
+            TYPE_ATTRIBUTE = 0x02,
+            // The 'data' holds a single-precision floating point number.
+            TYPE_FLOAT = 0x04,
+            // The 'data' holds a complex number encoding a dimension value,
+            // such as "100in".
+            TYPE_DIMENSION = 0x05,
+            // The 'data' holds a complex number encoding a fraction of a
+            // container.
+            TYPE_FRACTION = 0x06,
+            // The 'data' is a raw integer value of the form n..n.
+            TYPE_INT_DEC = 0x10,
+            // The 'data' is a raw integer value of the form 0xn..n.
+            TYPE_INT_HEX = 0x11,
+            // The 'data' is either 0 or 1, for input "false" or "true" respectively.
+            TYPE_INT_BOOLEAN = 0x12,
+            // The 'data' is a raw integer value of the form #aarrggbb.
+            TYPE_INT_COLOR_ARGB8 = 0x1c,
+            // The 'data' is a raw integer value of the form #rrggbb.
+            TYPE_INT_COLOR_RGB8 = 0x1d,
+            // The 'data' is a raw integer value of the form #argb.
+            TYPE_INT_COLOR_ARGB4 = 0x1e,
+            // The 'data' is a raw integer value of the form #rgb.
+            TYPE_INT_COLOR_RGB4 = 0x1f,
             TYPE_REFERENCE = 0x01,
             TYPE_STRING = 0x03,
         }
 
-        private byte[] resources;
-        private byte[] manifest;
+        private readonly byte[] resources;
+        private readonly byte[] manifest;
 
         public ApkQuickReader(string filename) {
             FileName = filename;
