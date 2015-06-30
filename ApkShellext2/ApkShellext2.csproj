@@ -58,7 +58,7 @@
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -354,11 +354,9 @@
     <Compile Include="SharpZLib\Zip\ZipOutputStream.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Android.png" />
-    <None Include="Resources\GitHub.png" />
-    <None Include="Resources\rename_16x16.png" />
-    <None Include="Resources\google_play_16x16.png" />
-    <None Include="Resources\logo_16x16.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\rename.png" />
+    <None Include="Resources\GitHub-Mark-64px.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>

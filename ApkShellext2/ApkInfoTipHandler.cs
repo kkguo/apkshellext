@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Microsoft.Win32;
 using SharpShell.Attributes;
+using SharpShell.Diagnostics;
+using SharpShell.Extensions;
+using SharpShell.ServerRegistration;
 using SharpShell.SharpInfoTipHandler;
 
 namespace ApkShellext2 {
@@ -18,12 +22,39 @@ namespace ApkShellext2 {
         /// Specified info for the selected file.
         /// </returns>
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
-            ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
-            string splitor = singleLine ? " " : Environment.NewLine;
-            return "AppName : " + reader.getAttribute("application", "label") + splitor
-                    + "Package : " + reader.getAttribute("manifest", "package") + splitor
-                    + "VersionCode : " + reader.getAttribute("manifest", "versionCode") + splitor
-                    + "VersionName : " + reader.getAttribute("manifest", "versionName");
+            try {
+                ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
+                string splitor = singleLine ? " " : Environment.NewLine;
+                return "AppName : " + reader.getAttribute("application", "label") + splitor
+                        + "Package : " + reader.getAttribute("manifest", "package") + splitor
+                        + "VersionCode : " + reader.getAttribute("manifest", "versionCode") + splitor
+                        + "VersionName : " + reader.getAttribute("manifest", "versionName");
+            } catch {
+                return "apk file is broken";
+            }
+        }
+
+        [CustomRegisterFunction]
+        public static void postDoRegister(Type type, RegistrationType registrationType) {
+            Console.WriteLine("Registering " + type.FullName);
+
+            #region Clean up older versions registry
+            try {
+                Console.WriteLine("Found old version in registry, cleaning up ...");
+                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
+                    type.GUID.ToRegistryString() + @"\InprocServer32")) {
+                    foreach (var k in key.GetSubKeyNames()) {
+                        if (k != type.Assembly.GetName().Version.ToString()) {
+                            Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                    type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Logging.Error("Cleaning up older version but see exception. "
+                     + e.Message);
+            }
+            #endregion
         }
     }
 }

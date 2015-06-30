@@ -592,7 +592,6 @@ namespace SharpShell.ServerRegistration
                                     var fileTypeClass = fileTypeKey.GetValue(null) as string;
                                     if (fileTypeClass == null || fileTypeClass== String.Empty) 
                                     {
-                                        Logging.Log("no class associate with " + association + ", use the root");
                                         fileTypeClasses.Add(association);
                                     }
                                     else

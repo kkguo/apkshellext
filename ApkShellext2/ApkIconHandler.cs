@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Forms;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.Extensions;
-using SharpShell.Interop;
 using SharpShell.ServerRegistration;
 using SharpShell.SharpIconHandler;
-using SharpShell.SharpInfoTipHandler;
-using SharpShell.SharpContextMenu;
-using SharpShell.Helpers;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace ApkShellext2
 {
@@ -43,11 +34,8 @@ namespace ApkShellext2
 
             try {
                 ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
-                string iconPath = reader.getAttribute("application", "icon");
-                m_icon = reader.getImage(iconPath);
-            } catch {
-                m_icon = Properties.Resources.Android;
-            }
+                m_icon = reader.getImage("application", "icon");
+            } catch {}
             return betterIcon((int)iconSize);
         }
 
@@ -67,32 +55,56 @@ namespace ApkShellext2
 
         [CustomRegisterFunction]
         public static void postDoRegister(Type type, RegistrationType registrationType) {
-            Logging.Log("executing Post register function");
-            
-            #region Clean up old version registry
-            string oldVersionClassName = @"KKHomeProj.ApkShellExt.ApkShellExt";
-            string oldVersionCLID="";
-            using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(oldVersionClassName+@"\CLSID")) {
-                if (key != null) {
-                    Console.WriteLine("Found old version in registry, cleaning up ...");
-                    oldVersionCLID = (string)key.GetValue(null);
-                    key.Close();
-                    Registry.ClassesRoot.DeleteSubKeyTree(oldVersionClassName);                    
+            Console.WriteLine("Registering " + type.Assembly.FullName);
+            Console.WriteLine("Registering " + type.FullName);
+
+            #region Clean up apkshellext registry
+            try {
+                string oldVersionClassName = @"KKHomeProj.ApkShellExt.ApkShellExt";
+                string oldVersionCLID = "";
+                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(oldVersionClassName + @"\CLSID")) {
+                    if (key != null) {
+                        Console.WriteLine("Found old version in registry, cleaning up ...");
+                        oldVersionCLID = (string)key.GetValue(null);
+                        key.Close();
+                        Registry.ClassesRoot.DeleteSubKeyTree(oldVersionClassName);
+                    }
                 }
+                if (oldVersionCLID != "") {
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID)) {
+                        if (key != null) {
+                            key.Close();
+                            Registry.LocalMachine.DeleteSubKeyTree(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID);
+                        }
+                    }
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + oldVersionCLID)) {
+                        if (key != null) {
+                            key.Close();
+                            Registry.LocalMachine.DeleteSubKeyTree(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + oldVersionCLID);
+                        }
+                    }
+                }
+            } catch (Exception e){
+                Logging.Error("Cleaning up apkshellext remaining registry items but see exception" + 
+                    e.Message);
             }
-            if (oldVersionCLID != "") {
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID)) {
-                    if (key != null) {
-                        key.Close();
-                        Registry.LocalMachine.DeleteSubKeyTree(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID);
+            #endregion
+
+            #region Clean up older versions registry
+            try {
+                Console.WriteLine("Found old version in registry, cleaning up ...");
+                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" + 
+                    type.GUID.ToRegistryString() + @"\InprocServer32")) {
+                    foreach (var k in key.GetSubKeyNames()) {
+                        if (k != type.Assembly.GetName().Version.ToString()) {
+                            Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                    type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                        }
                     }
                 }
-                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + oldVersionCLID)) {
-                    if (key != null) {
-                        key.Close();
-                        Registry.LocalMachine.DeleteSubKeyTree(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + oldVersionCLID);
-                    }
-                }
+            } catch (Exception e) {
+                Logging.Error("Cleaning up older version but see exception. "
+                     + e.Message);
             }
             #endregion
 

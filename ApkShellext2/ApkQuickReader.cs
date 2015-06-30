@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Xml;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
 
@@ -12,7 +8,7 @@ namespace ApkShellext2 {
     class ApkQuickReader {
         public string FileName { get; set; }
 
-        enum RES_TYPE : short {
+        enum TRUNK_TYPE : short {
             RES_NULL_TYPE = 0x0000,
             RES_STRING_POOL_TYPE = 0x0001,
             RES_TABLE_TYPE = 0x0002,
@@ -44,37 +40,39 @@ namespace ApkShellext2 {
         private byte[] resources;
         private byte[] manifest;
 
-        enum CHUNKS {
-            MANIFEST,
-            RESOURCES
-        }
         public ApkQuickReader(string filename) {
             FileName = filename;
             using (ZipFile zipfile = new ZipFile(filename)) {
 
                 ZipEntry en = zipfile.GetEntry("androidmanifest.xml");
-                if (en != null) {
-                    BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
-                    manifest = s.ReadBytes((int)en.Size);
-                }
+                BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
+                manifest = s.ReadBytes((int)en.Size);
 
                 en = zipfile.GetEntry("resources.arsc");
-                if (en != null) {
-                    BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
-                    resources = s.ReadBytes((int)en.Size);
-                }
+                s = new BinaryReader(zipfile.GetInputStream(en));
+                resources = s.ReadBytes((int)en.Size);
             }
-
-
         }
 
+        /// <summary>
+        /// get a string from manifest.xml
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="attr"></param>
+        /// <returns></returns>
         public string getAttribute(string tag, string attr) {
-            return QuickSearchManifest(tag, attr);
+            return QuickSearchManifestXml(tag, attr);
         }
 
-        public Bitmap getImage(string path) {
+        /// <summary>
+        /// Get a Image object from manifest and resources
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="attr"></param>
+        /// <returns></returns>
+        public Bitmap getImage(string tag, string attr) {
             using (ZipFile zipfile = new ZipFile(this.FileName)) {
-                ZipEntry en = zipfile.GetEntry(path);
+                ZipEntry en = zipfile.GetEntry(QuickSearchManifestXml(tag, attr));
                 if (en != null) {
                     try {
                         return (Bitmap)Bitmap.FromStream(zipfile.GetInputStream(en));
@@ -87,7 +85,13 @@ namespace ApkShellext2 {
             }
         }
 
-        private string QuickSearchManifest(string tag, string attribute) {
+        /// <summary>
+        /// Search in 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        private string QuickSearchManifestXml(string tag, string attribute) {
             using (MemoryStream ms = new MemoryStream(manifest)) {
                 using (BinaryReader br = new BinaryReader(ms)) {
                     ms.Seek(8, SeekOrigin.Begin); // skip header
@@ -109,12 +113,12 @@ namespace ApkShellext2 {
                         short chunkType = br.ReadInt16();
                         short headerSize = br.ReadInt16();
                         int chunkSize = br.ReadInt32();
-                        if (chunkType != (short)RES_TYPE.RES_XML_START_ELEMENT_TYPE) {
+                        if (chunkType != (short)TRUNK_TYPE.RES_XML_START_ELEMENT_TYPE) {
                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip current chunk
                             continue;
                         }
                         ms.Seek(8 + 4, SeekOrigin.Current); // skip line number & comment / namespace
-                        string tag_s = QuickSearchStringPool(CHUNKS.MANIFEST, br.ReadUInt32());
+                        string tag_s = QuickSearchManifestStringPool(br.ReadUInt32());
                         if (tag_s.ToUpper() != tag.ToUpper()) {
                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);// to next tag
                             continue;
@@ -124,13 +128,13 @@ namespace ApkShellext2 {
                         int attributeCount = br.ReadInt16();
                         for (int i = 0; i < attributeSize; i++) {
                             ms.Seek(chunkPos + headerSize + attributeStart + attributeSize * i + 4, SeekOrigin.Begin); // ignore the ns                            
-                            string name = QuickSearchStringPool(CHUNKS.MANIFEST, br.ReadUInt32());
+                            string name = QuickSearchManifestStringPool(br.ReadUInt32());
                             if (name.ToUpper() == attribute.ToUpper()) {
                                 ms.Seek(4 + 2 + 1, SeekOrigin.Current); // skip rawValue/size/0/
                                 byte dataType = br.ReadByte();
                                 uint data = br.ReadUInt32();
                                 if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
-                                    return QuickSearchStringPool(CHUNKS.MANIFEST, data);
+                                    return QuickSearchManifestStringPool(data);
                                 } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
                                     return QuickSearchResource((UInt32)data);
                                 } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
@@ -145,14 +149,12 @@ namespace ApkShellext2 {
         }
 
         /// <summary>
-        /// Search string pool within 2 tables.
+        /// Search in Manifest string pool
         /// </summary>
-        /// <param name="table"></param>
         /// <param name="stringID"></param>
         /// <returns></returns>
-        private string QuickSearchStringPool(CHUNKS table, uint stringID) {
-            byte[] t = (table == CHUNKS.MANIFEST) ? manifest : resources;
-            using (MemoryStream ms = new MemoryStream(t)) {
+        private string QuickSearchManifestStringPool(uint stringID) {
+            using (MemoryStream ms = new MemoryStream(manifest)) {
                 using (BinaryReader br = new BinaryReader(ms)) {
                     // the first chunk is always stringpool for manifest and resources
                     ms.Seek(2, SeekOrigin.Begin);
@@ -164,9 +166,27 @@ namespace ApkShellext2 {
         }
 
         /// <summary>
-        /// Search string pool within existing stream.
+        /// Search in Resources string pool
         /// </summary>
-        /// <param name="ms">the stream position should be at StringPool entrance</param>
+        /// <param name="stringID"></param>
+        /// <returns></returns>
+        private string QuickSearchResourcesStringPool(uint stringID) {
+            using (MemoryStream ms = new MemoryStream(resources)) {
+                using (BinaryReader br = new BinaryReader(ms)) {
+                    // the first chunk is always stringpool for manifest and resources
+                    ms.Seek(2, SeekOrigin.Begin);
+                    short headerSize = br.ReadInt16();
+                    ms.Seek(headerSize, SeekOrigin.Begin);
+                    return QuickSearchStringPool(ms, stringID);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Search a string pool within existing stream, the stream need to be at the 
+        /// start of string pool
+        /// </summary>
+        /// <param name="ms">Stream, need to be at start of stringPool</param>
         /// <param name="stringID"></param>
         /// <returns></returns>
         private string QuickSearchStringPool(MemoryStream ms, uint stringID) {
@@ -206,7 +226,7 @@ namespace ApkShellext2 {
         }
 
         /// <summary>
-        /// Find the requested resource in Quickest way,   
+        /// Find the requested resource,   
         /// This method is NOT HANDLING ANY ERROR, yet!!!!
         /// </summary>
         /// <param name="table">the resource table</param>
@@ -267,7 +287,7 @@ namespace ApkShellext2 {
                                 short chunkType = br.ReadInt16();
                                 ms.Seek(2, SeekOrigin.Current);
                                 chunkSize = br.ReadInt32();
-                                if (chunkType != (short)RES_TYPE.RES_TABLE_TYPE_SPEC_TYPE) { // find the type spec
+                                if (chunkType != (short)TRUNK_TYPE.RES_TABLE_TYPE_SPEC_TYPE) { // find the type spec
                                     ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
                                     continue;
                                 }
@@ -285,7 +305,7 @@ namespace ApkShellext2 {
                                 do {
                                     chunkPos = ms.Position;
                                     chunkType = br.ReadInt16();
-                                    if (chunkType != (short)RES_TYPE.RES_TABLE_TYPE_TYPE) // entry not found
+                                    if (chunkType != (short)TRUNK_TYPE.RES_TABLE_TYPE_TYPE) // entry not found
                                         return null;
                                     headerSize = br.ReadInt16();
                                     chunkSize = br.ReadInt32();
@@ -309,7 +329,7 @@ namespace ApkShellext2 {
                                     byte dataType = br.ReadByte();
                                     uint data = br.ReadUInt32();
                                     if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
-                                        return QuickSearchStringPool(CHUNKS.RESOURCES, data);
+                                        return QuickSearchResourcesStringPool(data);
                                     } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
                                         if (data == 0x00000000) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);

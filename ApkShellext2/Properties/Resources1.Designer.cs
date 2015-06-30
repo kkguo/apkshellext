@@ -59,23 +59,13 @@ namespace ApkShellext2.Properties {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Android {
+        internal static System.Drawing.Bitmap GitHub {
             get {
-                object obj = ResourceManager.GetObject("Android", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap github_16_16 {
-            get {
-                object obj = ResourceManager.GetObject("github_16_16", resourceCulture);
+                object obj = ResourceManager.GetObject("GitHub", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +73,9 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap google_play_16x16 {
+        internal static System.Drawing.Bitmap googleplay {
             get {
-                object obj = ResourceManager.GetObject("google_play_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("googleplay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,19 +83,9 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap logo_16x16 {
+        internal static System.Drawing.Bitmap rename {
             get {
-                object obj = ResourceManager.GetObject("logo_16x16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap rename_16x16 {
-            get {
-                object obj = ResourceManager.GetObject("rename_16x16", resourceCulture);
+                object obj = ResourceManager.GetObject("rename", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
