@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ApkShellext2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("KKHOMEPROJ")]
+[assembly: AssemblyCompany("KKHOMEBREW")]
 [assembly: AssemblyProduct("ApkShellext2")]
 [assembly: AssemblyCopyright("Copyright © KK 2015")]
 [assembly: AssemblyTrademark("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(true)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("1F869CEE-4FDA-35D9-896F-43975A87D1F6")]
+[assembly: Guid("1F869CEE-4FDA-35D9-896F-43975A87D1F5")]
 
 // 程序集的版本信息由下面四个值组成: 
 //
