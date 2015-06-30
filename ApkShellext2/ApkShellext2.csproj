@@ -356,7 +356,7 @@
   <ItemGroup>
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
-    <None Include="Resources\GitHub-Mark-64px.png" />
+    <None Include="Resources\GitHub.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>
