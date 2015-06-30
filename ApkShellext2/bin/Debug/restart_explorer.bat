@@ -1,5 +1,5 @@
-CHOICE /M "Restart explorer process?"
-IF %ERRORLEVEL%==1 (
+REM CHOICE /M "Restart explorer process?"
+REM IF %ERRORLEVEL%==1 (
   TASKKILL /F /IM explorer.exe
   START explorer.exe
-)
+REM )
