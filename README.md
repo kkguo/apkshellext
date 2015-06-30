@@ -1,6 +1,6 @@
 # ApkShellext2
 
-This is the code page of this extension, please visit [Project page](http://kkguo.github.io/apkshellext) for download and more usage information
+This is the code page of this project, please visit [Project page](http://kkguo.github.io/apkshellext) for download and more usage information
 
 #### [Features]
 * Show Icon of apk files on windows explorer
