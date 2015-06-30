@@ -8,6 +8,10 @@ This is the code page of this extension, please visit [Project page](http://kkgu
 * Right Button menu for renaming apk file with label name + version
 * Goto apk's google play page.
 
+#### [Wiki]
+* [Install & uninstall](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall)
+* [Build & debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
+
 ----------------------------------------------------------------------------
 #### [Last change on 2015-June-29]
 * add context menu
