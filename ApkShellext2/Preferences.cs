@@ -16,8 +16,8 @@ using System.Text.RegularExpressions;
 using System.Reflection;
 
 namespace ApkShellext2 {
-    public partial class Settings : Form {
-        public Settings() {
+    public partial class Preferences : Form {
+        public Preferences() {
             InitializeComponent();
         }
 
@@ -31,11 +31,12 @@ namespace ApkShellext2 {
             checkBox2.Checked = (Utility.getRegistrySetting("AlwaysShowGooglePlay") == 1);
             getVersionTh = new Thread(new ThreadStart(getLatestVersion));
             getVersionTh.Start();
+            btnCancel.Focus();
         }
 
         private void getLatestVersion() {
             try {
-                versionLabel.Text = "Checking newer version...";
+                lblNewVer.Text = "Checking newer version...";
                 byte[] buf = new byte[1024];
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://kkguo.github.io/apkshellext/latest");
                 // execute the request
@@ -62,14 +63,16 @@ namespace ApkShellext2 {
                     }
                 }
                 if (newAvail) {
-                    versionLabel.Text= "Version " + s + " is availible";
+                    lblNewVer.Text= "Version " + s + " is availible =>";
                     btnUpdate.Text = "Update";
+                    btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate,16);
+                    btnUpdate.Focus();
                 } else {
-                    versionLabel.Text = "Great! You are using the latest.";
+                    lblNewVer.Text = "Great! You got the latest version.";
                     btnUpdate.Text = "GitHub";
                 }
             } catch (Exception ex) {
-                versionLabel.Text = "Check project site for update. =>";
+                lblNewVer.Text = "Check project site for update. =>";
                 btnUpdate.Text = "GitHub";
                 Logging.Log("Cannot access the web " + ex.Message);
             }

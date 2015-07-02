@@ -178,7 +178,7 @@ namespace ApkShellext2 {
         }
 
         private void showSettings() {
-            Settings settingForm = new Settings();
+            Preferences settingForm = new Preferences();
             settingForm.ShowDialog();
         }
 

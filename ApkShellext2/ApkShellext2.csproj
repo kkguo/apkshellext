@@ -66,11 +66,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs">
+    <Compile Include="Preferences.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <Compile Include="Preferences.Designer.cs">
+      <DependentUpon>Preferences.cs</DependentUpon>
     </Compile>
     <Compile Include="SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\Attributes\COMServerAssociationAttribute.cs" />
@@ -368,6 +368,7 @@
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
     <Content Include="Resources\logo.png" />
+    <Content Include="Resources\udpate.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>
@@ -376,8 +377,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="Preferences.resx">
+      <DependentUpon>Preferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpShell\SharpPreviewHandler\PreviewHandlerHost.resx">
       <DependentUpon>PreviewHandlerHost.cs</DependentUpon>
