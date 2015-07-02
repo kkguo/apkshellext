@@ -41,13 +41,8 @@ namespace ApkShellext2
 
         private Icon betterIcon(int iconSize) {
             // Get better image while stretch
-            if (m_icon != null) {
-                Bitmap b = new Bitmap(iconSize, iconSize);
-                using (Graphics g = Graphics.FromImage((Image)b)) {
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(m_icon, 0, 0, (int)iconSize, (int)iconSize);
-                }
-                return Icon.FromHandle(b.GetHicon());
+            if (m_icon != null) {                
+                return Icon.FromHandle(Utility.ResizeBitmap(m_icon,iconSize).GetHicon());
             } else {
                 return null;
             }
@@ -109,21 +104,13 @@ namespace ApkShellext2
             #endregion
 
             // Notify shell to refresh.
-            SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            Utility.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
         protected override void Log(string message) {
             Logging.Log(Path.GetFileName(SelectedItemPath) + ": " + message);
         }
 
-        /// <summary>
-        /// Notifies the system of an event that an application has performed. An application should use this function if it performs an action that may affect the Shell.
-        /// </summary>
-        /// <param name="wEventId">Describes the event that has occurred. Typically, only one event is specified at a time. If more than one event is specified, the values contained in the dwItem1 and dwItem2 parameters must be the same, respectively, for all specified events. This parameter can be one or more of the following values:</param>
-        /// <param name="uFlags">Flags that, when combined bitwise with SHCNF_TYPE, indicate the meaning of the dwItem1 and dwItem2 parameters. The uFlags parameter must be one of the following values.</param>
-        /// <param name="dwItem1">Optional. First event-dependent value.</param>
-        /// <param name="dwItem2">Optional. Second event-dependent value.</param>
-        [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern void SHChangeNotify(Int32 wEventId, UInt32 uFlags, IntPtr dwItem1, IntPtr dwItem2);
+
     }
 }

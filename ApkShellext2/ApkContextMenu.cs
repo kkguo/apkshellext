@@ -37,52 +37,62 @@ namespace ApkShellext2 {
             var menu = new ContextMenuStrip();
 
             var mainMenu = new ToolStripMenuItem {
-                Text = "APK Shell Extension",
+                Text = @"APK Shell Extension",
             };
 
             int size = mainMenu.Height - 1;
 
-            var checkUpdateMenu = new ToolStripMenuItem {
-                Text = "ApkShellext2 on github",
-                Image = betterIcon(Properties.Resources.GitHub, size)
-            };
-            
+            #region Rename Menu
 
-            checkUpdateMenu.Click += (sender, args) => gotoGitHub();
-
+            int addVerCode = Utility.getRegistrySetting("RenameWithVersionCode");
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                Text = "Rename to <label>_<version>.apk"
+                Text = @"Rename to <Label>_<verNumber>" + ((addVerCode==1)?"_<verCode>":"") +".apk",
+                Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
             };
-            renameMenu.Image = betterIcon(Properties.Resources.rename,size);
 
-            // Draw Apk icon to the menu
-            // if choose multiple files, will create a icon with upto 3 icons together.
             if (SelectedItemPaths.Count() == 1) {
-                try {
-                    ApkQuickReader reader = new ApkQuickReader(SelectedItemPaths.ElementAt(0));
-                    string newfilename = reader.getAttribute("application", "label")
-                         + "_" + reader.getAttribute("manifest", "versionName") + ".apk";
-                    Regex rgx = new Regex(@"[\/:*?""<>|\s]");
-                    newfilename = rgx.Replace(newfilename, "_");
-                    renameMenu.Text = "Rename to " + newfilename;
-                    mainMenu.Image = betterIcon(reader.getImage("application", "icon"),size);
-                } catch {
-                    renameMenu.Text = "Cannot read apk file";
+                string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
+                if (newName != "") {
+                    renameMenu.Text = @"Rename to " + Path.GetFileName(newName);
+                } else {
+                    renameMenu.Text = @"Failed to read apk file.";
                     renameMenu.Enabled = false;
-                    renameMenu.Image = null;
-                    mainMenu.DropDownItems.Add(renameMenu);
-                    mainMenu.DropDownItems.Add("-");
-                    mainMenu.DropDownItems.Add(checkUpdateMenu);
-                    menu.Items.Add(mainMenu);
-                    return menu;
                 }
-            } else {
-                try { // draw multiple icons
-                    ApkQuickReader reader1 = new ApkQuickReader(SelectedItemPaths.ElementAt(0));
-                    ApkQuickReader reader2 = new ApkQuickReader(SelectedItemPaths.ElementAt(1));
-                    ApkQuickReader reader3 = null;
+            }
+
+            renameMenu.Click += (sender, args) => renameWithVersion();
+            #endregion
+
+            #region Google Play Menu
+            var playMenu = new ToolStripMenuItem {
+                Text = @"Goto GooglePlay page",
+                Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
+            };
+
+            playMenu.Click += (sender, args) => gotoGooglePlay();
+            #endregion
+
+            #region Setting Menu
+            var settingsMenu = new ToolStripMenuItem {
+                Text = @"Settings",
+                Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
+            };
+            settingsMenu.Click += (sender, args) => showSettings();
+            #endregion
+
+            #region Mainmenu Icon
+            // Draw Apk icon to the menu
+            // if choose multiple files, will create a icon with upto 3 icons together.             
+            try { // draw multiple icons
+                ApkQuickReader reader0 = new ApkQuickReader(SelectedItemPaths.ElementAt(0));
+                ApkQuickReader reader1 = null;
+                ApkQuickReader reader2 = null;
+                if (SelectedItemPaths.Count() == 1) {
+                    mainMenu.Image = Utility.ResizeBitmap(reader0.getImage("application", "icon"), size);
+                } else {
+                    reader1 = new ApkQuickReader(SelectedItemPaths.ElementAt(1));
                     if (SelectedItemPaths.Count() > 2) {
-                        reader3 = new ApkQuickReader(SelectedItemPaths.ElementAt(3));
+                        reader2 = new ApkQuickReader(SelectedItemPaths.ElementAt(2));
                     }
                     Bitmap b = new Bitmap(size, size);
                     using (Graphics g = Graphics.FromImage((Image)b)) {
@@ -90,70 +100,87 @@ namespace ApkShellext2 {
                         g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                         g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                         if (SelectedItemPaths.Count() > 2) {
-                            g.DrawImage(reader3.getImage("application", "icon"), 0, 0, size - 6, size - 6);
-                            g.DrawImage(reader2.getImage("application", "icon"), 3, 3, size - 6, size - 6);
-                        } else {
                             g.DrawImage(reader2.getImage("application", "icon"), 0, 0, size - 6, size - 6);
+                            g.DrawImage(reader1.getImage("application", "icon"), 3, 3, size - 6, size - 6);
+                        } else {
+                            g.DrawImage(reader1.getImage("application", "icon"), 0, 0, size - 6, size - 6);
                         }
-                        g.DrawImage(reader1.getImage("application", "icon"), 5, 5, size - 6, size - 6);
+                        g.DrawImage(reader0.getImage("application", "icon"), 5, 5, size - 6, size - 6);
                     }
                     mainMenu.Image = b;
-                } catch {}
-            }
+                }
+            } catch { }
+            #endregion
 
-            renameMenu.Click += (sender, args) => renameWithVersion();
             mainMenu.DropDownItems.Add(renameMenu);
-
-            if (SelectedItemPaths.Count() == 1) {
-                var playMenu = new ToolStripMenuItem {
-                    Text = "Check GooglePlay",
-                    Image = betterIcon(Properties.Resources.googleplay, size)
-                };
-
-                playMenu.Click += (sender, args) => gotoGooglePlay();
-
+            int alwayShowgplay = Utility.getRegistrySetting("AlwaysShowGooglePlay");
+            if ((SelectedItemPaths.Count() == 1) ||
+                (alwayShowgplay == 1)) {
                 mainMenu.DropDownItems.Add(playMenu);
             }
             mainMenu.DropDownItems.Add("-");
-            mainMenu.DropDownItems.Add(checkUpdateMenu);
-
+            mainMenu.DropDownItems.Add(settingsMenu);
             menu.Items.Add(mainMenu);
             return menu;
         }
 
+        /// <summary>
+        /// get the new filename for renaming function
+        /// </summary>
+        /// <returns></returns>
+        private string getNewFileName(string path) {
+            bool key_RenameWithVersionCode = (Utility.getRegistrySetting("RenameWithVersionCode")==1);
+            string newFileName = "";
+            try {
+                ApkQuickReader reader = new ApkQuickReader(path);
+                newFileName = reader.getAttribute("application", "label")
+                     + "_" + reader.getAttribute("manifest", "versionName");
+                if (key_RenameWithVersionCode) {
+                    string versionCode = reader.getAttribute("manifest", "versionCode");
+                    newFileName = newFileName + "_" + versionCode;
+                }
+                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalide char
+                string oldFileName = Path.GetFileName(path);
+                string folderPath = Path.GetDirectoryName(path);
+                string tmpFileName =  newFileName + ".apk";
+                
+                int i = 0;
+                while (File.Exists( folderPath + @"\" + tmpFileName ) && 
+                    (tmpFileName != oldFileName)) {
+                    i++;
+                    tmpFileName = newFileName + "_(" + i.ToString() + ")" + ".apk";
+                }
+                newFileName = folderPath + @"\" + tmpFileName;
+            } catch (Exception ex) {
+                newFileName = "";
+                Log("Error happens during rename :" + ex.Message);
+            }
+            return newFileName;
+        }
+
         private void renameWithVersion() {
-            foreach (string path in SelectedItemPaths) {
-                if (path.EndsWith(".apk", StringComparison.CurrentCultureIgnoreCase)) {
-                    try {
-                        ApkQuickReader reader = new ApkQuickReader(path);
-                        string newfilename = reader.getAttribute("application", "label")
-                             + "_" + reader.getAttribute("manifest", "versionName") + ".apk";
-                        Regex rgx = new Regex(@"[\/:*?""<>|\s]");
-                        if (FolderPath == null || FolderPath == "") {
-                            newfilename = Path.GetDirectoryName(path) + @"\" + rgx.Replace(newfilename, "_");
-                        } else {
-                            newfilename = FolderPath + @"\" + rgx.Replace(newfilename, "_");
-                        }
-
-                        File.Move(path, newfilename);
-                    } catch (Exception e) {
-                        Log(e.Message);
-                    }
-
+            foreach (var path in SelectedItemPaths) {
+                try {
+                    string newFilename = getNewFileName(path);
+                    File.Move(path, newFilename);
+                } catch (Exception e) {
+                    Log("Exception happens during rename: " + e.Message);
                 }
             }
         }
+        
 
         private void gotoGooglePlay() {
-            foreach (string path in SelectedItemPaths) {
-                ApkQuickReader reader = new ApkQuickReader(path);
+            foreach (var p in SelectedItemPaths) {
+                ApkQuickReader reader = new ApkQuickReader(p);
                 string package = reader.getAttribute("manifest", "package");
                 System.Diagnostics.Process.Start("https://play.google.com/store/apps/details?id=" + package);
             }
         }
 
-        private void gotoGitHub() {
-            System.Diagnostics.Process.Start("http://kkguo.github.io/apkshellext/index.html?version=" + GetType().Assembly.GetName().Version.ToString());
+        private void showSettings() {
+            Settings settingForm = new Settings();
+            settingForm.ShowDialog();
         }
 
         [CustomRegisterFunction]
@@ -177,22 +204,6 @@ namespace ApkShellext2 {
                      + e.Message);
             }
             #endregion
-        }
-
-        private Bitmap betterIcon(Bitmap orignial, int iconSize) {
-            // Get better image while stretch
-            if (orignial != null) {
-                Bitmap b = new Bitmap(iconSize, iconSize);
-                using (Graphics g = Graphics.FromImage((Image)b)) {
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.DrawImage(orignial, 0, 0, (int)iconSize, (int)iconSize);
-                }
-                return b;
-            } else {
-                return null;
-            }
         }
     }
 }

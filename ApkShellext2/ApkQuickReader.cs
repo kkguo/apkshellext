@@ -5,7 +5,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
 
 namespace ApkShellext2 {
-    class ApkQuickReader {
+    class ApkQuickReader : IDisposable {
         public string FileName { get; set; }
 
         enum TRUNK_TYPE : short {
@@ -372,6 +372,10 @@ namespace ApkShellext2 {
                 }
             }
             return result;
+        }
+
+        void IDisposable.Dispose() {
+            // nothing to dispose yet
         }
     }
 }

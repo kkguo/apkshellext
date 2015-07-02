@@ -39,6 +39,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -53,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApkQuickReader.cs" />
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
@@ -62,6 +71,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\Attributes\COMServerAssociationAttribute.cs" />
@@ -352,18 +367,26 @@
     <Compile Include="SharpZLib\Zip\ZipInputStream.cs" />
     <Compile Include="SharpZLib\Zip\ZipNameTransform.cs" />
     <Compile Include="SharpZLib\Zip\ZipOutputStream.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
+    <Content Include="Resources\logo.png" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpShell\SharpPreviewHandler\PreviewHandlerHost.resx">
       <DependentUpon>PreviewHandlerHost.cs</DependentUpon>
@@ -377,6 +400,14 @@
     <None Include="SharpShell\LICENSE.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>TASKKILL /F /IM explorer.exe
+START explorer.exe</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
