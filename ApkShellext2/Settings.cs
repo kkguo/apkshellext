@@ -62,14 +62,14 @@ namespace ApkShellext2 {
                     }
                 }
                 if (newAvail) {
-                    versionLabel.Text= "Newer version " + s + " is availible";
+                    versionLabel.Text= "Version " + s + " is availible";
                     btnUpdate.Text = "Update";
                 } else {
                     versionLabel.Text = "Great! You are using the latest.";
                     btnUpdate.Text = "GitHub";
                 }
             } catch (Exception ex) {
-                versionLabel.Text = "Please check the project site for update.";
+                versionLabel.Text = "Check project site for update. =>";
                 btnUpdate.Text = "GitHub";
                 Logging.Log("Cannot access the web " + ex.Message);
             }
@@ -89,6 +89,10 @@ namespace ApkShellext2 {
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e) {
             Utility.setRegistrySetting("AlwaysShowGooglePlay", checkBox2.Checked ? 1 : 0);
-        }        
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start(linkLabel1.Text);
+        }
     }
 }

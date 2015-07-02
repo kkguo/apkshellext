@@ -74,7 +74,7 @@ namespace ApkShellext2 {
 
             #region Setting Menu
             var settingsMenu = new ToolStripMenuItem {
-                Text = @"Settings",
+                Text = @"Preferences",
                 Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
             };
             settingsMenu.Click += (sender, args) => showSettings();
