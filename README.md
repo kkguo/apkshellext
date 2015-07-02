@@ -9,8 +9,8 @@ This is the code page of this project, please visit [Project page](http://kkguo.
 * Goto apk's google play page.
 * Check new version automatically.
 
-#### [Wiki]
-* [History](https://github.com/kkguo/apkshellext/wiki/History)
+#### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
+* [History](https://github.com/kkguo/apkshellext/wiki/Home)
 * [Install & uninstall](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall)
 * [Build & debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
 
