@@ -7,6 +7,7 @@ This is the code page of this project, please visit [Project page](http://kkguo.
 * Show Package information in Infotip
 * Right Button menu for renaming apk file with label name + version
 * Goto apk's google play page.
+* Check new version automatically.
 
 #### [Wiki]
 * [History](https://github.com/kkguo/apkshellext/wiki/History)
