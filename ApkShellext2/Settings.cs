@@ -13,6 +13,7 @@ using SharpShell.Diagnostics;
 using System.Threading;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace ApkShellext2 {
     public partial class Settings : Form {
@@ -24,7 +25,7 @@ namespace ApkShellext2 {
         private void Settings_Load(object sender, EventArgs e) {
             this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo,16).GetHicon());
             btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.GitHub, 16);
-            label1.Text = "Current Version: " + GetType().Assembly.GetName().Version.ToString();
+            label1.Text = "Current Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             checkBox1.Checked = (Utility.getRegistrySetting("RenameWithVersionCode") == 1);
             checkBox2.Checked = (Utility.getRegistrySetting("AlwaysShowGooglePlay") == 1);
@@ -79,7 +80,7 @@ namespace ApkShellext2 {
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("https://kkguo.github.io/apkshellext/index.html?version=" + GetType().Assembly.GetName().Version.ToString());
+            System.Diagnostics.Process.Start("https://kkguo.github.io/apkshellext/index.html?version=" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {

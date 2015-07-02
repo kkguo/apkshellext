@@ -113,11 +113,10 @@ namespace ApkShellext2 {
             #endregion
 
             mainMenu.DropDownItems.Add(renameMenu);
-            int alwayShowgplay = Utility.getRegistrySetting("AlwaysShowGooglePlay");
-            if ((SelectedItemPaths.Count() == 1) ||
-                (alwayShowgplay == 1)) {
-                mainMenu.DropDownItems.Add(playMenu);
-            }
+            mainMenu.DropDownItems.Add(playMenu);
+            playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
+                (Utility.getRegistrySetting("AlwaysShowGooglePlay") == 1);
+
             mainMenu.DropDownItems.Add("-");
             mainMenu.DropDownItems.Add(settingsMenu);
             menu.Items.Add(mainMenu);

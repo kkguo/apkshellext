@@ -26,6 +26,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -98,9 +99,7 @@
             this.checkBox2.Size = new System.Drawing.Size(144, 17);
             this.checkBox2.TabIndex = 0;
             this.checkBox2.Text = "Always show GooglePlay";
-            this.toolTip1.SetToolTip(this.checkBox2, "If checked, GooglePlay menu will show up even multiple apk files selected. \r\nPlea" +
-        "se note, you may open a lot of window for each selected file.\r\nBy default, only " +
-        "shows one file selected");
+            this.toolTip1.SetToolTip(this.checkBox2, resources.GetString("checkBox2.ToolTip"));
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
