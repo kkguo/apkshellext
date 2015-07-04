@@ -24,5 +24,5 @@ You are seeing the code page of this project, please visit [Project page](http:/
 Please let me know if you want to contribute.
 
 
-Reference:
+Credit to:
 __[SharpShell](https://github.com/dwmkerr/sharpshell)__ / __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ /  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__
