@@ -6,6 +6,7 @@ using SharpShell.Diagnostics;
 using SharpShell.Extensions;
 using SharpShell.ServerRegistration;
 using SharpShell.SharpInfoTipHandler;
+using System.IO;
 
 namespace ApkShellext2 {
     [Guid("946435a5-fe96-416d-99db-e94ee9fb46c8")]
@@ -29,7 +30,8 @@ namespace ApkShellext2 {
                         + "Package : " + reader.getAttribute("manifest", "package") + splitor
                         + "VersionCode : " + reader.getAttribute("manifest", "versionCode") + splitor
                         + "VersionName : " + reader.getAttribute("manifest", "versionName");
-            } catch {
+            } catch (Exception ex) {
+                Log("Error happend during GetInfo : " + ex.Message);
                 return "apk file is broken";
             }
         }
@@ -55,6 +57,11 @@ namespace ApkShellext2 {
                      + e.Message);
             }
             #endregion
+        }
+
+        protected override void Log(string message)
+        {
+            Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
         }
     }
 }

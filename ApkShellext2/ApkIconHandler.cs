@@ -108,9 +108,7 @@ namespace ApkShellext2
         }
 
         protected override void Log(string message) {
-            Logging.Log(Path.GetFileName(SelectedItemPath) + ": " + message);
+            Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
         }
-
-
     }
 }

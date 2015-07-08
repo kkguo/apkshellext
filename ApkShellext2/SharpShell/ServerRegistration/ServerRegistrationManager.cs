@@ -411,8 +411,7 @@ namespace SharpShell.ServerRegistration
                     foreach (var associationClassName in associationClassNames)
                     {
                         //  Create the server key.
-                        string key = GetKeyForServerType(associationClassName, serverType, serverName);
-                        using (var serverKey = classesKey.CreateSubKey(key))
+                        using (var serverKey = classesKey.CreateSubKey(GetKeyForServerType(associationClassName, serverType, serverName)))
                         {
                             //  Set the server class id.
                             if (serverKey != null)

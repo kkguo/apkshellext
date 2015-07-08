@@ -62,7 +62,7 @@ namespace SharpShell.Diagnostics.Loggers
         /// <param name="error">The error.</param>
         public void LogError(string error)
         {
-            Write("[" + DateTime.Now.ToString() + "]" + " Error: " + error);
+            Write("Error: " + error);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace SharpShell.Diagnostics.Loggers
         /// <param name="warning">The warning.</param>
         public void LogWarning(string warning)
         {
-            Write("[" + DateTime.Now.ToString() + "]" + " Warning: " + warning);
+            Write("Warning: " + warning);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace SharpShell.Diagnostics.Loggers
         /// <param name="message">The message.</param>
         public void LogMessage(string message)
         {
-            Write("[" + DateTime.Now.ToString() + "]" + " Message: " + message);
+            Write("Message: " + message);
         }
     }
 }

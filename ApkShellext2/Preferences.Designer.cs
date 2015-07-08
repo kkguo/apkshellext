@@ -83,6 +83,7 @@
             this.lblNewVer.TabIndex = 0;
             this.lblNewVer.Text = "Great! You got the latest version";
             this.toolTip1.SetToolTip(this.lblNewVer, "This is the newest version, you can get it from GitHub");
+            this.lblNewVer.Click += new System.EventHandler(this.lblNewVer_Click);
             // 
             // toolTip1
             // 

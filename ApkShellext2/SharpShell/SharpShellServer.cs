@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.ServerRegistration;
-using SharpShell.Interop;
 
 namespace SharpShell
 {
@@ -32,11 +31,11 @@ namespace SharpShell
         [ComRegisterFunction]
         internal static void Register(Type type)
         {
-            Logging.Log("Registering server of type " + type.Name + ", GUID = " + type.GUID);
+            Logging.Log("Registering server for type " + type.Name );
 
             //  Register the type, use the operating system architecture to determine
             //  what registration type to perform.
-            DoRegister(type, Environment.Is64BitOperatingSystem ? RegistrationType.OS64Bit : RegistrationType.OS32Bit);            
+            DoRegister(type, Environment.Is64BitOperatingSystem ? RegistrationType.OS64Bit : RegistrationType.OS32Bit);
         }
 
         /// <summary>

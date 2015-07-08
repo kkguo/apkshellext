@@ -63,7 +63,7 @@ namespace ApkShellext2 {
                     }
                 }
                 if (newAvail) {
-                    lblNewVer.Text= "Version " + s + " is availible =>";
+                    lblNewVer.Text= "Version " + s + " is availible online";
                     btnUpdate.Text = "Update";
                     btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate,16);
                     btnUpdate.Focus();
@@ -72,7 +72,7 @@ namespace ApkShellext2 {
                     btnUpdate.Text = "GitHub";
                 }
             } catch (Exception ex) {
-                lblNewVer.Text = "Check project site for update. =>";
+                lblNewVer.Text = "Check project site for update.";
                 btnUpdate.Text = "GitHub";
                 Logging.Log("Cannot access the web " + ex.Message);
             }
@@ -96,6 +96,11 @@ namespace ApkShellext2 {
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start(linkLabel1.Text);
+        }
+
+        private void lblNewVer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

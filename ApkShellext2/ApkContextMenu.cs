@@ -204,5 +204,10 @@ namespace ApkShellext2 {
             }
             #endregion
         }
+
+        protected override void Log(string message)
+        {
+            Logging.Log("[" + DateTime.Now.ToString() + "]" + message);
+        }
     }
 }

@@ -101,7 +101,7 @@ namespace SharpShell.SharpIconHandler
             catch (Exception exception)
             {
                 //  DebugLog the exception.
-                LogError("An exception occurred extracting icons.", exception);
+                LogError("An exception occured extracting icons.", exception);
             }
 
             //  Return succes.
