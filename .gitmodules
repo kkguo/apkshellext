@@ -1,0 +1,6 @@
+[submodule "ApkShellext2/SharpZipLib"]
+	path = ApkShellext2/SharpZipLib
+	url = https://github.com/kkguo/SharpZipLib.git
+[submodule "ApkShellext2/SharpShell"]
+	path = ApkShellext2/SharpShell
+	url = https://github.com/kkguo/sharpshell.git
