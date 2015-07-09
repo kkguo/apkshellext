@@ -66,6 +66,8 @@ namespace ApkShellext2 {
         private readonly byte[] resources;
         private readonly byte[] manifest;
 
+        public string Culture { get;set;}
+
         public ApkQuickReader(string filename) {
             FileName = filename;
             using (ZipFile zipfile = new ZipFile(filename)) {
@@ -251,20 +253,26 @@ namespace ApkShellext2 {
             }
         }
 
+        private byte[] ISO_639(string s) {
+            byte[] encode = new byte[2];
+            if (s.Length == 3) {
+                byte[] c = System.Text.Encoding.ASCII.GetBytes(s.ToCharArray());
+                encode[0] = (byte)((c[0] & 0x1F) + ((c[1] & 0x03) << 5));
+                encode[1] = (byte)(1 << 7 + ((c[2] & 0x1F) << 2) + ((c[1] & 0x1c) >> 2));
+            } else if (s.Length == 2) {
+                encode = System.Text.Encoding.ASCII.GetBytes(s.ToCharArray());
+            }
+            return encode;
+        }
+
         /// <summary>
-        /// Find the requested resource,   
+        /// Find the requested resource, according to config setting, if the config was set.
         /// This method is NOT HANDLING ANY ERROR, yet!!!!
         /// </summary>
         /// <param name="table">the resource table</param>
         /// <param name="id">resourceID</param>
-        /// <param name="config">optional, find the resource for specific config, the config contains 
-        /// size, imsi, locale, screenType, input, screenSize, version, screenConfig
-        /// if any config value is 0, that item will be ignored
-        /// if no config set fits in type chunk, return null value
-        /// if no config set provided, returns the value in first type chunk (most likely it's the default config)
-        /// </param>
         /// <returns>the resource, in string format, if resource id not found, return null value</returns>
-        private string QuickSearchResource(UInt32 id, int[] config = null) {
+        private string QuickSearchResource(UInt32 id) {
             string result = null;
             uint PackageID = (id & 0xff000000) >> 24;
             uint TypeID = (id & 0x00ff0000) >> 16;
@@ -340,8 +348,10 @@ namespace ApkShellext2 {
                                     int entryCount = br.ReadInt32();
                                     int entryStart = br.ReadInt32();
 
-                                    // skip config section
-                                    ms.Seek(chunkPos + headerSize, SeekOrigin.Begin);
+                                    // read the config section
+                                    int config_size = br.ReadInt32();
+                                    byte[] config = br.ReadBytes(config_size - 4);
+                                    
                                     ms.Seek(EntryID * 4, SeekOrigin.Current); // goto index
                                     uint entryIndic = br.ReadUInt32();
                                     if (entryIndic == 0xffffffff) {

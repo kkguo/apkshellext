@@ -42,10 +42,10 @@ IF %ERRORLEVEL%==1 (
   "%windir%\Microsoft.NET\Framework\v4.0.30319\regasm.exe" /unregister %~dp0\apkshellext2.dll"
 )
 ECHO.
-ECHO The apkshellext.dll can't be deleted before explorer restart.
+REM ECHO The apkshellext.dll can't be deleted before explorer restart.
 
-ECHO killing adb server
-TASKKILL /F /IM adb.exe
+REM ECHO killing adb server
+REM TASKKILL /F /IM adb.exe
 
 ECHO.
 ECHO /-------------------------------------------------------------------\

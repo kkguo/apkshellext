@@ -2,10 +2,17 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <!-- Debug the registry process, please uncomment this part
+    <!-- Debug the register process, please uncomment this part -->
 	<StartAction>Program</StartAction>
 	<StartProgram>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe</StartProgram>
     <StartWorkingDirectory>C:\Users\guojin\Documents\Brews\ApkShellext2\ApkShellext2\bin\Debug\</StartWorkingDirectory>
-    <StartArguments>/codebase apkshellext2.dll</StartArguments>  -->
+    <StartArguments>/codebase apkshellext2.dll</StartArguments>
+	
+	<!-- Debug the un-register process, please uncomment this part
+	<StartAction>Program</StartAction>
+	<StartProgram>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe</StartProgram>
+    <StartWorkingDirectory>C:\Users\guojin\Documents\Brews\ApkShellext2\ApkShellext2\bin\Debug\</StartWorkingDirectory>
+    <StartArguments>/unregister apkshellext2.dll</StartArguments> 
+	-->
   </PropertyGroup>
 </Project>
