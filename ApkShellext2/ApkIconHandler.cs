@@ -1,13 +1,14 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿using ApkQuickParser;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.Extensions;
 using SharpShell.ServerRegistration;
 using SharpShell.SharpIconHandler;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace ApkShellext2
 {
@@ -33,7 +34,7 @@ namespace ApkShellext2
             }
 
             try {
-                ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
+                ApkQuickReader reader = new ApkQuickReader (SelectedItemPath);
                 m_icon = reader.getImage("application", "icon");
             } catch {}
             return betterIcon((int)iconSize);
@@ -103,8 +104,6 @@ namespace ApkShellext2
             }
             #endregion
 
-            // Notify shell to refresh.
-            Utility.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
         protected override void Log(string message) {

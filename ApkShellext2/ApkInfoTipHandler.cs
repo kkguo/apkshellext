@@ -1,12 +1,13 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using ApkQuickParser;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.Extensions;
 using SharpShell.ServerRegistration;
 using SharpShell.SharpInfoTipHandler;
+using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace ApkShellext2 {
     [Guid("946435a5-fe96-416d-99db-e94ee9fb46c8")]
@@ -26,10 +27,10 @@ namespace ApkShellext2 {
             try {
                 ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
                 string splitor = singleLine ? " " : Environment.NewLine;
-                return "AppName : " + reader.getAttribute("application", "label") + splitor
-                        + "Package : " + reader.getAttribute("manifest", "package") + splitor
-                        + "VersionCode : " + reader.getAttribute("manifest", "versionCode") + splitor
-                        + "VersionName : " + reader.getAttribute("manifest", "versionName");
+                return reader.getAttribute("application", "label") + splitor
+                        + reader.getAttribute("manifest", "package") + splitor
+                        + "Version : " + reader.getAttribute("manifest", "versionName") + " ("
+                        + reader.getAttribute("manifest", "versionCode") + ")";
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);
                 return "apk file is broken";

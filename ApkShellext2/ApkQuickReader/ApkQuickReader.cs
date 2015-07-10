@@ -4,7 +4,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
 
-namespace ApkShellext2 {
+namespace ApkQuickParser {
     class ApkQuickReader : IDisposable {
         public string FileName { get; set; }
 

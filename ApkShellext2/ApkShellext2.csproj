@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApkQuickReader.cs" />
+    <Compile Include="ApkQuickReader\ApkQuickReader.cs" />
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
@@ -253,8 +253,6 @@
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpContextMenu\PARGB32.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpContextMenu\SharpContextMenu.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpDataHandler\SharpDataHandler.cs" />
-    <Compile Include="SharpShell\SharpShell\SharpShell\SharpDeskBand\BandOptions.cs" />
-    <Compile Include="SharpShell\SharpShell\SharpShell\SharpDeskBand\SharpDeskBand.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpDropHandler\SharpDropHandler.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpIconHandler\SharpIconHandler.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpIconOverlayHandler\SharpIconOverlayHandler.cs" />
@@ -349,8 +347,8 @@
     <None Include="Resources\GitHub.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\udpate.png" />
-    <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShell\SharpShell\SharpShellNativeBridge32.dll" />
-    <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShell\SharpShell\SharpShellNativeBridge64.dll" />
+    <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
+    <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

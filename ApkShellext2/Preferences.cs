@@ -27,8 +27,8 @@ namespace ApkShellext2 {
             btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.GitHub, 16);
             label1.Text = "Current Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-            checkBox1.Checked = (Utility.getRegistrySetting("RenameWithVersionCode") == 1);
-            checkBox2.Checked = (Utility.getRegistrySetting("AlwaysShowGooglePlay") == 1);
+            checkBox1.Checked = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode) == 1);
+            checkBox2.Checked = (Utility.getRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay) == 1);
             getVersionTh = new Thread(new ThreadStart(getLatestVersion));
             getVersionTh.Start();
             btnCancel.Focus();
@@ -38,7 +38,7 @@ namespace ApkShellext2 {
             try {
                 lblNewVer.Text = "Checking newer version...";
                 byte[] buf = new byte[1024];
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://kkguo.github.io/apkshellext/latest");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Resources.github_home + @"/latest");
                 // execute the request
                 HttpWebResponse response = (HttpWebResponse)
                     request.GetResponse();
@@ -83,15 +83,15 @@ namespace ApkShellext2 {
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start("https://kkguo.github.io/apkshellext/index.html?version=" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            System.Diagnostics.Process.Start(Properties.Resources.github_home + @"/index.html?version=" + Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting("RenameWithVersionCode", checkBox1.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Properties.Resources.optRenameWithVersionCode, checkBox1.Checked ? 1 : 0);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting("AlwaysShowGooglePlay", checkBox2.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay, checkBox2.Checked ? 1 : 0);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {

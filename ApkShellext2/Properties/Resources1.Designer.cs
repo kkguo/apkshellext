@@ -71,6 +71,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 https://kkguo.github.io/apkshellext 的本地化字符串。
+        /// </summary>
+        internal static string github_home {
+            get {
+                return ResourceManager.GetString("github_home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap googleplay {
@@ -81,12 +90,39 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 https://play.google.com/store/apps/details?id= 的本地化字符串。
+        /// </summary>
+        internal static string googlePlayUrl {
+            get {
+                return ResourceManager.GetString("googlePlayUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 AlwaysShowGooglePlay 的本地化字符串。
+        /// </summary>
+        internal static string optAlwaysShowGooglePlay {
+            get {
+                return ResourceManager.GetString("optAlwaysShowGooglePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 RenameWithVersionCode 的本地化字符串。
+        /// </summary>
+        internal static string optRenameWithVersionCode {
+            get {
+                return ResourceManager.GetString("optRenameWithVersionCode", resourceCulture);
             }
         }
         

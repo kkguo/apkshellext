@@ -1,17 +1,17 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
+﻿using ApkQuickParser;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.Extensions;
 using SharpShell.ServerRegistration;
 using SharpShell.SharpContextMenu;
-using System.Collections.Generic;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -44,7 +44,7 @@ namespace ApkShellext2 {
 
             #region Rename Menu
 
-            int addVerCode = Utility.getRegistrySetting("RenameWithVersionCode");
+            int addVerCode = Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode);
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
                 Text = @"Rename to <Label>_<verNumber>" + ((addVerCode==1)?"_<verCode>":"") +".apk",
                 Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
@@ -115,7 +115,7 @@ namespace ApkShellext2 {
             mainMenu.DropDownItems.Add(renameMenu);
             mainMenu.DropDownItems.Add(playMenu);
             playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-                (Utility.getRegistrySetting("AlwaysShowGooglePlay") == 1);
+                (Utility.getRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay) == 1);
 
             mainMenu.DropDownItems.Add("-");
             mainMenu.DropDownItems.Add(settingsMenu);
@@ -128,7 +128,7 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns></returns>
         private string getNewFileName(string path) {
-            bool key_RenameWithVersionCode = (Utility.getRegistrySetting("RenameWithVersionCode")==1);
+            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode)==1);
             string newFileName = "";
             try {
                 ApkQuickReader reader = new ApkQuickReader(path);
@@ -138,7 +138,7 @@ namespace ApkShellext2 {
                     string versionCode = reader.getAttribute("manifest", "versionCode");
                     newFileName = newFileName + "_" + versionCode;
                 }
-                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalide char
+                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalid char
                 string oldFileName = Path.GetFileName(path);
                 string folderPath = Path.GetDirectoryName(path);
                 string tmpFileName =  newFileName + ".apk";
@@ -173,7 +173,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 ApkQuickReader reader = new ApkQuickReader(p);
                 string package = reader.getAttribute("manifest", "package");
-                System.Diagnostics.Process.Start("https://play.google.com/store/apps/details?id=" + package);
+                System.Diagnostics.Process.Start(Properties.Resources.googlePlayUrl + package);
             }
         }
 
