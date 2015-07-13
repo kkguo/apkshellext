@@ -12,6 +12,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Threading;
+using System.Globalization;
+using ApkShellext2.Properties;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -34,10 +37,16 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns>The context menu for the shell context menu.</returns>
         protected override ContextMenuStrip CreateMenu() {
-            var menu = new ContextMenuStrip();
+            // get language setting, and set culture.
+            int lang = Utility.getRegistrySetting("language", -1);
+            if (lang != -1) {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            }
 
+            var menu = new ContextMenuStrip();
             var mainMenu = new ToolStripMenuItem {
-                Text = @"APK Shell Extension",
+                Text = Properties.Resources.menuMain,
             };
 
             int size = mainMenu.Height - 1;
@@ -46,16 +55,16 @@ namespace ApkShellext2 {
 
             int addVerCode = Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode);
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                Text = @"Rename to <Label>_<verNumber>" + ((addVerCode==1)?"_<verCode>":"") +".apk",
+                Text = Resources.menuRenameAs + @"<Label>_<verNumber>" + ((addVerCode==1)?"_<verCode>":"") +".apk",
                 Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
             };
 
             if (SelectedItemPaths.Count() == 1) {
                 string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
                 if (newName != "") {
-                    renameMenu.Text = @"Rename to " + Path.GetFileName(newName);
+                    renameMenu.Text = Resources.menuRenameAs + Path.GetFileName(newName);
                 } else {
-                    renameMenu.Text = @"Failed to read apk file.";
+                    renameMenu.Text = Resources.menuRenameReadFailed;
                     renameMenu.Enabled = false;
                 }
             }
@@ -65,16 +74,16 @@ namespace ApkShellext2 {
 
             #region Google Play Menu
             var playMenu = new ToolStripMenuItem {
-                Text = @"Goto GooglePlay page",
+                Text = Resources.menuGotoGooglePlay,
                 Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
             };
 
             playMenu.Click += (sender, args) => gotoGooglePlay();
             #endregion
 
-            #region Setting Menu
+            #region Preferences Menu
             var settingsMenu = new ToolStripMenuItem {
-                Text = @"Preferences",
+                Text = Resources.menuPreferences,
                 Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
             };
             settingsMenu.Click += (sender, args) => showSettings();
@@ -173,7 +182,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 ApkQuickReader reader = new ApkQuickReader(p);
                 string package = reader.getAttribute("manifest", "package");
-                System.Diagnostics.Process.Start(Properties.Resources.googlePlayUrl + package);
+                System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
             }
         }
 

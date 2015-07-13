@@ -121,14 +121,14 @@
   <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="github_home" xml:space="preserve">
+  <data name="urlGithubHome" xml:space="preserve">
     <value>https://kkguo.github.io/apkshellext</value>
   </data>
   <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="googlePlayUrl" xml:space="preserve">
-    <value>https://play.google.com/store/apps/details?id=</value>
+  <data name="urlGooglePlay" xml:space="preserve">
+    <value>https://play.google.com/store/apps/details?id={0}</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -144,5 +144,89 @@
   </data>
   <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="optShowOverlay" xml:space="preserve">
+    <value>ShowOverLayIcon</value>
+  </data>
+  <data name="androidHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnGitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="btnUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnUpdateToolTip" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="menuGotoGooglePlay" xml:space="preserve">
+    <value>Look at GooglePlay page</value>
+  </data>
+  <data name="menuMain" xml:space="preserve">
+    <value>APK Shell Extension</value>
+  </data>
+  <data name="menuPreferences" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="menuRenameAs" xml:space="preserve">
+    <value>Rename to</value>
+  </data>
+  <data name="menuRenameReadFailed" xml:space="preserve">
+    <value>Faile to read apk file</value>
+  </data>
+  <data name="strCheckingNewVersion" xml:space="preserve">
+    <value>Checking new version ...</value>
+  </data>
+  <data name="strCheckProjectSite" xml:space="preserve">
+    <value>Check project site for update.</value>
+  </data>
+  <data name="strCurrVersion" xml:space="preserve">
+    <value>Current Version: {0}</value>
+  </data>
+  <data name="strGotLatest" xml:space="preserve">
+    <value>Great! You got the latest version.</value>
+  </data>
+  <data name="strNewVersionAvailible" xml:space="preserve">
+    <value>New version {0} is availible</value>
+  </data>
+  <data name="urlGithubHomeLatest" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/latest</value>
+  </data>
+  <data name="urlGithubHomeWithVersion" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>Always show GooglePlay</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>If checked, GooglePlay menu will show up even multiple apk files selected. 
+Please note, you may open a lot of browser window and impact the performance significantly.
+By default, only show the menu when one file selected</value>
+  </data>
+  <data name="strGotoProjectSite" xml:space="preserve">
+    <value>Go to ApkShellext2 Project site</value>
+  </data>
+  <data name="strRenameToolTip" xml:space="preserve">
+    <value>When checked, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
+otherwise, only &lt;label&gt;_&lt;versionName&gt;.apk, for avoiding situation of same VersionName but different VersionCode</value>
+  </data>
+  <data name="strRenameWithVersionCode" xml:space="preserve">
+    <value>Rename with VersionCode</value>
+  </data>
+  <data name="strShowOverlayIcon" xml:space="preserve">
+    <value>Show Overlay Icon</value>
+  </data>
+  <data name="strShowOverlayIconToolTip" xml:space="preserve">
+    <value>Show an Android overlay icon for apk file</value>
+  </data>
+  <data name="strLanguages" xml:space="preserve">
+    <value>Use Language:</value>
+  </data>
+  <data name="strPreferencesCation" xml:space="preserve">
+    <value>ApkShellext2 Preferences</value>
   </data>
 </root>

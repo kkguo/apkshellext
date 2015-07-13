@@ -345,6 +345,7 @@
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
+    <None Include="Resources\android.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\udpate.png" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
@@ -357,6 +358,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SharpShell\SharpShell\SharpShell\SharpPreviewHandler\PreviewHandlerHost.resx">
       <DependentUpon>PreviewHandlerHost.cs</DependentUpon>

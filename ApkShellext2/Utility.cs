@@ -7,9 +7,15 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using Microsoft.Win32;
 using SharpShell.Diagnostics;
+using System.Globalization;
 
 namespace ApkShellext2 {
     public static class Utility {
+        public static CultureInfo[] SupportedLanguages = new CultureInfo[] {
+            new CultureInfo("en-US"),
+            new CultureInfo("zh-CN"),
+        };
+
         /// <summary>
         /// resize bitmap
         /// </summary>
