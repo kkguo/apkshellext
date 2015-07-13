@@ -21,10 +21,11 @@ namespace ApkShellext2
         private Bitmap m_icon = null;
 
         protected override Icon GetIcon(bool smallIcon, uint iconSize)
-        {            
+        {
+            Log("requestiong size " + iconSize.ToString());
             if (smallIcon) { // this place save one time read zip package
                 try {
-                    return betterIcon((int)iconSize);
+                    return addOverlay((int)iconSize);
                 } finally {
                     if (m_icon != null) {
                         m_icon.Dispose();
@@ -37,15 +38,29 @@ namespace ApkShellext2
                 ApkQuickReader reader = new ApkQuickReader (SelectedItemPath);
                 m_icon = reader.getImage("application", "icon");
             } catch {}
-            return betterIcon((int)iconSize);
+            return addOverlay((int)iconSize);
         }
 
-        private Icon betterIcon(int iconSize) {
-            // Get better image while stretch
-            if (m_icon != null) {                
-                return Icon.FromHandle(Utility.ResizeBitmap(m_icon,iconSize).GetHicon());
-            } else {
-                return null;
+        private Icon addOverlay(int iconSize) {
+            using (Bitmap b = new Bitmap(iconSize, iconSize)) {
+                using (Graphics g = Graphics.FromImage(b)) {
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    if (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) == 1) {
+                        g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
+                        int overlaySize = (int)(iconSize * 0.6);
+                        overlaySize = (overlaySize >= 64) ? 64 : overlaySize;
+                        int targetW = overlaySize;
+                        targetW = (targetW >= 16) ? targetW : 16;
+                        int targetH = Properties.Resources.androidHead.Height * targetW / Properties.Resources.androidHead.Width;
+                        int targetY = iconSize - targetH;
+                        g.DrawImage(Properties.Resources.androidHead, 0, targetY, targetW, targetH);
+                    } else {
+                        g.DrawImage(m_icon, 0, 0, (int)iconSize, (int)iconSize);
+                    }
+                    return Icon.FromHandle(b.GetHicon());
+                }
             }
         }
 
