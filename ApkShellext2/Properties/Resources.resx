@@ -158,7 +158,7 @@
     <value>Update</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Update</value>
+    <value>Go to project site to update</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
     <value>Look at GooglePlay page</value>
@@ -170,7 +170,7 @@
     <value>Preferences</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>Rename to</value>
+    <value>Rename to {0}</value>
   </data>
   <data name="menuRenameReadFailed" xml:space="preserve">
     <value>Faile to read apk file</value>

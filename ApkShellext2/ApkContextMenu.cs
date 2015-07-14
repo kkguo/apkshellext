@@ -37,6 +37,7 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns>The context menu for the shell context menu.</returns>
         protected override ContextMenuStrip CreateMenu() {
+            Utility.HookResolveResourceDll();
             // get language setting, and set culture.
             int lang = Utility.getRegistrySetting("language", -1);
             if (lang != -1) {
@@ -55,14 +56,14 @@ namespace ApkShellext2 {
 
             int addVerCode = Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode);
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                Text = Resources.menuRenameAs + @"<Label>_<verNumber>" + ((addVerCode==1)?"_<verCode>":"") +".apk",
+                Text = string.Format(Resources.menuRenameAs , @"<Label>_<verNumber>" + ((addVerCode == 1) ? "_<verCode>" : "") + ".apk"),
                 Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
             };
 
             if (SelectedItemPaths.Count() == 1) {
                 string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
                 if (newName != "") {
-                    renameMenu.Text = Resources.menuRenameAs + Path.GetFileName(newName);
+                    renameMenu.Text = string.Format(Resources.menuRenameAs,Path.GetFileName(newName));
                 } else {
                     renameMenu.Text = Resources.menuRenameReadFailed;
                     renameMenu.Enabled = false;
@@ -137,7 +138,7 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns></returns>
         private string getNewFileName(string path) {
-            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode)==1);
+            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode) == 1);
             string newFileName = "";
             try {
                 ApkQuickReader reader = new ApkQuickReader(path);
@@ -150,10 +151,10 @@ namespace ApkShellext2 {
                 newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalid char
                 string oldFileName = Path.GetFileName(path);
                 string folderPath = Path.GetDirectoryName(path);
-                string tmpFileName =  newFileName + ".apk";
-                
+                string tmpFileName = newFileName + ".apk";
+
                 int i = 0;
-                while (File.Exists( folderPath + @"\" + tmpFileName ) && 
+                while (File.Exists(folderPath + @"\" + tmpFileName) &&
                     (tmpFileName != oldFileName)) {
                     i++;
                     tmpFileName = newFileName + "_(" + i.ToString() + ")" + ".apk";
@@ -176,7 +177,7 @@ namespace ApkShellext2 {
                 }
             }
         }
-        
+
 
         private void gotoGooglePlay() {
             foreach (var p in SelectedItemPaths) {
@@ -214,8 +215,7 @@ namespace ApkShellext2 {
             #endregion
         }
 
-        protected override void Log(string message)
-        {
+        protected override void Log(string message) {
             Logging.Log("[" + DateTime.Now.ToString() + "]" + message);
         }
     }

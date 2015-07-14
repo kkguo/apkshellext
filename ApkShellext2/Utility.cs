@@ -8,9 +8,14 @@ using System.Drawing;
 using Microsoft.Win32;
 using SharpShell.Diagnostics;
 using System.Globalization;
+using System.Reflection;
+using System.IO;
+using System.Threading;
 
 namespace ApkShellext2 {
     public static class Utility {
+        // Culture Name list:
+        //http://timtrott.co.uk/culture-codes/
         public static CultureInfo[] SupportedLanguages = new CultureInfo[] {
             new CultureInfo("en-US"),
             new CultureInfo("zh-CN"),
@@ -73,5 +78,17 @@ namespace ApkShellext2 {
 
         }
 
+        public static void HookResolveResourceDll() {
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResourceDllResolveEventHandler); 
+        }
+
+        public static Assembly ResourceDllResolveEventHandler(object sender, ResolveEventArgs args) {
+            AssemblyName MissingAssembly = new AssemblyName(args.Name);
+            CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+            string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-","_") + "." + MissingAssembly.Name + ".dll";
+            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            if (stream == null) return null;
+            return Assembly.Load(new BinaryReader(stream).ReadBytes((int)stream.Length));
+        }
     }
 }

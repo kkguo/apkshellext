@@ -136,7 +136,7 @@
     <value>选项和更新</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>改名为 </value>
+    <value>改名为 {0}</value>
   </data>
   <data name="menuRenameReadFailed" xml:space="preserve">
     <value>文件已经损坏</value>

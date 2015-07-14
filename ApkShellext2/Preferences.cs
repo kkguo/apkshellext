@@ -19,6 +19,8 @@ namespace ApkShellext2 {
         }
 
         private bool formLoaded = false;
+        private bool updateChecked = false;
+
         public event EventHandler newVersionEvent;
         public event EventHandler networkIssueEvent;
 
@@ -64,12 +66,14 @@ namespace ApkShellext2 {
             checkBox2.Checked = (Utility.getRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay) == 1);
             checkBox3.Checked = (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) == 1);
 
-            newVersionEvent += OnNewVersionEvent;
-            networkIssueEvent += OnNetworkIssue;
-            Thread getVersionTh = new Thread(new ThreadStart(getLatestVersion));
-            getVersionTh.CurrentCulture = Thread.CurrentThread.CurrentCulture;
-            getVersionTh.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-            getVersionTh.Start();
+            if (!updateChecked) {
+                newVersionEvent += OnNewVersionEvent;
+                networkIssueEvent += OnNetworkIssue; 
+                Thread getVersionTh = new Thread(new ThreadStart(getLatestVersion));
+                getVersionTh.CurrentCulture = Thread.CurrentThread.CurrentCulture;
+                getVersionTh.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+                getVersionTh.Start();
+            }
             btnCancel.Focus();
             formLoaded = true;
         }

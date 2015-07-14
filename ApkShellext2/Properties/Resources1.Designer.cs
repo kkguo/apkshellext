@@ -98,7 +98,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Update 的本地化字符串。
+        ///   查找类似 Go to project site to update 的本地化字符串。
         /// </summary>
         internal static string btnUpdateToolTip {
             get {
@@ -164,7 +164,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Rename to 的本地化字符串。
+        ///   查找类似 Rename to {0} 的本地化字符串。
         /// </summary>
         internal static string menuRenameAs {
             get {

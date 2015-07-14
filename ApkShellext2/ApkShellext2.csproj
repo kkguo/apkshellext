@@ -40,7 +40,7 @@
     <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -342,19 +342,24 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\install.bat" />
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
     <None Include="Resources\android.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\udpate.png" />
+    <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
+    <None Include="Resources\restart_explorer.bat" />
+    <None Include="Resources\uninstall.bat" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Preferences.resx">
       <DependentUpon>Preferences.cs</DependentUpon>
@@ -373,14 +378,18 @@
   <ItemGroup>
     <None Include="key.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\zh-CN
+copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
