@@ -11,7 +11,10 @@ You are seeing the code page of this project, please visit [Project page](http:/
 * Goto apk's google play page.
 * Check new version automatically.
 * Show overlay icon for apk files.
-* Support English / 中文 / italiano (by Vince. M)
+* Support mulitple languages: 
+  - English
+  - 中文
+  - italiano (by Vince. M)
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
