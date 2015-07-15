@@ -5,11 +5,12 @@ A shell exteions for __A__ ndriod __P__ ac __K__ age file, the purpose is helpin
 You are seeing the code page of this project, please visit [Project page](http://kkguo.github.io/apkshellext) for download and more information.
 
 #### [Features]
-* Show Icon of apk files on windows explorer
-* Show Package information in Infotip
-* Right Button menu for renaming apk file with label name + version
+* Show apk file icons of in explorer
+* Show Package information in tip bubble
+* Context menu for renaming apk file, batch renaming, with app name + version
 * Goto apk's google play page.
 * Check new version automatically.
+* Show overlay icon for apk files.
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
