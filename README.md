@@ -4,7 +4,7 @@ A shell exteions for __A__ ndriod __P__ ac __K__ age file, the purpose is helpin
 
 This project is open sourced and free, you are seeing the code page, please visit [project page](http://kkguo.github.io/apkshellext) for download and more information.
 
-#### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Multi-language-and-Transaltion)
+#### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project)
 
 #### [Features]
 * Show apk file icons of in explorer
