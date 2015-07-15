@@ -141,7 +141,7 @@
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(104, 79);
+            this.lblLanguage.Location = new System.Drawing.Point(104, 78);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(58, 13);
             this.lblLanguage.TabIndex = 9;

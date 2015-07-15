@@ -33,9 +33,9 @@ using System.Runtime.InteropServices;
 // 方法是按如下所示使用“*”: 
 // [assembly: AssemblyVersion("1.0.*")]
 #if DEBUG
-[assembly: AssemblyVersion("0.1.1.0")]
+[assembly: AssemblyVersion("0.1.1.65534")]
 #else
-[assembly: AssemblyVersion("0.1.1.*")]
+[assembly: AssemblyVersion("0.1.2.*")]
 #endif
 //[assembly: AssemblyFileVersion("0.1.0")]
 [assembly: AssemblyInformationalVersion("0.1.0")]

@@ -347,8 +347,10 @@
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
     <None Include="Resources\android.png" />
+    <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\udpate.png" />
+    <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
@@ -388,8 +390,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\zh-CN
-rd /s /q  $(TargetDir)zh-CN
+    <PostBuildEvent>move /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\
+move /Y $(TargetDir)it-IT $(ProjectDir)Resources\
 copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
