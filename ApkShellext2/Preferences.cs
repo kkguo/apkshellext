@@ -58,9 +58,9 @@ namespace ApkShellext2 {
 
             lblNewVer.Text = Resources.strCheckingNewVersion;
 
-            checkBox1.Checked = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode) == 1);
-            checkBox2.Checked = (Utility.getRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay) == 1);
-            checkBox3.Checked = (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) == 1);
+            checkBox1.Checked = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
+            checkBox2.Checked = (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
+            checkBox3.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
 
             if (!updateChecked) {
                 newVersionEvent += OnNewVersionEvent;
@@ -144,16 +144,16 @@ namespace ApkShellext2 {
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Properties.Resources.optRenameWithVersionCode, checkBox1.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Utility.keyRenameWithVersionCode, checkBox1.Checked ? 1 : 0);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay, checkBox2.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, checkBox2.Checked ? 1 : 0);
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) != (checkBox3.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Properties.Resources.optShowOverlay, checkBox3.Checked ? 1 : 0);
+            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (checkBox3.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowOverlay, checkBox3.Checked ? 1 : 0);
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
             }
         }

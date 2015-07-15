@@ -173,33 +173,6 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 AlwaysShowGooglePlay 的本地化字符串。
-        /// </summary>
-        internal static string optAlwaysShowGooglePlay {
-            get {
-                return ResourceManager.GetString("optAlwaysShowGooglePlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 RenameWithVersionCode 的本地化字符串。
-        /// </summary>
-        internal static string optRenameWithVersionCode {
-            get {
-                return ResourceManager.GetString("optRenameWithVersionCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 ShowOverLayIcon 的本地化字符串。
-        /// </summary>
-        internal static string optShowOverlay {
-            get {
-                return ResourceManager.GetString("optShowOverlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap rename {

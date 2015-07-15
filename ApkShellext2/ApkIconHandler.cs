@@ -71,7 +71,7 @@ namespace ApkShellext2
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    if (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) == 1) {
+                    if (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1) {
                         g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
                         int overlaySize = (int)(iconSize * 0.6);
                         overlaySize = (overlaySize >= 64) ? 64 : overlaySize;

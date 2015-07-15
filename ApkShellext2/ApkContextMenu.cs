@@ -48,7 +48,7 @@ namespace ApkShellext2 {
 
             #region Rename Menu
 
-            int addVerCode = Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode);
+            int addVerCode = Utility.getRegistrySetting(Utility.keyRenameWithVersionCode);
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
                 Text = string.Format(Resources.menuRenameAs , @"<Label>_<verNumber>" + ((addVerCode == 1) ? "_<verCode>" : "") + ".apk"),
                 Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
@@ -119,7 +119,7 @@ namespace ApkShellext2 {
             mainMenu.DropDownItems.Add(renameMenu);
             mainMenu.DropDownItems.Add(playMenu);
             playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-                (Utility.getRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay) == 1);
+                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
 
             mainMenu.DropDownItems.Add("-");
             mainMenu.DropDownItems.Add(settingsMenu);
@@ -132,7 +132,7 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns></returns>
         private string getNewFileName(string path) {
-            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Properties.Resources.optRenameWithVersionCode) == 1);
+            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
             string newFileName = "";
             try {
                 ApkQuickReader reader = new ApkQuickReader(path);

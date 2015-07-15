@@ -15,6 +15,10 @@ using System.Text.RegularExpressions;
 
 namespace ApkShellext2 {
     public static class Utility {
+        public static readonly string keyAlwaysShowGooglePlay = @"AlwaysShowGooglePlay";
+        public static readonly string keyRenameWithVersionCode= @"RenameWithVersionCode";
+        public static readonly string keyShowOverlay = @"ShowOverLayIcon";
+
         /// <summary>
         /// resize bitmap
         /// </summary>
