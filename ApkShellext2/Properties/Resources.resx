@@ -167,12 +167,12 @@
     <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Preferences</value>
+    <value>Preferences &amp;&amp; Update</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rename to {0}</value>
   </data>
-  <data name="menuRenameReadFailed" xml:space="preserve">
+  <data name="strReadApkFailed" xml:space="preserve">
     <value>Faile to read apk file</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">

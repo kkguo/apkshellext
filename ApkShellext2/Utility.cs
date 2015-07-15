@@ -11,32 +11,27 @@ using System.Globalization;
 using System.Reflection;
 using System.IO;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace ApkShellext2 {
     public static class Utility {
-        // Culture Name list:
-        //http://timtrott.co.uk/culture-codes/
-        public static CultureInfo[] SupportedLanguages = new CultureInfo[] {
-            new CultureInfo("en-US"),
-            new CultureInfo("zh-CN"),
-        };
-
         /// <summary>
         /// resize bitmap
         /// </summary>
-        /// <param name="orignial"></param>
+        /// <param name="original"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
-        public static Bitmap ResizeBitmap(Bitmap orignial, int width, int height) {
+        public static Bitmap ResizeBitmap(Bitmap original, Size size) {
             // Get better image while stretch
-            if (orignial != null) {
-                Bitmap b = new Bitmap(width, height);
+            if (original != null) {
+                Bitmap b = new Bitmap(size.Width, size.Height);
                 using (Graphics g = Graphics.FromImage((Image)b)) {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.DrawImage(orignial, 0, 0, (int)width, (int)height);
+ 
+                     g.DrawImage(original, 0, 0, size.Width,size.Height); 
                 }
                 return b;
             } else {
@@ -51,7 +46,7 @@ namespace ApkShellext2 {
         /// <param name="width"></param>
         /// <returns></returns>
         public static Bitmap ResizeBitmap(Bitmap orignial, int width) {
-            return ResizeBitmap(orignial, width, width);
+            return ResizeBitmap(orignial, new Size(width, width));
         }
 
         public static void setRegistrySetting(string key, int value) {
@@ -78,6 +73,19 @@ namespace ApkShellext2 {
 
         }
 
+        // buffer for loaded resource dll;
+        private static int _bufCultureInfoLCID;
+        private static byte[] _binResourceDll;
+
+        /// <summary>
+        /// This hook up is trying to resolve the resource dll which is including inside 
+        /// the main assembly.
+        /// The purpose is for keeping a singal dll release including language resource.
+        /// The language resource dll will be generated once resouce file get updated,
+        /// and will copied into Resources folder after first time build.
+        /// So once any language resouce get changed, need 2 times build to get the new 
+        /// resource dll included.
+        /// </summary>
         public static void HookResolveResourceDll() {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResourceDllResolveEventHandler); 
         }
@@ -85,10 +93,49 @@ namespace ApkShellext2 {
         public static Assembly ResourceDllResolveEventHandler(object sender, ResolveEventArgs args) {
             AssemblyName MissingAssembly = new AssemblyName(args.Name);
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
-            string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-","_") + "." + MissingAssembly.Name + ".dll";
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-            if (stream == null) return null;
-            return Assembly.Load(new BinaryReader(stream).ReadBytes((int)stream.Length));
+            if (_bufCultureInfoLCID != ci.LCID) {                
+                string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-", "_") + "." + MissingAssembly.Name + ".dll";
+#if DEBUG
+                Logging.Log("List of the resources:");
+                foreach (var s in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
+                    Logging.Log(s);
+                }
+#endif
+                Logging.Log("Extracting resource dll: " + resourceName);
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
+                    if (stream == null) return null;
+                    _binResourceDll = new BinaryReader(stream).ReadBytes((int)stream.Length);
+                    _bufCultureInfoLCID = ci.LCID;
+                }
+            }
+            return Assembly.Load(_binResourceDll);
+        }
+
+        /// <summary>
+        /// Load Resource Dll and set the culture info
+        /// Resource Dll is buffered in static byte array in this class
+        /// </summary>
+        public static void Localize() {            
+            HookResolveResourceDll();            
+            int lang = getRegistrySetting("language", -1);
+            if (lang != -1) {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            }
+        }
+
+        // Enumerate all language resouce dll, get culture code
+        public static CultureInfo[] getSupportedLanguages() {
+            List<CultureInfo> result = new List<CultureInfo>();
+            result.Add(new CultureInfo("en-US")); //default is en-US
+            foreach (var s in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
+                Match m = Regex.Match(s,@"ApkShellext2\.Resources\.([a-z][a-z]_[A-Z][A-Z])\.ApkShellext2.resources.dll");
+                if (m.Success) {
+                    CultureInfo ci = new CultureInfo(m.Groups[1].Value.Replace("_","-"));
+                    result.Add(ci);
+                }
+            }
+            return result.ToArray();
         }
     }
 }

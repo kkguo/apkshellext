@@ -37,13 +37,7 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns>The context menu for the shell context menu.</returns>
         protected override ContextMenuStrip CreateMenu() {
-            Utility.HookResolveResourceDll();
-            // get language setting, and set culture.
-            int lang = Utility.getRegistrySetting("language", -1);
-            if (lang != -1) {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-            }
+            Utility.Localize();
 
             var menu = new ContextMenuStrip();
             var mainMenu = new ToolStripMenuItem {
@@ -65,7 +59,7 @@ namespace ApkShellext2 {
                 if (newName != "") {
                     renameMenu.Text = string.Format(Resources.menuRenameAs,Path.GetFileName(newName));
                 } else {
-                    renameMenu.Text = Resources.menuRenameReadFailed;
+                    renameMenu.Text = Resources.strReadApkFailed;
                     renameMenu.Enabled = false;
                 }
             }
@@ -160,9 +154,8 @@ namespace ApkShellext2 {
                     tmpFileName = newFileName + "_(" + i.ToString() + ")" + ".apk";
                 }
                 newFileName = folderPath + @"\" + tmpFileName;
-            } catch (Exception ex) {
+            } catch {
                 newFileName = "";
-                Log("Error happens during rename :" + ex.Message);
             }
             return newFileName;
         }
@@ -198,15 +191,17 @@ namespace ApkShellext2 {
 
             #region Clean up older versions registry
             try {
-                Console.WriteLine("Found old version in registry, cleaning up ...");
                 using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
-                    foreach (var k in key.GetSubKeyNames()) {
-                        if (k != type.Assembly.GetName().Version.ToString()) {
-                            Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
-                    type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                        if (key != null && key.GetSubKeyNames().Count() != 0) {
+                            Console.WriteLine("Found old version in registry, cleaning up ...");
+                            foreach (var k in key.GetSubKeyNames()) {
+                                if (k != type.Assembly.GetName().Version.ToString()) {
+                                    Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                            type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                                }
+                            }
                         }
-                    }
                 }
             } catch (Exception e) {
                 Logging.Error("Cleaning up older version but see exception. "

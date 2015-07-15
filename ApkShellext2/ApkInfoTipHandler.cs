@@ -7,6 +7,7 @@ using SharpShell.ServerRegistration;
 using SharpShell.SharpInfoTipHandler;
 using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace ApkShellext2 {
@@ -25,6 +26,7 @@ namespace ApkShellext2 {
         /// </returns>
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
             try {
+                Utility.Localize();
                 ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
                 string splitor = singleLine ? " " : Environment.NewLine;
                 return reader.getAttribute("application", "label") + splitor
@@ -33,7 +35,7 @@ namespace ApkShellext2 {
                         + reader.getAttribute("manifest", "versionCode") + ")";
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);
-                return "apk file is broken";
+                return Properties.Resources.strReadApkFailed;
             }
         }
 
@@ -43,13 +45,15 @@ namespace ApkShellext2 {
 
             #region Clean up older versions registry
             try {
-                Console.WriteLine("Found old version in registry, cleaning up ...");
                 using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
-                    foreach (var k in key.GetSubKeyNames()) {
-                        if (k != type.Assembly.GetName().Version.ToString()) {
-                            Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
-                    type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                    if (key != null && key.GetSubKeyNames().Count() != 0) {
+                        Console.WriteLine("Found old version in registry, cleaning up ...");
+                        foreach (var k in key.GetSubKeyNames()) {
+                            if (k != type.Assembly.GetName().Version.ToString()) {
+                                Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                        type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                            }
                         }
                     }
                 }

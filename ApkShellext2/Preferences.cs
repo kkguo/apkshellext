@@ -25,18 +25,15 @@ namespace ApkShellext2 {
         public event EventHandler networkIssueEvent;
 
         private void Preferences_Load(object sender, EventArgs e) {
-            int lang = Utility.getRegistrySetting("language", -1);
-            if (lang != -1) { // language set
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-            }
+            Utility.Localize();
 
             if (!formLoaded) {
-                combLanguage.Text = Utility.SupportedLanguages[0].DisplayName;
-                foreach (var l in Utility.SupportedLanguages) {
+                CultureInfo[] culs = Utility.getSupportedLanguages();
+                combLanguage.Text = culs[0].NativeName;
+                foreach (var l in culs) {
                     combLanguage.Items.Add(l.NativeName);
                     if (l.LCID == Thread.CurrentThread.CurrentUICulture.LCID) {
-                        combLanguage.Text = l.DisplayName;
+                        combLanguage.Text = l.NativeName;
                     }
                 }
             }
@@ -46,7 +43,7 @@ namespace ApkShellext2 {
             this.Text = Resources.strPreferencesCation;
             this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
             btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.GitHub, 16);
-            linkLabel1.Text = Resources.urlGithubHome;
+
             label1.Text =  string.Format(Resources.strCurrVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
             btnCancel.Text = Resources.btnCancel;
@@ -58,7 +55,6 @@ namespace ApkShellext2 {
             toolTip1.SetToolTip(checkBox2, Resources.strAlwaysShowGooglePlayToolTip);
             checkBox3.Text = Resources.strShowOverlayIcon;
             toolTip1.SetToolTip(checkBox3, Resources.strShowOverlayIconToolTip);
-            toolTip1.SetToolTip(linkLabel1, Resources.strGotoProjectSite);
 
             lblNewVer.Text = Resources.strCheckingNewVersion;
 
@@ -155,14 +151,6 @@ namespace ApkShellext2 {
             Utility.setRegistrySetting(Properties.Resources.optAlwaysShowGooglePlay, checkBox2.Checked ? 1 : 0);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start(linkLabel1.Text);
-        }
-
-        private void lblNewVer_Click(object sender, EventArgs e) {
-
-        }
-
         private void checkBox3_CheckedChanged(object sender, EventArgs e) {
             if (Utility.getRegistrySetting(Properties.Resources.optShowOverlay) != (checkBox3.Checked ? 1 : 0)) {
                 Utility.setRegistrySetting(Properties.Resources.optShowOverlay, checkBox3.Checked ? 1 : 0);
@@ -171,8 +159,8 @@ namespace ApkShellext2 {
         }
 
         private void combLanguage_SelectedIndexChanged(object sender, EventArgs e) {
-            if (formLoaded && Utility.SupportedLanguages[combLanguage.SelectedIndex].LCID != Thread.CurrentThread.CurrentCulture.LCID) {
-                Utility.setRegistrySetting("language", Utility.SupportedLanguages[combLanguage.SelectedIndex].LCID);
+            if (formLoaded && Utility.getSupportedLanguages()[combLanguage.SelectedIndex].LCID != Thread.CurrentThread.CurrentCulture.LCID) {
+                Utility.setRegistrySetting("language", Utility.getSupportedLanguages()[combLanguage.SelectedIndex].LCID);
                 this.OnLoad(e);
             }
         }

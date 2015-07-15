@@ -30,7 +30,6 @@
             this.lblNewVer = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.combLanguage = new System.Windows.Forms.ComboBox();
@@ -42,7 +41,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(191, 12);
+            this.checkBox1.Location = new System.Drawing.Point(107, 12);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 1;
@@ -93,28 +92,17 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(191, 35);
+            this.checkBox2.Location = new System.Drawing.Point(107, 32);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 2;
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 79);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 3;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "projectlink";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(191, 58);
+            this.checkBox3.Location = new System.Drawing.Point(107, 53);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
             this.checkBox3.TabIndex = 7;
@@ -135,9 +123,9 @@
             // combLanguage
             // 
             this.combLanguage.FormattingEnabled = true;
-            this.combLanguage.Location = new System.Drawing.Point(185, 114);
+            this.combLanguage.Location = new System.Drawing.Point(107, 95);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(166, 21);
+            this.combLanguage.Size = new System.Drawing.Size(242, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
@@ -153,7 +141,7 @@
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(186, 90);
+            this.lblLanguage.Location = new System.Drawing.Point(104, 79);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(58, 13);
             this.lblLanguage.TabIndex = 9;
@@ -167,7 +155,6 @@
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.combLanguage);
             this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNewVer);
@@ -194,7 +181,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox combLanguage;
         private System.Windows.Forms.Label label1;

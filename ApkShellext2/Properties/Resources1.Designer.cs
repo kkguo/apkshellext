@@ -155,7 +155,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Preferences 的本地化字符串。
+        ///   查找类似 Preferences &amp;&amp; Update 的本地化字符串。
         /// </summary>
         internal static string menuPreferences {
             get {
@@ -169,15 +169,6 @@ namespace ApkShellext2.Properties {
         internal static string menuRenameAs {
             get {
                 return ResourceManager.GetString("menuRenameAs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Faile to read apk file 的本地化字符串。
-        /// </summary>
-        internal static string menuRenameReadFailed {
-            get {
-                return ResourceManager.GetString("menuRenameReadFailed", resourceCulture);
             }
         }
         
@@ -307,6 +298,15 @@ namespace ApkShellext2.Properties {
         internal static string strPreferencesCation {
             get {
                 return ResourceManager.GetString("strPreferencesCation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Faile to read apk file 的本地化字符串。
+        /// </summary>
+        internal static string strReadApkFailed {
+            get {
+                return ResourceManager.GetString("strReadApkFailed", resourceCulture);
             }
         }
         

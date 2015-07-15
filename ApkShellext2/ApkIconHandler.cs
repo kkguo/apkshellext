@@ -8,7 +8,9 @@ using SharpShell.SharpIconHandler;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace ApkShellext2
 {
@@ -22,7 +24,6 @@ namespace ApkShellext2
 
         protected override Icon GetIcon(bool smallIcon, uint iconSize)
         {
-            Log("requestiong size " + iconSize.ToString());
             if (smallIcon) { // this place save one time read zip package
                 try {
                     return addOverlay((int)iconSize);
@@ -35,9 +36,32 @@ namespace ApkShellext2
             }
 
             try {
-                ApkQuickReader reader = new ApkQuickReader (SelectedItemPath);
+                ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
                 m_icon = reader.getImage("application", "icon");
-            } catch {}
+            } catch {
+                // read error, draw the default icon
+                m_icon = new Bitmap((int)iconSize, (int)iconSize);
+                using (Graphics g = Graphics.FromImage(m_icon)) {
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;   
+                    g.FillRectangle(Brushes.White, 0, 0, iconSize, iconSize);
+                    Rectangle rec = new Rectangle();                    
+                    if (Properties.Resources.androidHead.Width > Properties.Resources.androidHead.Height) {
+                        rec.Width = (int)iconSize;
+                        rec.Height = (int)(Properties.Resources.androidHead.Height * iconSize / Properties.Resources.androidHead.Width);
+                        rec.X = 0;
+                        rec.Y = (int)(iconSize - rec.Height) / 2;
+                    } else {
+                        rec.Width = (int)(Properties.Resources.androidHead.Width * iconSize /
+                            Properties.Resources.androidHead.Height);
+                        rec.Height = (int)iconSize;
+                        rec.X = (int)(iconSize - rec.Width) / 2;
+                        rec.Y = 0;
+                    }
+                    g.DrawImage(Properties.Resources.androidHead, rec);
+                }
+            }
             return addOverlay((int)iconSize);
         }
 
@@ -57,7 +81,7 @@ namespace ApkShellext2
                         int targetY = iconSize - targetH;
                         g.DrawImage(Properties.Resources.androidHead, 0, targetY, targetW, targetH);
                     } else {
-                        g.DrawImage(m_icon, 0, 0, (int)iconSize, (int)iconSize);
+                        g.DrawImage(m_icon, 0, 0, iconSize, iconSize);
                     }
                     return Icon.FromHandle(b.GetHicon());
                 }
@@ -66,7 +90,6 @@ namespace ApkShellext2
 
         [CustomRegisterFunction]
         public static void postDoRegister(Type type, RegistrationType registrationType) {
-            Console.WriteLine("Registering " + type.Assembly.FullName);
             Console.WriteLine("Registering " + type.FullName);
 
             #region Clean up apkshellext registry
@@ -103,13 +126,15 @@ namespace ApkShellext2
 
             #region Clean up older versions registry
             try {
-                Console.WriteLine("Found old version in registry, cleaning up ...");
-                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" + 
+                using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
-                    foreach (var k in key.GetSubKeyNames()) {
-                        if (k != type.Assembly.GetName().Version.ToString()) {
-                            Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
-                    type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                    if (key != null && key.GetSubKeyNames().Count() != 0) {
+                        Console.WriteLine("Found old version in registry, cleaning up ...");
+                        foreach (var k in key.GetSubKeyNames()) {
+                            if (k != type.Assembly.GetName().Version.ToString()) {
+                                Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                        type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
+                            }
                         }
                     }
                 }

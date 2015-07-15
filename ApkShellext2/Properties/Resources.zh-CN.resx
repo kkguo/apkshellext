@@ -138,7 +138,7 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>改名为 {0}</value>
   </data>
-  <data name="menuRenameReadFailed" xml:space="preserve">
+  <data name="strReadApkFailed" xml:space="preserve">
     <value>文件已经损坏</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
