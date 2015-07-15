@@ -11,20 +11,24 @@ You are seeing the code page of this project, please visit [Project page](http:/
 * Goto apk's google play page.
 * Check new version automatically.
 * Show overlay icon for apk files.
-* Support English and Chinese
+* Support mulitple languages: 
+  - English
+  - 中文
+  - italiano (by Vince. M)
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
 * [Download, Install & uninstall](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall)
 * [Build & Debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
-* [Translate](https://github.com/kkguo/apkshellext/wiki/Multi-language-and-Transaltion)
+* [Languages and Translate](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion)
 
 ----------------------------------------------------------------------------
+#### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Multi-language-and-Transaltion)
+
 #### [Contribute]
   * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
-  * Vince. M (bug report)
+  * Vince. M (bug report and translation)
  
- Please help to translate into other language, [How to](https://github.com/kkguo/apkshellext/wiki/Multi-language-and-Transaltion)
 
 Credit to:
 __[SharpShell](https://github.com/dwmkerr/sharpshell)__ / __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ /  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__
