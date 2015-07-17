@@ -63,8 +63,6 @@ namespace ApkShellext2 {
             checkBox3.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
 
             if (!updateChecked) {
-                newVersionEvent += OnNewVersionEvent;
-                networkIssueEvent += OnNetworkIssue; 
                 Thread getVersionTh = new Thread(new ThreadStart(getLatestVersion));
                 getVersionTh.CurrentCulture = Thread.CurrentThread.CurrentCulture;
                 getVersionTh.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -72,6 +70,12 @@ namespace ApkShellext2 {
             }
             btnCancel.Focus();
             formLoaded = true;
+
+            // Secret garden, disable show ipa icon for now, as it's a beta
+            int ipa = Utility.getRegistrySetting("ShowIpaIcon", 100);
+            checkBox4.Text = Resources.strShowIpaIcon;
+            checkBox4.Visible = (ipa != 100);
+            checkBox4.Checked = (ipa == 1);
         }
 
         private void getLatestVersion() {
@@ -94,52 +98,42 @@ namespace ApkShellext2 {
                 string s1 = GetType().Assembly.GetName().Version.ToString();
                 string[] curV = s1.Split(new Char[] { '.' });
 
-                NewVersionEventArgs args = new NewVersionEventArgs();
                 // version number should be always 4 parts
                 for (int i = 0; i < latestV.Length; i++) {
-                    if (int.Parse(latestV[i]) > int.Parse(curV[i])) {                        
-                        args.newVersion = true;
-                        args.version = s;
-                        newVersionEvent(this, args);
-                        return;
+                    if (latestV[i] != curV[i]) {
+                        if (int.Parse(latestV[i]) > int.Parse(curV[i])) {
+                            this.Invoke((Action)(() => {
+                                lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, s);
+                                btnUpdate.Text = Resources.btnUpdate;
+                                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate, 16);
+                                btnUpdate.Focus();
+                                toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
+                            }));
+                            return;
+                        } else {
+                            break;
+                        }
                     }
                 }
-
-                args.newVersion = false;
-                args.version = s;
-                newVersionEvent(this, args);
+                this.Invoke((Action)(() => {
+                    lblNewVer.Text = Resources.strGotLatest;
+                    btnUpdate.Text = Resources.btnGitHub;
+                }));
                 return;
 
             } catch (Exception ex) {
-                networkIssueEvent(this, new EventArgs());
+                lblNewVer.Invoke((Action)(()=>lblNewVer.Text = Resources.strGotLatest));
+                btnUpdate.Invoke((Action)(()=>btnUpdate.Text = Resources.btnGitHub));
                 Logging.Log("Cannot access the web " + ex.Message);
             }
         }
 
-        private void OnNewVersionEvent(object sender, EventArgs e) {
-            NewVersionEventArgs arg = (NewVersionEventArgs)e;
-            if (arg.newVersion) {
-                lblNewVer.Text = string.Format(Resources.strNewVersionAvailible,arg.version);
-                btnUpdate.Text = Resources.btnUpdate;
-                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate, 16);
-                toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);                
-                btnUpdate.Focus();
-            } else {
-                lblNewVer.Text = Resources.strGotLatest;
-                btnUpdate.Text = Resources.btnGitHub;
-            }
-        }
-
-        private void OnNetworkIssue(object sender, EventArgs e) {
-            lblNewVer.Text = Resources.strCheckProjectSite;
-            btnUpdate.Text = Resources.btnGitHub;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e) {
+         private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
+            if ((ModifierKeys & Keys.Shift) != 0) checkBox4.Visible = true;
             System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
@@ -164,10 +158,9 @@ namespace ApkShellext2 {
                 this.OnLoad(e);
             }
         }
-    }
 
-    public class NewVersionEventArgs : EventArgs {
-        public bool newVersion { get; set; }
-        public string version { get; set; }
+        private void checkBox4_CheckedChanged(object sender, EventArgs e) {
+            Utility.setRegistrySetting(Utility.keyShowIpaIcon,checkBox4.Checked ? 1 : 0);
+        }
     }
 }

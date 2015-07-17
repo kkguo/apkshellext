@@ -35,6 +35,7 @@
             this.combLanguage = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLanguage = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(282, 161);
+            this.btnCancel.Location = new System.Drawing.Point(223, 151);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(67, 25);
             this.btnCancel.TabIndex = 0;
@@ -60,7 +61,7 @@
             // btnUpdate
             // 
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(209, 161);
+            this.btnUpdate.Location = new System.Drawing.Point(150, 151);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 25);
             this.btnUpdate.TabIndex = 4;
@@ -71,9 +72,9 @@
             // 
             // lblNewVer
             // 
-            this.lblNewVer.Location = new System.Drawing.Point(9, 167);
+            this.lblNewVer.Location = new System.Drawing.Point(9, 116);
             this.lblNewVer.Name = "lblNewVer";
-            this.lblNewVer.Size = new System.Drawing.Size(194, 19);
+            this.lblNewVer.Size = new System.Drawing.Size(89, 60);
             this.lblNewVer.TabIndex = 0;
             this.lblNewVer.Text = "NewVersion";
             // 
@@ -125,16 +126,16 @@
             this.combLanguage.FormattingEnabled = true;
             this.combLanguage.Location = new System.Drawing.Point(107, 95);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(242, 21);
+            this.combLanguage.Size = new System.Drawing.Size(183, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(9, 148);
+            this.label1.Location = new System.Drawing.Point(9, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 19);
+            this.label1.Size = new System.Drawing.Size(89, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "Current version";
             // 
@@ -147,11 +148,23 @@
             this.lblLanguage.TabIndex = 9;
             this.lblLanguage.Text = "Language:";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(107, 122);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(80, 17);
+            this.checkBox4.TabIndex = 10;
+            this.checkBox4.Text = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
             // Preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 198);
+            this.ClientSize = new System.Drawing.Size(302, 189);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.combLanguage);
             this.Controls.Add(this.checkBox3);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.ComboBox combLanguage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
