@@ -30,4 +30,8 @@ This project is open sourced and free, you are seeing the code page, please visi
  
 
 Credit to:
-__[SharpShell](https://github.com/dwmkerr/sharpshell)__ / __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ /  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__
+__[SharpShell](https://github.com/dwmkerr/sharpshell)__ 
+__[SharpZip](https://github.com/icsharpcode/SharpZipLib)__  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__ 
+__[PlistCS](https://github.com/animetrics/PlistCS)__
+__[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__
+__[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__
