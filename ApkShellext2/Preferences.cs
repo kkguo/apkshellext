@@ -21,9 +21,6 @@ namespace ApkShellext2 {
         private bool formLoaded = false;
         private bool updateChecked = false;
 
-        public event EventHandler newVersionEvent;
-        public event EventHandler networkIssueEvent;
-
         private void Preferences_Load(object sender, EventArgs e) {
             Utility.Localize();
 
@@ -160,7 +157,10 @@ namespace ApkShellext2 {
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Utility.keyShowIpaIcon,checkBox4.Checked ? 1 : 0);
+            if (Utility.getRegistrySetting(Utility.keyShowIpaIcon) != (checkBox4.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowIpaIcon, checkBox4.Checked ? 1 : 0);
+                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            }
         }
     }
 }

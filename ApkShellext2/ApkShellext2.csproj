@@ -368,6 +368,7 @@
     <None Include="Resources\GitHub.png" />
     <None Include="Resources\android.png" />
     <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
+    <None Include="Resources\Apple.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
