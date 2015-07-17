@@ -4,9 +4,10 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
 
-namespace ApkQuickParser {
-    class ApkQuickReader : IDisposable {
-        public string FileName { get; set; }
+namespace ApkQuickReader {
+    class ApkReader : IDisposable {
+        private string _filename;
+        public string FileName { get {return _filename;} }
 
         enum TRUNK_TYPE : short {
             RES_NULL_TYPE = 0x0000,
@@ -63,23 +64,30 @@ namespace ApkQuickParser {
             TYPE_STRING = 0x03,
         }
 
-        private readonly byte[] resources;
-        private readonly byte[] manifest;
+        private ZipFile zip;
+        private byte[] resources;
+        private byte[] manifest;
 
         public string Culture { get;set;}
 
-        public ApkQuickReader(string filename) {
-            FileName = filename;
-            using (ZipFile zipfile = new ZipFile(filename)) {
+        /// <summary>
+        /// extract the manifext
+        /// </summary>
+        /// <param name="filename">full path to the file</param>
+        /// <param name="culture"></param>
+        public ApkReader(string filename, string culture = "") {
+            _filename = filename;
+            Culture = culture;
+            zip = new ZipFile(filename);
 
-                ZipEntry en = zipfile.GetEntry("androidmanifest.xml");
-                BinaryReader s = new BinaryReader(zipfile.GetInputStream(en));
-                manifest = s.ReadBytes((int)en.Size);
+            ZipEntry en = zip.GetEntry("androidmanifest.xml");
+            BinaryReader s = new BinaryReader(zip.GetInputStream(en));
+            manifest = s.ReadBytes((int)en.Size);
 
-                en = zipfile.GetEntry("resources.arsc");
-                s = new BinaryReader(zipfile.GetInputStream(en));
-                resources = s.ReadBytes((int)en.Size);
-            }
+            en = zip.GetEntry("resources.arsc");
+            s = new BinaryReader(zip.GetInputStream(en));
+            resources = s.ReadBytes((int)en.Size);
+
         }
 
         /// <summary>
@@ -99,18 +107,17 @@ namespace ApkQuickParser {
         /// <param name="attr"></param>
         /// <returns></returns>
         public Bitmap getImage(string tag, string attr) {
-            using (ZipFile zipfile = new ZipFile(this.FileName)) {
-                ZipEntry en = zipfile.GetEntry(QuickSearchManifestXml(tag, attr));
-                if (en != null) {
-                    try {
-                        return (Bitmap)Bitmap.FromStream(zipfile.GetInputStream(en));
-                    } catch {
-                        return null;
-                    }
-                } else {
+            ZipEntry en = zip.GetEntry(QuickSearchManifestXml(tag, attr));
+            if (en != null) {
+                try {
+                    return (Bitmap)Bitmap.FromStream(zip.GetInputStream(en));
+                } catch {
                     return null;
                 }
+            } else {
+                return null;
             }
+
         }
 
         /// <summary>
@@ -253,14 +260,19 @@ namespace ApkQuickParser {
             }
         }
 
-        private byte[] ISO_639(string s) {
+        /// <summary>
+        /// Get culture code from string
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private byte[] ISO_639(string code) {
             byte[] encode = new byte[2];
-            if (s.Length == 3) {
-                byte[] c = System.Text.Encoding.ASCII.GetBytes(s.ToCharArray());
+            if (code.Length == 3) {
+                byte[] c = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
                 encode[0] = (byte)((c[0] & 0x1F) + ((c[1] & 0x03) << 5));
                 encode[1] = (byte)(1 << 7 + ((c[2] & 0x1F) << 2) + ((c[1] & 0x1c) >> 2));
-            } else if (s.Length == 2) {
-                encode = System.Text.Encoding.ASCII.GetBytes(s.ToCharArray());
+            } else if (code.Length == 2) {
+                encode = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
             }
             return encode;
         }
@@ -385,7 +397,11 @@ namespace ApkQuickParser {
         }
 
         void IDisposable.Dispose() {
-            // nothing to dispose yet
+            resources = null;
+            manifest = null;
+            if (zip != null) {
+                zip.Close();
+            }
         }
     }
 }

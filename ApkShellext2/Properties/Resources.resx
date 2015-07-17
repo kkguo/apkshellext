@@ -152,7 +152,7 @@
     <value>Go to project site to update</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Look at GooglePlay page</value>
+    <value>Check on GooglePlay</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
@@ -191,7 +191,7 @@
     <value>OK</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Always show GooglePlay</value>
+    <value>Always show GooglePlay menu</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
     <value>If checked, GooglePlay menu will show up even multiple apk files selected. 
@@ -202,8 +202,9 @@ By default, only show the menu when one file selected</value>
     <value>Go to ApkShellext2 Project site</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>When checked, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
-otherwise, only &lt;label&gt;_&lt;versionName&gt;.apk, for avoiding situation of same VersionName but different VersionCode</value>
+    <value>For avoiding situation of same VersionName but different VersionCode,
+check this, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk,
+otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
     <value>Rename with VersionCode</value>
@@ -219,5 +220,8 @@ otherwise, only &lt;label&gt;_&lt;versionName&gt;.apk, for avoiding situation of
   </data>
   <data name="strPreferencesCation" xml:space="preserve">
     <value>ApkShellext2 Preferences</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Show ios app (ipa) icon.</value>
   </data>
 </root>

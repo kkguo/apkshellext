@@ -60,6 +60,26 @@
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\CRC32.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\Deflate.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\DeflateStream.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\GZipStream.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\Inflate.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\InfTree.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\ParallelDeflateOutputStream.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\Tree.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\Zlib.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibBaseStream.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibCodec.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibConstants.cs" />
+    <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibStream.cs" />
+    <Compile Include="IpaIconHandler.cs" />
+    <Compile Include="IpaReader.cs" />
+    <Compile Include="PlistCS\PlistCS\Src\Plist.cs" />
+    <Compile Include="PNGDecrush\PNGDecrush\BinaryReaderNetworkHostOrderAdditions.cs" />
+    <Compile Include="PNGDecrush\PNGDecrush\PNGChunk.cs" />
+    <Compile Include="PNGDecrush\PNGDecrush\PNGChunkParser.cs" />
+    <Compile Include="PNGDecrush\PNGDecrush\PNGDecrusher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>

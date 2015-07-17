@@ -4,3 +4,12 @@
 [submodule "ApkShellext2/SharpShell"]
 	path = ApkShellext2/SharpShell
 	url = https://github.com/kkguo/sharpshell.git
+[submodule "ApkShellext2/PlistCS"]
+	path = ApkShellext2/PlistCS
+	url = https://github.com/kkguo/PlistCS.git
+[submodule "ApkShellext2/PNGDecrush"]
+	path = ApkShellext2/PNGDecrush
+	url = https://github.com/kkguo/PNGDecrush.git
+[submodule "ApkShellext2/Ionic.Zlib"]
+	path = ApkShellext2/Ionic.Zlib
+	url = https://github.com/kkguo/Ionic.Zlib.git

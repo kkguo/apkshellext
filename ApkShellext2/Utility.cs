@@ -15,12 +15,8 @@ using System.Text.RegularExpressions;
 
 namespace ApkShellext2 {
     public static class Utility {
-        public static readonly string keyAlwaysShowGooglePlay = @"AlwaysShowGooglePlay";
-        public static readonly string keyRenameWithVersionCode= @"RenameWithVersionCode";
-        public static readonly string keyShowOverlay = @"ShowOverLayIcon";
-
         /// <summary>
-        /// resize bitmap
+        /// resize bitmap with high quality
         /// </summary>
         /// <param name="original"></param>
         /// <param name="width"></param>
@@ -53,6 +49,12 @@ namespace ApkShellext2 {
             return ResizeBitmap(orignial, new Size(width, width));
         }
 
+        # region set/get registry settings
+        public static readonly string keyAlwaysShowGooglePlay = @"AlwaysShowGooglePlay";
+        public static readonly string keyRenameWithVersionCode = @"RenameWithVersionCode";
+        public static readonly string keyShowOverlay = @"ShowOverLayIcon";
+        public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
+
         public static void setRegistrySetting(string key, int value) {
             try {
                 string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
@@ -76,7 +78,9 @@ namespace ApkShellext2 {
             }
 
         }
+        # endregion
 
+        #region Resolve resource dll by internal resource
         // buffer for loaded resource dll;
         private static int _bufCultureInfoLCID;
         private static byte[] _binResourceDll;
@@ -115,9 +119,12 @@ namespace ApkShellext2 {
             return Assembly.Load(_binResourceDll);
         }
 
+        #endregion
+
         /// <summary>
         /// Load Resource Dll and set the culture info
         /// Resource Dll is buffered in static byte array in this class
+        /// This is needed before any thread loading localize string
         /// </summary>
         public static void Localize() {            
             HookResolveResourceDll();            
@@ -128,7 +135,10 @@ namespace ApkShellext2 {
             }
         }
 
-        // Enumerate all language resouce dll, get culture code
+        /// <summary>
+        ///  Enumerate all language resouce dll, get culture code
+        /// </summary>
+        /// <returns></returns>
         public static CultureInfo[] getSupportedLanguages() {
             List<CultureInfo> result = new List<CultureInfo>();
             result.Add(new CultureInfo("en-US")); //default is en-US

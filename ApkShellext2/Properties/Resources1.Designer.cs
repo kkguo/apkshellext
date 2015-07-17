@@ -137,7 +137,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Look at GooglePlay page 的本地化字符串。
+        ///   查找类似 Check on GooglePlay 的本地化字符串。
         /// </summary>
         internal static string menuGotoGooglePlay {
             get {
@@ -183,7 +183,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Always show GooglePlay 的本地化字符串。
+        ///   查找类似 Always show GooglePlay menu 的本地化字符串。
         /// </summary>
         internal static string strAlwaysShowGooglePlay {
             get {
@@ -284,8 +284,9 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 When checked, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
-        ///otherwise, only &lt;label&gt;_&lt;versionName&gt;.apk, for avoiding situation of same VersionName but different VersionCode 的本地化字符串。
+        ///   查找类似 For avoiding situation of same VersionName but different VersionCode,
+        ///check this, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk,
+        ///otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk,  的本地化字符串。
         /// </summary>
         internal static string strRenameToolTip {
             get {
@@ -299,6 +300,15 @@ namespace ApkShellext2.Properties {
         internal static string strRenameWithVersionCode {
             get {
                 return ResourceManager.GetString("strRenameWithVersionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Show ios app (ipa) icon. 的本地化字符串。
+        /// </summary>
+        internal static string strShowIpaIcon {
+            get {
+                return ResourceManager.GetString("strShowIpaIcon", resourceCulture);
             }
         }
         

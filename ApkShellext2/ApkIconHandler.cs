@@ -1,4 +1,4 @@
-﻿using ApkQuickParser;
+﻿using ApkQuickReader;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
@@ -12,8 +12,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-namespace ApkShellext2
-{
+namespace ApkShellext2{
 
     [Guid("1F869CEE-4FDA-35D9-896F-43975A87D1F6")]
     [ComVisible(true)]
@@ -36,7 +35,7 @@ namespace ApkShellext2
             }
 
             try {
-                ApkQuickReader reader = new ApkQuickReader(SelectedItemPath);
+                ApkReader reader = new ApkReader(SelectedItemPath);
                 m_icon = reader.getImage("application", "icon");
             } catch {
                 // read error, draw the default icon

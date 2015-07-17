@@ -1,4 +1,4 @@
-﻿using ApkQuickParser;
+﻿using ApkQuickReader;
 using Microsoft.Win32;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
@@ -88,15 +88,15 @@ namespace ApkShellext2 {
             // Draw Apk icon to the menu
             // if choose multiple files, will create a icon with upto 3 icons together.             
             try { // draw multiple icons
-                ApkQuickReader reader0 = new ApkQuickReader(SelectedItemPaths.ElementAt(0));
-                ApkQuickReader reader1 = null;
-                ApkQuickReader reader2 = null;
+                ApkReader reader0 = new ApkReader(SelectedItemPaths.ElementAt(0));
+                ApkReader reader1 = null;
+                ApkReader reader2 = null;
                 if (SelectedItemPaths.Count() == 1) {
                     mainMenu.Image = Utility.ResizeBitmap(reader0.getImage("application", "icon"), size);
                 } else {
-                    reader1 = new ApkQuickReader(SelectedItemPaths.ElementAt(1));
+                    reader1 = new ApkReader(SelectedItemPaths.ElementAt(1));
                     if (SelectedItemPaths.Count() > 2) {
-                        reader2 = new ApkQuickReader(SelectedItemPaths.ElementAt(2));
+                        reader2 = new ApkReader(SelectedItemPaths.ElementAt(2));
                     }
                     Bitmap b = new Bitmap(size, size);
                     using (Graphics g = Graphics.FromImage((Image)b)) {
@@ -135,7 +135,7 @@ namespace ApkShellext2 {
             bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
             string newFileName = "";
             try {
-                ApkQuickReader reader = new ApkQuickReader(path);
+                ApkReader reader = new ApkReader(path);
                 newFileName = reader.getAttribute("application", "label")
                      + "_" + reader.getAttribute("manifest", "versionName");
                 if (key_RenameWithVersionCode) {
@@ -174,7 +174,7 @@ namespace ApkShellext2 {
 
         private void gotoGooglePlay() {
             foreach (var p in SelectedItemPaths) {
-                ApkQuickReader reader = new ApkQuickReader(p);
+                ApkReader reader = new ApkReader(p);
                 string package = reader.getAttribute("manifest", "package");
                 System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
             }

@@ -158,7 +158,7 @@
     <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Preferenze di aggiornamento</value>
+    <value>Impostazioni del Programma</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rinomina in {0}</value>
@@ -218,6 +218,6 @@ altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse 
     <value>Lingua:</value>
   </data>
   <data name="strPreferencesCation" xml:space="preserve">
-    <value>Preferenze di ApkShellext2</value>
+    <value>Impostazioni di ApkShellext2</value>
   </data>
 </root>
