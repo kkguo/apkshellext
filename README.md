@@ -19,6 +19,7 @@ Originally this project hosts on [GoogleCode](code.google.com/p/apkshellext), no
   - English
   - 中文
   - italiano (by Vince. M)
+* new!!Support IPA (iOS app) icon display (beta), [ask for enable method](kkguokk@gmail.com)
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
