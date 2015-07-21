@@ -2,7 +2,9 @@
 
 A shell exteions for __A__ ndriod __P__ ac __K__ age file, the purpose is helping people who like to backup and collect apk files in PC. Show Icons in windows explorer, rename apk file with their version number, show package information in info tip, and more..
 
-This project is open sourced and free, you are seeing the code page, please visit [project page](http://kkguo.github.io/apkshellext) for download and more information.
+This project is open source and free, please visit [project page](http://kkguo.github.io/apkshellext) for download and more information.
+
+Originally this project hosts on [GoogleCode](code.google.com/p/apkshellext), now it's fully re-writen and host on Github. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
 
 #### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project)
 
@@ -17,6 +19,7 @@ This project is open sourced and free, you are seeing the code page, please visi
   - English
   - 中文
   - italiano (by Vince. M)
+* new!!Support IPA (iOS app) icon display (beta)[join for test](kkguokk@gmail.com)
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
@@ -30,4 +33,10 @@ This project is open sourced and free, you are seeing the code page, please visi
  
 
 Credit to:
-__[SharpShell](https://github.com/dwmkerr/sharpshell)__ / __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ /  __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__
+* __[SharpShell](https://github.com/dwmkerr/sharpshell)__ 
+* __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ 
+* __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__ 
+* __[PlistCS](https://github.com/animetrics/PlistCS)__
+* __[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__
+* __[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__
+
