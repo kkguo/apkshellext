@@ -7,6 +7,7 @@ This project is open source and free, please visit [project page](http://kkguo.g
 Originally this project hosts on [GoogleCode](code.google.com/p/apkshellext), now it's fully re-writen and host on Github. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
 
 #### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project)
+You could also join the transaltion project on [Transifex](https://www.transifex.com/projects/p/apkshellext/)
 
 #### [Features]
 * Show apk file icons of in explorer
