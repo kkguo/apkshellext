@@ -15,17 +15,19 @@ You could also join the transaltion project on
 
 
 #### [Features]
-* Show apk file icons of in explorer
-* Show Package information in tip bubble
-* Context menu for renaming apk file, batch renaming, with app name + version
-* Goto apk's google play page.
-* Check new version automatically.
-* Show overlay icon for apk files.
-* Support mulitple languages: 
-  - English
-  - 中文
-  - italiano (by Vince. M)
-* :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, so I hide the option for everyone, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
+ - [x] Show apk file icons of in explorer
+ - [x] Show Package information in tip bubble
+ - [x] Context menu for renaming apk file, batch renaming, with app name + version
+ - [x] Goto apk's google play page.
+ - [x] Check new version automatically.
+ - [x] Show overlay icon for apk files.
+ - [x] Support mulitple languages: 
+    - English
+    - 中文
+    - italiano (by Vince. M)
+ - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, so I hide the option for everyone, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
+ - [ ] Hook up adb function with namespace extension.
+ - [ ] drag-drop to install / uninstall to phone
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
