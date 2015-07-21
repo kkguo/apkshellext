@@ -222,7 +222,7 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
     <value>ApkShellext2 Preferences</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>Show ios app (ipa) icon.</value>
+    <value>Show iOS app (ipa) icon.</value>
   </data>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

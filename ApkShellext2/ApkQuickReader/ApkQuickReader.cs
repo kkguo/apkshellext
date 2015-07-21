@@ -7,7 +7,7 @@ using System.Drawing;
 namespace ApkQuickReader {
     class ApkReader : IDisposable {
         private string _filename;
-        public string FileName { get {return _filename;} }
+        public string FileName { get { return _filename; } }
 
         enum TRUNK_TYPE : short {
             RES_NULL_TYPE = 0x0000,
@@ -68,7 +68,7 @@ namespace ApkQuickReader {
         private byte[] resources;
         private byte[] manifest;
 
-        public string Culture { get;set;}
+        public string Culture { get; set; }
 
         /// <summary>
         /// extract the manifext
@@ -302,15 +302,15 @@ namespace ApkQuickReader {
 
                     //Package chunk now
                     for (int pack = 0; pack < packageCount; pack++) {
-                        long chunkPos = ms.Position;
+                        long PackChunkPos = ms.Position;
                         ms.Seek(2, SeekOrigin.Current); // jump type/headersize
                         int headerSize = br.ReadInt16();
-                        int chunkSize = br.ReadInt32();
+                        int PackChunkSize = br.ReadInt32();
                         int packID = br.ReadInt32();
 
                         if (packID != PackageID) { // check if the resource is in this pack
                             // goto next chunk
-                            ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
+                            ms.Seek(PackChunkPos + PackChunkSize, SeekOrigin.Begin);
                             continue;
                         } else {
                             //ms.Seek(128*2, SeekOrigin.Current); // skip name
@@ -318,7 +318,7 @@ namespace ApkQuickReader {
                             //ms.Seek(4,SeekOrigin.Current);    // skip lastpublictype
                             //int keyStringsPos = br.ReadInt32();
                             //ms.Seek(4, SeekOrigin.Current);  // skip lastpublickey
-                            ms.Seek(chunkPos + headerSize, SeekOrigin.Begin);
+                            ms.Seek(PackChunkPos + headerSize, SeekOrigin.Begin);
 
                             // skip typestring chunk
                             ms.Seek(4, SeekOrigin.Current);
@@ -327,68 +327,59 @@ namespace ApkQuickReader {
                             ms.Seek(4, SeekOrigin.Current);
                             ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
 
-                            //come to typespec chunks
+                            // come to typespec chunks and type chunks
+                            // typespec and type chunks may happen in a row.
                             do {
-                                chunkPos = ms.Position;
+                                long chunkPos = ms.Position;
                                 short chunkType = br.ReadInt16();
-                                ms.Seek(2, SeekOrigin.Current);
-                                chunkSize = br.ReadInt32();
-                                if (chunkType != (short)TRUNK_TYPE.RES_TABLE_TYPE_SPEC_TYPE) { // find the type spec
-                                    ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                    continue;
-                                }
-                                byte typeid = br.ReadByte();
-                                if (typeid != TypeID) {
-                                    ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip current typespec
-                                    continue;
-                                }
-                                ms.Seek(3 + 4, SeekOrigin.Current); // skip res0/res1
-                                //int entrycount = br.ReadInt32();         // TypeID < entrycount
-                                //int flag = br.ReadInt32();
-                                ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-
-                                // comes to first type chunk
-                                do {
-                                    chunkPos = ms.Position;
-                                    chunkType = br.ReadInt16();
-                                    if (chunkType != (short)TRUNK_TYPE.RES_TABLE_TYPE_TYPE) // entry not found
-                                        return null;
-                                    headerSize = br.ReadInt16();
-                                    chunkSize = br.ReadInt32();
+                                headerSize = br.ReadInt16();
+                                int chunkSize = br.ReadInt32();
+                                byte typeid;
+                                if (chunkType == (short)TRUNK_TYPE.RES_TABLE_TYPE_SPEC_TYPE) {
                                     typeid = br.ReadByte();
-                                    ms.Seek(3, SeekOrigin.Current); // skip 0
-                                    int entryCount = br.ReadInt32();
-                                    int entryStart = br.ReadInt32();
-
-                                    // read the config section
-                                    int config_size = br.ReadInt32();
-                                    byte[] config = br.ReadBytes(config_size - 4);
-                                    
-                                    ms.Seek(EntryID * 4, SeekOrigin.Current); // goto index
-                                    uint entryIndic = br.ReadUInt32();
-                                    if (entryIndic == 0xffffffff) {
-                                        ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                        continue; //no entry here, go to next chunk
+                                    if (typeid == TypeID) {
+                                        // get the flags
                                     }
-                                    ms.Seek(chunkPos + entryStart + entryIndic, SeekOrigin.Begin);
+                                } else if (chunkType == (short)TRUNK_TYPE.RES_TABLE_TYPE_TYPE) {
+                                    typeid = br.ReadByte();
+                                    if (typeid == TypeID) {
+                                        ms.Seek(3, SeekOrigin.Current); // skip 0
+                                        int entryCount = br.ReadInt32();
+                                        int entryStart = br.ReadInt32();
 
-                                    // get to the entry
-                                    ms.Seek(11, SeekOrigin.Current); // skip entry size, flags, key, size, 0
-                                    byte dataType = br.ReadByte();
-                                    uint data = br.ReadUInt32();
-                                    if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
-                                        return QuickSearchResourcesStringPool(data);
-                                    } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
-                                        if (data == 0x00000000) {
+                                        // read the config section
+                                        int config_size = br.ReadInt32();
+                                        byte[] config = br.ReadBytes(config_size - 4);
+
+                                        ms.Seek(EntryID * 4, SeekOrigin.Current); // goto index
+                                        uint entryIndic = br.ReadUInt32();
+                                        if (entryIndic == 0xffffffff) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                            continue; // the entry is null, go to next chunk
+                                            continue; //no entry here, go to next chunk
                                         }
-                                        return QuickSearchResource((UInt32)data);
-                                    } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
-                                        return data.ToString();
+                                        ms.Seek(chunkPos + entryStart + entryIndic, SeekOrigin.Begin);
+
+                                        // get to the entry
+                                        ms.Seek(11, SeekOrigin.Current); // skip entry size, flags, key, size, 0
+                                        byte dataType = br.ReadByte();
+                                        uint data = br.ReadUInt32();
+                                        if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
+                                            return QuickSearchResourcesStringPool(data);
+                                        } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
+                                            if (data == 0x00000000) {
+                                                ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
+                                                continue; // the entry is null, go to next chunk
+                                            }
+                                            return QuickSearchResource((UInt32)data);
+                                        } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
+                                            return data.ToString();
+                                        }
                                     }
-                                } while (true);
-                            } while (true);
+                                } else {
+                                    // chunk Type is not what we want.
+                                }
+                                ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // jump this chunk                                
+                            } while (ms.Position <= PackChunkPos + PackChunkSize);
                         }
                     }
                 }

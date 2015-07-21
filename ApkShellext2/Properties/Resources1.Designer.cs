@@ -314,7 +314,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show ios app (ipa) icon. 的本地化字符串。
+        ///   查找类似 Show iOS app (ipa) icon. 的本地化字符串。
         /// </summary>
         internal static string strShowIpaIcon {
             get {
