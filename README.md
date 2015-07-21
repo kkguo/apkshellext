@@ -10,7 +10,9 @@ Originally this project hosts on [GoogleCode](code.google.com/p/apkshellext), no
 You could also join the transaltion project on 
 [![Transifex](https://ds0k0en9abmn1.cloudfront.net/static/charts/images/tx-logo-micro.646b0065fce6.png)](https://www.transifex.com/projects/p/apkshellext/)
 
-![Status](https://www.transifex.com/projects/p/apkshellext/resource/resourcesresx-8/chart/image_png)
+[![Status](https://www.transifex.com/projects/p/apkshellext/resource/resourcesresx-8/chart/image_png)](https://www.transifex.com/projects/p/apkshellext/)
+
+
 
 #### [Features]
 * Show apk file icons of in explorer
