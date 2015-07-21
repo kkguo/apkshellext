@@ -1,10 +1,10 @@
 # ApkShellext2
 
-A shell exteions for __A__ ndriod __P__ ac __K__ age file, the purpose is helping people who like to backup and collect apk files in PC. Show Icons in windows explorer, rename apk file with their version number, show package information in info tip, and more..
+A windows shell exteions for __A__ ndriod __P__ ac __K__ age file.
 
-This project is open source and free, please visit [project page](http://kkguo.github.io/apkshellext) for download and more information.
+This project is open source and free, please visit :link:[project site](http://apkshellext.com) for :arrow_double_down:download and more :information_source:nformation.
 
-Originally this project hosts on [GoogleCode](code.google.com/p/apkshellext), now it's fully re-writen and host on Github. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
+Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to :octocat:Github and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
 
 #### Please help to translate into other language, here is [How to](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project)
 You could also join the transaltion project on 
