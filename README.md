@@ -23,7 +23,7 @@ You could also join the transaltion project on
   - English
   - 中文
   - italiano (by Vince. M)
-* new!!Support IPA (iOS app) icon display (beta)[join for test](kkguokk@gmail.com)
+* :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, so I hide the option for everyone, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
 
 #### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
 * [History](https://github.com/kkguo/apkshellext/wiki/Home)
