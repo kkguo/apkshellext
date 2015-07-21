@@ -25,7 +25,7 @@ You could also join the transaltion project on
     - English
     - 中文
     - italiano (by Vince. M)
- - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, so I hide the option for everyone, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
+ - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, needs a process to enable, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
 
