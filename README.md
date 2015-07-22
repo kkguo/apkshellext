@@ -1,6 +1,6 @@
 # ApkShellext2
 
-A windows shell exteions for __A__ ndriod __P__ ac __K__ age file.
+A windows shell exteions for .apk (Andriod PacKage) and .ipa (iOS app package) files.
 
 #### Please help to Translate, check the [Wiki](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project) for how to join.
 Or directly join the project on 
