@@ -14,6 +14,7 @@ Or directly join the project on
 
 
 #### [Features]
+ - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, needs a process to enable, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
  - [x] Show apk file icons of in explorer
  - [x] Show Package information in tip bubble
  - [x] Context menu for renaming apk file, batch renaming, with app name + version
@@ -24,7 +25,6 @@ Or directly join the project on
     - English
     - 中文
     - italiano (by Vince. M)
- - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, needs a process to enable, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
 
@@ -34,16 +34,16 @@ Or directly join the project on
 * [Build & Debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
 * [Languages and Translate](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion)
 
-#### [Contribute]
+#### [Contributor]
   * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
-  * Vince. M (bug report and translation)
+  * Vince. M (Bug report and Italian translation) widget@hotmail.it
  
 
-Credit to:
-* __[SharpShell](https://github.com/dwmkerr/sharpshell)__ 
-* __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ 
-* __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__ 
-* __[PlistCS](https://github.com/animetrics/PlistCS)__
-* __[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__
-* __[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__
+#### Credit to:
+* __[SharpShell](https://github.com/dwmkerr/sharpshell)__ Shell extion library
+* __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ Zip implementation in C#
+* __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__  the oringinal APK reader, not used anymore
+* __[PlistCS](https://github.com/animetrics/PlistCS)__  iOS plist file reader
+* __[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__ PNG decrush lib
+* __[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__  Another Zip implementation, used by PNGDecrush
 
