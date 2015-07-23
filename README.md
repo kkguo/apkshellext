@@ -8,6 +8,9 @@ Or directly join the project on
 
 [![Transifex Status](https://www.transifex.com/projects/p/apkshellext/resource/resourcesresx-8/chart/image_png)](https://www.transifex.com/projects/p/apkshellext/)
 
+or [Crowndin.com](https://corwndin.com)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext)
+
 This project is open source and free, please visit [project site](http://apkshellext.com) for Download and more Information.
 
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
