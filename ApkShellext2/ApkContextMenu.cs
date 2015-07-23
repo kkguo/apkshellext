@@ -106,10 +106,14 @@ namespace ApkShellext2 {
                         if (SelectedItemPaths.Count() > 2) {
                             g.DrawImage(reader2.getImage("application", "icon"), 0, 0, size - 6, size - 6);
                             g.DrawImage(reader1.getImage("application", "icon"), 3, 3, size - 6, size - 6);
+                            reader2.Close();
+                            reader1.Close();
                         } else {
                             g.DrawImage(reader1.getImage("application", "icon"), 0, 0, size - 6, size - 6);
+                            reader1.Close();
                         }
                         g.DrawImage(reader0.getImage("application", "icon"), 5, 5, size - 6, size - 6);
+                        reader0.Close();
                     }
                     mainMenu.Image = b;
                 }
@@ -135,12 +139,13 @@ namespace ApkShellext2 {
             bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
             string newFileName = "";
             try {
-                ApkReader reader = new ApkReader(path);
-                newFileName = reader.getAttribute("application", "label")
-                     + "_" + reader.getAttribute("manifest", "versionName");
-                if (key_RenameWithVersionCode) {
-                    string versionCode = reader.getAttribute("manifest", "versionCode");
-                    newFileName = newFileName + "_" + versionCode;
+                using (ApkReader reader = new ApkReader(path)) {
+                    newFileName = reader.getAttribute("application", "label")
+                         + "_" + reader.getAttribute("manifest", "versionName");
+                    if (key_RenameWithVersionCode) {
+                        string versionCode = reader.getAttribute("manifest", "versionCode");
+                        newFileName = newFileName + "_" + versionCode;
+                    }
                 }
                 newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalid char
                 string oldFileName = Path.GetFileName(path);
@@ -174,9 +179,10 @@ namespace ApkShellext2 {
 
         private void gotoGooglePlay() {
             foreach (var p in SelectedItemPaths) {
-                ApkReader reader = new ApkReader(p);
-                string package = reader.getAttribute("manifest", "package");
-                System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
+                using (ApkReader reader = new ApkReader(p)) {
+                    string package = reader.getAttribute("manifest", "package");
+                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
+                }
             }
         }
 

@@ -37,7 +37,7 @@ namespace ApkShellext2 {
 
             lblLanguage.Text = Resources.strLanguages;
 
-            this.Text = Resources.strPreferencesCation;
+            this.Text = Resources.strPreferencesCaption;
             this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
             btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.GitHub, 16);
 

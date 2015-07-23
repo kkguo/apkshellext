@@ -218,7 +218,7 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
   <data name="strLanguages" xml:space="preserve">
     <value>Use Language:</value>
   </data>
-  <data name="strPreferencesCation" xml:space="preserve">
+  <data name="strPreferencesCaption" xml:space="preserve">
     <value>ApkShellext2 Preferences</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">

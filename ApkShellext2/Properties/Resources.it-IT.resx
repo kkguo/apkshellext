@@ -217,7 +217,7 @@ altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse 
   <data name="strLanguages" xml:space="preserve">
     <value>Lingua:</value>
   </data>
-  <data name="strPreferencesCation" xml:space="preserve">
+  <data name="strPreferencesCaption" xml:space="preserve">
     <value>Impostazioni di ApkShellext2</value>
   </data>
 </root>

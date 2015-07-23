@@ -28,12 +28,13 @@ namespace ApkShellext2 {
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
             try {
                 Utility.Localize();
-                ApkReader reader = new ApkReader(SelectedItemPath);
-                string splitor = singleLine ? " " : Environment.NewLine;
-                return reader.getAttribute("application", "label") + splitor
-                        + reader.getAttribute("manifest", "package") + splitor
-                        + "Version : " + reader.getAttribute("manifest", "versionName") + " ("
-                        + reader.getAttribute("manifest", "versionCode") + ")";
+                using (ApkReader reader = new ApkReader(SelectedItemPath)) {
+                    string splitor = singleLine ? " " : Environment.NewLine;
+                    return reader.getAttribute("application", "label") + splitor
+                            + reader.getAttribute("manifest", "package") + splitor
+                            + "Version : " + reader.getAttribute("manifest", "versionName") + " ("
+                            + reader.getAttribute("manifest", "versionCode") + ")";
+                }
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);
                 return Properties.Resources.strReadApkFailed;

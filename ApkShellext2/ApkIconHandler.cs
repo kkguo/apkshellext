@@ -35,8 +35,9 @@ namespace ApkShellext2{
             }
 
             try {
-                ApkReader reader = new ApkReader(SelectedItemPath);
-                m_icon = reader.getImage("application", "icon");
+                using (ApkReader reader = new ApkReader(SelectedItemPath)) {
+                    m_icon = reader.getImage("application", "icon");
+                }
             } catch {
                 // read error, draw the default icon
                 m_icon = new Bitmap((int)iconSize, (int)iconSize);

@@ -278,9 +278,9 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找类似 ApkShellext2 Preferences 的本地化字符串。
         /// </summary>
-        internal static string strPreferencesCation {
+        internal static string strPreferencesCaption {
             get {
-                return ResourceManager.GetString("strPreferencesCation", resourceCulture);
+                return ResourceManager.GetString("strPreferencesCaption", resourceCulture);
             }
         }
         
