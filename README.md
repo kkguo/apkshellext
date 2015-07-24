@@ -2,14 +2,14 @@
 
 A windows shell exteions for .apk (Andriod PacKage) and .ipa (iOS app package) files.
 
-#### Please help to Translate on http://translate.apkshellext.com 
+#### Please help to Translate on http://translate.apkshellext.com
 
 [Crowndin Status: ![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
 
 This project is open source and free, visit http://apkshellext.com for Download and more Information.
 
 #### [Features]
- - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, needs a process to enable, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
+ - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, will need a special process to enable, if you want it, [ Ask me for how to enable ](mailto:kkguokk@gmail.com).
  - [x] Show apk file icons of in explorer
  - [x] Show Package information in tip bubble
  - [x] Context menu for renaming apk file, batch renaming, with app name + version
@@ -22,6 +22,9 @@ This project is open source and free, visit http://apkshellext.com for Download 
     - italiano (by Vince. M)
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
+
+#### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build
+#### Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
 
 #### [Contributor]
   * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
