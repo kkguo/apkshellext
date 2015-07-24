@@ -2,14 +2,11 @@
 
 A windows shell exteions for .apk (Andriod PacKage) and .ipa (iOS app package) files.
 
-#### Please help to Translate, check the [Wiki](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project) for how to join.
-Or directly join the project on http://translate.apkshellext.com host on [Crowndin.com](https://crowdin.com/project/apkshellext)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext)
+#### Please help to Translate on http://translate.apkshellext.com 
 
-This project is open source and free, please visit [project site](http://apkshellext.com) for Download and more Information.
+[Crowndin Status: ![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
 
-Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
-
+This project is open source and free, visit http://apkshellext.com for Download and more Information.
 
 #### [Features]
  - [x] :boom: NEW!! Support IPA (iOS app) icon display, it's still beta, needs a process to enable, [ Ask me for how to enable ](mailto:kkguokk@gmail.com) if you want to help to test. 
@@ -26,16 +23,9 @@ Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), n
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
 
-#### [[Wiki]](https://github.com/kkguo/apkshellext/wiki)
-* [History](https://github.com/kkguo/apkshellext/wiki/Home)
-* [Download, Install & uninstall](https://github.com/kkguo/apkshellext/wiki/How-to-install-and-uninstall)
-* [Build & Debug](https://github.com/kkguo/apkshellext/wiki/How-to-build-and-debug)
-* [Languages and Translate](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion)
-
 #### [Contributor]
   * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
   * Vince. M (Bug report and Italian translation) widget@hotmail.it
- 
 
 #### Credit to:
 * __[SharpShell](https://github.com/dwmkerr/sharpshell)__ Shell extion library
@@ -45,3 +35,5 @@ Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), n
 * __[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__ PNG decrush lib
 * __[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__  Another Zip implementation, used by PNGDecrush
 
+--------------
+Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
