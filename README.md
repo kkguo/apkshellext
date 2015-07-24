@@ -4,12 +4,11 @@ A windows shell exteions for .apk (Andriod PacKage) and .ipa (iOS app package) f
 
 #### Please help to Translate, check the [Wiki](https://github.com/kkguo/apkshellext/wiki/Languages-suppport-and-Transaltion#2-translate-and-add-the-language-into-project) for how to join.
 Or directly join the project on 
-[![Transifex](https://ds0k0en9abmn1.cloudfront.net/static/charts/images/tx-logo-micro.646b0065fce6.png)](https://www.transifex.com/projects/p/apkshellext/)
-
-[![Transifex Status](https://www.transifex.com/projects/p/apkshellext/resource/resourcesresx-8/chart/image_png)](https://www.transifex.com/projects/p/apkshellext/)
-
-or [Crowndin.com](https://corwndin.com)
+[Crowndin.com](https://crowdin.com/project/apkshellext)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext)
+
+or [![Transifex](https://ds0k0en9abmn1.cloudfront.net/static/charts/images/tx-logo-micro.646b0065fce6.png)](https://www.transifex.com/projects/p/apkshellext/)
+[![Transifex Status](https://www.transifex.com/projects/p/apkshellext/resource/resourcesresx-8/chart/image_png)](https://www.transifex.com/projects/p/apkshellext/)
 
 This project is open source and free, please visit [project site](http://apkshellext.com) for Download and more Information.
 
