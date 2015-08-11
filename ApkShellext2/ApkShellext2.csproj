@@ -48,6 +48,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -92,6 +94,7 @@
     <Compile Include="Preferences.Designer.cs">
       <DependentUpon>Preferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="QRCoder\QRCoder\QRCoder.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\COMServerAssociationAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
@@ -366,10 +369,19 @@
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
-    <None Include="Resources\android.png" />
+    <EmbeddedResource Include="Properties\Resources.ko-KR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.es-ES.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <None Include="Resources\Apple.png" />
+    <None Include="Resources\android_icon_128.png" />
+    <EmbeddedResource Include="Resources\ko-KR\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\es-ES\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
+    <None Include="Resources\QR-Scan.png" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
@@ -413,8 +425,12 @@
   <PropertyGroup>
     <PostBuildEvent>rd /s /q $(ProjectDir)\Resources\zh-CN
 rd /s /q $(ProjectDir)\Resources\it-IT
+rd /s /q $(ProjectDir)\Resources\ko-KR
+rd /s /q $(ProjectDir)\Resources\es-ES
 move /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\
-move /Y $(TargetDir)it-IT $(ProjectDir)Resources\
+move /Y $(TargetDir)it-IT $(ProjectDir)\Resources\
+move /Y $(TargetDir)ko-KR $(ProjectDir)\Resources\
+move /Y $(TargetDir)es-ES $(ProjectDir)Resources\
 copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

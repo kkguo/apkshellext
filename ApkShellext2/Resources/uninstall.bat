@@ -2,7 +2,7 @@
 ECHO #######################################################
 ECHO ##            APK Shell Extension  2                 ##
 ECHO ##                                                   ##
-ECHO ##    https://github.com/kkguo/apkshellext           ##
+ECHO ##           http://apkshellext.com      s            ##
 ECHO #######################################################
 
 REM === check and get the UAC for administrator privilege ===
@@ -35,22 +35,21 @@ if '%errorlevel%' NEQ '0' (
 REM SYSTEMINFO | FIND /i "x64-based pc"
 echo %PROCESSOR_IDENTIFIER% | FIND /i "x86"
 
+set FRAMEWORK=%windir%\Microsoft.NET\Framework
+set DOTNETVERSION=v4.0.30319
 IF %ERRORLEVEL%==1 (
-  "%windir%\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" /unregister %~dp0\apkshellext2.dll"
-) ELSE (
-  ECHO 32bit OS
-  "%windir%\Microsoft.NET\Framework\v4.0.30319\regasm.exe" /unregister %~dp0\apkshellext2.dll"
+  set FRAMEWORK=%FRAMEWORK%64
 )
-ECHO.
-REM ECHO The apkshellext.dll can't be deleted before explorer restart.
+set REGASM="%FRAMEWORK%\%DOTNETVERSION%\regasm.exe"
+%REGASM% /unregister "%~dp0\apkshellext2.dll"
 
-REM ECHO killing adb server
-REM TASKKILL /F /IM adb.exe
+ECHO.
+REM ECHO The apkshellext.dll may can't be deleted before explorer restart.
 
 ECHO.
 ECHO /-------------------------------------------------------------------\
 ECHO  apkshellext is an open-source project,
-ECHO  Please visit https://github.com/kkguo/apkshellext for more information
+ECHO  Please visit http://apkshellext.com for more information
 ECHO \-------------------------------------------------------------------/
 
 PAUSE

@@ -139,9 +139,6 @@
   <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="androidHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -226,5 +223,20 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
   </data>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="android" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\android_icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>Scan QR code to download</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Rename Pattern</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>This feature requires ApkShellextService, please make sure the service started.</value>
   </data>
 </root>

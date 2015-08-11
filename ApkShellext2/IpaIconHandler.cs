@@ -32,66 +32,32 @@ namespace ApkShellext2 {
                 return null;
             }
 
-            if (smallIcon) {
-                try {
-                    return addOverlay((int)iconSize);
-                } finally {
-                    if (m_icon != null) {
-                        m_icon.Dispose();
-                        m_icon = null;
-                    }
-                }
-            }
-
             try {
-                using (IpaReader ipaReader = new IpaReader(SelectedItemPath)) {
-                    m_icon = ipaReader.getImage(new string[] { "CFBundleIcons", "CFBundlePrimaryIcon", "CFBundleIconFiles" });
+                if (m_icon == null) {
+                    using (IpaReader ipaReader = new IpaReader(SelectedItemPath)) {
+                        m_icon = ipaReader.getImage(new string[] { "CFBundleIcons", "CFBundlePrimaryIcon", "CFBundleIconFiles" });
+                    }
                 }
             } catch {
                  // read error, draw the default icon
-                m_icon = new Bitmap((int)iconSize, (int)iconSize);
-                using (Graphics g = Graphics.FromImage(m_icon)) {
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.FillRectangle(Brushes.White, 0, 0, iconSize, iconSize);
-                    Rectangle rec = new Rectangle();
-                    if (Properties.Resources.Apple.Width > Properties.Resources.Apple.Height) {
-                        rec.Width = (int)iconSize;
-                        rec.Height = (int)(Properties.Resources.Apple.Height * iconSize / Properties.Resources.Apple.Width);
-                        rec.X = 0;
-                        rec.Y = (int)(iconSize - rec.Height) / 2;
-                    } else {
-                        rec.Width = (int)(Properties.Resources.Apple.Width * iconSize /
-                            Properties.Resources.Apple.Height);
-                        rec.Height = (int)iconSize;
-                        rec.X = (int)(iconSize - rec.Width) / 2;
-                        rec.Y = 0;
-                    }
-                    g.DrawImage(Properties.Resources.Apple, rec);
-                }
+                m_icon = Utility.ResizeBitmap(Properties.Resources.Apple,(int)iconSize);
+                return Icon.FromHandle(m_icon.GetHicon());
             }
-            return addOverlay((int)iconSize);
+            if (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1) {
+                return addOverlay(iconSize);
+            } else {
+                return Icon.FromHandle(m_icon.GetHicon());
+            }
         }
 
-        private Icon addOverlay(int iconSize) {
-            using (Bitmap b = new Bitmap(iconSize, iconSize)) {
+        private Icon addOverlay(uint iconSize) {
+            using (Bitmap b = new Bitmap((int)iconSize, (int)iconSize)) {
                 using (Graphics g = Graphics.FromImage(b)) {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    if (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1) {
-                        g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
-                        int overlaySize = (int)(iconSize * 0.6);
-                        overlaySize = (overlaySize >= 64) ? 64 : overlaySize;
-                        int targetW = overlaySize;
-                        targetW = (targetW >= 16) ? targetW : 16;
-                        int targetH = Properties.Resources.Apple.Height * targetW / Properties.Resources.Apple.Width;
-                        int targetY = iconSize - targetH;
-                        g.DrawImage(Properties.Resources.Apple, 0, targetY, targetW, targetH);
-                    } else {
-                        g.DrawImage(m_icon, 0, 0, iconSize, iconSize);
-                    }
+                    g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
+                    g.DrawImage(Properties.Resources.Apple, 0, iconSize / 2, iconSize / 2, iconSize / 2);
                     return Icon.FromHandle(b.GetHicon());
                 }
             }

@@ -2,7 +2,7 @@
 ECHO #######################################################
 ECHO ##            APK Shell Extension  2                 ##
 ECHO ##                                                   ##
-ECHO ##    https://github.com/kkguo/apkshellext           ##
+ECHO ##           http://apkshellext.com                  ##
 ECHO #######################################################
 
 @echo off
@@ -37,17 +37,19 @@ if '%errorlevel%' NEQ '0' (
 REM SYSTEMINFO | FIND /i "x64-based pc"
 echo %PROCESSOR_IDENTIFIER% | FIND /i "x86"
 
+set FRAMEWORK=%windir%\Microsoft.NET\Framework
+set DOTNETVERSION=v4.0.30319
 IF %ERRORLEVEL%==1 (
-  "%windir%\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" /codebase "%~dp0\apkshellext2.dll"
-) ELSE (
-  "%windir%\Microsoft.NET\Framework\v4.0.30319\regasm.exe" /codebase "%~dp0\apkshellext2.dll"
+  set FRAMEWORK=%FRAMEWORK%64
 )
+set REGASM="%FRAMEWORK%\%DOTNETVERSION%\regasm.exe"
+%REGASM% /codebase "%~dp0\apkshellext2.dll"
 
 ECHO Done!
 ECHO.
 ECHO /-------------------------------------------------------------------\
 ECHO  apkshellext is an open-source project,
-ECHO  Please visit https://github.com/kkguo/apkshellext for more information
+ECHO  Please visit http://apkshellext.com for more information
 ECHO \-------------------------------------------------------------------/
 
 PAUSE

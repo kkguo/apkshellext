@@ -79,7 +79,7 @@ namespace ApkQuickReader {
             _filename = filename;
             Culture = culture;
             zip = new ZipFile(filename);
-            SharpShell.Diagnostics.Logging.Log("Zip opened:" + filename);
+
             ZipEntry en = zip.GetEntry("androidmanifest.xml");
             BinaryReader s = new BinaryReader(zip.GetInputStream(en));
             manifest = s.ReadBytes((int)en.Size);
@@ -87,10 +87,6 @@ namespace ApkQuickReader {
             en = zip.GetEntry("resources.arsc");
             s = new BinaryReader(zip.GetInputStream(en));
             resources = s.ReadBytes((int)en.Size);
-        }
-
-        ~ApkReader() {
-            Dispose();
         }
 
         /// <summary>
@@ -390,17 +386,18 @@ namespace ApkQuickReader {
         }
 
         public void Dispose() {
-            Close();
+            resources = null;
+            manifest = null;
+            if (zip !=null)
+                zip.Close();
         }
 
         public void Close() {
-            resources = null;
-            manifest = null;
-            if (zip != null) {
-                zip.Close();
-                zip = null;
-                SharpShell.Diagnostics.Logging.Log("zip closed:" + this.FileName);
-            }
+            Dispose();
+        }
+
+        ~ApkReader() {
+            Dispose();
         }
     }
 }

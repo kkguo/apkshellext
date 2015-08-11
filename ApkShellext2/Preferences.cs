@@ -46,25 +46,29 @@ namespace ApkShellext2 {
             btnCancel.Text = Resources.btnCancel;
             btnUpdate.Text = Resources.btnGitHub;
             toolTip1.SetToolTip(btnUpdate, Resources.strGotoProjectSite);
-            checkBox1.Text = Resources.strRenameWithVersionCode;
-            toolTip1.SetToolTip(checkBox1, Resources.strRenameToolTip);
-            checkBox2.Text = Resources.strAlwaysShowGooglePlay;
-            toolTip1.SetToolTip(checkBox2, Resources.strAlwaysShowGooglePlayToolTip);
-            checkBox3.Text = Resources.strShowOverlayIcon;
-            toolTip1.SetToolTip(checkBox3, Resources.strShowOverlayIconToolTip);
+            ckRename.Text = Resources.strRenameWithVersionCode;
+            toolTip1.SetToolTip(ckRename, Resources.strRenameToolTip);
+            ckShowPlay.Text = Resources.strAlwaysShowGooglePlay;
+            toolTip1.SetToolTip(ckShowPlay, Resources.strAlwaysShowGooglePlayToolTip);
+            ckShowOverlay.Text = Resources.strShowOverlayIcon;
+            toolTip1.SetToolTip(ckShowOverlay, Resources.strShowOverlayIconToolTip);
 
             lblNewVer.Text = Resources.strCheckingNewVersion;
 
-            checkBox1.Checked = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
-            checkBox2.Checked = (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
-            checkBox3.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
+            ckRename.Checked = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
+            ckShowPlay.Checked = (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
+            ckShowOverlay.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
+            lblRenamePattern.Text = Resources.strRenamePattern;
 
             if (!updateChecked) {
-                Thread getVersionTh = new Thread(new ThreadStart(getLatestVersion));
-                getVersionTh.CurrentCulture = Thread.CurrentThread.CurrentCulture;
-                getVersionTh.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-                getVersionTh.Start();
+                timer1.Interval = 1000;
+                timer1.Enabled = true;
+                thUpdate = new Thread(new ThreadStart(() => { version = Utility.getLatestVersion(); }));
+                thUpdate.CurrentCulture = Thread.CurrentThread.CurrentCulture;
+                thUpdate.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
+                thUpdate.Start();
             }
+
             btnCancel.Focus();
             formLoaded = true;
 
@@ -75,55 +79,8 @@ namespace ApkShellext2 {
             checkBox4.Checked = (ipa == 1);
         }
 
-        private void getLatestVersion() {
-            try {
-                byte[] buf = new byte[1024];
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Resources.urlGithubHomeLatest);
-                // execute the request
-                HttpWebResponse response = (HttpWebResponse)
-                    request.GetResponse();
-                // we will read data via the response stream
-                Stream resStream = response.GetResponseStream();
-                int count = resStream.Read(buf, 0, buf.Length);
-                string s = "";
-                if (count != 0) {
-                    s = Encoding.ASCII.GetString(buf, 0, count);
-                }
-                s = Regex.Replace(s, @"\t|\n|\r", "");
-                Logging.Log("Get the latest version :" + s);
-                string[] latestV = s.Split(new Char[] { '.' });
-                string s1 = GetType().Assembly.GetName().Version.ToString();
-                string[] curV = s1.Split(new Char[] { '.' });
-
-                // version number should be always 4 parts
-                for (int i = 0; i < latestV.Length; i++) {
-                    if (latestV[i] != curV[i]) {
-                        if (int.Parse(latestV[i]) > int.Parse(curV[i])) {
-                            this.Invoke((Action)(() => {
-                                lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, s);
-                                btnUpdate.Text = Resources.btnUpdate;
-                                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate, 16);
-                                btnUpdate.Focus();
-                                toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
-                            }));
-                            return;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-                this.Invoke((Action)(() => {
-                    lblNewVer.Text = Resources.strGotLatest;
-                    btnUpdate.Text = Resources.btnGitHub;
-                }));
-                return;
-
-            } catch (Exception ex) {
-                lblNewVer.Invoke((Action)(()=>lblNewVer.Text = Resources.strGotLatest));
-                btnUpdate.Invoke((Action)(()=>btnUpdate.Text = Resources.btnGitHub));
-                Logging.Log("Cannot access the web " + ex.Message);
-            }
-        }
+        Thread thUpdate;
+        string version ="";
 
          private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
@@ -135,16 +92,16 @@ namespace ApkShellext2 {
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Utility.keyRenameWithVersionCode, checkBox1.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Utility.keyRenameWithVersionCode, ckRename.Checked ? 1 : 0);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, checkBox2.Checked ? 1 : 0);
+            Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, ckShowPlay.Checked ? 1 : 0);
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (checkBox3.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowOverlay, checkBox3.Checked ? 1 : 0);
+            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (ckShowOverlay.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
             }
         }
@@ -161,6 +118,41 @@ namespace ApkShellext2 {
                 Utility.setRegistrySetting(Utility.keyShowIpaIcon, checkBox4.Checked ? 1 : 0);
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
+            if (version == "") {
+                lblNewVer.Text = Resources.strCheckingNewVersion;
+                btnUpdate.Text = Resources.btnGitHub;
+            } else {
+                string[] latestV = version.Split(new Char[] { '.' });
+                string[] curV = GetType().Assembly.GetName().Version.ToString().Split(new Char[] { '.' });
+
+                // version number should be always 4 parts
+                for (int i = 0; i < latestV.Length; i++) {
+                    if (latestV[i] != curV[i]) {
+                        if (int.Parse(latestV[i]) > int.Parse(curV[i])) {
+                            lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, version);
+                            btnUpdate.Text = Resources.btnUpdate;
+                            btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.udpate, 16);
+                            toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
+                        } else {
+                            lblNewVer.Text = Resources.strGotLatest;
+                            btnUpdate.Text = Resources.btnGitHub;
+                        }
+                        timer1.Enabled = false;
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e) {
+
         }
     }
 }

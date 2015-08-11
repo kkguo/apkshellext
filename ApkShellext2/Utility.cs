@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.Drawing;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using SharpShell.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
-using System.Reflection;
 using System.IO;
-using System.Threading;
+using System.Net;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Web;
 
 namespace ApkShellext2 {
     public static class Utility {
@@ -30,8 +30,8 @@ namespace ApkShellext2 {
                     g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
- 
-                     g.DrawImage(original, 0, 0, size.Width,size.Height); 
+
+                    g.DrawImage(original, 0, 0, size.Width, size.Height);
                 }
                 return b;
             } else {
@@ -45,8 +45,8 @@ namespace ApkShellext2 {
         /// <param name="orignial"></param>
         /// <param name="width"></param>
         /// <returns></returns>
-        public static Bitmap ResizeBitmap(Bitmap orignial, int width) {
-            return ResizeBitmap(orignial, new Size(width, width));
+        public static Bitmap ResizeBitmap(Bitmap original, int width) {
+            return ResizeBitmap(original, new Size(width, width));
         }
 
         # region set/get registry settings
@@ -56,6 +56,17 @@ namespace ApkShellext2 {
         public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
 
         public static void setRegistrySetting(string key, int value) {
+            try {                
+                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+                using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
+                    k.SetValue(key, value);
+                }
+            } catch (Exception ex) {
+                Logging.Log("Error happens during write settings :" + ex.Message);
+            }
+        }
+
+        public static void setRegistrySettingString(string key, string value) {
             try {
                 string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                 using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
@@ -66,17 +77,28 @@ namespace ApkShellext2 {
             }
         }
 
-        public static int getRegistrySetting(string key, int defValue=0) {
+        public static int getRegistrySetting(string key, int defValue = 0) {
             try {
                 string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                 using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
                     return (int)k.GetValue(key, (object)defValue);
                 }
-            } catch (Exception ex) {                
+            } catch (Exception ex) {
                 Logging.Log("Error happens during reading settings :" + ex.Message);
                 return defValue;
             }
+        }
 
+        public static string getRegistrySettingString(string key, string defValue = "") {
+            try {
+                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+                using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
+                    return k.GetValue(key, (object)defValue) as string;
+                }
+            } catch (Exception ex) {
+                Logging.Log("Error happens during reading settings :" + ex.Message);
+                return defValue;
+            }
         }
         # endregion
 
@@ -95,13 +117,13 @@ namespace ApkShellext2 {
         /// resource dll included.
         /// </summary>
         public static void HookResolveResourceDll() {
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResourceDllResolveEventHandler); 
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResourceDllResolveEventHandler);
         }
 
         public static Assembly ResourceDllResolveEventHandler(object sender, ResolveEventArgs args) {
             AssemblyName MissingAssembly = new AssemblyName(args.Name);
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
-            if (_bufCultureInfoLCID != ci.LCID) {                
+            if (_bufCultureInfoLCID != ci.LCID) {
                 string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-", "_") + "." + MissingAssembly.Name + ".dll";
 #if DEBUG
                 Logging.Log("List of the resources:");
@@ -126,8 +148,8 @@ namespace ApkShellext2 {
         /// Resource Dll is buffered in static byte array in this class
         /// This is needed before any thread loading localize string
         /// </summary>
-        public static void Localize() {            
-            HookResolveResourceDll();            
+        public static void Localize() {
+            HookResolveResourceDll();
             int lang = getRegistrySetting("language", -1);
             if (lang != -1) {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
@@ -143,13 +165,69 @@ namespace ApkShellext2 {
             List<CultureInfo> result = new List<CultureInfo>();
             result.Add(new CultureInfo("en-US")); //default is en-US
             foreach (var s in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
-                Match m = Regex.Match(s,@"ApkShellext2\.Resources\.([a-z][a-z]_[A-Z][A-Z])\.ApkShellext2.resources.dll");
+                Match m = Regex.Match(s, @"ApkShellext2\.Resources\.([a-z][a-z]_[A-Z][A-Z])\.ApkShellext2.resources.dll");
                 if (m.Success) {
-                    CultureInfo ci = new CultureInfo(m.Groups[1].Value.Replace("_","-"));
+                    CultureInfo ci = new CultureInfo(m.Groups[1].Value.Replace("_", "-"));
                     result.Add(ci);
                 }
             }
             return result.ToArray();
+        }
+
+        public static string getLatestVersion() {
+            try {
+                byte[] buf = new byte[1024];
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Resources.urlGithubHomeLatest);
+                // execute the request
+                HttpWebResponse response = (HttpWebResponse)
+                    request.GetResponse();
+                // we will read data via the response stream
+                Stream resStream = response.GetResponseStream();
+                int count = resStream.Read(buf, 0, buf.Length);
+                string s = "";
+                if (count != 0) {
+                    s = Encoding.ASCII.GetString(buf, 0, count);
+                }
+                s = Regex.Replace(s, @"\t|\n|\r", "");
+
+                Logging.Log("Get the latest version :" + s);
+                return s;
+            } catch {
+                return "0.0.0.0";
+            }
+        }
+
+        // http://stackoverflow.com/questions/6803073/get-local-ip-address
+        public static string LocalIPAddress() {
+            IPHostEntry host;
+            string localIP = "";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList) {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
+                    localIP = ip.ToString();
+                    break;
+                }
+            }
+            return localIP;
+        }
+
+        public static string GetMd5Hash(MD5 md5Hash, string input) {
+
+            // Convert the input string to a byte array and compute the hash. 
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes 
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data  
+            // and format each one as a hexadecimal string. 
+            for (int i = 0; i < data.Length; i++) {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string. 
+            return sBuilder.ToString();
         }
     }
 }

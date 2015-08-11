@@ -121,72 +121,76 @@
     <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>Aggiorna</value>
+    <value>업데이트</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Vai al Sito Ufficiale per aggiornare</value>
+    <value>프로젝트 웹 사이트로 가서 업데이트 하기</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Visualizza sul Google Play</value>
+    <value>구글 플레이스토어로 이동하기</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK Shell Extension</value>
+    <value>APK 쉘 확장</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Impostazioni del Programma</value>
+    <value>설정 및 업데이트 확인</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>Rinomina in {0}</value>
+    <value>파일 이름을 {0}(으)로 바꾸기</value>
   </data>
   <data name="strReadApkFailed" xml:space="preserve">
-    <value>Impossibile leggere il File Apk</value>
+    <value>APK파일을 읽는데 실패하였습니다.</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>Verificando nuova versione ...</value>
+    <value>업데이트 확인 중</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Cerca aggiornamenti sul Sito.</value>
+    <value>프로젝트 웹 사이트로 가서 업데이트 확인하기</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>Versione attuale: {0}</value>
+    <value>현재 버전: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Ottimo! Hai già l'ultima versione.</value>
+    <value>최신버전을 사용하고 계십니다!</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>Nuova versione {0} disponibile</value>
+    <value>새 버전 {0}을 사용할 수 있습니다.</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+    <value>확인</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostra sempre link al Google Play</value>
+    <value>플레이스토어 메뉴 항상 보여주기</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se selezionato, il menu Google Play apparirà anche se hai selezionato più file APK.
-Si apriranno più finestre del Browser e questo potrebbe influire sulle prestazioni del Computer in modo significativo.
-Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un File</value>
+    <value>이 옵션을 체크하면, 여러개의 APK파일을 선택해도 "플레이스토어로 이동하기" 메뉴가 보입니다.
+다만, 선택한 APK파일만큼 많은 브라우저 창이 뜨기 때문에 컴퓨터가 느려질 수 있습니다.
+기본적으로, 한 파일을 선택할 때에만 이 메뉴가 나옵니다.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Vai al Sito ufficiale di ApkShellext2</value>
+    <value>ApkShellext2의 프로젝트 웹 사이트로 이동하기</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Se selezionato, il file Apk verrà rinominato come &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
-altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse versioni di file ma differenti versioni di codice</value>
+    <value>어플의 버전이름이 같으나 버전코드가 다른 경우가 있는데,
+이 옵션을 체크하면 APK파일의 이름을 바꿀 때 &lt;이름&gt;_&lt;버전이름&gt;_&lt;버전코드&gt;.apk의 형식으로 바꿉니다.
+옵션을 해제하면 &lt;이름&gt;_&lt;버전이름&gt;.apk의 형식으로 바꿉니다.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Rinomina con la versione del codice</value>
+    <value>이름을 바꿀 때 버전코드 추가하기</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>Mostra Icona in sovrapposizione</value>
+    <value>오버레이 아이콘을 보여줍니다.</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Mostra un'Androidino sopra all'icona stessa dell'Apk</value>
+    <value>APK파일에 안드로이드 아이콘을 보여줍니다.</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>Lingua:</value>
+    <value>언어 선택:</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>Impostazioni di ApkShellext2</value>
+    <value>ApkShellext2 설정</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>iOS 앱(ipa)의 아이콘을 보여줍니다.</value>
   </data>
 </root>

@@ -121,72 +121,72 @@
     <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>Aggiorna</value>
+    <value>Actualizar</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Vai al Sito Ufficiale per aggiornare</value>
+    <value>Ir al sitio del proyecto para actualizar</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Visualizza sul Google Play</value>
+    <value>Ver en Google Play</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK Shell Extension</value>
+    <value>Extensión del Shell de APK</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Impostazioni del Programma</value>
+    <value>Preferencias &amp; Actualización</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>Rinomina in {0}</value>
+    <value>Renombrar a {0}</value>
   </data>
   <data name="strReadApkFailed" xml:space="preserve">
-    <value>Impossibile leggere il File Apk</value>
+    <value>Fallo al leer el archivo Apk</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>Verificando nuova versione ...</value>
+    <value>Comprobando nueva versión ...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Cerca aggiornamenti sul Sito.</value>
+    <value>Vea el sitio del proyecto para actualizar.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>Versione attuale: {0}</value>
+    <value>Versión Actual: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Ottimo! Hai già l'ultima versione.</value>
+    <value>¡Excelente! Tienes la última versión.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>Nuova versione {0} disponibile</value>
+    <value>La nueva versión {0} esta disponible</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostra sempre link al Google Play</value>
+    <value>Mostrar siempre el menú de GooglePlay</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se selezionato, il menu Google Play apparirà anche se hai selezionato più file APK.
-Si apriranno più finestre del Browser e questo potrebbe influire sulle prestazioni del Computer in modo significativo.
-Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un File</value>
+    <value>Si está marcada, el menú de GooglePlay se mostrará incluso cuando haya varios archivos apk seleccionados. Nota: esto puede abrir muchas ventanas del navegador y afectar significativamente al rendimiento. Por defecto, sólo mostrar el menú cuando solo se selecciona un archivo</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Vai al Sito ufficiale di ApkShellext2</value>
+    <value>Ir al sitio del proyecto ApkShellext2</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Se selezionato, il file Apk verrà rinominato come &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
-altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse versioni di file ma differenti versioni di codice</value>
+    <value>Marca esto para evitar la situación del mismo "NúmeroDeVersión" pero diferente "CódigoDeVersión", cambia el nombre de archivo apk a &lt;NombreDeApp&gt;_&lt;NúmeroDeVersión&gt;_&lt;CódigoDeVersión&gt;.apk, si no, por defecto como &lt;NombreDeApp&gt;_&lt;NúmeroDeVersión&gt;.apk</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Rinomina con la versione del codice</value>
+    <value>Renombrar con "VersionCode"</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>Mostra Icona in sovrapposizione</value>
+    <value>Mostrar icono sobrepuesto</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Mostra un'Androidino sopra all'icona stessa dell'Apk</value>
+    <value>Muestra un icono de Android sobrepuesto en cada archivo Apk</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>Lingua:</value>
+    <value>Idioma:</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>Impostazioni di ApkShellext2</value>
+    <value>Preferencias de ApkShellext2</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Mostrar icono de app en archivos IPA de iOS.</value>
   </data>
 </root>

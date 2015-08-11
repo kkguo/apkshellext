@@ -13,3 +13,9 @@
 [submodule "ApkShellext2/Ionic.Zlib"]
 	path = ApkShellext2/Ionic.Zlib
 	url = https://github.com/kkguo/Ionic.Zlib.git
+[submodule "QRCoder"]
+	path = QRCoder
+	url = https://github.com/kkguo/QRCoder.git
+[submodule "ApkShellext2/QRCoder"]
+	path = ApkShellext2/QRCoder
+	url = https://github.com/codebude/QRCoder.git

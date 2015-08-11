@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>确定</value>
+  <data name="btnGitHub" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>更新</value>
@@ -141,14 +141,6 @@
   <data name="strReadApkFailed" xml:space="preserve">
     <value>文件已经损坏</value>
   </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>始终显示GooglePlay菜单</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>选中时始终显示GooglePlay子菜单,默认只在选中一个文件时显示,
-请注意,当多个文件选中时,多个GooglePlay 页面会占用很多资源,
-可能会使你的电脑响应变很慢</value>
-  </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>正在检查新版本...</value>
   </data>
@@ -161,11 +153,22 @@
   <data name="strGotLatest" xml:space="preserve">
     <value>当前使用的就是最新版本</value>
   </data>
-  <data name="strGotoProjectSite" xml:space="preserve">
-    <value>访问ApkShellext2项目页面</value>
-  </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>有更新版本: {0}</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>始终显示GooglePlay菜单</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>选中时始终显示GooglePlay子菜单,默认只在选中一个文件时显示,
+请注意,当多个文件选中时,多个GooglePlay 页面会占用很多资源,
+可能会使你的电脑响应变很慢</value>
+  </data>
+  <data name="strGotoProjectSite" xml:space="preserve">
+    <value>访问ApkShellext2项目页面</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>默认使用&lt;标签名&gt;_&lt;版本名&gt;.apk 重命名, 
@@ -176,18 +179,21 @@
     <value>重命名时使用版本代码</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>显示Android小图标</value>
+    <value>显示左下角小图标</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>选中时在每个图标左下角显示一个Android头像,表示这是一个apk文件</value>
   </data>
-  <data name="btnGitHubToolTip" xml:space="preserve">
-    <value>访问GitHub上项目的主页</value>
-  </data>
   <data name="strLanguages" xml:space="preserve">
     <value>选择语言:</value>
   </data>
-  <data name="strPreferencesCation" xml:space="preserve">
-    <value>apkShellext2 选项</value>
+  <data name="strPreferencesCaption" xml:space="preserve">
+    <value>Apk文件助手首选项</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>显示 iOS app (ipa) 图标。</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>按照这样重命名</value>
   </data>
 </root>

@@ -1,5 +1,7 @@
 ﻿using ApkQuickReader;
+using ApkShellext2.Properties;
 using Microsoft.Win32;
+using QRCoder;
 using SharpShell.Attributes;
 using SharpShell.Diagnostics;
 using SharpShell.Extensions;
@@ -10,11 +12,12 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Threading;
-using System.Globalization;
-using ApkShellext2.Properties;
+using System.Net;
+using System.Web;
+using System.Collections.Specialized;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -84,6 +87,46 @@ namespace ApkShellext2 {
             settingsMenu.Click += (sender, args) => showSettings();
             #endregion
 
+            /* Not enabled yet
+            #region Barcode
+            var barcodeMenu = new ToolStripMenuItem();
+            barcodeMenu.Text = Resources.strScanToDownload;
+            barcodeMenu.Image = Utility.ResizeBitmap(Resources.QR_Scan, size);
+            barcodeMenu.Enabled = false;
+            if (SelectedItemPaths.Count() == 1) {
+                barcodeMenu.Enabled = true;
+                var barcode = new ToolStripMenuItem();
+
+                string md5;
+                using (MD5 md5Hash = MD5.Create()) {
+                    md5 = Utility.GetMd5Hash(md5Hash, SelectedItemPaths.First());
+                }
+
+                try {
+                    // Notice service regarding the path
+                    using (var client = new WebClient()) {
+                        var values = new NameValueCollection();
+                        client.QueryString.Add("md5", md5);
+                        client.QueryString.Add("path", SelectedItemPaths.First());
+                        client.BaseAddress = "http://localhost:42728";
+                        client.UploadValues("", values);
+                    }
+
+                    string url = @"http://" + Utility.LocalIPAddress() + @":42728/" + md5;
+                    QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                    QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.M);
+                    barcode.Image = qrCode.GetGraphic(5);
+
+                    barcodeMenu.DropDownItems.Add(barcode);
+                    barcode.Click += (sender,args) => gotoDownload();
+                } catch (Exception ex) {
+                    Log(ex.Message);
+                    barcodeMenu.Enabled = false;
+                }
+            }
+            #endregion
+            */
+
             #region Mainmenu Icon
             // Draw Apk icon to the menu
             // if choose multiple files, will create a icon with upto 3 icons together.             
@@ -125,12 +168,21 @@ namespace ApkShellext2 {
             playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
                 (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
 
+            //mainMenu.DropDownItems.Add(barcodeMenu);
+
             mainMenu.DropDownItems.Add("-");
             mainMenu.DropDownItems.Add(settingsMenu);
             menu.Items.Add(mainMenu);
             return menu;
         }
 
+        private void gotoDownload() {
+            string md5;
+            using (MD5 md5Hash = MD5.Create()) {
+                md5 = Utility.GetMd5Hash(md5Hash, SelectedItemPaths.First());
+            }
+            System.Diagnostics.Process.Start(@"http://" + Utility.LocalIPAddress() + @":42728/" + md5);
+        }
         /// <summary>
         /// get the new filename for renaming function
         /// </summary>

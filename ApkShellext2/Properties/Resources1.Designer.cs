@@ -63,9 +63,9 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap androidHead {
+        internal static System.Drawing.Bitmap android {
             get {
-                object obj = ResourceManager.GetObject("androidHead", resourceCulture);
+                object obj = ResourceManager.GetObject("android", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -185,6 +185,16 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap QR_Scan {
+            get {
+                object obj = ResourceManager.GetObject("QR_Scan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap rename {
             get {
                 object obj = ResourceManager.GetObject("rename", resourceCulture);
@@ -267,6 +277,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 This feature requires ApkShellextService, please make sure the service started. 的本地化字符串。
+        /// </summary>
+        internal static string strNeedApkShellextService {
+            get {
+                return ResourceManager.GetString("strNeedApkShellextService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 New version {0} is availible 的本地化字符串。
         /// </summary>
         internal static string strNewVersionAvailible {
@@ -294,6 +313,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Rename Pattern 的本地化字符串。
+        /// </summary>
+        internal static string strRenamePattern {
+            get {
+                return ResourceManager.GetString("strRenamePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 For avoiding situation of same VersionName but different VersionCode,
         ///check this, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk,
         ///otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk,  的本地化字符串。
@@ -310,6 +338,15 @@ namespace ApkShellext2.Properties {
         internal static string strRenameWithVersionCode {
             get {
                 return ResourceManager.GetString("strRenameWithVersionCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Scan QR code to download 的本地化字符串。
+        /// </summary>
+        internal static string strScanToDownload {
+            get {
+                return ResourceManager.GetString("strScanToDownload", resourceCulture);
             }
         }
         
