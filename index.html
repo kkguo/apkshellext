@@ -29,8 +29,34 @@
       <a href="https://github.com/kkguo/apkshellext" class="btn">
       Open Source <img src="images/GitHub.png" width="18" height="18"></a>
 
-      <br><p><img src="images/capture.png" alt="snapshot"></p>
-      
+      <br><p><img src="images/capture.png" alt="snapshot" id="slide"></p>
+      <script type="text/javascript">
+var slideimages = new Array() // create new array to preload images
+slideimages[0] = new Image() // create new instance of image object
+slideimages[0].src = "images/snapshot2.png" // set image src property to image path, preloading image in the process
+slideimages[1] = new Image()
+slideimages[1].src = "images/snapshot3.png"
+slideimages[2] = new Image()
+slideimages[2].src = "images/snapshot4.png"
+slideimages[3] = new Image()
+slideimages[3].src = "images/capture.png"
+
+//variable that will increment through the images
+var step=0
+function slideit(){
+ //if browser does not support the image object, exit.
+ if (!document.images)
+  return
+ document.getElementById('slide').src = slideimages[step].src
+ if (step<3)
+  step++
+ else
+  step=0
+ //call function "slideit()" every 2.5 seconds
+ setTimeout("slideit()",2500)
+}
+slideit()
+</script>
         <table align="center">
         <tr>
             <td padding="16px">
