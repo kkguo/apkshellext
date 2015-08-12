@@ -2,9 +2,12 @@
 
 A windows shell exteions for .apk (Andriod PacKage) and .ipa (iOS app package) files.
 
-#### Please help to Translate on http://translate.apkshellext.com
+#### Please help this project
+ * Translate into other language : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
+ * Website maitainence : I need help to create the jekyll site
+ * Tester : I need help to test new features.
 
-[Crowndin Status: ![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
+Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, thanks!
 
 This project is open source and free, visit http://apkshellext.com for Download and more Information.
 
