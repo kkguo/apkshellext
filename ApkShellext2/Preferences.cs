@@ -72,11 +72,11 @@ namespace ApkShellext2 {
             btnCancel.Focus();
             formLoaded = true;
 
-            // Secret garden, disable show ipa icon for now, as it's a beta
-            int ipa = Utility.getRegistrySetting("ShowIpaIcon", 100);
             checkBox4.Text = Resources.strShowIpaIcon;
-            checkBox4.Visible = (ipa != 100);
-            checkBox4.Checked = (ipa == 1);
+            checkBox4.Checked = (Utility.getRegistrySetting(Utility.keyShowIpaIcon, 100) == 1);
+
+            ckShowAppxIcon.Text = Resources.strShowAppxIcon;
+            ckShowAppxIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowAppxIcon, 100) == 1);
         }
 
         Thread thUpdate;
@@ -87,7 +87,6 @@ namespace ApkShellext2 {
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
-            if ((ModifierKeys & Keys.Shift) != 0) checkBox4.Visible = true;
             System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
@@ -147,12 +146,11 @@ namespace ApkShellext2 {
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e) {
-
+        private void ckShowAppxIcon_CheckedChanged(object sender, EventArgs e) {
+            if (Utility.getRegistrySetting(Utility.keyShowAppxIcon) != (ckShowAppxIcon.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowAppxIcon, ckShowAppxIcon.Checked ? 1 : 0);
+                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            }
         }
     }
 }

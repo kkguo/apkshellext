@@ -43,6 +43,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.ckShowAppxIcon = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.btnCancel.AutoSize = true;
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCancel.Location = new System.Drawing.Point(134, 3);
+            this.btnCancel.Location = new System.Drawing.Point(163, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(67, 25);
             this.btnCancel.TabIndex = 0;
@@ -121,23 +122,23 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(101, 246);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(101, 287);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
             // combLanguage
             // 
             this.combLanguage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combLanguage.FormattingEnabled = true;
-            this.combLanguage.Location = new System.Drawing.Point(3, 108);
+            this.combLanguage.Location = new System.Drawing.Point(3, 131);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(204, 21);
+            this.combLanguage.Size = new System.Drawing.Size(233, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(3, 92);
+            this.lblLanguage.Location = new System.Drawing.Point(3, 115);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(58, 13);
             this.lblLanguage.TabIndex = 9;
@@ -146,19 +147,17 @@
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 187);
+            this.textBox1.Location = new System.Drawing.Point(3, 210);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 20);
+            this.textBox1.Size = new System.Drawing.Size(233, 20);
             this.textBox1.TabIndex = 12;
             this.textBox1.Text = "%label%_%versionName%_%versionCode%.apk";
             this.textBox1.Visible = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // lblRenamePattern
             // 
             this.lblRenamePattern.AutoSize = true;
-            this.lblRenamePattern.Location = new System.Drawing.Point(3, 132);
+            this.lblRenamePattern.Location = new System.Drawing.Point(3, 155);
             this.lblRenamePattern.Name = "lblRenamePattern";
             this.lblRenamePattern.Size = new System.Drawing.Size(87, 13);
             this.lblRenamePattern.TabIndex = 11;
@@ -168,7 +167,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 145);
+            this.label3.Location = new System.Drawing.Point(3, 168);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(154, 39);
             this.label3.TabIndex = 14;
@@ -224,18 +223,20 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.ckRename, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.checkBox4, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 8);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 8);
             this.tableLayoutPanel3.Controls.Add(this.ckShowOverlay, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.lblRenamePattern, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.lblRenamePattern, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.ckShowPlay, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblLanguage, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.combLanguage, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 0, 9);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Controls.Add(this.lblLanguage, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.combLanguage, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 0, 10);
+            this.tableLayoutPanel3.Controls.Add(this.ckShowAppxIcon, 0, 4);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(101, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 10;
+            this.tableLayoutPanel3.RowCount = 11;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -246,7 +247,8 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(210, 246);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(239, 287);
             this.tableLayoutPanel3.TabIndex = 19;
             // 
             // flowLayoutPanel1
@@ -256,9 +258,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 213);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 253);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(204, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(233, 31);
             this.flowLayoutPanel1.TabIndex = 19;
             // 
             // btnUpdate
@@ -266,7 +268,7 @@
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(61, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(90, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 25);
             this.btnUpdate.TabIndex = 21;
@@ -275,12 +277,23 @@
             this.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
+            // ckShowAppxIcon
+            // 
+            this.ckShowAppxIcon.AutoSize = true;
+            this.ckShowAppxIcon.Location = new System.Drawing.Point(3, 95);
+            this.ckShowAppxIcon.Name = "ckShowAppxIcon";
+            this.ckShowAppxIcon.Size = new System.Drawing.Size(77, 17);
+            this.ckShowAppxIcon.TabIndex = 20;
+            this.ckShowAppxIcon.Text = "ShowAppx";
+            this.ckShowAppxIcon.UseVisualStyleBackColor = true;
+            this.ckShowAppxIcon.CheckedChanged += new System.EventHandler(this.ckShowAppxIcon_CheckedChanged);
+            // 
             // Preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(311, 246);
+            this.ClientSize = new System.Drawing.Size(354, 287);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -322,5 +335,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.CheckBox ckShowAppxIcon;
     }
 }

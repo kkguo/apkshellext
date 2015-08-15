@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApkShellext2", "ApkShellext2\ApkShellext2.csproj", "{091659BA-A36B-45D5-AAF2-3CE764453FF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apkShellextService", "apkShellextHost\apkShellextService.csproj", "{3F77E975-68ED-4083-B8F8-56EB56372889}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apkShellextService", "apkShellextService\apkShellextService.csproj", "{3F77E975-68ED-4083-B8F8-56EB56372889}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

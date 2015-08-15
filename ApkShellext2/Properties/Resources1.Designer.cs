@@ -137,6 +137,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 RenamePattern 的本地化字符串。
+        /// </summary>
+        internal static string lblRenamePattern {
+            get {
+                return ResourceManager.GetString("lblRenamePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap logo {
@@ -147,7 +156,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Check on GooglePlay 的本地化字符串。
+        ///   查找类似 Check this app on GooglePlay 的本地化字符串。
         /// </summary>
         internal static string menuGotoGooglePlay {
             get {
@@ -313,7 +322,9 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Rename Pattern 的本地化字符串。
+        ///   查找类似 %label%: Label
+        ///%versionName%: VersionName
+        ///%versionCode%: VersionCode 的本地化字符串。
         /// </summary>
         internal static string strRenamePattern {
             get {
@@ -351,6 +362,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Show Windows Phone app(appx, appxbundle) icon. 的本地化字符串。
+        /// </summary>
+        internal static string strShowAppxIcon {
+            get {
+                return ResourceManager.GetString("strShowAppxIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Show iOS app (ipa) icon. 的本地化字符串。
         /// </summary>
         internal static string strShowIpaIcon {
@@ -384,6 +404,15 @@ namespace ApkShellext2.Properties {
             get {
                 object obj = ResourceManager.GetObject("udpate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://www.amazon.com/gp/mas/dl/android?p={0} 的本地化字符串。
+        /// </summary>
+        internal static string urlAmazonAppStore {
+            get {
+                return ResourceManager.GetString("urlAmazonAppStore", resourceCulture);
             }
         }
         

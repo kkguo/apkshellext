@@ -62,6 +62,9 @@
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
+    <Compile Include="AppxBundleIconHandler.cs" />
+    <Compile Include="AppxBundleReader.cs" />
+    <Compile Include="AppxReader.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\CRC32.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\Deflate.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\DeflateStream.cs" />
@@ -369,6 +372,7 @@
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
+    <EmbeddedResource Include="Properties\Resources.fa-IR.resx" />
     <EmbeddedResource Include="Properties\Resources.ko-KR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -380,6 +384,7 @@
     <None Include="Resources\android_icon_128.png" />
     <EmbeddedResource Include="Resources\ko-KR\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\es-ES\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\fa-IR\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
     <None Include="Resources\QR-Scan.png" />
     <Content Include="Resources\udpate.png" />
@@ -427,10 +432,12 @@
 rd /s /q $(ProjectDir)\Resources\it-IT
 rd /s /q $(ProjectDir)\Resources\ko-KR
 rd /s /q $(ProjectDir)\Resources\es-ES
+rd /s /q $(ProjectDir)\Resources\fa-IR
 move /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\
 move /Y $(TargetDir)it-IT $(ProjectDir)\Resources\
 move /Y $(TargetDir)ko-KR $(ProjectDir)\Resources\
 move /Y $(TargetDir)es-ES $(ProjectDir)Resources\
+move /Y $(TargetDir)fa-IR $(ProjectDir)Resources\
 copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

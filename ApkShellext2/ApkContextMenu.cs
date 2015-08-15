@@ -24,6 +24,9 @@ namespace ApkShellext2 {
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".apk")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".ipa")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appxbundle")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appx")]
     public class ApkContextMenu : SharpContextMenu {
         /// <summary>
         /// Determines whether this instance can a shell context show menu, given the specified selected file list.
@@ -49,46 +52,50 @@ namespace ApkShellext2 {
 
             int size = mainMenu.Height - 1;
 
-            #region Rename Menu
+            bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
+            bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
+            bool isappx = SelectedItemPaths.ElementAt(0).EndsWith(".appx");
+            bool isappxbundle = SelectedItemPaths.ElementAt(0).EndsWith(".appbundle");
 
-            int addVerCode = Utility.getRegistrySetting(Utility.keyRenameWithVersionCode);
-            ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                Text = string.Format(Resources.menuRenameAs , @"<Label>_<verNumber>" + ((addVerCode == 1) ? "_<verCode>" : "") + ".apk"),
-                Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
-            };
+            if (isapk) {
+                #region Rename Menu
 
-            if (SelectedItemPaths.Count() == 1) {
-                string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
-                if (newName != "") {
-                    renameMenu.Text = string.Format(Resources.menuRenameAs,Path.GetFileName(newName));
-                } else {
-                    renameMenu.Text = Resources.strReadApkFailed;
-                    renameMenu.Enabled = false;
+                int addVerCode = Utility.getRegistrySetting(Utility.keyRenameWithVersionCode);
+                ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
+                    Text = string.Format(Resources.menuRenameAs, @"<Label>_<verNumber>" + ((addVerCode == 1) ? "_<verCode>" : "") + ".apk"),
+                    Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
+                };
+
+                if (SelectedItemPaths.Count() == 1) {
+                    string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
+                    if (newName != "") {
+                        renameMenu.Text = string.Format(Resources.menuRenameAs, Path.GetFileName(newName));
+                    } else {
+                        renameMenu.Text = Resources.strReadApkFailed;
+                        renameMenu.Enabled = false;
+                    }
                 }
-            }
 
-            renameMenu.Click += (sender, args) => renameWithVersion();
-            #endregion
+                renameMenu.Click += (sender, args) => renameWithVersion();
 
-            #region Google Play Menu
-            var playMenu = new ToolStripMenuItem {
-                Text = Resources.menuGotoGooglePlay,
-                Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
-            };
+                mainMenu.DropDownItems.Add(renameMenu);
+                #endregion
 
-            playMenu.Click += (sender, args) => gotoGooglePlay();
-            #endregion
+                #region Google Play Menu
+                var playMenu = new ToolStripMenuItem {
+                    Text = Resources.menuGotoGooglePlay,
+                    Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
+                };
 
-            #region Preferences Menu
-            var settingsMenu = new ToolStripMenuItem {
-                Text = Resources.menuPreferences,
-                Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
-            };
-            settingsMenu.Click += (sender, args) => showSettings();
-            #endregion
+                playMenu.Click += (sender, args) => gotoGooglePlay();
+                mainMenu.DropDownItems.Add(playMenu);
+                playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
+        (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
 
-            /* Not enabled yet
-            #region Barcode
+                #endregion
+
+                #region Barcode
+                /* Not enabled yet
             var barcodeMenu = new ToolStripMenuItem();
             barcodeMenu.Text = Resources.strScanToDownload;
             barcodeMenu.Image = Utility.ResizeBitmap(Resources.QR_Scan, size);
@@ -124,54 +131,61 @@ namespace ApkShellext2 {
                     barcodeMenu.Enabled = false;
                 }
             }
-            #endregion
+            mainMenu.DropDownItems.Add(barcodeMenu);
             */
+                #endregion
+            }
 
-            #region Mainmenu Icon
-            // Draw Apk icon to the menu
-            // if choose multiple files, will create a icon with upto 3 icons together.             
-            try { // draw multiple icons
-                ApkReader reader0 = new ApkReader(SelectedItemPaths.ElementAt(0));
-                ApkReader reader1 = null;
-                ApkReader reader2 = null;
-                if (SelectedItemPaths.Count() == 1) {
-                    mainMenu.Image = Utility.ResizeBitmap(reader0.getImage("application", "icon"), size);
-                } else {
-                    reader1 = new ApkReader(SelectedItemPaths.ElementAt(1));
-                    if (SelectedItemPaths.Count() > 2) {
-                        reader2 = new ApkReader(SelectedItemPaths.ElementAt(2));
-                    }
-                    Bitmap b = new Bitmap(size, size);
-                    using (Graphics g = Graphics.FromImage((Image)b)) {
-                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                        if (SelectedItemPaths.Count() > 2) {
-                            g.DrawImage(reader2.getImage("application", "icon"), 0, 0, size - 6, size - 6);
-                            g.DrawImage(reader1.getImage("application", "icon"), 3, 3, size - 6, size - 6);
-                            reader2.Close();
-                            reader1.Close();
-                        } else {
-                            g.DrawImage(reader1.getImage("application", "icon"), 0, 0, size - 6, size - 6);
-                            reader1.Close();
-                        }
-                        g.DrawImage(reader0.getImage("application", "icon"), 5, 5, size - 6, size - 6);
-                        reader0.Close();
-                    }
-                    mainMenu.Image = b;
-                }
-            } catch { }
+            #region Preferences Menu
+            var settingsMenu = new ToolStripMenuItem {
+                Text = Resources.menuPreferences,
+                Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
+            };
+            settingsMenu.Click += (sender, args) => showSettings();
+            if (mainMenu.DropDownItems.Count > 0) {
+                mainMenu.DropDownItems.Add("-");
+            }
+            mainMenu.DropDownItems.Add(settingsMenu);
             #endregion
 
-            mainMenu.DropDownItems.Add(renameMenu);
-            mainMenu.DropDownItems.Add(playMenu);
-            playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
+            if (isapk) {
+                #region Mainmenu Icon
+                // Draw Apk icon to the menu
+                // if choose multiple files, will create a icon with upto 3 icons together.             
+                try { // draw multiple icons
+                    ApkReader reader0 = new ApkReader(SelectedItemPaths.ElementAt(0));
+                    ApkReader reader1 = null;
+                    ApkReader reader2 = null;
+                    if (SelectedItemPaths.Count() == 1) {
+                        mainMenu.Image = Utility.ResizeBitmap(reader0.getImage("application", "icon"), size);
+                    } else {
+                        reader1 = new ApkReader(SelectedItemPaths.ElementAt(1));
+                        if (SelectedItemPaths.Count() > 2) {
+                            reader2 = new ApkReader(SelectedItemPaths.ElementAt(2));
+                        }
+                        Bitmap b = new Bitmap(size, size);
+                        using (Graphics g = Graphics.FromImage((Image)b)) {
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                            if (SelectedItemPaths.Count() > 2) {
+                                g.DrawImage(reader2.getImage("application", "icon"), 0, 0, size - 6, size - 6);
+                                g.DrawImage(reader1.getImage("application", "icon"), 3, 3, size - 6, size - 6);
+                                reader2.Close();
+                                reader1.Close();
+                            } else {
+                                g.DrawImage(reader1.getImage("application", "icon"), 0, 0, size - 6, size - 6);
+                                reader1.Close();
+                            }
+                            g.DrawImage(reader0.getImage("application", "icon"), 5, 5, size - 6, size - 6);
+                            reader0.Close();
+                        }
+                        mainMenu.Image = b;
+                    }
+                } catch { }
+                #endregion
+            }
 
-            //mainMenu.DropDownItems.Add(barcodeMenu);
-
-            mainMenu.DropDownItems.Add("-");
-            mainMenu.DropDownItems.Add(settingsMenu);
             menu.Items.Add(mainMenu);
             return menu;
         }

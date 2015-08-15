@@ -54,6 +54,7 @@ namespace ApkShellext2 {
         public static readonly string keyRenameWithVersionCode = @"RenameWithVersionCode";
         public static readonly string keyShowOverlay = @"ShowOverLayIcon";
         public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
+        public static readonly string keyShowAppxIcon = @"ShowAppxIcon";
 
         public static void setRegistrySetting(string key, int value) {
             try {                
