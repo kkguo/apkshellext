@@ -37,18 +37,16 @@ This project is open source and free, visit http://apkshellext.com for Download 
 #### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build
 #### Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
 
-#### [Contributor]
-  * [KKGuo](https://github.com/kkguo)(Author) kkguokk@gmail.com
-  * Vince. M (Bug report and Italian translation) widget@hotmail.it
-
 #### Credit :
-* __[SharpShell](https://github.com/dwmkerr/sharpshell)__ Shell extion library
-* __[SharpZip](https://github.com/icsharpcode/SharpZipLib)__ Zip implementation in C#
-* __[Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader)__  the oringinal APK reader, not used anymore
-* __[PlistCS](https://github.com/animetrics/PlistCS)__  iOS plist file reader
-* __[PNGDecrush](https://github.com/MikeWeller/PNGDecrush)__ PNG decrush lib
-* __[Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)__  Another Zip implementation, used by PNGDecrush
-* __[QRCoder](https://github.com/codebude/QRCoder)__ QR code generator
+|||
+| --- | --- |
+| [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell extion library                           |
+| [SharpZip](https://github.com/icsharpcode/SharpZipLib)              | Zip function implementation in C#              |
+| [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the oringinal APK reader, not used anymore     |
+| [PlistCS](https://github.com/animetrics/PlistCS)                    | iOS plist file reader                          |
+| [PNGDecrush](https://github.com/MikeWeller/PNGDecrush)              | PNG decrush lib                                |
+| [Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)               | Another Zip implementation, used by PNGDecrush |
+| [QRCoder](https://github.com/codebude/QRCoder)                      | QR code generator                              |
 
 --------------
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
