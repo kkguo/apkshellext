@@ -47,6 +47,7 @@ This project is open source and free, visit http://apkshellext.com for Download 
 | [PNGDecrush](https://github.com/MikeWeller/PNGDecrush)              | PNG decrush lib                                |
 | [Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)               | Another Zip implementation, used by PNGDecrush |
 | [QRCoder](https://github.com/codebude/QRCoder)                      | QR code generator                              |
+| [Ultimate Social](https://www.iconfinder.com/iconsets/ultimate-social) | A free icon set for social medias           |
 
 --------------
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
