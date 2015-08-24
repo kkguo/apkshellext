@@ -3,7 +3,7 @@
 A windows shell exteions for mobile app files, supporting 
 * .apk (android package)
 * .ipa (iOS app package)
-* .appx .appxbundle (Windows phone 8.1/10 app package)
+* .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
 #### Please help this project
  * Translate into other language : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
@@ -15,21 +15,19 @@ Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, pull requ
 This project is open source and free, visit http://apkshellext.com for Download and more Information.
 
 #### [Features]
- - [x] :boom: Support Windows Phone appx/appxbundle file icon.
- - [x] :boom: Support IPA (iOS app) icon.
- - [x] Show apk file icons of in explorer
+ - [x] Display app icon in explorer:
  - [x] Show Package information in tip bubble
  - [x] Context menu for renaming apk file, batch renaming, with app name + version
- - [x] Goto apk's google play page.
+ - [x] Go to app store from context menu.
  - [x] Check new version automatically.
- - [x] Show overlay icon for apk files.
+ - [x] Show overlay icon for different type of apps.
  - [x] Support mulitple languages: 
     - English
-    - 中文
+    - 中文(简体)
     - italiano (by [Vince. M](https://crowdin.com/profile/Widget))
-    - :boom:Korean (by [zinc](https://crowdin.com/profile/zinc))
-    - :boom:Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
-    - :boom:Persian (by [Ali.sholug](mailto:ali.sholug@gmail.com))
+    - Korean (by [zinc](https://crowdin.com/profile/zinc))
+    - Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
+    - Persian (by [Ali.sholug](mailto:ali.sholug@gmail.com))
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
