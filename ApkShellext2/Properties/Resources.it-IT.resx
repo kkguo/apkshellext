@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,6 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urlGithubHome" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext</value>
+  </data>
+  <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urlGooglePlay" xml:space="preserve">
+    <value>https://play.google.com/store/apps/details?id={0}</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -138,8 +160,8 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rinomina in {0}</value>
   </data>
-  <data name="strReadApkFailed" xml:space="preserve">
-    <value>Impossibile leggere il File Apk</value>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>Impossibile leggere il file</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Verificando nuova versione ...</value>
@@ -156,6 +178,12 @@
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>Nuova versione {0} disponibile</value>
   </data>
+  <data name="urlGithubHomeLatest" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/latest</value>
+  </data>
+  <data name="urlGithubHomeWithVersion" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -171,8 +199,8 @@ Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un
     <value>Vai al Sito ufficiale di ApkShellext2</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Se selezionato, il file Apk verrà rinominato come &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk, 
-altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse versioni di file ma differenti versioni di codice</value>
+    <value>Per evitare la situazione della stessa versione, ma numero di revisione diversi, nella maggior parte dei come accade nei file app per android. 
+Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revisione %, in caso contrario, utilizzare %AppName _ % versione %.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
     <value>Rinomina con la versione del codice</value>
@@ -181,7 +209,7 @@ altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse 
     <value>Mostra Icona in sovrapposizione</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Mostra un'Androidino sopra all'icona stessa dell'Apk</value>
+    <value>Visualizza un'icona di sovrapposizione per tipo di file</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
     <value>Lingua:</value>
@@ -189,4 +217,49 @@ altrimenti, solo come &lt;label&gt;_&lt;versionName&gt;.apk, per evitare stesse 
   <data name="strPreferencesCaption" xml:space="preserve">
     <value>Impostazioni di ApkShellext2</value>
   </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Mostra l'icona iOs (ipa)</value>
+  </data>
+  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>Scansiona il codice QR per scaricare</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>%AppName%: nome dell'App%Version%: Main Version%Revision%:%Publisher% numero di Revisione:%OS% Editore: Android / iOS / Windows</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>Questa funzionalità richiede ApkShellextService, si prega di assicurarsi di avviare il servizio.</value>
+  </data>
+  
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>Visualizza icona di WindowsPhone app (appx, appxbundle).</value>
+  </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>RenamePattern</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>Verifica {0} su Appstore di Apple</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Verifica {0} su Microsoft Store</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>Verifica {0} su Amazon Appstore</value>
+  </data>
+  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  
+  
 </root>

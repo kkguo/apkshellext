@@ -139,77 +139,78 @@
     <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>به روز رسانی</value>
+    <value>Ενημέρωση</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>به روز رسانی در وب سایت پروژه</value>
+    <value>Πάει στον τόπο του έργου για την ενημέρωση</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>برو به گوگل پلی استور</value>
+    <value>Ελέγξτε το {0} στο GooglePlay</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK ابزارهای</value>
+    <value>Επέκταση κελύφους APK</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>تنظیمات و بروزرسانی</value>
+    <value>Προτιμήσεις &amp;&amp; ενημέρωση</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>{0} تغییر نام به </value>
+    <value>Μετονομάστε το σε {0}</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>نشد خواندن فایل</value>
+    <value>Απέτυχε η ανάγνωση αρχείου</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>جستجوی نسخه جدید</value>
+    <value>Έλεγχος νέα έκδοση...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>جستجوی نسخه جدید در سایت پروژه</value>
+    <value>Ελέγξτε την τοποθεσία έργου για την ενημέρωση.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>نسخه فعلی:{0}</value>
+    <value>Τρέχουσα έκδοση: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه  بروز شد</value>
+    <value>Μεγάλο! Πήρατε την τελευταία έκδοση.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0}نسخه جدید موجود است</value>
+    <value>Νέα έκδοση {0} είναι availible</value>
   </data>
   
   
   <data name="btnCancel" xml:space="preserve">
-    <value>تأیید</value>
+    <value>Ok</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>همیشه منوی گوگل پلی نمایش داده شود</value>
+    <value>Πάντα δείχνουν GooglePlay μενού</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value> اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-توجه کنید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود</value>
+    <value>Εάν ελέγχθηκαν, GooglePlay μενού θα παρουσιάσει ακόμη και πολλαπλές apk αρχείο επιλεγμένος. 
+Παρακαλώ σημειώστε, μπορείτε να ανοίξετε πολλά παράθυρο του προγράμματος περιήγησης και να προσκρούσει στην απόδοση σημαντικά.
+Από προεπιλογή, εμφανίζεται μόνο το μενού όταν επιλέγεται ένα αρχείο</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>برو به سایت پروژه</value>
+    <value>Πηγαίνετε στην ιστοσελίδα του έργου ApkShellext2</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>برای اجتناب از وضعیت همان نسخه اما تعداد نسخه های مختلف این بیشتر مانند اتفاق می افتد در فایل های نرم افزار آندروید. 
-با این چک کردن، تغییر نام فایل app به عنوان %AppName % _ % نسخه % _ % تجدید نظر %، در غیر این صورت، استفاده از %AppName _ ٪ ٪ ٪ نسخه.</value>
+    <value>Για την αποφυγή κατάσταση της ίδια έκδοση αλλά αριθμό διαφορετικών αναθεώρησης, αυτό πιο όπως συμβαίνει στο ανδροειδές app αρχεία. 
+Από τον έλεγχο αυτό, μετονομάστε το αρχείο app ως %AppName % _ _ % έκδοση % αναθεώρηση %, διαφορετικά, χρησιμοποιήστε %AppName % _ % έκδοση %.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>تغییر نام  شامل ورژن برنامه باشد</value>
+    <value>Μετονομασία με VersionCode</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>نمایش آیکون عمومی</value>
+    <value>Εμφανίζεται εικονίδιο υπέρθεση</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>نشان دادن نماد پوشش برای نوع فایل</value>
+    <value>Εμφανίζεται ένα εικονίδιο υπέρθεση για τον τύπο αρχείου</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>زبان مورد استفاده:</value>
+    <value>Χρήση γλώσσας:</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 تنظیمات</value>
+    <value>ApkShellext2 προτιμήσεις</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>نمایش آیکون برنامه های ایفون(IPA)</value>
+    <value>Εμφανίσετε iOS εικονίδιο app (ipa).</value>
   </data>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -218,29 +219,29 @@
     <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
-    <value>اسکن QR کد برای دانلود</value>
+    <value>Σάρωση κωδικού QR να κατεβάσετε</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% نام نرم افزار: نسخه اصلی%Revision%: نسخه شماره%Publisher%:%OS% ناشر: اندیشه / iOS / ویندوز</value>
+    <value>%AppName%:%Version% όνομα App: κύρια έκδοση%Revision%:%Publisher% αριθμό αναθεώρησης:%OS% εκδότης: Android / iOS / Windows</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>این ابزار نیازمند ApkShellextService میباشد ، لظفا از اجرای سرویس مربوطه مطمئن شوید.</value>
+    <value>Αυτή η δυνατότητα απαιτεί ApkShellextService, βεβαιωθείτε ότι η υπηρεσία ξεκίνησε.</value>
   </data>
   
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>نمایش ایکون برنامه های ویندوز فون (appx, appxbundle).</value>
+    <value>Εμφανίζεται εικονίδιο app (appx, appxbundle) WindowsPhone.</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام</value>
+    <value>RenamePattern</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>بررسی {0} در Appstore اپل</value>
+    <value>Ελέγξτε το {0} στο Appstore της Apple</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>بررسی {0} در مایکروسافت فروشگاه</value>
+    <value>Ελέγξτε το {0} στο κατάστημα της Microsoft</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>بررسی {0} در آمازون Appstore</value>
+    <value>Ελέγξτε το {0} στο Amazon Appstore</value>
   </data>
   <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

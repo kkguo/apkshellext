@@ -374,13 +374,23 @@
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.fa-IR.resx" />
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
+    <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
+    <EmbeddedResource Include="Properties\Resources.hu-HU.resx" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.ko-KR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.es-ES.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.pt-PT.resx" />
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
+    <EmbeddedResource Include="Properties\Resources.sr-SP.resx" />
+    <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
     <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <None Include="Resources\Apple.png" />
     <None Include="Resources\Android.png" />
@@ -388,12 +398,21 @@
     <EmbeddedResource Include="Resources\es-ES\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\fa-IR\ApkShellext2.resources.dll" />
     <Content Include="Resources\Amazon.png" />
+    <EmbeddedResource Include="Resources\de-DE\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\el-GR\ApkShellext2.resources.dll" />
+    <Content Include="Resources\fr-FR\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\he-IL\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\hu-HU\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\ja-JP\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
     <None Include="Resources\QR-Scan.png" />
+    <EmbeddedResource Include="Resources\pt-PT\ApkShellext2.resources.dll" />
+    <EmbeddedResource Include="Resources\ru-RU\ApkShellext2.resources.dll" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
     <Content Include="Resources\Windows.png" />
+    <EmbeddedResource Include="Resources\zh-TW\ApkShellext2.resources.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
     <None Include="Resources\restart_explorer.bat" />

@@ -139,77 +139,78 @@
     <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>به روز رسانی</value>
+    <value>Mise à jour</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>به روز رسانی در وب سایت پروژه</value>
+    <value>Accédez au site du projet pour mettre à jour</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>برو به گوگل پلی استور</value>
+    <value>Vérifier {0} sur GooglePlay</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK ابزارهای</value>
+    <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>تنظیمات و بروزرسانی</value>
+    <value>Préférences &amp;&amp; mise à jour</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>{0} تغییر نام به </value>
+    <value>Renommer en {0}</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>نشد خواندن فایل</value>
+    <value>Faile à lire le fichier</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>جستجوی نسخه جدید</value>
+    <value>Vérification nouvelle version...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>جستجوی نسخه جدید در سایت پروژه</value>
+    <value>Vérifiez le site du projet pour la mise à jour.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>نسخه فعلی:{0}</value>
+    <value>Version actuelle : {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه  بروز شد</value>
+    <value>Formidable ! Vous avez la dernière version.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0}نسخه جدید موجود است</value>
+    <value>Nouvelle version {0} est disponible</value>
   </data>
   
   
   <data name="btnCancel" xml:space="preserve">
-    <value>تأیید</value>
+    <value>Bien</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>همیشه منوی گوگل پلی نمایش داده شود</value>
+    <value>Toujours afficher le menu de GooglePlay</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value> اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-توجه کنید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود</value>
+    <value>Si cochée, GooglePlay menu apparaîtra même plusieurs fichiers apk sélectionnés. 
+Veuillez noter que vous pouvez ouvrir beaucoup de fenêtre de navigateur et impact sur les performances de manière significative.
+Par défaut, afficher uniquement le menu lorsqu'un fichier sélectionné</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>برو به سایت پروژه</value>
+    <value>Accédez au site du projet ApkShellext2</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>برای اجتناب از وضعیت همان نسخه اما تعداد نسخه های مختلف این بیشتر مانند اتفاق می افتد در فایل های نرم افزار آندروید. 
-با این چک کردن، تغییر نام فایل app به عنوان %AppName % _ % نسخه % _ % تجدید نظر %، در غیر این صورت، استفاده از %AppName _ ٪ ٪ ٪ نسخه.</value>
+    <value>Pour éviter la situation de la même Version mais le numéro de révision différents, cette majorité comme il arrive dans les fichiers de l'application android. 
+En vérifiant cela, renommer le fichier app %AppName % _ % _ % Version % % de révision, dans le cas contraire, utilisez la Version %AppName % _ %.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>تغییر نام  شامل ورژن برنامه باشد</value>
+    <value>Renommage avec VersionCode</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>نمایش آیکون عمومی</value>
+    <value>Afficher l'icône de superposition</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>نشان دادن نماد پوشش برای نوع فایل</value>
+    <value>Afficher une icône pour le fichier de superposition</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>زبان مورد استفاده:</value>
+    <value>Utiliser un langage :</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 تنظیمات</value>
+    <value>Préférences ApkShellext2</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>نمایش آیکون برنامه های ایفون(IPA)</value>
+    <value>Afficher l'icône d'application (ipa) d'iOS.</value>
   </data>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -218,29 +219,29 @@
     <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
-    <value>اسکن QR کد برای دانلود</value>
+    <value>Scannez le QR code pour télécharger</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% نام نرم افزار: نسخه اصلی%Revision%: نسخه شماره%Publisher%:%OS% ناشر: اندیشه / iOS / ویندوز</value>
+    <value>%AppName% : nom App%Version% :%Revision% Version intégrale :%Publisher% numéro de révision :%OS% Editeur : Android / iOS / Windows</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>این ابزار نیازمند ApkShellextService میباشد ، لظفا از اجرای سرویس مربوطه مطمئن شوید.</value>
+    <value>Cette fonctionnalité requiert ApkShellextService, s'il vous plaît assurez-vous que le service démarré.</value>
   </data>
   
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>نمایش ایکون برنامه های ویندوز فون (appx, appxbundle).</value>
+    <value>Afficher l'icône de WindowsPhone app (appx, appxbundle).</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام</value>
+    <value>RenamePattern</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>بررسی {0} در Appstore اپل</value>
+    <value>Vérifier {0} sur l'Appstore d'Apple</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>بررسی {0} در مایکروسافت فروشگاه</value>
+    <value>Vérifier {0} sur Microsoft Store</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>بررسی {0} در آمازون Appstore</value>
+    <value>Vérifier {0} sur Amazon Appstore</value>
   </data>
   <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

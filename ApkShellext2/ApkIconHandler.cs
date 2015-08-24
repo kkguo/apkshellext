@@ -48,8 +48,7 @@ namespace ApkShellext2{
             }
         }
 
-        // Overlay icon from
-        // https://www.iconfinder.com/iconsets/ultimate-social
+        // Overlay icon
         private Icon addOverlay(uint iconSize) {
             using (Bitmap b = new Bitmap((int)iconSize, (int)iconSize)) {
                 using (Graphics g = Graphics.FromImage(b)) {

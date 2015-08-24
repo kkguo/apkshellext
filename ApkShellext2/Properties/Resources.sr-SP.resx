@@ -136,80 +136,81 @@
     <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>ГитХуб</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>به روز رسانی</value>
+    <value>Ажурирање</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>به روز رسانی در وب سایت پروژه</value>
+    <value>Идите на локацију пројекта за ажурирање</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>برو به گوگل پلی استور</value>
+    <value>{0} потврду на ГооглеПлаy</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK ابزارهای</value>
+    <value>Проширење љуске АПК</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>تنظیمات و بروزرسانی</value>
+    <value>Преференце # Упдате</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>{0} تغییر نام به </value>
+    <value>Преименујте у {0}</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>نشد خواندن فایل</value>
+    <value>Читање датотеке није успело</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>جستجوی نسخه جدید</value>
+    <value>Провјеравање нову верзију...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>جستجوی نسخه جدید در سایت پروژه</value>
+    <value>Локација пројекта потврду за ажурирање.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>نسخه فعلی:{0}</value>
+    <value>Тренутна верзија: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه  بروز شد</value>
+    <value>Сјајно! Имате најновију верзију.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0}نسخه جدید موجود است</value>
+    <value>Нова верзија {0} је технологијом</value>
   </data>
   
   
   <data name="btnCancel" xml:space="preserve">
-    <value>تأیید</value>
+    <value>у реду</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>همیشه منوی گوگل پلی نمایش داده شود</value>
+    <value>Увијек Прикажи ГооглеПлаy менија</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value> اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-توجه کنید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود</value>
+    <value>Ако је изабрано ГооглеПлаy менија ће се изабрано је чак и више апк датотека појавити. 
+Имајте на уму, можете отворити пуно прозора прегледача и значајно да утичу на перформансе.
+По подразумеваној вредности, само се мени прикаже када је изабрана једна датотека</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>برو به سایت پروژه</value>
+    <value>Идите на локацију АпкСхеллеxт2 пројекта</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>برای اجتناب از وضعیت همان نسخه اما تعداد نسخه های مختلف این بیشتر مانند اتفاق می افتد در فایل های نرم افزار آندروید. 
-با این چک کردن، تغییر نام فایل app به عنوان %AppName % _ % نسخه % _ % تجدید نظر %، در غیر این صورت، استفاده از %AppName _ ٪ ٪ ٪ نسخه.</value>
+    <value>За избегавање ситуације исту верзију, али број различитих ревизије, ово најчешће као се дешава у андроид апп датотеке. 
+Проверавањем ово, преименујте датотеку апп као %AппНаме _ % верзија % _ % Ревисион %, у супротном, користите %AппНаме _ % верзија %.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>تغییر نام  شامل ورژن برنامه باشد</value>
+    <value>Преименуј са ВерсионЦоде</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>نمایش آیکون عمومی</value>
+    <value>Прикажи икону преклапање</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>نشان دادن نماد پوشش برای نوع فایل</value>
+    <value>Прикажи икону "преклапање" за тип датотеке</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>زبان مورد استفاده:</value>
+    <value>Користите језик:</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 تنظیمات</value>
+    <value>АпкСхеллеxт2 преференце</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>نمایش آیکون برنامه های ایفون(IPA)</value>
+    <value>Прикажи икону иОС апликације (ипа).</value>
   </data>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -218,29 +219,29 @@
     <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
-    <value>اسکن QR کد برای دانلود</value>
+    <value>Скенирајте QР кôд за преузимање</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% نام نرم افزار: نسخه اصلی%Revision%: نسخه شماره%Publisher%:%OS% ناشر: اندیشه / iOS / ویندوز</value>
+    <value>%AppName%: име апликације%Version%: главна верзија%Revision%: број ревизије%Publisher%:%OS% Издавач: Андроид / иОС / Wиндоwс</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>این ابزار نیازمند ApkShellextService میباشد ، لظفا از اجرای سرویس مربوطه مطمئن شوید.</value>
+    <value>Ова функција захтева АпкСхеллеxтСервице, уверите се да је сервис започео.</value>
   </data>
   
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>نمایش ایکون برنامه های ویندوز فون (appx, appxbundle).</value>
+    <value>Прикажи икону WиндоwсПхоне апп (аппx, аппxбундле).</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام</value>
+    <value>РенамеПаттерн</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>بررسی {0} در Appstore اپل</value>
+    <value>{0} потврду на Аппле Аппсторе</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>بررسی {0} در مایکروسافت فروشگاه</value>
+    <value>{0} потврду на Мицрософт складиште</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>بررسی {0} در آمازون Appstore</value>
+    <value>{0} потврду на Амазон Аппсторе</value>
   </data>
   <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
