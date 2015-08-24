@@ -10,7 +10,7 @@ A windows shell exteions for mobile app files, supporting
  * Website maitainence : I need help to create the jekyll site
  * Tester : I need help to test new features.
 
-Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, thanks!
+Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, pull request is welcome.
 
 This project is open source and free, visit http://apkshellext.com for Download and more Information.
 
