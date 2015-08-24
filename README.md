@@ -22,8 +22,7 @@ This project is open source and free, visit http://apkshellext.com for Download 
  - [x] Check new version automatically.
  - [x] Show overlay icon for different type of apps.
  - [x] Support mulitple languages: 
-    - English
-    - 中文(简体)
+    - English / 中文(简体)
     - italiano (by [Vince. M](https://crowdin.com/profile/Widget))
     - Korean (by [zinc](https://crowdin.com/profile/zinc))
     - Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
