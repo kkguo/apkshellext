@@ -16,6 +16,9 @@ namespace ApkShellext2 {
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".apk")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".ipa")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appxbundle")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appx")]
     public class ApkInfoTipHandler : SharpInfoTipHandler {
         /// <summary>
         /// Gets info for the selected item (SelectedItemPath).
@@ -28,16 +31,15 @@ namespace ApkShellext2 {
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
             try {
                 Utility.Localize();
-                using (ApkReader reader = new ApkReader(SelectedItemPath)) {
-                    string splitor = singleLine ? " " : Environment.NewLine;
-                    return reader.getAttribute("application", "label") + splitor
-                            + reader.getAttribute("manifest", "package") + splitor
-                            + "Version : " + reader.getAttribute("manifest", "versionName") + " ("
-                            + reader.getAttribute("manifest", "versionCode") + ")";
+                using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
+                    string splitor = singleLine ? " " : Environment.NewLine;                    
+                    return reader.AppName + splitor
+                            + reader.PackageName + splitor
+                            + "Version : " + reader.Version + " " + reader.Revision;
                 }
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);
-                return Properties.Resources.strReadApkFailed;
+                return Properties.Resources.strReadFileFailed;
             }
         }
 

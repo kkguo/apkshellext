@@ -149,7 +149,7 @@
     <value>Go to project site to update</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Check this app on GooglePlay</value>
+    <value>Check {0} on GooglePlay</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
@@ -160,8 +160,8 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rename to {0}</value>
   </data>
-  <data name="strReadApkFailed" xml:space="preserve">
-    <value>Faile to read apk file</value>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>Faile to read file</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Checking new version ...</value>
@@ -199,9 +199,8 @@ By default, only show the menu when one file selected</value>
     <value>Go to ApkShellext2 Project site</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>For avoiding situation of same VersionName but different VersionCode,
-check this, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk,
-otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
+    <value>For avoiding situation of same Version but different revision number, this most like happens in android app files. 
+By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, use %AppName%_%Version%.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
     <value>Rename with VersionCode</value>
@@ -210,7 +209,7 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
     <value>Show Overlay Icon</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Show an Android overlay icon for apk file</value>
+    <value>Show an overlay icon for file type</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
     <value>Use Language:</value>
@@ -224,9 +223,6 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
   <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="android" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\android_icon_128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -234,9 +230,11 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
     <value>Scan QR code to download</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>%label%: Label
-%versionName%: VersionName
-%versionCode%: VersionCode</value>
+    <value>%AppName%: App Name
+%Version%: Main Version
+%Revision%: Revision Number
+%Publisher%: Publisher
+%OS%: Android / iOS / Windows</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
     <value>This feature requires ApkShellextService, please make sure the service started.</value>
@@ -245,9 +243,33 @@ otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk, </value>
     <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
   </data>
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>Show Windows Phone app(appx, appxbundle) icon.</value>
+    <value>Show WindowsPhone app (appx, appxbundle) icon.</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
     <value>RenamePattern</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>Check {0} on Apple Appstore</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Check {0} on Microsoft Store</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>Check {0} on Amazon Appstore</value>
+  </data>
+  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="urlAppleStore" xml:space="preserve">
+    <value>http://itunes.apple.com/{0}/app/{1}/id{2}?mt=8</value>
+  </data>
+  <data name="urlMicrosoftStore" xml:space="preserve">
+    <value>https://www.microsoft.com/{0}/store/apps/{1}/{2}</value>
   </data>
 </root>

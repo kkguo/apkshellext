@@ -58,11 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApkQuickReader\ApkQuickReader.cs" />
+    <Compile Include="ApkChunkEnumerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ApkQuickReader.cs" />
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
-    <Compile Include="AppxBundleIconHandler.cs" />
+    <Compile Include="AppPackageReader.cs" />
     <Compile Include="AppxBundleReader.cs" />
     <Compile Include="AppxReader.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\CRC32.cs" />
@@ -78,7 +81,6 @@
     <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibCodec.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibConstants.cs" />
     <Compile Include="Ionic.Zlib\Ionic.Zlib\ZlibStream.cs" />
-    <Compile Include="IpaIconHandler.cs" />
     <Compile Include="IpaReader.cs" />
     <Compile Include="PlistCS\PlistCS\Src\Plist.cs" />
     <Compile Include="PNGDecrush\PNGDecrush\BinaryReaderNetworkHostOrderAdditions.cs" />
@@ -381,15 +383,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <None Include="Resources\Apple.png" />
-    <None Include="Resources\android_icon_128.png" />
+    <None Include="Resources\Android.png" />
     <EmbeddedResource Include="Resources\ko-KR\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\es-ES\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\fa-IR\ApkShellext2.resources.dll" />
+    <Content Include="Resources\Amazon.png" />
     <Content Include="Resources\logo.png" />
     <None Include="Resources\QR-Scan.png" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
+    <Content Include="Resources\Windows.png" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
     <None Include="Resources\restart_explorer.bat" />
@@ -436,8 +440,8 @@ rd /s /q $(ProjectDir)\Resources\fa-IR
 move /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\
 move /Y $(TargetDir)it-IT $(ProjectDir)\Resources\
 move /Y $(TargetDir)ko-KR $(ProjectDir)\Resources\
-move /Y $(TargetDir)es-ES $(ProjectDir)Resources\
-move /Y $(TargetDir)fa-IR $(ProjectDir)Resources\
+move /Y $(TargetDir)es-ES $(ProjectDir)\Resources\
+move /Y $(TargetDir)fa-IR $(ProjectDir)\Resources\
 copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

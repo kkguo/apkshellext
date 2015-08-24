@@ -122,16 +122,12 @@ namespace ApkShellext2 {
         }
 
         public static Assembly ResourceDllResolveEventHandler(object sender, ResolveEventArgs args) {
+            Logging.Log("Resolve resource dll " + args.Name);
             AssemblyName MissingAssembly = new AssemblyName(args.Name);
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
             if (_bufCultureInfoLCID != ci.LCID) {
                 string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-", "_") + "." + MissingAssembly.Name + ".dll";
-#if DEBUG
-                Logging.Log("List of the resources:");
-                foreach (var s in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
-                    Logging.Log(s);
-                }
-#endif
+
                 Logging.Log("Extracting resource dll: " + resourceName);
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
                     if (stream == null) return null;
@@ -139,6 +135,7 @@ namespace ApkShellext2 {
                     _bufCultureInfoLCID = ci.LCID;
                 }
             }
+            Logging.Log("Loading culture dll with " + new CultureInfo(_bufCultureInfoLCID).DisplayName);
             return Assembly.Load(_binResourceDll);
         }
 
@@ -155,6 +152,7 @@ namespace ApkShellext2 {
             if (lang != -1) {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                Logging.Log("Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
             }
         }
 
@@ -199,18 +197,18 @@ namespace ApkShellext2 {
         }
 
         // http://stackoverflow.com/questions/6803073/get-local-ip-address
-        public static string LocalIPAddress() {
-            IPHostEntry host;
-            string localIP = "";
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (IPAddress ip in host.AddressList) {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
-                    localIP = ip.ToString();
-                    break;
-                }
-            }
-            return localIP;
-        }
+        //public static string LocalIPAddress() {
+        //    IPHostEntry host;
+        //    string localIP = "";
+        //    host = Dns.GetHostEntry(Dns.GetHostName());
+        //    foreach (IPAddress ip in host.AddressList) {
+        //        if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
+        //            localIP = ip.ToString();
+        //            break;
+        //        }
+        //    }
+        //    return localIP;
+        //}
 
         public static string GetMd5Hash(MD5 md5Hash, string input) {
 

@@ -69,14 +69,14 @@ namespace ApkShellext2 {
                 thUpdate.Start();
             }
 
-            btnCancel.Focus();
-            formLoaded = true;
-
             checkBox4.Text = Resources.strShowIpaIcon;
             checkBox4.Checked = (Utility.getRegistrySetting(Utility.keyShowIpaIcon, 100) == 1);
 
             ckShowAppxIcon.Text = Resources.strShowAppxIcon;
             ckShowAppxIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowAppxIcon, 100) == 1);
+
+            btnCancel.Focus();
+            formLoaded = true;
         }
 
         Thread thUpdate;
@@ -98,16 +98,10 @@ namespace ApkShellext2 {
             Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, ckShowPlay.Checked ? 1 : 0);
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (ckShowOverlay.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
-                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
-            }
-        }
-
         private void combLanguage_SelectedIndexChanged(object sender, EventArgs e) {
-            if (formLoaded && Utility.getSupportedLanguages()[combLanguage.SelectedIndex].LCID != Thread.CurrentThread.CurrentCulture.LCID) {
-                Utility.setRegistrySetting("language", Utility.getSupportedLanguages()[combLanguage.SelectedIndex].LCID);
+            CultureInfo[] supported = Utility.getSupportedLanguages();
+            if (formLoaded && supported[combLanguage.SelectedIndex].LCID != Thread.CurrentThread.CurrentCulture.LCID) {
+                Utility.setRegistrySetting("language", supported[combLanguage.SelectedIndex].LCID);
                 this.OnLoad(e);
             }
         }
@@ -149,6 +143,13 @@ namespace ApkShellext2 {
         private void ckShowAppxIcon_CheckedChanged(object sender, EventArgs e) {
             if (Utility.getRegistrySetting(Utility.keyShowAppxIcon) != (ckShowAppxIcon.Checked ? 1 : 0)) {
                 Utility.setRegistrySetting(Utility.keyShowAppxIcon, ckShowAppxIcon.Checked ? 1 : 0);
+                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        private void ckShowOverlay_CheckedChanged(object sender, EventArgs e) {
+            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (ckShowOverlay.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
             }
         }

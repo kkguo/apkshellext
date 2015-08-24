@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="urlGithubHome" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext</value>
+  </data>
+  <data name="urlGooglePlay" xml:space="preserve">
+    <value>https://play.google.com/store/apps/details?id={0}</value>
+  </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -156,6 +162,12 @@
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>有更新版本: {0}</value>
   </data>
+  <data name="urlGithubHomeLatest" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/latest</value>
+  </data>
+  <data name="urlGithubHomeWithVersion" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>确定</value>
   </data>
@@ -179,10 +191,10 @@
     <value>重命名时使用版本代码</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>显示左下角小图标</value>
+    <value>显示叠加图标</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>选中时在每个图标左下角显示一个Android头像,表示这是一个apk文件</value>
+    <value>选中时在每个图标左下角显示叠加图标,代表不同的文件类型</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
     <value>选择语言:</value>
@@ -193,7 +205,24 @@
   <data name="strShowIpaIcon" xml:space="preserve">
     <value>显示 iOS app (ipa) 图标。</value>
   </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>扫描QR码下载</value>
+  </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>按照这样重命名</value>
+    <value>%label%: App名称
+%versionName%: 版本名称
+%versionCode%: 版本代码</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>这项功能需要ApkShellextService服务, 请确保这项服务已经打开</value>
+  </data>
+  <data name="urlAmazonAppStore" xml:space="preserve">
+    <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
+  </data>
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>显示WindowsPhone程序(appx, appxbundle)图标</value>
+  </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>重命名方式</value>
   </data>
 </root>

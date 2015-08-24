@@ -50,19 +50,17 @@ namespace ApkShellext2 {
                 Text = Properties.Resources.menuMain,
             };
 
-            int size = mainMenu.Height - 1;
+            int size = mainMenu.Height;
 
             bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
             bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
             bool isappx = SelectedItemPaths.ElementAt(0).EndsWith(".appx");
-            bool isappxbundle = SelectedItemPaths.ElementAt(0).EndsWith(".appbundle");
+            bool isappxbundle = SelectedItemPaths.ElementAt(0).EndsWith(".appxbundle");      
 
-            if (isapk) {
-                #region Rename Menu
-
+            #region Rename Menu
                 int addVerCode = Utility.getRegistrySetting(Utility.keyRenameWithVersionCode);
                 ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                    Text = string.Format(Resources.menuRenameAs, @"<Label>_<verNumber>" + ((addVerCode == 1) ? "_<verCode>" : "") + ".apk"),
+                    Text = string.Format(Resources.menuRenameAs, @"%AppName%_%Version%" + ((addVerCode == 1) ? "_%Revision%" : "")),
                     Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
                 };
 
@@ -71,7 +69,7 @@ namespace ApkShellext2 {
                     if (newName != "") {
                         renameMenu.Text = string.Format(Resources.menuRenameAs, Path.GetFileName(newName));
                     } else {
-                        renameMenu.Text = Resources.strReadApkFailed;
+                        renameMenu.Text = Resources.strReadFileFailed;
                         renameMenu.Enabled = false;
                     }
                 }
@@ -81,20 +79,33 @@ namespace ApkShellext2 {
                 mainMenu.DropDownItems.Add(renameMenu);
                 #endregion
 
+            if (isapk) {
                 #region Google Play Menu
-                var playMenu = new ToolStripMenuItem {
-                    Text = Resources.menuGotoGooglePlay,
-                    Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
-                };
+                    using (ApkReader reader = new ApkReader(SelectedItemPaths.ElementAt(0))) {
+                        var playMenu = new ToolStripMenuItem {
+                            Text = string.Format(Resources.menuGotoGooglePlay, reader.AppName),
+                            Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
+                        };
 
-                playMenu.Click += (sender, args) => gotoGooglePlay();
-                mainMenu.DropDownItems.Add(playMenu);
-                playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-        (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
+                        playMenu.Click += (sender, args) => gotoGooglePlay();
+                        mainMenu.DropDownItems.Add(playMenu);
+                        playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
+                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
 
-                #endregion
+                        var amazonMenu = new ToolStripMenuItem {
+                            Text = string.Format(Resources.menuGotoAmazonAppStore, reader.AppName),
+                            Image = Utility.ResizeBitmap(Properties.Resources.Amazon, size)
+                        };
 
-                #region Barcode
+                        amazonMenu.Click += (sender, args) => gotoAmazonAppStore();
+                        mainMenu.DropDownItems.Add(amazonMenu);
+                        amazonMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
+                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
+                    }
+                    #endregion
+            }
+
+            #region Barcode
                 /* Not enabled yet
             var barcodeMenu = new ToolStripMenuItem();
             barcodeMenu.Text = Resources.strScanToDownload;
@@ -133,8 +144,7 @@ namespace ApkShellext2 {
             }
             mainMenu.DropDownItems.Add(barcodeMenu);
             */
-                #endregion
-            }
+                #endregion            
 
             #region Preferences Menu
             var settingsMenu = new ToolStripMenuItem {
@@ -148,81 +158,65 @@ namespace ApkShellext2 {
             mainMenu.DropDownItems.Add(settingsMenu);
             #endregion
 
-            if (isapk) {
-                #region Mainmenu Icon
-                // Draw Apk icon to the menu
-                // if choose multiple files, will create a icon with upto 3 icons together.             
-                try { // draw multiple icons
-                    ApkReader reader0 = new ApkReader(SelectedItemPaths.ElementAt(0));
-                    ApkReader reader1 = null;
-                    ApkReader reader2 = null;
-                    if (SelectedItemPaths.Count() == 1) {
-                        mainMenu.Image = Utility.ResizeBitmap(reader0.getImage("application", "icon"), size);
-                    } else {
-                        reader1 = new ApkReader(SelectedItemPaths.ElementAt(1));
-                        if (SelectedItemPaths.Count() > 2) {
-                            reader2 = new ApkReader(SelectedItemPaths.ElementAt(2));
-                        }
-                        Bitmap b = new Bitmap(size, size);
-                        using (Graphics g = Graphics.FromImage((Image)b)) {
-                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                            if (SelectedItemPaths.Count() > 2) {
-                                g.DrawImage(reader2.getImage("application", "icon"), 0, 0, size - 6, size - 6);
-                                g.DrawImage(reader1.getImage("application", "icon"), 3, 3, size - 6, size - 6);
-                                reader2.Close();
-                                reader1.Close();
-                            } else {
-                                g.DrawImage(reader1.getImage("application", "icon"), 0, 0, size - 6, size - 6);
-                                reader1.Close();
-                            }
-                            g.DrawImage(reader0.getImage("application", "icon"), 5, 5, size - 6, size - 6);
-                            reader0.Close();
-                        }
-                        mainMenu.Image = b;
+            #region Mainmenu Icon
+            // if choose multiple files, will create a icon with upto 3 icons together
+            try { // draw multiple icons
+                int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
+                Bitmap b = new Bitmap(size, size);
+                for (int i = 0; i <totalIconToDraw; i++) {
+                    using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPaths.ElementAt(totalIconToDraw - i - 1)))
+                    using (Graphics g = Graphics.FromImage((Image)b)) {
+                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        g.DrawImage(reader.Icon, i * 3, i * 3, size - 2 * totalIconToDraw, size - 2 * totalIconToDraw);
                     }
-                } catch { }
-                #endregion
+                }
+                mainMenu.Image = b;                    
+            } catch (Exception ex){
+                Log("Error happens during extracting icon " + ex.Message);
             }
+            #endregion
 
             menu.Items.Add(mainMenu);
             return menu;
         }
 
-        private void gotoDownload() {
-            string md5;
-            using (MD5 md5Hash = MD5.Create()) {
-                md5 = Utility.GetMd5Hash(md5Hash, SelectedItemPaths.First());
-            }
-            System.Diagnostics.Process.Start(@"http://" + Utility.LocalIPAddress() + @":42728/" + md5);
-        }
+        //private void gotoDownload() {
+        //    string md5;
+        //    using (MD5 md5Hash = MD5.Create()) {
+        //        md5 = Utility.GetMd5Hash(md5Hash, SelectedItemPaths.First());
+        //    }
+        //    System.Diagnostics.Process.Start(@"http://" + Utility.LocalIPAddress() + @":42728/" + md5);
+        //}
+
         /// <summary>
         /// get the new filename for renaming function
         /// </summary>
         /// <returns></returns>
         private string getNewFileName(string path) {
             bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
+            string suffix = Path.GetExtension(path);
             string newFileName = "";
             try {
-                using (ApkReader reader = new ApkReader(path)) {
-                    newFileName = reader.getAttribute("application", "label")
-                         + "_" + reader.getAttribute("manifest", "versionName");
+                using (AppPackageReader reader = AppPackageReader.Read(path)) {                
+                    newFileName = reader.AppName + "_" + reader.Version;
                     if (key_RenameWithVersionCode) {
-                        string versionCode = reader.getAttribute("manifest", "versionCode");
-                        newFileName = newFileName + "_" + versionCode;
+                        string revision = reader.Revision;
+                        if (revision != "")
+                            newFileName = newFileName + "_" + revision;
                     }
                 }
-                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s]", "_"); // remove invalid char
+                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s-]+", "_"); // remove invalid char
                 string oldFileName = Path.GetFileName(path);
                 string folderPath = Path.GetDirectoryName(path);
-                string tmpFileName = newFileName + ".apk";
+                string tmpFileName = newFileName + suffix;
 
                 int i = 0;
                 while (File.Exists(folderPath + @"\" + tmpFileName) &&
                     (tmpFileName != oldFileName)) {
                     i++;
-                    tmpFileName = newFileName + "_(" + i.ToString() + ")" + ".apk";
+                    tmpFileName = newFileName + "_(" + i.ToString() + ")" + suffix;
                 }
                 newFileName = folderPath + @"\" + tmpFileName;
             } catch {
@@ -242,12 +236,20 @@ namespace ApkShellext2 {
             }
         }
 
-
         private void gotoGooglePlay() {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
-                    string package = reader.getAttribute("manifest", "package");
+                    string package = reader.PackageName;
                     System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
+                }
+            }
+        }
+
+        private void gotoAmazonAppStore() {
+            foreach (var p in SelectedItemPaths) {
+                using (ApkReader reader = new ApkReader(p)) {
+                    string package = reader.PackageName;
+                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAmazonAppStore, package));
                 }
             }
         }

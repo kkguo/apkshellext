@@ -3,6 +3,8 @@ using System.Text;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Drawing;
+using ApkShellext2;
+using System.Globalization;
 
 namespace ApkQuickReader {
     public enum CHUNK_TYPE : short {
@@ -60,15 +62,20 @@ namespace ApkQuickReader {
         TYPE_STRING = 0x03,
     }
 
-    public class ApkReader : IDisposable {
-        private string _filename;
-        public string FileName { get { return _filename; } }
-
+    public class ApkReader : AppPackageReader {
         private ZipFile zip;
         private byte[] resources;
         private byte[] manifest;
 
-        public string Culture { get; set; }
+        private readonly string AndroidManifextXML = @"androidmanifest.xml";
+        private readonly string Resources_arsc = @"resources.arsc";
+        private readonly string TagApplication = @"application";
+        private readonly string TagManifest = @"manifest";
+        private readonly string AttrLabel = @"label";
+        private readonly string AttrVersionName = @"versionName";
+        private readonly string AttrVersionCode = @"versionCode";
+        private readonly string AttrIcon = @"icon";
+        private readonly string AttrPackage = @"package";
 
         /// <summary>
         /// extract the manifext
@@ -76,17 +83,46 @@ namespace ApkQuickReader {
         /// <param name="filename">full path to the file</param>
         /// <param name="culture"></param>
         public ApkReader(string filename, string culture = "") {
-            _filename = filename;
-            Culture = culture;
+            FileName = filename;
+            
             zip = new ZipFile(filename);
 
-            ZipEntry en = zip.GetEntry("androidmanifest.xml");
+            ZipEntry en = zip.GetEntry(AndroidManifextXML);
             BinaryReader s = new BinaryReader(zip.GetInputStream(en));
             manifest = s.ReadBytes((int)en.Size);
 
-            en = zip.GetEntry("resources.arsc");
+            en = zip.GetEntry(Resources_arsc);
             s = new BinaryReader(zip.GetInputStream(en));
             resources = s.ReadBytes((int)en.Size);
+        }
+
+        public override string AppName {
+            get {
+                return getAttribute(TagApplication,AttrLabel);
+            }
+        }
+
+        public override string Version {
+            get {
+                return getAttribute(TagManifest,AttrVersionName);
+            }
+        }
+        public override string Revision {
+            get {
+                return getAttribute(TagManifest, AttrVersionCode);
+            }
+        }
+
+        public override Bitmap Icon {
+            get {
+                return getImage(TagApplication, AttrIcon);
+            }
+        }
+
+        public override string PackageName {
+            get {
+                return getAttribute(TagManifest, AttrPackage);
+            }
         }
 
         /// <summary>
@@ -259,21 +295,22 @@ namespace ApkQuickReader {
         }
 
         /// <summary>
-        /// Get culture code from string
+        /// Get culture info from string
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        private byte[] ISO_639(string code) {
-            byte[] encode = new byte[2];
-            if (code.Length == 3) {
-                byte[] c = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
-                encode[0] = (byte)((c[0] & 0x1F) + ((c[1] & 0x03) << 5));
-                encode[1] = (byte)(1 << 7 + ((c[2] & 0x1F) << 2) + ((c[1] & 0x1c) >> 2));
-            } else if (code.Length == 2) {
-                encode = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
-            }
-            return encode;
-        }
+        //private CultureInfo ISO_639(byte[] code) {
+        //    byte[] encode = new byte[2];
+        //    if (code.Length == 3) {
+        //        byte[] c = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
+        //        encode[0] = (byte)((c[0] & 0x1F) + ((c[1] & 0x03) << 5));
+        //        encode[1] = (byte)(1 << 7 + ((c[2] & 0x1F) << 2) + ((c[1] & 0x1c) >> 2));
+        //    } else if (code.Length == 2) {
+
+        //        encode = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
+        //    }
+        //    return encode;
+        //}
 
         /// <summary>
         /// Find the requested resource, according to config setting, if the config was set.
@@ -364,9 +401,10 @@ namespace ApkQuickReader {
                                     if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
                                         return QuickSearchResourcesStringPool(data);
                                     } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
-                                        if (data == 0x00000000) {
+                                        // the entry is null, or it's referencing itself, go to next chunk
+                                        if (data == 0x00000000 || data == id) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                            continue; // the entry is null, go to next chunk
+                                            continue; 
                                         }
                                         return QuickSearchResource((UInt32)data);
                                     } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
@@ -385,32 +423,25 @@ namespace ApkQuickReader {
             return result;
         }
 
-        public void Dispose() {
-            resources = null;
-            manifest = null;
-            if (zip != null)
-                zip.Close();
+        private bool disposed = false;
+        protected override void Dispose(bool disposing) {
+            if (disposed) return;
+            if (disposing) {
+                resources = null;
+                manifest = null;
+                if (zip != null)
+                    zip.Close();
+            }
+            disposed = true;
+            base.Dispose(disposing);
         }
 
         public void Close() {
-            Dispose();
+            Dispose(true);
         }
 
         ~ApkReader() {
-            Dispose();
-        }
-    }
-
-    public class ApkChunk {
-        public uint offset { get; private set; }
-        public CHUNK_TYPE chunkType { get; private set; }
-        public uint chunkSize { get; private set; }
-        public ApkChunk[] subChunk;
-
-        ApkChunk(uint offset, CHUNK_TYPE type, uint size) {
-            this.offset = offset;
-            this.chunkType = type;
-            this.chunkSize = size;
+            Dispose(true);
         }
     }
 }

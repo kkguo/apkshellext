@@ -13,11 +13,16 @@ using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace ApkShellext2{
-
+    /// <summary>
+    /// This is the icon handler, not only supporting apk, but also other type of apps.
+    /// </summary>
     [Guid("1F869CEE-4FDA-35D9-896F-43975A87D1F6")]
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
-    [COMServerAssociation(AssociationType.ClassOfExtension,".apk")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".apk")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".ipa")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appxbundle")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".appx")]
     public class ApkIconHandler : SharpIconHandler {
         private Bitmap m_icon = null;
 
@@ -25,13 +30,14 @@ namespace ApkShellext2{
         {
             try {
                 if (m_icon == null) {
-                    using (ApkReader reader = new ApkReader(SelectedItemPath)) {
-                        m_icon = reader.getImage("application", "icon");
+                    using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
+                        m_icon = reader.Icon;
                     }
                 }
             } catch {
+                Log("Error in reader icon, draw default");
                 // read error, draw the default icon
-                m_icon = Utility.ResizeBitmap(Properties.Resources.android, (int)iconSize);
+                m_icon = Utility.ResizeBitmap(getOverlayIcon(SelectedItemPath), (int)iconSize);
                 return Icon.FromHandle(m_icon.GetHicon());
             }
 
@@ -42,6 +48,8 @@ namespace ApkShellext2{
             }
         }
 
+        // Overlay icon from
+        // https://www.iconfinder.com/iconsets/ultimate-social
         private Icon addOverlay(uint iconSize) {
             using (Bitmap b = new Bitmap((int)iconSize, (int)iconSize)) {
                 using (Graphics g = Graphics.FromImage(b)) {
@@ -49,15 +57,33 @@ namespace ApkShellext2{
                     g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                     g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
-                    g.DrawImage(Properties.Resources.android, 0, iconSize/2,iconSize/2,iconSize/2);
+                    g.DrawImage(getOverlayIcon(SelectedItemPath), 0, iconSize/2,iconSize/2,iconSize/2);
                     return Icon.FromHandle(b.GetHicon());
                 }
             }
         }
 
+        private Bitmap getOverlayIcon(string path) {
+            switch (AppPackageReader.getAppType(path)){
+                case AppPackageReader.AppType.AndroidApp:
+                    return Properties.Resources.Android;
+                case AppPackageReader.AppType.iOSApp:
+                    return Properties.Resources.Apple;
+                case AppPackageReader.AppType.WindowsPhoneApp:
+                case AppPackageReader.AppType.WindowsPhoneAppBundle:
+                    return Properties.Resources.Windows;
+                default:
+                    return null;
+            }
+        }
+
         [CustomRegisterFunction]
         public static void postDoRegister(Type type, RegistrationType registrationType) {
-            Console.WriteLine("Registering " + type.FullName);
+            Console.WriteLine("Registering " + type.FullName + "Version" + type.Assembly.GetName().Version.ToString());
+
+            // Todo: clean other icon handler as they were integrated
+            //"d5ff6172-1ae5-4c4a-a207-5a2dd100891e"
+            //"a0ac4758-12d3-4dcf-9d12-03faaa3c0a9d"
 
             #region Clean up apkshellext registry
             try {
@@ -111,6 +137,20 @@ namespace ApkShellext2{
             }
             #endregion
 
+            #region enable log print when debug
+//#if DEBUG
+//            try {
+//                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"\SOFTWARE\SharpShell")) {
+//                    if (key != null) {
+//                        key.SetValue("LoggingMode", 4);
+//                        key.SetValue("LogPath", @"%temp%\apkshellext.log");
+//                    }
+//                }
+//            } catch (Exception e){
+//                Logging.Log("error in enable logging" + e.Message);
+//            }
+//#endif
+            #endregion
         }
 
         protected override void Log(string message) {

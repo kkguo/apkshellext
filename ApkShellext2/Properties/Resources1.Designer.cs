@@ -63,9 +63,19 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap android {
+        internal static System.Drawing.Bitmap Amazon {
             get {
-                object obj = ResourceManager.GetObject("android", resourceCulture);
+                object obj = ResourceManager.GetObject("Amazon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Android {
+            get {
+                object obj = ResourceManager.GetObject("Android", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,11 +166,38 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Check this app on GooglePlay 的本地化字符串。
+        ///   查找类似 Check {0} on Amazon Appstore 的本地化字符串。
+        /// </summary>
+        internal static string menuGotoAmazonAppStore {
+            get {
+                return ResourceManager.GetString("menuGotoAmazonAppStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check {0} on Apple Appstore 的本地化字符串。
+        /// </summary>
+        internal static string menuGotoAppleAppStore {
+            get {
+                return ResourceManager.GetString("menuGotoAppleAppStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check {0} on GooglePlay 的本地化字符串。
         /// </summary>
         internal static string menuGotoGooglePlay {
             get {
                 return ResourceManager.GetString("menuGotoGooglePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check {0} on Microsoft Store 的本地化字符串。
+        /// </summary>
+        internal static string menuGotoMicrosoftStore {
+            get {
+                return ResourceManager.GetString("menuGotoMicrosoftStore", resourceCulture);
             }
         }
         
@@ -313,18 +350,20 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Faile to read apk file 的本地化字符串。
+        ///   查找类似 Faile to read file 的本地化字符串。
         /// </summary>
-        internal static string strReadApkFailed {
+        internal static string strReadFileFailed {
             get {
-                return ResourceManager.GetString("strReadApkFailed", resourceCulture);
+                return ResourceManager.GetString("strReadFileFailed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 %label%: Label
-        ///%versionName%: VersionName
-        ///%versionCode%: VersionCode 的本地化字符串。
+        ///   查找类似 %AppName%: App Name
+        ///%Version%: Main Version
+        ///%Revision%: Revision Number
+        ///%Publisher%: Publisher
+        ///%OS%: Android / iOS / Windows 的本地化字符串。
         /// </summary>
         internal static string strRenamePattern {
             get {
@@ -333,9 +372,8 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 For avoiding situation of same VersionName but different VersionCode,
-        ///check this, rename apk file as &lt;label&gt;_&lt;VersionName&gt;_&lt;versionCode&gt;.apk,
-        ///otherwise, as &lt;label&gt;_&lt;versionName&gt;.apk,  的本地化字符串。
+        ///   查找类似 For avoiding situation of same Version but different revision number, this most like happens in android app files. 
+        ///By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, use %AppName%_%Version%. 的本地化字符串。
         /// </summary>
         internal static string strRenameToolTip {
             get {
@@ -362,7 +400,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Windows Phone app(appx, appxbundle) icon. 的本地化字符串。
+        ///   查找类似 Show WindowsPhone app (appx, appxbundle) icon. 的本地化字符串。
         /// </summary>
         internal static string strShowAppxIcon {
             get {
@@ -389,7 +427,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show an Android overlay icon for apk file 的本地化字符串。
+        ///   查找类似 Show an overlay icon for file type 的本地化字符串。
         /// </summary>
         internal static string strShowOverlayIconToolTip {
             get {
@@ -413,6 +451,15 @@ namespace ApkShellext2.Properties {
         internal static string urlAmazonAppStore {
             get {
                 return ResourceManager.GetString("urlAmazonAppStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://itunes.apple.com/{0}/app/{1}/id{2}?mt=8 的本地化字符串。
+        /// </summary>
+        internal static string urlAppleStore {
+            get {
+                return ResourceManager.GetString("urlAppleStore", resourceCulture);
             }
         }
         
@@ -449,6 +496,25 @@ namespace ApkShellext2.Properties {
         internal static string urlGooglePlay {
             get {
                 return ResourceManager.GetString("urlGooglePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://www.microsoft.com/{0}/store/apps/{1}/{2} 的本地化字符串。
+        /// </summary>
+        internal static string urlMicrosoftStore {
+            get {
+                return ResourceManager.GetString("urlMicrosoftStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Windows {
+            get {
+                object obj = ResourceManager.GetObject("Windows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

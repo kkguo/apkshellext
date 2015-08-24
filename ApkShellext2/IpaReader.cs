@@ -19,20 +19,26 @@ using Microsoft.Win32;
 using System.Text.RegularExpressions;
 
 namespace ApkShellext2 {
-    public class IpaReader : IDisposable {
-        private string _filename;
+    public class IpaReader : AppPackageReader {
         private string strAppRoot;
         private Dictionary<string,object> dic;
         private ZipFile zip;
 
-        public string FileName { get { return _filename; } }
+        private readonly string infoPlistPath = @"(Payload/.*\.app/)Info\.plist";
+        private readonly string CFBundleIcons = @"CFBundleIcons";
+        private readonly string CFBundlePrimaryIcon = @"CFBundlePrimaryIcon";
+        private readonly string CFBundleIconFiles = @"CFBundleIconFiles";
+        private readonly string CFBundleDisplayName = @"CFBundleDisplayName";
+        private readonly string CFBundleIdentifier = @"CFBundleIdentifier";
+        private readonly string CFBundleShortVersionString = @"CFBundleShortVersionString";
+        private readonly string CFBundleVersion = @"CFBundleVersion";
 
         public IpaReader(string path) {
-            _filename = path;
-            zip = new ZipFile(_filename);
+            FileName = path;
+            zip = new ZipFile(FileName);
             ZipEntry infoPlist = null;
             foreach (ZipEntry en in zip) {
-                Match m = Regex.Match(en.Name, @"(Payload/.*\.app/)Info\.plist");
+                Match m = Regex.Match(en.Name, infoPlistPath);
                 if (m.Success) {
                     strAppRoot = m.Groups[1].Value;
                     infoPlist = en;
@@ -46,28 +52,31 @@ namespace ApkShellext2 {
             zip.GetInputStream(infoPlist).Read(infoBytes,0,(int)infoPlist.Size);
 
             dic = (Dictionary<string, object>)Plist.readPlist(infoBytes);
-
         }
 
-        public string[] getStrings(string[] ID) {
+        public string[] getStrings(string[] keys) {
             Dictionary<string, object> m_dic = dic;
-            for (int i = 0; i < ID.Length - 1; i++) {
-               if (m_dic.ContainsKey(ID[i])) {
-                   m_dic = (Dictionary<string, object>)m_dic[ID[i]];
+            for (int i = 0; i < keys.Length - 1; i++) {
+               if (m_dic.ContainsKey(keys[i])) {
+                   m_dic = (Dictionary<string, object>)m_dic[keys[i]];
                 } else {
                     throw new Exception("Given ID is not valid");
                 }
             }
-            if (m_dic.ContainsKey(ID[ID.Length - 1])) {
-                object [] arr = ((List<object>)m_dic[ID[ID.Length-1]]).ToArray();
-                return Array.ConvertAll<object,string>(arr, x => x.ToString());
+            if (m_dic.ContainsKey(keys[keys.Length - 1])) {
+                if (m_dic[keys[keys.Length - 1]] is string) {
+                    return new string[] { m_dic[keys[keys.Length - 1]] as string };
+                } else { // is list
+                    object[] arr = ((List<object>)m_dic[keys[keys.Length - 1]]).ToArray();
+                    return Array.ConvertAll<object, string>(arr, x => x.ToString());
+                }
             } else {
                 return null;
             }
         }
 
-        public Bitmap getImage(string[] ID) {
-            string[] images = getStrings(ID);
+        public Bitmap getImage(string[] keys) {
+            string[] images = getStrings(keys);
             if (images != null) {
                 return getImage(images[0]);
             }
@@ -99,10 +108,59 @@ namespace ApkShellext2 {
             return new Bitmap(imageOut);
         }
 
-        void IDisposable.Dispose() {
-            if (zip != null) {
-                zip.Close();
+        public override string AppName {
+            get {
+                return getStrings(new string[] {
+                    CFBundleDisplayName})[0];
             }
+        }
+
+        public override string Version {
+            get {
+                return getStrings(new string[] {
+                    CFBundleShortVersionString})[0];
+            }
+        }
+
+        //public override string Revision {
+        //    get {
+        //        return getStrings(new string[] {
+        //            CFBundleVersion})[0];
+        //    }
+        //}
+
+        public override string PackageName {
+            get {
+                return getStrings(new string[] {
+                    CFBundleIdentifier})[0];
+            }
+        }
+        public override Bitmap Icon {
+            get {
+                return getImage(new string[] { 
+                    CFBundleIcons, 
+                    CFBundlePrimaryIcon, 
+                    CFBundleIconFiles });;
+            }
+        }
+
+        private bool disposed = false;
+        protected override void Dispose(bool disposing) {
+            if (disposed) return;
+            if (disposing) {
+                if (zip != null)
+                    zip.Close();
+            }
+            disposed = true;
+            base.Dispose(disposing);
+        }
+
+        public void Close() {
+            Dispose(true);
+        }
+
+        ~IpaReader() {
+            Dispose(true);
         }
     }
 }

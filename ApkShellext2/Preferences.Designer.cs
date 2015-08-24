@@ -215,6 +215,7 @@
             this.ckShowOverlay.TabIndex = 18;
             this.ckShowOverlay.Text = "ckShowOverlay";
             this.ckShowOverlay.UseVisualStyleBackColor = true;
+            this.ckShowOverlay.CheckedChanged += new System.EventHandler(this.ckShowOverlay_CheckedChanged);
             // 
             // tableLayoutPanel3
             // 
