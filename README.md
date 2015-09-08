@@ -7,7 +7,7 @@ A windows shell exteions for mobile app files, supporting
 
 #### Please help this project
  * Translate : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
- * jekyll site maitainenc
+ * jekyll site maitainence.
  * Tester for new features.
 
 Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, pull request is welcome.
@@ -39,7 +39,7 @@ This project is open source and free, visit http://apkshellext.com for Download 
 | --- | --- |
 | [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell extion library                           |
 | [SharpZip](https://github.com/icsharpcode/SharpZipLib)              | Zip function implementation in C#              |
-| [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the oringinal APK reader, not used anymore     |
+| [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the oringinal APK reader, not in use currently     |
 | [PlistCS](https://github.com/animetrics/PlistCS)                    | iOS plist file reader                          |
 | [PNGDecrush](https://github.com/MikeWeller/PNGDecrush)              | PNG decrush lib                                |
 | [Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)               | Another Zip implementation, used by PNGDecrush |
