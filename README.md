@@ -6,9 +6,9 @@ A windows shell exteions for mobile app files, supporting
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
 #### Please help this project
- * Translate into other language : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
- * Website maitainence : I need help to create the jekyll site
- * Tester : I need help to test new features.
+ * Translate : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
+ * jekyll site maitainenc
+ * Tester for new features.
 
 Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, pull request is welcome.
 
