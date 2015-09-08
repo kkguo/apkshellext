@@ -37,7 +37,7 @@ This project is open source and free, visit http://apkshellext.com for Download 
 #### Credit :
 |||
 | --- | --- |
-| [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell extion library                           |
+| [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell exten tion library                           |
 | [SharpZip](https://github.com/icsharpcode/SharpZipLib)              | Zip function implementation in C#              |
 | [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the oringinal APK reader, not in use currently     |
 | [PlistCS](https://github.com/animetrics/PlistCS)                    | iOS plist file reader                          |
