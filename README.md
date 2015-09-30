@@ -6,7 +6,7 @@ A windows shell exteions for mobile app files, supporting
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
 #### Please help this project
- * Translate : http://translate.apkshellext.com [![Crowdin badge](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.png)](https://crowdin.com/project/apkshellext) 
+ * Translate : http://translate.apkshellext.com 
  * jekyll site maitainence.
  * Tester for new features.
 
@@ -21,12 +21,18 @@ This project is open source and free, visit http://apkshellext.com for Download 
  - [x] Go to app store from context menu.
  - [x] Check new version automatically.
  - [x] Show overlay icon for different type of apps.
- - [x] Support mulitple languages: 
-    - English / 中文(简体)
+ - [x] Support upto 15 languages (some are machine translated):
+    - English
+    - 中文(简体/繁體)
     - italiano (by [Vince. M](https://crowdin.com/profile/Widget))
     - Korean (by [zinc](https://crowdin.com/profile/zinc))
     - Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
-    - Persian (by [Ali.sholug](mailto:ali.sholug@gmail.com))
+    - Persian (by [Ali Rex](http://translate.apkshellext.com/profile/ali-sholug))
+    - Hebrew (by [gbyx](http://translate.apkshellext.com/profile/gbyx))
+    - Portuguese (by [Eduardo Santos](http://translate.apkshellext.com/profile/eduardo650498))
+    - German (by [rekire](http://translate.apkshellext.com/profile/rekire)
+    - Japanese (by [Noumi](http://translate.apkshellext.com/profile/Noumi)
+    - Franch (by [Charles Milette](http://translate.apkshellext.com/profile/charles_milette))
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
