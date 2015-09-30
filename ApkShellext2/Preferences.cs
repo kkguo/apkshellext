@@ -20,10 +20,17 @@ namespace ApkShellext2 {
 
         private bool formLoaded = false;
         private bool updateChecked = false;
+        private Thread thUpdate;
+        private string version = "";
 
         private void Preferences_Load(object sender, EventArgs e) {
             Utility.Localize();
 
+            #region Initialize text
+            this.Text = Resources.strPreferencesCaption;
+            this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
+
+            // Dropdown
             if (!formLoaded) {
                 CultureInfo[] culs = Utility.getSupportedLanguages();
                 combLanguage.Text = culs[0].NativeName;
@@ -35,33 +42,38 @@ namespace ApkShellext2 {
                 }
             }
 
+            // Labels
             lblLanguage.Text = Resources.strLanguages;
+            label1.Text = string.Format(Resources.strCurrVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            lblNewVer.Text = Resources.strCheckingNewVersion;
+            lblRenamePattern.Text = Resources.strRenamePattern;
 
-            this.Text = Resources.strPreferencesCaption;
-            this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
+            // buttons
             btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.GitHub, 16);
-
-            label1.Text =  string.Format(Resources.strCurrVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-
             btnCancel.Text = Resources.btnCancel;
             btnUpdate.Text = Resources.btnGitHub;
             toolTip1.SetToolTip(btnUpdate, Resources.strGotoProjectSite);
+
+            // Check boxes
             ckRename.Text = Resources.strRenameWithVersionCode;
             toolTip1.SetToolTip(ckRename, Resources.strRenameToolTip);
             ckShowPlay.Text = Resources.strAlwaysShowGooglePlay;
             toolTip1.SetToolTip(ckShowPlay, Resources.strAlwaysShowGooglePlayToolTip);
             ckShowOverlay.Text = Resources.strShowOverlayIcon;
             toolTip1.SetToolTip(ckShowOverlay, Resources.strShowOverlayIconToolTip);
-
-            lblNewVer.Text = Resources.strCheckingNewVersion;
-
             ckRename.Checked = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
             ckShowPlay.Checked = (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
             ckShowOverlay.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
             ckShowMenuIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowMenuIcon, 1) == 1);
             ckShowMenuIcon.Text = Resources.strShowContextMenuIcon;
-            lblRenamePattern.Text = Resources.strRenamePattern;
+            checkBox4.Text = Resources.strShowIpaIcon;
+            checkBox4.Checked = (Utility.getRegistrySetting(Utility.keyShowIpaIcon, 100) == 1);
+            ckShowAppxIcon.Text = Resources.strShowAppxIcon;
+            ckShowAppxIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowAppxIcon, 100) == 1);
 
+            #endregion
+
+            #region check update thread
             if (!updateChecked) {
                 timer1.Interval = 1000;
                 timer1.Enabled = true;
@@ -70,19 +82,11 @@ namespace ApkShellext2 {
                 thUpdate.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
                 thUpdate.Start();
             }
-
-            checkBox4.Text = Resources.strShowIpaIcon;
-            checkBox4.Checked = (Utility.getRegistrySetting(Utility.keyShowIpaIcon, 100) == 1);
-
-            ckShowAppxIcon.Text = Resources.strShowAppxIcon;
-            ckShowAppxIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowAppxIcon, 100) == 1);
+            #endregion
 
             btnCancel.Focus();
             formLoaded = true;
         }
-
-        Thread thUpdate;
-        string version ="";
 
          private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
@@ -92,9 +96,6 @@ namespace ApkShellext2 {
             Utility.setRegistrySetting(Utility.keyRenameWithVersionCode, ckRename.Checked ? 1 : 0);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-            Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, ckShowPlay.Checked ? 1 : 0);
-        }
 
         private void combLanguage_SelectedIndexChanged(object sender, EventArgs e) {
             CultureInfo[] supported = Utility.getSupportedLanguages();
@@ -105,10 +106,8 @@ namespace ApkShellext2 {
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowIpaIcon) != (checkBox4.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowIpaIcon, checkBox4.Checked ? 1 : 0);
-                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
-            }
+            Utility.setRegistrySetting(Utility.keyShowIpaIcon, checkBox4.Checked ? 1 : 0);
+            SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -139,31 +138,25 @@ namespace ApkShellext2 {
         }
 
         private void ckShowAppxIcon_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowAppxIcon) != (ckShowAppxIcon.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowAppxIcon, ckShowAppxIcon.Checked ? 1 : 0);
-                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
-            }
+            Utility.setRegistrySetting(Utility.keyShowAppxIcon, ckShowAppxIcon.Checked ? 1 : 0);           
+            SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void ckShowOverlay_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (ckShowOverlay.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
-                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
-            }
+            Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
+            SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
             System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e) {
-
+        private void ckShowMenuIcon_CheckedChanged(object sender, EventArgs e) {
+            Utility.setRegistrySetting(Utility.keyShowMenuIcon, ckShowMenuIcon.Checked ? 1 : 0);
         }
 
-        private void ckShowMenuIcon_CheckedChanged(object sender, EventArgs e) {
-            if (Utility.getRegistrySetting(Utility.keyShowMenuIcon,1) != (ckShowMenuIcon.Checked ? 1 : 0)) {
-                Utility.setRegistrySetting(Utility.keyShowMenuIcon, ckShowMenuIcon.Checked ? 1 : 0);
-            }
+        private void ckShowPlay_CheckedChanged(object sender, EventArgs e) {
+            Utility.setRegistrySetting(Utility.keyAlwaysShowGooglePlay, ckShowPlay.Checked ? 1 : 0);
         }
     }
 }

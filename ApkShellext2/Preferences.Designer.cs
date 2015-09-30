@@ -206,6 +206,7 @@
             this.ckShowPlay.TabIndex = 17;
             this.ckShowPlay.Text = "ckShowPlay";
             this.ckShowPlay.UseVisualStyleBackColor = true;
+            this.ckShowPlay.CheckedChanged += new System.EventHandler(this.ckShowPlay_CheckedChanged);
             // 
             // ckShowOverlay
             // 
@@ -257,7 +258,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(239, 287);
             this.tableLayoutPanel3.TabIndex = 19;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // flowLayoutPanel1
             // 
