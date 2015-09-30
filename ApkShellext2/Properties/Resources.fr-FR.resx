@@ -124,7 +124,7 @@
     <value>GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>Mise à jour</value>
+    <value>Mettre à jour</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
     <value>Accédez au site du projet pour mettre à jour</value>
@@ -133,39 +133,39 @@
     <value>RenamePattern</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Vérifier {0} sur Amazon Appstore</value>
+    <value>Chercher {0} sur l'Amazon Appstore</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Vérifier {0} sur l'Appstore d'Apple</value>
+    <value>Chercher {0} sur l'Appstore d'Apple</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Vérifier {0} sur GooglePlay</value>
+    <value>Chercher {0} sur le Google Play Store</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Vérifier {0} sur Microsoft Store</value>
+    <value>Chercher {0} sur le Microsoft Store</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Préférences &amp;&amp; mise à jour</value>
+    <value>Préférences &amp;&amp; mises à jour</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
     <value>Renommer en {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Toujours afficher le menu de GooglePlay</value>
+    <value>Toujours afficher l'option de recherche dans Google Play</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Si cochée, le menu GooglePlay apparaîtra même si plusieurs fichiers apk sont sélectionnés. 
-Veuillez noter que cela ouvrira chaque applicatoin d'un seul coup, ce qui impactera vos performances significativement.
+    <value>Si cochée, l'option de recherche sur Google Play apparaîtra même si plusieurs fichiers apk sont sélectionnés. 
+Veuillez noter que cela ouvrira chaque application d'un seul coup, ce qui impactera vos performances significativement.
 Par défaut, affiche uniquement le menu lorsqu'un fichier est sélectionné.</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>Vérification nouvelle version...</value>
+    <value>Vérification d'une nouvelle version...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Vérifiez le site du projet pour la mise à jour.</value>
+    <value>Téléchargez la mise à jour depuis le site du projet.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
     <value>Version actuelle : {0}</value>
@@ -183,7 +183,7 @@ Par défaut, affiche uniquement le menu lorsqu'un fichier est sélectionné.</va
     <value>Cette fonctionnalité requiert ApkShellextService, s'il vous plaît assurez-vous que le service est démarré.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>Nouvelle version {0} est disponible</value>
+    <value>Une nouvelle version ({0}) est disponible</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
     <value>Préférences ApkShellext2</value>
@@ -203,7 +203,7 @@ Par défaut, affiche uniquement le menu lorsqu'un fichier est sélectionné.</va
 En cochant cela, renomme le fichier en %AppName%_%Version%_%Revision%, dans le cas contraire, renomme en %AppName%_%Version%.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Renommage avec VersionCode</value>
+    <value>Renommer avec le code de version</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Scannez le QR code pour télécharger</value>
@@ -220,7 +220,28 @@ En cochant cela, renomme le fichier en %AppName%_%Version%_%Revision%, dans le c
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Affiche une icône par dessus le ficher afin de l'identifier.</value>
   </data>
+  <data name="urlAmazonAppStore" xml:space="preserve">
+    <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
+  </data>
+  <data name="urlAppleStore" xml:space="preserve">
+    <value>http://itunes.apple.com/{0}/app/{1}/id{2}?mt=8</value>
+  </data>
+  <data name="urlGithubHome" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext</value>
+  </data>
+  <data name="urlGithubHomeLatest" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/latest</value>
+  </data>
+  <data name="urlGithubHomeWithVersion" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
+  </data>
+  <data name="urlGooglePlay" xml:space="preserve">
+    <value>https://play.google.com/store/apps/details?id={0}</value>
+  </data>
+  <data name="urlMicrosoftStore" xml:space="preserve">
+    <value>https://www.microsoft.com/{0}/store/apps/{1}/{2}</value>
+  </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>Afficher l'icône de menu contextuel</value>
+    <value>Afficher une icône dans le menu contextuel</value>
   </data>
 </root>

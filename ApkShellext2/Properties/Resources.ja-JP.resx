@@ -221,6 +221,6 @@
     <value>ファイルタイプのオーバーレイアイコンを表示します。</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>コンテキスト メニューのアイコンを表示します。</value>
+    <value>コンテキストメニューアイコンの表示</value>
   </data>
 </root>
