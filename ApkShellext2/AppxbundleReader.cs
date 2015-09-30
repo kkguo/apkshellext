@@ -18,12 +18,12 @@ namespace ApkShellext2 {
 
         private readonly string AppxBundleManifestXml = @"AppxMetadata/AppxBundleManifest.xml";
         private readonly string ElemIdentity = @"Identity";
-        private readonly string ElemProperties = @"Properties";
-        private readonly string ElemDisplayName = @"DisplayName";
+        //private readonly string ElemProperties = @"Properties";
+        //private readonly string ElemDisplayName = @"DisplayName";
         private readonly string ElemPackage = @"Package";
-        private readonly string AttrVersion = @"Version";
+        //private readonly string AttrVersion = @"Version";
         private readonly string AttrName = @"Name";
-        private readonly string AttrPublisher = @"Publisher";
+        //private readonly string AttrPublisher = @"Publisher";
         private readonly string AttrType = @"Type";
         private readonly string ValApplication = @"application";
         private readonly string AttrFileName = @"FileName";

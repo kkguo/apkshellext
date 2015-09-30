@@ -1,13 +1,16 @@
-﻿using System;
-using System.Text;
-using System.IO;
+﻿using ApkShellext2;
 using ICSharpCode.SharpZipLib.Zip;
+using System;
+using System.Collections;
 using System.Drawing;
-using ApkShellext2;
+using System.IO;
+using System.Text;
+using System.Diagnostics;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace ApkQuickReader {
-    public enum CHUNK_TYPE : short {
+    public enum RES_TYPE : ushort {
         RES_NULL_TYPE = 0x0000,
         RES_STRING_POOL_TYPE = 0x0001,
         RES_TABLE_TYPE = 0x0002,
@@ -76,6 +79,9 @@ namespace ApkQuickReader {
         private readonly string AttrVersionCode = @"versionCode";
         private readonly string AttrIcon = @"icon";
         private readonly string AttrPackage = @"package";
+        private readonly int ConfigurationDensityPosition = 10;
+
+        private byte[] use_config = null;
 
         /// <summary>
         /// extract the manifext
@@ -84,7 +90,7 @@ namespace ApkQuickReader {
         /// <param name="culture"></param>
         public ApkReader(string filename, string culture = "") {
             FileName = filename;
-            
+
             zip = new ZipFile(filename);
 
             ZipEntry en = zip.GetEntry(AndroidManifextXML);
@@ -98,13 +104,13 @@ namespace ApkQuickReader {
 
         public override string AppName {
             get {
-                return getAttribute(TagApplication,AttrLabel);
+                return getAttribute(TagApplication, AttrLabel);
             }
         }
 
         public override string Version {
             get {
-                return getAttribute(TagManifest,AttrVersionName);
+                return getAttribute(TagManifest, AttrVersionName);
             }
         }
         public override string Revision {
@@ -142,7 +148,17 @@ namespace ApkQuickReader {
         /// <param name="attr"></param>
         /// <returns></returns>
         public Bitmap getImage(string tag, string attr) {
+            // get the biggest density config
+            List<byte[]> configs = getResourceConfigs();
+            int bestDesityIndex = 0;
+            for (int i = 1; i < configs.Count; i++) {
+                if (configs[i][ConfigurationDensityPosition] > configs[bestDesityIndex][ConfigurationDensityPosition]) {
+                    bestDesityIndex = i;
+                }
+            }
+            use_config = configs[bestDesityIndex];
             ZipEntry en = zip.GetEntry(QuickSearchManifestXml(tag, attr));
+            use_config = null;
             if (en != null) {
                 try {
                     return (Bitmap)Bitmap.FromStream(zip.GetInputStream(en));
@@ -155,7 +171,7 @@ namespace ApkQuickReader {
         }
 
         /// <summary>
-        /// Search in 
+        /// 
         /// </summary>
         /// <param name="tag"></param>
         /// <param name="attribute"></param>
@@ -182,7 +198,7 @@ namespace ApkQuickReader {
                     short chunkType = br.ReadInt16();
                     short headerSize = br.ReadInt16();
                     int chunkSize = br.ReadInt32();
-                    if (chunkType != (short)CHUNK_TYPE.RES_XML_START_ELEMENT_TYPE) {
+                    if (chunkType != (short)RES_TYPE.RES_XML_START_ELEMENT_TYPE) {
                         ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip current chunk
                         continue;
                     }
@@ -205,7 +221,7 @@ namespace ApkQuickReader {
                             if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
                                 return QuickSearchManifestStringPool(data);
                             } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
-                                return QuickSearchResource((UInt32)data);
+                                return QuickSearchResource((UInt32)data,use_config);
                             } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
                                 return data.ToString();
                             }
@@ -299,28 +315,107 @@ namespace ApkQuickReader {
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        //private CultureInfo ISO_639(byte[] code) {
-        //    byte[] encode = new byte[2];
-        //    if (code.Length == 3) {
-        //        byte[] c = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
-        //        encode[0] = (byte)((c[0] & 0x1F) + ((c[1] & 0x03) << 5));
-        //        encode[1] = (byte)(1 << 7 + ((c[2] & 0x1F) << 2) + ((c[1] & 0x1c) >> 2));
-        //    } else if (code.Length == 2) {
+        private CultureInfo getCulture(byte[] code) {
+            string language;
+            string country;
+            byte[] decode;
+            if (code[1] > 0x80) { // ISO-639-2
+                decode = new byte[3];
+                decode[0] = (byte)(code[0] & 0x1F);
+                decode[1] = (byte)(((code[1] & 0x3) << 3) + (code[0] & 0xE0) >> 1);
+                decode[2] = (byte)((code[1] & 0x7C) >> 2);
+            } else { //ISO-639-1
+                decode = new byte[2];
+                decode[0] = code[0];
+                decode[1] = code[1];
+            }
+            language = System.Text.Encoding.ASCII.GetString(decode);
+            decode = new byte[2];
+            if (code[3] > 0x80) {
+                decode[0] = (byte)(code[2] & 0x1F);
+                decode[1] = (byte)(((code[3] & 0x3) << 3) + (code[2] & 0xE0) >> 1);
+            } else {
+                decode[0] = code[0];
+                decode[1] = code[1];
+            }
+            country = System.Text.Encoding.ASCII.GetString(decode);            
+            return new CultureInfo(country + "-" + language);
+        }
 
-        //        encode = System.Text.Encoding.ASCII.GetBytes(code.ToCharArray());
-        //    }
-        //    return encode;
-        //}
+        /// <summary>
+        /// get all configuations
+        /// </summary>
+        /// <returns>list of configurations</returns>
+        private List<byte[]> getResourceConfigs() {
+            List<byte[]> result = new List<byte[]>();
+
+            using (MemoryStream ms = new MemoryStream(resources))
+            using (BinaryReader br = new BinaryReader(ms)) {
+                ms.Seek(8, SeekOrigin.Begin); // jump type/headersize/chunksize
+                int packageCount = br.ReadInt32();
+                // comes to stringpool chunk, skipit
+                long stringPoolPos = ms.Position;
+                ms.Seek(4, SeekOrigin.Current);
+                int stringPoolSize = br.ReadInt32();
+                ms.Seek(stringPoolSize - 8, SeekOrigin.Current); // jump to the end
+
+                //Package chunk now
+                for (int pack = 0; pack < packageCount; pack++) {
+                    long PackChunkPos = ms.Position;
+                    ms.Seek(2, SeekOrigin.Current); // jump type/headersize
+                    int headerSize = br.ReadInt16();
+                    int PackChunkSize = br.ReadInt32();
+                    int packID = br.ReadInt32();
+
+                    ms.Seek(PackChunkPos + headerSize, SeekOrigin.Begin);
+
+                    // skip typestring chunk
+                    ms.Seek(4, SeekOrigin.Current);
+                    ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
+                    // skip keystring chunk
+                    ms.Seek(4, SeekOrigin.Current);
+                    ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
+
+                    do {
+                        long chunkPos = ms.Position;
+                        short chunkType = br.ReadInt16();
+                        headerSize = br.ReadInt16();
+                        int chunkSize = br.ReadInt32();
+                        if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_TYPE) {
+                            ms.Seek(4 + 4 + 4, SeekOrigin.Current); // skip typeid ,0, entrycount, entrystart
+
+                            // read the config section
+                            int config_size = br.ReadInt32();
+                            byte[] config = br.ReadBytes(config_size - 4);
+                            bool match = false;
+                            foreach (byte[] conf in result) {
+                                match = true;
+                                for (int i = 0; i < conf.Length; i++) {
+                                    if (conf[i] != config[i]) {
+                                        match = false;
+                                        break;
+                                    }
+                                }
+                                if (match)
+                                    break;
+                            };
+                            if (match == false)
+                                result.Add(config);
+                        }
+                        ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip this chunk
+                    } while (ms.Position < PackChunkPos + PackChunkSize);
+                }
+            }
+            return result;
+        }
 
         /// <summary>
         /// Find the requested resource, according to config setting, if the config was set.
         /// This method is NOT HANDLING ANY ERROR, yet!!!!
         /// </summary>
-        /// <param name="table">the resource table</param>
         /// <param name="id">resourceID</param>
         /// <returns>the resource, in string format, if resource id not found, return null value</returns>
-        private string QuickSearchResource(UInt32 id) {
-            string result = null;
+        private string QuickSearchResource(UInt32 id, byte[] config = null) {
             uint PackageID = (id & 0xff000000) >> 24;
             uint TypeID = (id & 0x00ff0000) >> 16;
             uint EntryID = (id & 0x0000ffff);
@@ -370,12 +465,13 @@ namespace ApkQuickReader {
                             headerSize = br.ReadInt16();
                             int chunkSize = br.ReadInt32();
                             byte typeid;
-                            if (chunkType == (short)CHUNK_TYPE.RES_TABLE_TYPE_SPEC_TYPE) {
-                                typeid = br.ReadByte();
-                                if (typeid == TypeID) {
-                                    // todo: get the flags
-                                }
-                            } else if (chunkType == (short)CHUNK_TYPE.RES_TABLE_TYPE_TYPE) {
+                            //if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_SPEC_TYPE) {
+                            //    typeid = br.ReadByte();
+                            //    if (typeid == TypeID) {
+                            //        // todo: get the flags
+                            //    }
+                            //} else 
+                            if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_TYPE) {
                                 typeid = br.ReadByte();
                                 if (typeid == TypeID) {
                                     ms.Seek(3, SeekOrigin.Current); // skip 0
@@ -384,7 +480,22 @@ namespace ApkQuickReader {
 
                                     // read the config section
                                     int config_size = br.ReadInt32();
-                                    byte[] config = br.ReadBytes(config_size - 4);
+                                    byte[] conf = br.ReadBytes(config_size - 4);
+
+                                    if (config != null) {
+                                        bool match = true;
+                                        for (int i = 0; i < config.Length; i++) {
+                                            if (config[i] != 0              //only compare non-0
+                                                && conf[i] != config[i]) { 
+                                                match = false;
+                                                break;
+                                            }
+                                        }
+                                        if (match == false) {// config does not fit, jump to next chunk
+                                            ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
+                                            continue;
+                                        }
+                                    }
 
                                     ms.Seek(EntryID * 4, SeekOrigin.Current); // goto index
                                     uint entryIndic = br.ReadUInt32();
@@ -404,23 +515,24 @@ namespace ApkQuickReader {
                                         // the entry is null, or it's referencing itself, go to next chunk
                                         if (data == 0x00000000 || data == id) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                            continue; 
+                                            continue;
                                         }
                                         return QuickSearchResource((UInt32)data);
                                     } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
                                         return data.ToString();
                                     }
                                 }
-                            } else {
-                                // chunk Type is not what we want.
+                            //} else {
+                            //    // chunk Type is not what we want.
                             }
-                            ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // jump this chunk                                
-                        } while (ms.Position <= PackChunkPos + PackChunkSize);
+                            ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip this chunk
+                        } while (ms.Position < PackChunkPos + PackChunkSize);
+                        if (config != null) // no config fits, search default
+                            return QuickSearchResource(id);
                     }
                 }
             }
-
-            return result;
+            return null;
         }
 
         private bool disposed = false;
@@ -444,4 +556,98 @@ namespace ApkQuickReader {
             Dispose(true);
         }
     }
+
+    /// <summary>
+    /// ChunkInfo class
+    /// </summary>
+    //[DebuggerDisplay("{Type}")]
+    //public class ApkChunkInfo : IEnumerable {
+    //    public long Offset { get; private set; }
+    //    public RES_TYPE Type { get; private set; }
+    //    public UInt32 Size;
+    //    public List<ApkChunkInfo> subChunks = new List<ApkChunkInfo>();
+    //    public ApkChunkInfo parentChunk = null;
+    //    public UInt16 headerSize;
+
+    //    public MemoryStream baseStream { get; private set; }
+
+    //    public static ApkChunkInfo FromMemoryStream(MemoryStream stream) {
+    //        return new ApkChunkInfo(stream);
+    //    }
+
+    //    public void AttachStream(MemoryStream stream) {
+    //        if (stream != null) {
+    //            baseStream = stream;
+    //            baseStream.Seek(Offset, SeekOrigin.Begin);
+    //        }
+    //    }
+
+    //    private ApkChunkInfo(MemoryStream stream) {
+    //        Offset = stream.Position;
+    //        AttachStream(stream);
+    //        using (BinaryReader br = new BinaryReader(stream, Encoding.UTF8, true)) {
+
+    //            Type = (RES_TYPE)br.ReadUInt16();
+    //            headerSize = br.ReadUInt16();
+    //            Size = br.ReadUInt32();
+
+    //            // skip whole header
+    //            stream.Seek(Offset + headerSize, SeekOrigin.Begin);
+    //            // and come to the chunk body
+
+    //            switch (Type) {
+    //                case RES_TYPE.RES_TABLE_TYPE:
+    //                case RES_TYPE.RES_TABLE_PACKAGE_TYPE:
+    //                case RES_TYPE.RES_XML_TYPE:
+    //                    // Get subChunks
+    //                    while (stream.Position < (Offset + Size)) {
+    //                        ApkChunkInfo sub = new ApkChunkInfo(stream);
+    //                        sub.parentChunk = this;
+    //                        subChunks.Add(sub);
+    //                    }
+    //                    break;
+    //                default:
+    //                    stream.Seek(Offset + Size, SeekOrigin.Begin);
+    //                    break;
+    //            }
+    //            if (stream.Position != Offset + Size) {
+    //                throw new Exception("Read through the end of chunk, but not match the ChunkSize");
+    //            }
+    //        }
+    //    }
+
+    //    /// <summary>
+    //    /// find the first chunk fits specific type in sub chunks 
+    //    /// </summary>
+    //    /// <param name="type"></param>
+    //    /// <returns></returns>
+    //    public ApkChunkInfo findFirstSubChunk(RES_TYPE type) {
+    //        foreach (ApkChunkInfo chunk in subChunks) {
+    //            if (chunk.Type == type) {
+    //                chunk.AttachStream(baseStream);
+    //                return chunk;
+    //            }
+    //        }
+    //        return null;
+    //    }
+
+    //    /// <summary>
+    //    ///  get the next chunk at the same level
+    //    /// </summary>
+    //    /// <param name="type"></param>
+    //    /// <returns></returns>
+    //    public ApkChunkInfo findNextChunk(RES_TYPE type) {
+    //        foreach (ApkChunkInfo chunk in parentChunk.subChunks) {
+    //            if (chunk.Offset > Offset && chunk.Type == type) {
+    //                return chunk;
+    //            }
+    //        }
+    //        return null;
+    //    }
+
+    //    public IEnumerator GetEnumerator() {
+    //        throw new NotImplementedException();
+    //        //return new ApkChunkEnumerator(BaseStream);
+    //    }
+    //}
 }

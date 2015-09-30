@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,23 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -144,8 +129,20 @@
   <data name="btnUpdateToolTip" xml:space="preserve">
     <value>Πάει στον τόπο του έργου για την ενημέρωση</value>
   </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>RenamePattern</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>Ελέγξτε το {0} στο Amazon Appstore</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>Ελέγξτε το {0} στο Appstore της Apple</value>
+  </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
     <value>Ελέγξτε το {0} στο GooglePlay</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Ελέγξτε το {0} στο κατάστημα της Microsoft</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>Επέκταση κελύφους APK</value>
@@ -156,8 +153,13 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>Μετονομάστε το σε {0}</value>
   </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>Απέτυχε η ανάγνωση αρχείου</value>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>Πάντα δείχνουν GooglePlay μενού</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>Εάν ελέγχθηκαν, GooglePlay μενού θα παρουσιάσει ακόμη και πολλαπλές apk αρχείο επιλεγμένος. 
+Παρακαλώ σημειώστε, μπορείτε να ανοίξετε πολλά παράθυρο του προγράμματος περιήγησης και να προσκρούσει στην απόδοση σημαντικά.
+Από προεπιλογή, εμφανίζεται μόνο το μενού όταν επιλέγεται ένα αρχείο</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Έλεγχος νέα έκδοση...</value>
@@ -171,24 +173,26 @@
   <data name="strGotLatest" xml:space="preserve">
     <value>Μεγάλο! Πήρατε την τελευταία έκδοση.</value>
   </data>
+  <data name="strGotoProjectSite" xml:space="preserve">
+    <value>Πηγαίνετε στην ιστοσελίδα του έργου ApkShellext2</value>
+  </data>
+  <data name="strLanguages" xml:space="preserve">
+    <value>Χρήση γλώσσας:</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>Αυτή η δυνατότητα απαιτεί ApkShellextService, βεβαιωθείτε ότι η υπηρεσία ξεκίνησε.</value>
+  </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>Νέα έκδοση {0} είναι availible</value>
   </data>
-  
-  
-  <data name="btnCancel" xml:space="preserve">
-    <value>Ok</value>
+  <data name="strPreferencesCaption" xml:space="preserve">
+    <value>ApkShellext2 προτιμήσεις</value>
   </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Πάντα δείχνουν GooglePlay μενού</value>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>Απέτυχε η ανάγνωση αρχείου</value>
   </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Εάν ελέγχθηκαν, GooglePlay μενού θα παρουσιάσει ακόμη και πολλαπλές apk αρχείο επιλεγμένος. 
-Παρακαλώ σημειώστε, μπορείτε να ανοίξετε πολλά παράθυρο του προγράμματος περιήγησης και να προσκρούσει στην απόδοση σημαντικά.
-Από προεπιλογή, εμφανίζεται μόνο το μενού όταν επιλέγεται ένα αρχείο</value>
-  </data>
-  <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Πηγαίνετε στην ιστοσελίδα του έργου ApkShellext2</value>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>%AppName%:%Version% όνομα App: κύρια έκδοση%Revision%:%Publisher% αριθμό αναθεώρησης:%OS% εκδότης: Android / iOS / Windows</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Για την αποφυγή κατάσταση της ίδια έκδοση αλλά αριθμό διαφορετικών αναθεώρησης, αυτό πιο όπως συμβαίνει στο ανδροειδές app αρχεία. 
@@ -197,61 +201,22 @@
   <data name="strRenameWithVersionCode" xml:space="preserve">
     <value>Μετονομασία με VersionCode</value>
   </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>Σάρωση κωδικού QR να κατεβάσετε</value>
+  </data>
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>Εμφανίζεται εικονίδιο app (appx, appxbundle) WindowsPhone.</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Εμφανίσετε iOS εικονίδιο app (ipa).</value>
+  </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
     <value>Εμφανίζεται εικονίδιο υπέρθεση</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Εμφανίζεται ένα εικονίδιο υπέρθεση για τον τύπο αρχείου</value>
   </data>
-  <data name="strLanguages" xml:space="preserve">
-    <value>Χρήση γλώσσας:</value>
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>Εμφάνιση εικονιδίου για μενού περιβάλλοντος</value>
   </data>
-  <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 προτιμήσεις</value>
-  </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>Εμφανίσετε iOS εικονίδιο app (ipa).</value>
-  </data>
-  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>Σάρωση κωδικού QR να κατεβάσετε</value>
-  </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% όνομα App: κύρια έκδοση%Revision%:%Publisher% αριθμό αναθεώρησης:%OS% εκδότης: Android / iOS / Windows</value>
-  </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>Αυτή η δυνατότητα απαιτεί ApkShellextService, βεβαιωθείτε ότι η υπηρεσία ξεκίνησε.</value>
-  </data>
-  
-  <data name="strShowAppxIcon" xml:space="preserve">
-    <value>Εμφανίζεται εικονίδιο app (appx, appxbundle) WindowsPhone.</value>
-  </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
-  </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Ελέγξτε το {0} στο Appstore της Apple</value>
-  </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Ελέγξτε το {0} στο κατάστημα της Microsoft</value>
-  </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Ελέγξτε το {0} στο Amazon Appstore</value>
-  </data>
-  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  
 </root>

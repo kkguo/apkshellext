@@ -31,7 +31,7 @@ namespace ApkShellext2 {
         private readonly string CFBundleDisplayName = @"CFBundleDisplayName";
         private readonly string CFBundleIdentifier = @"CFBundleIdentifier";
         private readonly string CFBundleShortVersionString = @"CFBundleShortVersionString";
-        private readonly string CFBundleVersion = @"CFBundleVersion";
+        //private readonly string CFBundleVersion = @"CFBundleVersion";
 
         public IpaReader(string path) {
             FileName = path;

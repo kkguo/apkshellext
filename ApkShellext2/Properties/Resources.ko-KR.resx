@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,23 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnCancel" xml:space="preserve">
+    <value>확인</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -144,8 +129,20 @@
   <data name="btnUpdateToolTip" xml:space="preserve">
     <value>프로젝트 웹 사이트에서 업데이트하기</value>
   </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>이름변경 패턴</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>아마존 앱스토어에서 {0} 찾기</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>애플 앱스토어에서 {0} 찾기</value>
+  </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>구글 플레이스토어로 이동하기</value>
+    <value>구글 플레이스토어에서 {0} 찾기</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Windows 스토어에서 {0} 확인</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK 쉘 확장</value>
@@ -156,8 +153,13 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>파일 이름을 {0}(으)로 바꾸기</value>
   </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>파일을 읽는 Faile</value>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>플레이스토어 메뉴 항상 보여주기</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>이 옵션을 체크하면, 여러 개의 APK파일을 선택해도 "플레이스토어로 이동하기" 메뉴가 보입니다.
+다만, 선택한 APK파일만큼 많은 브라우저 창이 뜨기 때문에 컴퓨터가 느려질 수 있습니다.
+기본적으로, 한 파일을 선택할 때에만 이 메뉴가 나옵니다.</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>업데이트 확인 중 …</value>
@@ -171,87 +173,55 @@
   <data name="strGotLatest" xml:space="preserve">
     <value>최신버전을 사용하고 계십니다!</value>
   </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>새 버전 {0}을 사용할 수 있습니다.</value>
-  </data>
-  
-  
-  <data name="btnCancel" xml:space="preserve">
-    <value>확인</value>
-  </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>플레이스토어 메뉴 항상 보여주기</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>이 옵션을 체크하면, 여러 개의 APK파일을 선택해도 "플레이스토어로 이동하기" 메뉴가 보입니다.
-다만, 선택한 APK파일만큼 많은 브라우저 창이 뜨기 때문에 컴퓨터가 느려질 수 있습니다.
-기본적으로, 한 파일을 선택할 때에만 이 메뉴가 나옵니다.</value>
-  </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2의 프로젝트 웹 사이트로 이동하기</value>
   </data>
+  <data name="strLanguages" xml:space="preserve">
+    <value>언어 선택:</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>해당 기능을 사용하려면 ApkShellextService가 필요합니다. 해당 서비스가 실행 중인지 확인해 주십시오.</value>
+  </data>
+  <data name="strNewVersionAvailible" xml:space="preserve">
+    <value>새 버전 {0}을 사용할 수 있습니다.</value>
+  </data>
+  <data name="strPreferencesCaption" xml:space="preserve">
+    <value>ApkShellext2 설정</value>
+  </data>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>파일을 읽지 못했습니다.</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>%AppName%: 앱 이름
+%Version%: 버전
+%Revision%: 리비전
+%Publisher%: 게시자
+%OS%: 안드로이드 / iOS / 윈도우즈</value>
+  </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>같은 버전 하지만 다른 개정 번호의 상황을 피하고, 같은이 대부분 안 드 로이드 애플 리 케이 션 파일에서 발생 합니다. 
-이 확인 하 여 그렇지 않으면 %AppName% _ % 버전 % _ % 버전 %, 응용 프로그램 파일을 이름 바꾸기, %AppName% _ % 버전 %를 사용 하 여.</value>
+    <value>일부 안드로이드 앱에서 버전은 같은데 리비전(세부 버전)이 다른 경우가 있습니다.
+이 옵션을 설정하면 파일 이름을 바꿀 때 이름을 %AppName%_%Version%_%Revision% 형식을 사용합니다.
+해제하면 %AppName%_%Version% 을 사용합니다.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>이름을 바꿀 때 버전코드 추가하기</value>
+    <value>이름을 바꿀 때 리비전 추가하기</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>QR코드를 스캔해서 다운로드하기</value>
+  </data>
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>Windows Phone 앱(appx, appxbundle)의 아이콘을 보여줍니다.</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>iOS 앱(ipa)의 아이콘을 보여줍니다.</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
     <value>오버레이 아이콘을 보여줍니다.</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>파일 형식에 대 한 오버레이 아이콘 표시</value>
+    <value>파일 형식에 따른 오버레이 아이콘 표시</value>
   </data>
-  <data name="strLanguages" xml:space="preserve">
-    <value>언어 선택:</value>
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>상황에 맞는 메뉴에 대 한 아이콘 표시</value>
   </data>
-  <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 설정</value>
-  </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>iOS 앱(ipa)의 아이콘을 보여줍니다.</value>
-  </data>
-  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>다운로드 QR 코드 스캔</value>
-  </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: 응용 프로그램 이름%Version%: 메인 버전%Revision%: 수정 번호%Publisher%: 게시자%OS%: 안 드 로이드 / iOS / 윈도우</value>
-  </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>이 기능을 사용 하려면 ApkShellextService, 서비스 시작 있는지 확인 하십시오.</value>
-  </data>
-  
-  <data name="strShowAppxIcon" xml:space="preserve">
-    <value>WindowsPhone 애플 리 케이 션 (약, appxbundle) 아이콘을 표시 합니다.</value>
-  </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
-  </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>애플 앱스 토 어에 {0} 확인</value>
-  </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>마이크로소프트 스토어에서 {0} 확인</value>
-  </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>아마존 앱스 토 어에 {0} 확인</value>
-  </data>
-  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  
 </root>

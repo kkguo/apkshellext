@@ -55,6 +55,7 @@ namespace ApkShellext2 {
         public static readonly string keyShowOverlay = @"ShowOverLayIcon";
         public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
         public static readonly string keyShowAppxIcon = @"ShowAppxIcon";
+        public static readonly string keyShowMenuIcon = @"ShowMenuIcon";
 
         public static void setRegistrySetting(string key, int value) {
             try {                

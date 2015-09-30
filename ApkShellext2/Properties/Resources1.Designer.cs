@@ -350,7 +350,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Faile to read file 的本地化字符串。
+        ///   查找类似 Fail to read file 的本地化字符串。
         /// </summary>
         internal static string strReadFileFailed {
             get {
@@ -405,6 +405,15 @@ namespace ApkShellext2.Properties {
         internal static string strShowAppxIcon {
             get {
                 return ResourceManager.GetString("strShowAppxIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Show icon for context menu 的本地化字符串。
+        /// </summary>
+        internal static string strShowContextMenuIcon {
+            get {
+                return ResourceManager.GetString("strShowContextMenuIcon", resourceCulture);
             }
         }
         

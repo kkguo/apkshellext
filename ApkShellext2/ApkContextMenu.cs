@@ -159,22 +159,24 @@ namespace ApkShellext2 {
             #endregion
 
             #region Mainmenu Icon
-            // if choose multiple files, will create a icon with upto 3 icons together
-            try { // draw multiple icons
-                int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
-                Bitmap b = new Bitmap(size, size);
-                for (int i = 0; i <totalIconToDraw; i++) {
-                    using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPaths.ElementAt(totalIconToDraw - i - 1)))
-                    using (Graphics g = Graphics.FromImage((Image)b)) {
-                        g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                        g.DrawImage(reader.Icon, i * 3, i * 3, size - 2 * totalIconToDraw, size - 2 * totalIconToDraw);
+            if (Utility.getRegistrySetting(Utility.keyShowMenuIcon, 1) == 1) {
+                // if choose multiple files, will create a icon with upto 3 icons together
+                try { // draw multiple icons
+                    int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
+                    Bitmap b = new Bitmap(size, size);
+                    for (int i = 0; i < totalIconToDraw; i++) {
+                        using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPaths.ElementAt(totalIconToDraw - i - 1)))
+                        using (Graphics g = Graphics.FromImage((Image)b)) {
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                            g.DrawImage(reader.Icon, i * 3, i * 3, size - 2 * totalIconToDraw, size - 2 * totalIconToDraw);
+                        }
                     }
+                    mainMenu.Image = b;
+                } catch (Exception ex) {
+                    Log("Error happens during extracting icon " + ex.Message);
                 }
-                mainMenu.Image = b;                    
-            } catch (Exception ex){
-                Log("Error happens during extracting icon " + ex.Message);
             }
             #endregion
 

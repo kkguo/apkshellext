@@ -58,6 +58,8 @@ namespace ApkShellext2 {
             ckRename.Checked = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
             ckShowPlay.Checked = (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
             ckShowOverlay.Checked = (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1);
+            ckShowMenuIcon.Checked = (Utility.getRegistrySetting(Utility.keyShowMenuIcon, 1) == 1);
+            ckShowMenuIcon.Text = Resources.strShowContextMenuIcon;
             lblRenamePattern.Text = Resources.strRenamePattern;
 
             if (!updateChecked) {
@@ -84,10 +86,6 @@ namespace ApkShellext2 {
 
          private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e) {
@@ -151,6 +149,20 @@ namespace ApkShellext2 {
             if (Utility.getRegistrySetting(Utility.keyShowOverlay) != (ckShowOverlay.Checked ? 1 : 0)) {
                 Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e) {
+
+        }
+
+        private void ckShowMenuIcon_CheckedChanged(object sender, EventArgs e) {
+            if (Utility.getRegistrySetting(Utility.keyShowMenuIcon,1) != (ckShowMenuIcon.Checked ? 1 : 0)) {
+                Utility.setRegistrySetting(Utility.keyShowMenuIcon, ckShowMenuIcon.Checked ? 1 : 0);
             }
         }
     }

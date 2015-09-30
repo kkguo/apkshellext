@@ -451,16 +451,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>rd /s /q $(ProjectDir)\Resources\zh-CN
-rd /s /q $(ProjectDir)\Resources\it-IT
-rd /s /q $(ProjectDir)\Resources\ko-KR
-rd /s /q $(ProjectDir)\Resources\es-ES
-rd /s /q $(ProjectDir)\Resources\fa-IR
-move /Y $(TargetDir)zh-CN $(ProjectDir)\Resources\
-move /Y $(TargetDir)it-IT $(ProjectDir)\Resources\
-move /Y $(TargetDir)ko-KR $(ProjectDir)\Resources\
-move /Y $(TargetDir)es-ES $(ProjectDir)\Resources\
-move /Y $(TargetDir)fa-IR $(ProjectDir)\Resources\
+    <PostBuildEvent>powershell.exe remove-item -force -recurse -path $(ProjectDir)\Resources\??-??
+powershell.exe mv -force $(TargetDir)\??-?? $(ProjectDir)\Resources\
 copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

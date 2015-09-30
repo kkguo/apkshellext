@@ -121,14 +121,8 @@
   <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="urlGithubHome" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext</value>
-  </data>
   <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="urlGooglePlay" xml:space="preserve">
-    <value>https://play.google.com/store/apps/details?id={0}</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,6 +133,24 @@
   <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -148,8 +160,20 @@
   <data name="btnUpdateToolTip" xml:space="preserve">
     <value>Go to project site to update</value>
   </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>RenamePattern</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>Check {0} on Amazon Appstore</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>Check {0} on Apple Appstore</value>
+  </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
     <value>Check {0} on GooglePlay</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Check {0} on Microsoft Store</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
@@ -160,8 +184,13 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rename to {0}</value>
   </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>Faile to read file</value>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>Always show GooglePlay menu</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>If checked, GooglePlay menu will show up even multiple apk files selected. 
+Please note, you may open a lot of browser window and impact the performance significantly.
+By default, only show the menu when one file selected</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Checking new version ...</value>
@@ -175,59 +204,23 @@
   <data name="strGotLatest" xml:space="preserve">
     <value>Great! You got the latest version.</value>
   </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>New version {0} is availible</value>
-  </data>
-  <data name="urlGithubHomeLatest" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext/latest</value>
-  </data>
-  <data name="urlGithubHomeWithVersion" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
-  </data>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Always show GooglePlay menu</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>If checked, GooglePlay menu will show up even multiple apk files selected. 
-Please note, you may open a lot of browser window and impact the performance significantly.
-By default, only show the menu when one file selected</value>
-  </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Go to ApkShellext2 Project site</value>
-  </data>
-  <data name="strRenameToolTip" xml:space="preserve">
-    <value>For avoiding situation of same Version but different revision number, this most like happens in android app files. 
-By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, use %AppName%_%Version%.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Rename with VersionCode</value>
-  </data>
-  <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>Show Overlay Icon</value>
-  </data>
-  <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Show an overlay icon for file type</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
     <value>Use Language:</value>
   </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>This feature requires ApkShellextService, please make sure the service started.</value>
+  </data>
+  <data name="strNewVersionAvailible" xml:space="preserve">
+    <value>New version {0} is availible</value>
+  </data>
   <data name="strPreferencesCaption" xml:space="preserve">
     <value>ApkShellext2 Preferences</value>
   </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>Show iOS app (ipa) icon.</value>
-  </data>
-  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>Scan QR code to download</value>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>Fail to read file</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
     <value>%AppName%: App Name
@@ -236,40 +229,50 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
 %Publisher%: Publisher
 %OS%: Android / iOS / Windows</value>
   </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>This feature requires ApkShellextService, please make sure the service started.</value>
+  <data name="strRenameToolTip" xml:space="preserve">
+    <value>For avoiding situation of same Version but different revision number, this most like happens in android app files. 
+By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, use %AppName%_%Version%.</value>
   </data>
-  <data name="urlAmazonAppStore" xml:space="preserve">
-    <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
+  <data name="strRenameWithVersionCode" xml:space="preserve">
+    <value>Rename with VersionCode</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>Scan QR code to download</value>
   </data>
   <data name="strShowAppxIcon" xml:space="preserve">
     <value>Show WindowsPhone app (appx, appxbundle) icon.</value>
   </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Show iOS app (ipa) icon.</value>
   </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Check {0} on Apple Appstore</value>
+  <data name="strShowOverlayIcon" xml:space="preserve">
+    <value>Show Overlay Icon</value>
   </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Check {0} on Microsoft Store</value>
+  <data name="strShowOverlayIconToolTip" xml:space="preserve">
+    <value>Show an overlay icon for file type</value>
   </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Check {0} on Amazon Appstore</value>
-  </data>
-  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="urlAmazonAppStore" xml:space="preserve">
+    <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
   </data>
   <data name="urlAppleStore" xml:space="preserve">
     <value>http://itunes.apple.com/{0}/app/{1}/id{2}?mt=8</value>
   </data>
+  <data name="urlGithubHome" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext</value>
+  </data>
+  <data name="urlGithubHomeLatest" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/latest</value>
+  </data>
+  <data name="urlGithubHomeWithVersion" xml:space="preserve">
+    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
+  </data>
+  <data name="urlGooglePlay" xml:space="preserve">
+    <value>https://play.google.com/store/apps/details?id={0}</value>
+  </data>
   <data name="urlMicrosoftStore" xml:space="preserve">
     <value>https://www.microsoft.com/{0}/store/apps/{1}/{2}</value>
+  </data>
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>Show icon for context menu</value>
   </data>
 </root>

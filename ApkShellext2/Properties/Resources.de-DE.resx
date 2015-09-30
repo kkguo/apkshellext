@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnCancel" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
@@ -124,10 +127,22 @@
     <value>Aktualisieren</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Projekt Website aktualisieren</value>
+    <value>Projekt Website zum Aktualisieren öffnen</value>
+  </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>Umbenennungsmuster</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>{0} im Amazon Appstore aufrufen</value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>{0} im Apple Appstore aufrufen</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Überprüfen Sie {0} auf GooglePlay</value>
+    <value>{0} in GooglePlay aufrufen</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>{0} im Microsoft Store aufrufen</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK-Shellerweiterung</value>
@@ -136,84 +151,72 @@
     <value>Einstellungen &amp;&amp; Update</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>Benennen Sie in {0}</value>
-  </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>Faile-Datei lesen</value>
-  </data>
-  <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>Neue Version wird überprüft...</value>
-  </data>
-  <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Projekt-Website für Updates überprüfen.</value>
-  </data>
-  <data name="strCurrVersion" xml:space="preserve">
-    <value>Aktuelle Version: {0}</value>
-  </data>
-  <data name="strGotLatest" xml:space="preserve">
-    <value>Toll! Sie haben schon die neueste Version.</value>
-  </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>Neue Version {0} ist verfügbar</value>
-  </data>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+    <value>Umbenennen in {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Immer GooglePlay Menü anzeigen</value>
+    <value>Immer GooglePlay im Menü anzeigen</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
     <value>Wenn aktiviert, wird GooglePlay Menü zeigen sich sogar multiple Apk Dateien ausgewählt. 
 Bitte beachten Sie, dass Sie viele Browserfenster öffnet und die Leistung erheblich beeinträchtigen.
 In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt</value>
   </data>
+  <data name="strCheckingNewVersion" xml:space="preserve">
+    <value>Neue Version wird gesucht...</value>
+  </data>
+  <data name="strCheckProjectSite" xml:space="preserve">
+    <value>Projekt-Website zum Aktualisieren öffnen.</value>
+  </data>
+  <data name="strCurrVersion" xml:space="preserve">
+    <value>Aktuelle Version: {0}</value>
+  </data>
+  <data name="strGotLatest" xml:space="preserve">
+    <value>Super! Du hast schon die neueste Version.</value>
+  </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Gehen Sie zu ApkShellext2-Projektseite</value>
+    <value>ApkShellext2-Projektseite öffnen</value>
+  </data>
+  <data name="strLanguages" xml:space="preserve">
+    <value>Verwenden Sie die Sprache:</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>Dieses Feature erfordert ApkShellextService, stelle bitte sicher, dass der Dienst gestartet ist.</value>
+  </data>
+  <data name="strNewVersionAvailible" xml:space="preserve">
+    <value>Neue Version {0} ist verfügbar</value>
+  </data>
+  <data name="strPreferencesCaption" xml:space="preserve">
+    <value>ApkShellext2 Einstellungen</value>
+  </data>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>Lesen der Datei fehlgeschlagen</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>%AppName%: App-Name%Version%: Main Version%Revision%: Revisionsnummer%Publisher%:%OS% Verlag: Android / iOS / Windows</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Für die Situation der gleichen Version aber unterschiedliche Revisionsnummer zu vermeiden, diese meisten wie geschieht in android app-Dateien. 
 Überprüfen Sie dies, benennen Sie app-Datei als %AppName _ % Version % _ %%Revision%, ansonsten, verwenden Sie %AppName % _ % Version.</value>
   </data>
   <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Umbenennen mit VersionCode</value>
+    <value>Umbenennen mit Versionscode</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>QR-Code scannen zum Herunterladen</value>
+  </data>
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>WindowsPhone-app (Appx, Appxbundle)-Symbol anzeigen.</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>IOS-app (ipa)-Symbol anzeigen.</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
     <value>Overlay-Symbol anzeigen</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Ein Overlay-Icon für den Dateityp anzeigen</value>
+    <value>Ein Overlay-Icon für diesen Dateityp anzeigen</value>
   </data>
-  <data name="strLanguages" xml:space="preserve">
-    <value>Verwenden Sie die Sprache:</value>
-  </data>
-  <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 "Einstellungen"</value>
-  </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>IOS-app (ipa)-Symbol anzeigen.</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>Scannen des QR-Code herunterladen</value>
-  </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: App-Name%Version%: Main Version%Revision%: Revisionsnummer%Publisher%:%OS% Verlag: Android / iOS / Windows</value>
-  </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>Dieses Feature erfordert ApkShellextService, stellen Sie bitte sicher, dass der Dienst gestartet.</value>
-  </data>
-  <data name="strShowAppxIcon" xml:space="preserve">
-    <value>WindowsPhone-app (Appx, Appxbundle)-Symbol anzeigen.</value>
-  </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
-  </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Überprüfen Sie {0} im Apple Appstore</value>
-  </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>{0} Microsoft-Informationsspeicher prüfen</value>
-  </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Überprüfen Sie {0} auf Amazon Appstore</value>
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>Symbol für Kontextmenü anzeigen</value>
   </data>
 </root>

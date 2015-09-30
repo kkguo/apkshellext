@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,23 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="googleplay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="udpate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnCancel" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -142,10 +127,22 @@
     <value>更新</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>更新するプロジェクト サイトへ</value>
+    <value>更新のためプロジェクトサイトへ移動</value>
+  </data>
+  <data name="lblRenamePattern" xml:space="preserve">
+    <value>名前変更パターン</value>
+  </data>
+  <data name="menuGotoAmazonAppStore" xml:space="preserve">
+    <value>Amazon Appstore で {0} をチェック </value>
+  </data>
+  <data name="menuGotoAppleAppStore" xml:space="preserve">
+    <value>Apple App Store で {0} をチェック </value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>GooglePlay でチェック {0}</value>
+    <value>Google Play で {0} をチェック</value>
+  </data>
+  <data name="menuGotoMicrosoftStore" xml:space="preserve">
+    <value>Microsoft Storeで {0} をチェック</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK シェル拡張</value>
@@ -154,104 +151,76 @@
     <value>設定 &amp;&amp; 更新</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>名前を {0} に変更します。</value>
+    <value>名前を {0} に変更</value>
   </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>ファイルを読み取るための Faile</value>
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>Google Play メニューを常に表示する</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>チェックした場合、複数の apk ファイルを選択したときでも Google Play メニューが表示されます。
+注意: ブラウザのウインドウ/タブを大量に開くため、パフォーマンスに影響する可能性があります。
+デフォルトでは一つのファイルを選んだ時だけメニューを表示します。</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>新しいバージョンをチェックしています.</value>
+    <value>新しいバージョンを確認しています ...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>プロジェクト サイトの更新を確認します。</value>
+    <value>プロジェクトサイトで更新を確認します。</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
     <value>現在のバージョン: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>素晴らしい!あなたは最新のバージョンを持ってください。</value>
-  </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>新しいバージョンの {0} はフィットネスエクサ サイズ</value>
-  </data>
-  
-  
-  <data name="btnCancel" xml:space="preserve">
-    <value>わかりました</value>
-  </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>GooglePlay メニューを常に表示します。</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>チェックした場合、GooglePlay メニュー選択も複数の apk ファイルが表示されます。
-ご注意: ブラウザー ウィンドウの多くを開いて、パフォーマンスを大幅に影響可能性があります。
-1 つのファイルが選択されている場合のみ、メニューを表示既定では、</value>
+    <value>最新バージョンです。</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>ApkShellext2 プロジェクト サイトへ</value>
-  </data>
-  <data name="strRenameToolTip" xml:space="preserve">
-    <value>同じバージョンが異なるリビジョン番号の状況を回避するには、このほとんどのような android アプリ ファイルで発生します。
-これをチェックすることによってそれ以外の場合 %Appname% _ % バージョン % _ % リビジョン %、としてアプリのファイル名前を変更、%Appname% _ % バージョンを使用します。</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>VersionCode と名前を変更します。</value>
-  </data>
-  <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>オーバーレイ アイコンを表示します。</value>
-  </data>
-  <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>ファイルの種類のオーバーレイ アイコンを表示します。</value>
+    <value>ApkShellext2 プロジェクトサイトへ</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>使用する言語。</value>
+    <value>使用する言語:</value>
+  </data>
+  <data name="strNeedApkShellextService" xml:space="preserve">
+    <value>この機能は ApkShellextService を必要としています。サービスが開始されているか確認してください。</value>
+  </data>
+  <data name="strNewVersionAvailible" xml:space="preserve">
+    <value>新しいバージョン {0} があります</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
     <value>ApkShellext2 設定</value>
   </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>IOS アプリ (ipa) のアイコンを表示します。</value>
-  </data>
-  <data name="Apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>ダウンロードする QR コードをスキャンします。</value>
+  <data name="strReadFileFailed" xml:space="preserve">
+    <value>ファイルを読み取れません</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: アプリ名%Version%: メイン バージョン%Revision%:%Publisher% リビジョン番号: 出版社%OS%: アンドロイド/iOS/Windows</value>
+    <value>%AppName%: アプリ名
+%Version%: メインバージョン
+%Revision%: リビジョン番号
+%Publisher%: 開発者
+%OS%: Android / iOS / Windows</value>
   </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>この機能は、ApkShellextService を必要とする、サービスの開始を確認してください。</value>
+  <data name="strRenameToolTip" xml:space="preserve">
+    <value>Android アプリでよく起きる、同じバージョンで異なるリビジョン番号、といった状況を回避します。
+チェックすると、アプリファイルを %AppName%_%Version%_%Revision% 、または %AppName%_%Version% に変更します。</value>
   </data>
-  
+  <data name="strRenameWithVersionCode" xml:space="preserve">
+    <value>バージョンコードで名前を変更する</value>
+  </data>
+  <data name="strScanToDownload" xml:space="preserve">
+    <value>QR コードをスキャンするとダウンロード出来ます</value>
+  </data>
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>WindowsPhone アプリ (appx, appxbundle) のアイコンを表示します。</value>
+    <value>Windows Phone アプリ (appx, appxbundle) のアイコンを表示する</value>
   </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>iOS アプリ (ipa) のアイコンを表示する</value>
   </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>アップル Appstore の上チェック {0}</value>
+  <data name="strShowOverlayIcon" xml:space="preserve">
+    <value>オーバーレイアイコンを表示する</value>
   </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>マイクロソフト ストアでチェック {0}</value>
+  <data name="strShowOverlayIconToolTip" xml:space="preserve">
+    <value>ファイルタイプのオーバーレイアイコンを表示します。</value>
   </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Amazon Appstore の上チェック {0}</value>
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>コンテキスト メニューのアイコンを表示します。</value>
   </data>
-  <data name="Android" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  
 </root>
