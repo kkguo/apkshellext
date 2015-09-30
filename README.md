@@ -30,8 +30,8 @@ This project is open source and free, visit http://apkshellext.com for Download 
     - Persian (by [Ali Rex](http://translate.apkshellext.com/profile/ali-sholug))
     - Hebrew (by [gbyx](http://translate.apkshellext.com/profile/gbyx))
     - Portuguese (by [Eduardo Santos](http://translate.apkshellext.com/profile/eduardo650498))
-    - German (by [rekire](http://translate.apkshellext.com/profile/rekire)
-    - Japanese (by [Noumi](http://translate.apkshellext.com/profile/Noumi)
+    - German (by [rekire](http://translate.apkshellext.com/profile/rekire))
+    - Japanese (by [Noumi](http://translate.apkshellext.com/profile/Noumi))
     - Franch (by [Charles Milette](http://translate.apkshellext.com/profile/charles_milette))
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
