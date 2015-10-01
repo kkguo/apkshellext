@@ -5,14 +5,16 @@ A windows shell exteions for mobile app files, supporting
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
+This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
+
 #### Please help this project
  * Translate : http://translate.apkshellext.com 
  * jekyll site maitainence.
  * Tester for new features.
 
-Please [drop me a mail](mailto:kkguokk@gmail.com) if you want to help, pull request is welcome.
-
-This project is open source and free, visit http://apkshellext.com for Download and more Information.
+Contact me if you want to help. Pull request is also welcome.
+ * kkguokk@gmail.com
+ * Telegram: @kkguo
 
 #### [Features]
  - [x] Display app icon in explorer:
