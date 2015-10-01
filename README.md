@@ -14,7 +14,7 @@ This is the code repository, please visit the project page http://apkshellext.co
 
 Contact me if you want to help. Pull request is also welcome.
  * kkguokk@gmail.com
- * Telegram: @kkguo
+ * Telegram: [@kkguo](https://web.telegram.org/#/im?p=@kkguo)
 
 #### [Features]
  - [x] Display app icon in explorer:
