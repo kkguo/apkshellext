@@ -8,9 +8,9 @@ A windows shell exteions for mobile app files, supporting
 This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
 
 #### Please help this project
- * Translate : http://translate.apkshellext.com 
- * jekyll site maitainence.
- * Tester for new features.
+ * Translators come here -> http://translate.apkshellext.com 
+ * Site page maitainence. Web is not easy for me :(
+ * Volunteer for new features. Be prepare for your compute explode.
 
 Contact me if you want to help. Pull request is also welcome.
  * kkguokk@gmail.com
@@ -23,7 +23,7 @@ Contact me if you want to help. Pull request is also welcome.
  - [x] Go to app store from context menu.
  - [x] Check new version automatically.
  - [x] Show overlay icon for different type of apps.
- - [x] Support upto 15 languages (some are machine translated):
+ - [x] Support 11+ languages (some are machine translated):
     - English
     - Chinese/中文(简体/繁體)
     - italiano (by [Vince. M](https://crowdin.com/profile/Widget))
