@@ -25,7 +25,7 @@ Contact me if you want to help. Pull request is also welcome.
  - [x] Show overlay icon for different type of apps.
  - [x] Support upto 15 languages (some are machine translated):
     - English
-    - 中文(简体/繁體)
+    - Chinese/中文(简体/繁體)
     - italiano (by [Vince. M](https://crowdin.com/profile/Widget))
     - Korean (by [zinc](https://crowdin.com/profile/zinc))
     - Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
