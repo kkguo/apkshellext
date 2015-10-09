@@ -33,8 +33,8 @@ Contact me if you want to help. Pull request is also welcome.
     - Hebrew (by [gbyx](http://translate.apkshellext.com/profile/gbyx))
     - Portuguese (by [Eduardo Santos](http://translate.apkshellext.com/profile/eduardo650498))
     - German (by [rekire](https://github.com/rekire/))
-    - Japanese (by [Noumi](http://translate.apkshellext.com/profile/Noumi))
-    - Franch (by [Charles Milette](http://translate.apkshellext.com/profile/charles_milette))
+    - Japanese (by [Noumi](https://github.com/AndroPlus-org))
+    - Franch (by [Charles Milette](https://github.com/charlesmilette))
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
