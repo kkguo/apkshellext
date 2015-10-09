@@ -32,7 +32,7 @@ Contact me if you want to help. Pull request is also welcome.
     - Persian (by [Ali Rex](http://translate.apkshellext.com/profile/ali-sholug))
     - Hebrew (by [gbyx](http://translate.apkshellext.com/profile/gbyx))
     - Portuguese (by [Eduardo Santos](http://translate.apkshellext.com/profile/eduardo650498))
-    - German (by [rekire](http://translate.apkshellext.com/profile/rekire))
+    - German (by [rekire](https://github.com/rekire/))
     - Japanese (by [Noumi](http://translate.apkshellext.com/profile/Noumi))
     - Franch (by [Charles Milette](http://translate.apkshellext.com/profile/charles_milette))
  - [ ] QR code to download to phone
