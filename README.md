@@ -14,7 +14,10 @@ This is the code repository, please visit the project page http://apkshellext.co
 
 Contact me if you want to help. Pull request is also welcome.
  * :email: issue@apkshellext.com
- * ![telegram](https://telegram.org/favicon.ico) [@apkshellext](https://telegram.me/apkshellext)
+ * ![Telegram](http://telegram.me/favicon.ico) [@kkguo](https://telegram.me/kkguo)
+
+Subscribe Release announcement on Telegram
+ * [@apkshellext](https://telegram.me/apkshellext)
 
 #### [Features]
  - [x] Display app icon in explorer:
