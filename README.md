@@ -13,8 +13,8 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Volunteer for new features. Be prepared for your computer to explode.
 
 Contact me if you want to help. Pull request is also welcome.
- * kkguokk@gmail.com
- * Telegram: [@apkshellext](https://web.telegram.org/#/im?p=@apkshellext)
+ * :email: kkguokk@gmail.com
+ * ![telegram](https://telegram.org/favicon.ico) [@apkshellext](https://telegram.me/apkshellext)
 
 #### [Features]
  - [x] Display app icon in explorer:
