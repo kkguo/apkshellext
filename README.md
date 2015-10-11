@@ -13,7 +13,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Volunteer for new features. Be prepared for your computer to explode.
 
 Contact me if you want to help. Pull request is also welcome.
- * :email: kkguokk@gmail.com
+ * :email: issue@apkshellext.com
  * ![telegram](https://telegram.org/favicon.ico) [@apkshellext](https://telegram.me/apkshellext)
 
 #### [Features]
