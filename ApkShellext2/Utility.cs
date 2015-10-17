@@ -12,6 +12,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
+using SharpShell.Interop;
+using ApkShellext2.Properties;
 
 namespace ApkShellext2 {
     public static class Utility {
@@ -50,34 +52,41 @@ namespace ApkShellext2 {
         }
 
         # region set/get registry settings
-        public static readonly string keyAlwaysShowGooglePlay = @"AlwaysShowGooglePlay";
+        public static readonly string keyMultiSelectShowStore = @"AlwaysShowGooglePlay";
+        public static readonly string keyShowGooglePlay = @"ShowGooglePlay";
+        public static readonly string keyShowAmazonStore = @"ShowAmazonStore";
+        public static readonly string keyShowApkMirror = @"ShowApkMirror";
+        public static readonly string keyShowAppleStore = @"ShowAppleStore";
+        public static readonly string keyShowMSStore = @"ShowMSStore";
         public static readonly string keyRenameWithVersionCode = @"RenameWithVersionCode";
         public static readonly string keyShowOverlay = @"ShowOverLayIcon";
         public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
         public static readonly string keyShowAppxIcon = @"ShowAppxIcon";
         public static readonly string keyShowMenuIcon = @"ShowMenuIcon";
+        public static readonly string keyRenamePattern = @"RenamePattern";
+        public static readonly string keyToolTipPattern = @"ToolTipPattern";
 
-        public static void setRegistrySetting(string key, int value) {
-            try {                
-                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
-                    k.SetValue(key, value);
-                }
-            } catch (Exception ex) {
-                Logging.Log("Error happens during write settings :" + ex.Message);
-            }
-        }
+        //public static void setRegistrySetting(string key, int value) {
+        //    try {
+        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        //        using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
+        //            k.SetValue(key, value);
+        //        }
+        //    } catch (Exception ex) {
+        //        Logging.Log("Error happens during write settings :" + ex.Message);
+        //    }
+        //}
 
-        public static void setRegistrySettingString(string key, string value) {
-            try {
-                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
-                    k.SetValue(key, value);
-                }
-            } catch (Exception ex) {
-                Logging.Log("Error happens during write settings :" + ex.Message);
-            }
-        }
+        //public static void setRegistrySettingString(string key, string value) {
+        //    try {
+        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        //        using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
+        //            k.SetValue(key, value);
+        //        }
+        //    } catch (Exception ex) {
+        //        Logging.Log("Error happens during write settings :" + ex.Message);
+        //    }
+        //}
 
         public static int getRegistrySetting(string key, int defValue = 0) {
             try {
@@ -91,17 +100,17 @@ namespace ApkShellext2 {
             }
         }
 
-        public static string getRegistrySettingString(string key, string defValue = "") {
-            try {
-                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
-                    return k.GetValue(key, (object)defValue) as string;
-                }
-            } catch (Exception ex) {
-                Logging.Log("Error happens during reading settings :" + ex.Message);
-                return defValue;
-            }
-        }
+        //public static string getRegistrySettingString(string key, string defValue = "") {
+        //    try {
+        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        //        using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
+        //            return k.GetValue(key, (object)defValue) as string;
+        //        }
+        //    } catch (Exception ex) {
+        //        Logging.Log("Error happens during reading settings :" + ex.Message);
+        //        return defValue;
+        //    }
+        //}
         # endregion
 
         #region Resolve resource dll by internal resource
@@ -131,7 +140,8 @@ namespace ApkShellext2 {
 
                 Logging.Log("Extracting resource dll: " + resourceName);
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
-                    if (stream == null) return null;
+                    if (stream == null)
+                        return null;
                     _binResourceDll = new BinaryReader(stream).ReadBytes((int)stream.Length);
                     _bufCultureInfoLCID = ci.LCID;
                 }
@@ -149,11 +159,14 @@ namespace ApkShellext2 {
         /// </summary>
         public static void Localize() {
             HookResolveResourceDll();
-            int lang = getRegistrySetting("language", -1);
+            int lang = Settings.Default.Language;
             if (lang != -1) {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-                Logging.Log("Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
+                CultureInfo cultinfo = new CultureInfo(lang);
+                if (cultinfo.LCID != Thread.CurrentThread.CurrentUICulture.LCID) {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                    Logging.Log("Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
+                }
             }
         }
 
@@ -211,23 +224,78 @@ namespace ApkShellext2 {
         //    return localIP;
         //}
 
-        public static string GetMd5Hash(MD5 md5Hash, string input) {
+        //public static string GetMd5Hash(MD5 md5Hash, string input) {
 
-            // Convert the input string to a byte array and compute the hash. 
-            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+        //    // Convert the input string to a byte array and compute the hash. 
+        //    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-            // Create a new Stringbuilder to collect the bytes 
-            // and create a string.
-            StringBuilder sBuilder = new StringBuilder();
+        //    // Create a new Stringbuilder to collect the bytes 
+        //    // and create a string.
+        //    StringBuilder sBuilder = new StringBuilder();
 
-            // Loop through each byte of the hashed data  
-            // and format each one as a hexadecimal string. 
-            for (int i = 0; i < data.Length; i++) {
-                sBuilder.Append(data[i].ToString("x2"));
+        //    // Loop through each byte of the hashed data  
+        //    // and format each one as a hexadecimal string. 
+        //    for (int i = 0; i < data.Length; i++) {
+        //        sBuilder.Append(data[i].ToString("x2"));
+        //    }
+
+        //    // Return the hexadecimal string. 
+        //    return sBuilder.ToString();
+        //}
+
+        public static Bitmap AppTypeIcon(AppPackageReader.AppType type) {
+            switch (type) {
+                case AppPackageReader.AppType.AndroidApp:
+                    return Properties.Resources.iconAndroid;
+                case AppPackageReader.AppType.iOSApp:
+                    return Properties.Resources.iconApple;
+                case AppPackageReader.AppType.WindowsPhoneApp:
+                case AppPackageReader.AppType.WindowsPhoneAppBundle:
+                    return Properties.Resources.Windows;
+                default:
+                    return null;
             }
+        }
 
-            // Return the hexadecimal string. 
-            return sBuilder.ToString();
+        // Overlay icon
+        public static Bitmap CombineBitmap(Bitmap backgroud, Bitmap foreground, Rectangle backgroundPos, Rectangle foregroundPos, Size outputSize) {
+            Bitmap b = new Bitmap(outputSize.Width, outputSize.Height);
+            using (Graphics g = Graphics.FromImage(b)) {
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                g.DrawImage(backgroud, backgroundPos);
+                g.DrawImage(foreground, foregroundPos);
+                return b;
+            }
+        }
+
+        public static string getFileSize(string path) {
+            float filesize = new FileInfo(path).Length;
+            if (filesize < 1024 * 1024) {  // < 1M
+                return string.Format("{0:0.###}K", filesize / 1024);
+            } else {
+                return string.Format("{0:0.###}M", filesize / 1024 / 1024);
+            }
+        }
+        //public static string[] getSelectedFiles() {
+        //    IntPtr handle = User32.GetForegroundWindow();
+
+        //    List<string> selected = new List<string>();
+            
+        //    var shell = new Shell32.Shell();
+        //    foreach (SHDocVw.InternetExplorer window in shell.Windows()) {
+        //        if (window.HWND == (int)handle) {
+        //            Shell32.FolderItems items = ((Shell32.IShellFolderViewDual2)window.Document).SelectedItems();
+        //            foreach (Shell32.FolderItem item in items) {
+        //                selected.Add(item.Path);
+        //            }
+        //        }
+        //    }
+        //}
+
+        public static void refreshShell() {
+            SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
         }
     }
 }

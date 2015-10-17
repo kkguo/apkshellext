@@ -9,6 +9,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using ApkShellext2.Properties;
 
 namespace ApkShellext2 {
 
@@ -31,11 +32,22 @@ namespace ApkShellext2 {
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
             try {
                 Utility.Localize();
+                string TipPattern = Settings.Default.ToolTipPattern;
+                bool isapk = SelectedItemPath.EndsWith(".apk");
+                bool isipa = SelectedItemPath.EndsWith(".ipa");
+                if (TipPattern == "")
+                    TipPattern = Resources.strInfoTipDefault;
+                
                 using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
-                    string splitor = singleLine ? " " : Environment.NewLine;                    
-                    return reader.AppName + splitor
-                            + reader.PackageName + splitor
-                            + "Version : " + reader.Version + " " + reader.Revision;
+                    //string splitor = singleLine ? " " : Environment.NewLine;
+                    return TipPattern.Replace(Resources.varAppName, reader.AppName)
+                    .Replace(Resources.varPackage, reader.PackageName)
+                    .Replace(Resources.varPublisher, reader.Publisher)
+                    .Replace(Resources.varVersion, reader.Version)
+                    .Replace(Resources.varRevision, reader.Revision)
+                    .Replace(Resources.varFileSize, Utility.getFileSize(SelectedItemPath))
+                    .Replace(Resources.varOS, isapk ? "Android" : (isipa ? "iOS" : "Windows"))
+                    .Replace(Resources.varLastModify, File.GetLastWriteTime(SelectedItemPath).ToString("dd/MM/yy HH:mm:ss"));
                 }
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);

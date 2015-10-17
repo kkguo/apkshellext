@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>تأیید</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>باشه</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,12 +154,12 @@
     <value>{0} تغییر نام به </value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>همیشه منوی گوگل پلی نمایش داده شود</value>
+    <value>نمایش منوها در فروشگاه app انتخاب چند فایل</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value> اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-توجه کنید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود
-بصورت پیشفرض، منو فقط زمانی که یک فایل انتخاب شده باشد نمایش داده میشود.</value>
+    <value>اگر چک، app فروشگاه منوها تا حتی چند فایل apk انتخاب شده نشان می دهد. 
+لطفا توجه داشته باشید، شما ممکن است بسیاری از پنجره مرورگر باز و تاثیر عملکرد قابل توجهی.
+زمانی که انتخاب یک فایل به طور پیش فرض، تنها منو نمایش</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>جستجوی نسخه جدید...</value>
@@ -191,19 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>فایل خوانده نشد</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>نام برنامه:%AppName%
-ورژن:%Version%
-شماره ساخت:%Revision%
-ناشر:%Publisher%
-سیستم عامل(Android/iOS/Windowsا): %OS%</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>کاربر استفاده از متغیرهای زیر:%AppName%:%Version% نام نرم افزار: شماره نسخه اصلی برای apk، نام نسخه است.
+%Revision%: تعداد مرور apk، آن کد نسخه برای iOS و windows است، این مقدار خالی است.
+%Package%:%Publisher% فضایی نام بسته: نویسنده.
+%OS%: اندیشه / iOS / ویندوز%FileSize%:%LastModify% حجم فایل: آخرین تاریخ اصلاح</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>برای جلوگیری از همنام شدن فایلهای مشابه با ورژن متفاوت که معمولا در برنامه های اندرویید پیش می آید.
 با انتخاب این گزینه تغییر نام بصورت %نام برنامه%_%ورژن%_%شماره ساخت%، در غیر اینصورت تغییر نام بصورت %نام برنامه%_%ورژن% انجام خواهد شد.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>تغییر نام  شامل ورژن برنامه باشد</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>اسکن QR کد برای دانلود</value>
@@ -221,6 +217,60 @@
     <value>نمایش آیکون عمومی نسبت به نوع فایل</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>آیکون نمایش در منو چهار چوب</value>
+    <value>نمایش آیکون در منو</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>لغو</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>نه</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>تایید تغییر نام این پرونده به عنوان {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>الگوی تغییر نام دهید: (بدون فرمت)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>منوی مضمون</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>عمومی</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>آیکون برنامه کنترل</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>تغییر نام</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>نکته مفید اطلاعاتی کنترل کننده</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>بررسی {0} در ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>استفاده از آخرین ذخیره الگو</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>آمازون app فروشگاه لینک نمایش ها</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>لینک ApkMirror نمایش ها</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>لینک فروشگاه اپل (برای ipa) نمایش ها</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>نمایش گوگل لینک بازی ها</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>مایکروسافت فروشگاه لینک (برای appx/appxbundle) نمایش ها</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>الگوی نوک اطلاعات:</value>
   </data>
 </root>

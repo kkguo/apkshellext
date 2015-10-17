@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
+  <data name="btnOK" xml:space="preserve">
     <value>Razoável</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
@@ -154,10 +154,10 @@
     <value>Renomear para {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Sempre mostrar o menu do GooglePlay</value>
+    <value>Mostrar menus de loja de app quando selecionados vários arquivos</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se marcada, GooglePlay menu vai aparecer até mesmo em vários arquivos apk selecionados. 
+    <value>Se marcada, menus de loja de app vão aparecer até mesmo vários apk arquivos selecionados. 
 Observe que você pode abrir um monte de janela do navegador e afetar o desempenho significativamente.
 Por padrão, apenas mostrar o menu quando um arquivo selecionado</value>
   </data>
@@ -191,15 +191,15 @@ Por padrão, apenas mostrar o menu quando um arquivo selecionado</value>
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Falha ao ler o arquivo</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% nome de App: principal versão%Revision%:%Publisher% número de revisão:%OS% Editora: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Seguintes variáveis do utilizador utilize:%AppName%:%Version% nome de App: número de versão principal, para a apk, é o nome da versão.
+%Revision%: número de revisão, para apk, que é o código de versão, para iOS e windows, este valor é vazio.
+%Package%:%Publisher% de espaço de nome de pacote: autor.
+%OS%: Android / iOS / Windows%FileSize%:%LastModify% de tamanho do arquivo: última modificar data</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Para evitar a situação de mesma versão mas número diferente de revisão, a maioria como acontece em arquivos app android. 
 Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revisão %, caso contrário, use %AppName % _ % versão %.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Renomeie com o Código da Versão</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Examine o código QR para baixar</value>
@@ -218,5 +218,59 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Mostrar o ícone de menu de contexto</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>Não</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Sim</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Confirme para renomear o arquivo como {0}.</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Renomear padrão: (sem extensão)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Menu de contexto</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Manipulador de ícone</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Renomeando</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Manipulador de InfoTip</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Verificar {0} em ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Use o último padrão salvo</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Mostrar a Amazônia link do app store no menu de contexto</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Mostrar ApkMirror link no menu de contexto</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Mostrar o link de loja de Apple (para o ipa) no menu de contexto</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Mostrar o link do jogo Google no menu de contexto</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Mostrar o link de Microsoft Store (para appx/appxbundle) no menu de contexto</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Padrão de ponta de informação:</value>
   </data>
 </root>

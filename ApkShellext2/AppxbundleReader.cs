@@ -28,16 +28,24 @@ namespace ApkShellext2 {
         private readonly string ValApplication = @"application";
         private readonly string AttrFileName = @"FileName";
 
+        public AppxBundleReader(Stream stream) {
+            FileName = "";
+            openFile(stream);
+        }
+
         public AppxBundleReader(string path) {
             FileName = path;
-            string appxFileName = "";
+            openFile(new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read));
+        }
 
-            zip = new ZipFile(FileName);
+        private void openFile(Stream stream) {
+            string appxFileName = "";
+            zip = new ZipFile(stream);
             ZipEntry en = zip.GetEntry(AppxBundleManifestXml);
             if (en == null)
                 throw new EntryPointNotFoundException("cannot find " + AppxBundleManifestXml);
 
-            using (XmlReader reader = XmlReader.Create(zip.GetInputStream(en))){
+            using (XmlReader reader = XmlReader.Create(zip.GetInputStream(en))) {
                 reader.ReadToFollowing(ElemIdentity);
                 reader.MoveToAttribute(AttrName);
 
@@ -46,8 +54,8 @@ namespace ApkShellext2 {
                     reader.MoveToAttribute(AttrType);
                 } while (reader.Value != ValApplication || reader.EOF);
 
-                if (reader.EOF) 
-                    throw new Exception("Cannot find application in " + AppxBundleManifestXml);                
+                if (reader.EOF)
+                    throw new Exception("Cannot find application in " + AppxBundleManifestXml);
 
                 reader.MoveToAttribute(AttrFileName);
                 appxFileName = reader.Value;
@@ -55,7 +63,7 @@ namespace ApkShellext2 {
 
             en = zip.GetEntry(appxFileName);
             if (en == null)
-                throw new EntryPointNotFoundException("cannot find appx " + appxFileName);            
+                throw new EntryPointNotFoundException("cannot find appx " + appxFileName);
 
             appxReader = new AppxReader(zip.GetInputStream(en));
         }

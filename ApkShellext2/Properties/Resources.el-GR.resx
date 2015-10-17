@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
+  <data name="btnOK" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
@@ -154,10 +154,10 @@
     <value>Μετονομάστε το σε {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Πάντα δείχνουν GooglePlay μενού</value>
+    <value>Εμφανίστε app κατάστημα μενού όταν επιλεγεί πολλά αρχεία</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Εάν ελέγχθηκαν, GooglePlay μενού θα παρουσιάσει ακόμη και πολλαπλές apk αρχείο επιλεγμένος. 
+    <value>Εάν ελέγχθηκαν, app κατάστημα μενού θα παρουσιάσει ακόμη και πολλαπλές apk αρχείο επιλεγμένος. 
 Παρακαλώ σημειώστε, μπορείτε να ανοίξετε πολλά παράθυρο του προγράμματος περιήγησης και να προσκρούσει στην απόδοση σημαντικά.
 Από προεπιλογή, εμφανίζεται μόνο το μενού όταν επιλέγεται ένα αρχείο</value>
   </data>
@@ -191,15 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Απέτυχε η ανάγνωση αρχείου</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% όνομα App: κύρια έκδοση%Revision%:%Publisher% αριθμό αναθεώρησης:%OS% εκδότης: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Χρήστης Χρησιμοποιήστε το παρακάτω μεταβλητές:%AppName%:%Version% όνομα App: αριθμό κύριας έκδοσης, για apk, είναι το όνομα του έκδοση.
+%Revision%: αριθμός αναθεώρησης, για apk, πρόκειται για τον κωδικό έκδοσης, για iOS και windows, αυτή η τιμή είναι κενή.
+%Package%: πακέτο όνομα χώρου%Publisher%: συγγραφέας.
+%OS%: Android / iOS / Windows%FileSize%:%LastModify% μέγεθος αρχείου: τελευταία τροποποίηση ημερομηνίας</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Για την αποφυγή κατάσταση της ίδια έκδοση αλλά αριθμό διαφορετικών αναθεώρησης, αυτό πιο όπως συμβαίνει στο ανδροειδές app αρχεία. 
 Από τον έλεγχο αυτό, μετονομάστε το αρχείο app ως %AppName % _ _ % έκδοση % αναθεώρηση %, διαφορετικά, χρησιμοποιήστε %AppName % _ % έκδοση %.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Μετονομασία με VersionCode</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Σάρωση κωδικού QR να κατεβάσετε</value>
@@ -218,5 +218,59 @@
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Εμφάνιση εικονιδίου για μενού περιβάλλοντος</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>"Άκυρο"</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>Όχι</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Ναι</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Μετονομάστε το αρχείο ως {0} να επιβεβαιώσει;</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Μετονομάστε το μοτίβο: (χωρίς επέκταση)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Μενού περιβάλλοντος</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Γενική</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Εικονίδιο χειρισμού</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Μετονομασία</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Πρόγραμμα χειρισμού πληροφοριών</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Ελέγξτε το {0} στο ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Χρήση τελευταία αποθήκευση μοτίβο</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Εμφάνιση Amazon app τη σύνδεση καταστημάτων σε μενού περιβάλλοντος</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Εμφάνιση ApkMirror σύνδεσμο στο μενού περιβάλλοντος</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Δείτε μήλο κατάστημα σύνδεση (για το ipa) στο μενού περιβάλλοντος</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Δείχνουν τη σύνδεση παιχνίδι Google στο μενού περιβάλλοντος</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Δείτε το Microsoft κατάστημα σύνδεση (για appx/appxbundle) στο μενού περιβάλλοντος</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Πληροφορίες άκρη μοτίβο:</value>
   </data>
 </root>

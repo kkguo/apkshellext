@@ -2,14 +2,11 @@
 ECHO #######################################################
 ECHO ##            APK Shell Extension  2                 ##
 ECHO ##                                                   ##
-ECHO ##           http://apkshellext.com                  ##
+ECHO ##           http://www.apkshellext.com              ##
 ECHO #######################################################
-
-@echo off
 
 REM === check and get the UAC for administrator privilege ===
 REM === code from https://sites.google.com/site/eneerge/scripts/batchgotadmin
-REM === 
 :: BatchGotAdmin
 :-------------------------------------
 REM  --> Check for permissions
@@ -17,17 +14,25 @@ REM  --> Check for permissions
 
 REM --> If error flag set, we do not have admin.
 if '%errorlevel%' NEQ '0' (
-    echo Requesting administrative privileges...
-    goto UACPrompt
+	if '%1' EQU '1' (
+		echo Cannot elevate administrator privilege
+		echo Please try again with "Run as Administrator"
+		echo Installation failed.
+		pause
+		exit /B
+	) else (
+		echo Requesting administrative privileges...
+		goto UACPrompt
+	)
 ) else ( goto gotAdmin )
 
 :UACPrompt
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    echo UAC.ShellExecute "%~s0", "1", "", "runas", 1 >> "%temp%\getadmin.vbs"
 
     "%temp%\getadmin.vbs"
     exit /B
-
+	
 :gotAdmin
     if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
     pushd "%CD%"
@@ -49,7 +54,7 @@ ECHO Done!
 ECHO.
 ECHO /-------------------------------------------------------------------\
 ECHO  apkshellext is an open-source project,
-ECHO  Please visit http://apkshellext.com for more information
+ECHO  Please visit http://www.apkshellext.com for more information
 ECHO \-------------------------------------------------------------------/
 
 PAUSE

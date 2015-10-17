@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,12 +154,12 @@
     <value>Rinomina in {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostra sempre link al Google Play</value>
+    <value>Mostra app store menu selezionando più file</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se selezionato, il menu Google Play apparirà anche se hai selezionato più file APK.
-Si apriranno più finestre del Browser e questo potrebbe influire sulle prestazioni del Computer in modo significativo.
-Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un File</value>
+    <value>Se selezionata, menu Archivio app apparirà anche più file apk selezionati. 
+Siete pregati di notare che è possibile aprire un sacco di finestra del browser e avere un impatto significativo delle prestazioni.
+Per impostazione predefinita, solo mostrare il menu quando un file selezionato</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Verificando nuova versione ...</value>
@@ -191,15 +191,15 @@ Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Impossibile leggere il file</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: nome dell'App%Version%: Main Version%Revision%:%Publisher% numero di Revisione:%OS% Editore: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Uso di utente seguenti variabili:%AppName%:%Version% nome App: numero di versione principale, per apk, è il nome della versione.
+%Revision%: numero di revisione, per apk, è il codice di versione, per iOS e windows, questo valore è vuoto.
+%Package%: pacchetto nome spazio%Publisher%: autore.
+%OS%: Android / iOS / Windows%FileSize%:%LastModify% Dimensione File: Ultima data di modifica</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Per evitare la situazione della stessa versione, ma numero di revisione diversi, nella maggior parte dei come accade nei file app per android. 
 Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revisione %, in caso contrario, utilizzare %AppName _ % versione %.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Rinomina con la versione del codice</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Scansiona il codice QR per scaricare</value>
@@ -239,5 +239,59 @@ Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revi
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Mostra l'icona per il menu contestuale</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Sì</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Confermare per rinominare il file come {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Rinominare il modello: (senza estensione)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Menu di scelta rapida</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Gestore di icona</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Ridenominazione di</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Gestore di finestra popup</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Verifica {0} su ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Uso dell'ultimo salvataggio modello</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Visualizza Amazon app store link nel menu contestuale</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Link ApkMirror Mostra nel menu contestuale</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Visualizza link store Apple (per ipa) nel menu contestuale</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Visualizza Google play collegamento nel menu contestuale</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Visualizza link Microsoft Store (per appx/appxbundle) nel menu contestuale</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Modello di punta di informazioni:</value>
   </data>
 </root>

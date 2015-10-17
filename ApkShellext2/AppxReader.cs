@@ -15,13 +15,17 @@ namespace ApkShellext2 {
     /// </summary>
     public class AppxReader : AppPackageReader {
         private readonly string AppxManifestXml = @"AppxManifest.xml";
-        private readonly string ElemIdentity = @"Identity";
-        private readonly string ElemProperties = @"Properties";
-        private readonly string ElemDisplayName = @"DisplayName";
-        private readonly string ElemLogo = @"Logo";
-        private readonly string AttrVersion = @"Version";
-        private readonly string AttrName = @"Name";
-        private readonly string AttrPublisher = @"Publisher";
+        private readonly string elemPackage = @"Package";
+        private readonly string elemIdentity = @"Identity";
+        private readonly string elemProperties = @"Properties";
+        private readonly string elemDisplayName = @"DisplayName";
+        private readonly string elemLogo = @"Logo";
+        private readonly string elemPhoneIdentity = @"mp:PhoneIdentity";
+
+        private readonly string attrVersion = @"Version";
+        private readonly string attrName = @"Name";
+        private readonly string attrPublisher = @"Publisher";
+        private readonly string attrPhoneProductID = @"PhoneProductId";
 
         private ZipFile zip;
         private string iconPath;
@@ -30,6 +34,7 @@ namespace ApkShellext2 {
         private string appname;
         private string packageName;
         private string publisher;
+        private string productid;
 
         public AppxReader(Stream stream) {
             FileName = "";
@@ -49,32 +54,50 @@ namespace ApkShellext2 {
                 throw new EntryPointNotFoundException("cannot find " + AppxManifestXml);
             byte[] xmlbytes = new byte[en.Size];
             zip.GetInputStream(en).Read(xmlbytes, 0, (int)en.Size);
-            using (XmlReader reader = XmlReader.Create(new MemoryStream(xmlbytes))) {
-                bool isInProperites = false;
-                while (reader.Read()) {
-                    if (reader.IsStartElement() && reader.Name == ElemIdentity) {
-                        version = reader.GetAttribute(AttrVersion);
-                        packageName = reader.GetAttribute(AttrName);
-                        publisher = reader.GetAttribute(AttrPublisher);
-                        continue;
-                    }
-                    if (reader.IsStartElement() && reader.Name == ElemProperties) {
-                        isInProperites = true;
-                        continue;
-                    }
-                    if (isInProperites && reader.IsStartElement() && reader.Name == ElemDisplayName) {
-                        appname = reader.ReadElementContentAsString();
-                        continue;
-                    }
-                    if (isInProperites && reader.IsStartElement() && reader.Name == ElemLogo) {
-                        iconPath = reader.ReadElementContentAsString().Replace(@"\",@"/");
-                        break;
-                    }
-                    //if (isInProperites && reader.NodeType == XmlNodeType.EndElement && reader.Name == @"Properties") {
-                    //    isInProperites = false;
-                    //}
-                }
-            }
+
+            XmlDocument xml = new XmlDocument();
+            xml.XmlResolver = null;
+            xml.Load(zip.GetInputStream(en));
+
+            XmlElement packageNode = xml.DocumentElement;
+            XmlElement Identity = packageNode[elemIdentity];
+            version = Identity.Attributes[attrVersion].Value.ToString();
+            packageName = Identity.Attributes[attrName].Value.ToString();
+            publisher = Identity.Attributes[attrPublisher].Value.ToString();
+            
+            XmlElement DisplayName = packageNode[elemProperties][elemDisplayName];
+            appname = DisplayName.FirstChild.Value.ToString();
+            XmlElement Logo = packageNode[elemProperties][elemLogo];
+            iconPath = Logo.FirstChild.Value.ToString().Replace(@"\",@"/");
+            XmlElement PhoneIdentity = packageNode[elemPhoneIdentity];
+            productid = PhoneIdentity.Attributes[attrPhoneProductID].ToString();
+           
+            //using (XmlReader reader = XmlReader.Create(new MemoryStream(xmlbytes))) {
+            //    bool isInProperites = false;
+            //    while (reader.Read()) {
+            //        if (reader.IsStartElement() && reader.Name == ElemIdentity) {
+            //            version = reader.GetAttribute(AttrVersion);
+            //            packageName = reader.GetAttribute(AttrName);
+            //            publisher = reader.GetAttribute(AttrPublisher);
+            //            continue;
+            //        }
+            //        if (reader.IsStartElement() && reader.Name == ElemProperties) {
+            //            isInProperites = true;
+            //            continue;
+            //        }
+            //        if (isInProperites && reader.IsStartElement() && reader.Name == ElemDisplayName) {
+            //            appname = reader.ReadElementContentAsString();
+            //            continue;
+            //        }
+            //        if (isInProperites && reader.IsStartElement() && reader.Name == ElemLogo) {
+            //            iconPath = reader.ReadElementContentAsString().Replace(@"\", @"/");
+            //            break;
+            //        }
+            //        if (isInProperites && reader.NodeType == XmlNodeType.EndElement && reader.Name == @"Properties") {
+            //            isInProperites = false;
+            //        }
+            //    }
+            //}
         }
 
         public override string AppName {
@@ -98,6 +121,12 @@ namespace ApkShellext2 {
         public override string PackageName {
             get {
                 return packageName;
+            }
+        }
+
+        public override string appid {
+            get {
+                return productid;
             }
         }
 

@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>わかりました</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,12 +154,12 @@
     <value>名前を {0} に変更</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Google Play メニューを常に表示する</value>
+    <value>複数のファイルを選択したときのアプリ ストア メニューを表示します。</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>チェックした場合、複数の apk ファイルを選択したときでも Google Play メニューが表示されます。
-注意: ブラウザのウインドウ/タブを大量に開くため、パフォーマンスに影響する可能性があります。
-デフォルトでは一つのファイルを選んだ時だけメニューを表示します。</value>
+    <value>チェックした場合、app ストア メニューも複数の apk ファイルが選択されて表示されます。
+ご注意: ブラウザー ウィンドウの多くを開いて、パフォーマンスを大幅に影響可能性があります。
+1 つのファイルが選択されている場合のみ、メニューを表示既定では、</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>新しいバージョンを確認しています ...</value>
@@ -191,19 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>ファイルを読み取れません</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: アプリ名
-%Version%: メインバージョン
-%Revision%: リビジョン番号
-%Publisher%: 開発者
-%OS%: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>ユーザー変数を次を使用します:%AppName%: アプリ名%Version%: メイン バージョン番号、apk、それはバージョン名。
+%Revision%: リビジョン番号、apk、iOS と windows のバージョンのコードは、この値は空です。
+%Package%: パッケージの名前空間%Publisher%: 著者。
+%OS%: Android ・ iOS/Windows%FileSize%: ファイル サイズ%LastModify%: 最終変更日</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Android アプリでよく起きる、同じバージョンで異なるリビジョン番号、といった状況を回避します。
 チェックすると、アプリファイルを %AppName%_%Version%_%Revision% 、または %AppName%_%Version% に変更します。</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>バージョンコードで名前を変更する</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>QR コードをスキャンするとダウンロード出来ます</value>
@@ -222,5 +218,59 @@
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>コンテキストメニューアイコンの表示</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>[はい]</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>このファイルを {0} として名前を変更することを確認?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>パターンの名前を変更: (拡張子なし)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>コンテキスト メニュー</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>一般的な</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>アイコン ハンドラー</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>名前を変更します。</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>ヒント ハンドラー</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>ApkMirror.com に {0} をチェックします。</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>最後に保存されているパターンを使用</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>コンテキスト メニューにアプリケーション ストア リンク アマゾンを表示します。</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>コンテキスト メニューで ApkMirror リンクを示す</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>コンテキスト メニューで (ipa) のアップル ストアのリンクを示す</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>コンテキスト メニューで Google の再生リンクを表示します。</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>コンテキスト メニューで (appx/appxbundle) のマイクロソフト ストアのリンクを示す</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>情報ヒントのパターン:</value>
   </data>
 </root>

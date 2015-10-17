@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>Okay</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,10 +154,10 @@
     <value>Umbenennen in {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Immer GooglePlay im Menü anzeigen</value>
+    <value>Zeigen Sie app Store Menüs wenn mehrere Dateien ausgewählt an</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Wenn aktiviert, wird GooglePlay Menü zeigen sich sogar multiple Apk Dateien ausgewählt. 
+    <value>Wenn aktiviert, zeigt app Store Menüs sogar multiple Apk Dateien ausgewählt. 
 Bitte beachten Sie, dass Sie viele Browserfenster öffnet und die Leistung erheblich beeinträchtigen.
 In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt</value>
   </data>
@@ -191,15 +191,15 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Lesen der Datei fehlgeschlagen</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: App-Name%Version%: Main Version%Revision%: Revisionsnummer%Publisher%:%OS% Verlag: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Verwendung der Nutzer folgende Variablen:%AppName%: App-Name%Version%: Main-Versionsnummer, für Apk, ist es den Versionsnamen.
+%Revision%: Revisionsnummer, für Apk, es ist der Versionscode für iOS und Windows, dieser Wert ist leer.
+%Package%: Paket Name Raum%Publisher%: Autor.
+%OS%: Android / iOS / Windows%FileSize%: Datei-Größe%LastModify%: Letzte Änderung Datum</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Für die Situation der gleichen Version aber unterschiedliche Revisionsnummer zu vermeiden, diese meisten wie geschieht in android app-Dateien. 
 Überprüfen Sie dies, benennen Sie app-Datei als %AppName _ % Version % _ %%Revision%, ansonsten, verwenden Sie %AppName % _ % Version.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Umbenennen mit Versionscode</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>QR-Code scannen zum Herunterladen</value>
@@ -218,5 +218,59 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Symbol für Kontextmenü anzeigen</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Bestätigen Sie diese Datei als {0} umbenennen?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Benennen Sie Muster: (ohne Erweiterung)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Kontext-Menü</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Allgemeine</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Symbol-Handler</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Infotipp-Handler</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Überprüfen Sie {0} auf ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Zuletzt gespeicherten Muster</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Amazon app Store-Link in das Kontext-Menü anzeigen</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>ApkMirror Link im Kontextmenü anzeigen</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Apple Store-Link (für ipa) im Kontextmenü anzeigen</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Google Spiel Link im Kontextmenü anzeigen</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Microsoft Store-Link (für Appx/Appxbundle) im Kontextmenü anzeigen</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Info-Tipp-Muster:</value>
   </data>
 </root>

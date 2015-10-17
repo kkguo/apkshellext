@@ -11,8 +11,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
+using ApkShellext2.Properties;
 
-namespace ApkShellext2{
+namespace ApkShellext2 {
     /// <summary>
     /// This is the icon handler, not only supporting apk, but also other type of apps.
     /// </summary>
@@ -26,59 +27,33 @@ namespace ApkShellext2{
     public class ApkIconHandler : SharpIconHandler {
         private Bitmap m_icon = null;
 
-        protected override Icon GetIcon(bool smallIcon, uint iconSize)
-        {
-            try {
-                if (m_icon == null) {
+        protected override Icon GetIcon(bool smallIcon, uint iconSize) {
+            if (m_icon == null) {
+                try {
                     using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
+                        reader.setFlags("IconSize", iconSize);
                         m_icon = reader.Icon;
+                        if (m_icon == null)
+                            throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
                     }
-                }
-            } catch {
-                Log("Error in reader icon, draw default");
-                // read error, draw the default icon
-                m_icon = Utility.ResizeBitmap(getOverlayIcon(SelectedItemPath), (int)iconSize);
-                return Icon.FromHandle(m_icon.GetHicon());
-            }
-
-            if (Utility.getRegistrySetting(Utility.keyShowOverlay) == 1) {
-                return addOverlay(iconSize);
-            } else {
-                return Icon.FromHandle(m_icon.GetHicon());
-            }
-        }
-
-        // Overlay icon
-        private Icon addOverlay(uint iconSize) {
-            using (Bitmap b = new Bitmap((int)iconSize, (int)iconSize)) {
-                using (Graphics g = Graphics.FromImage(b)) {
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.DrawImage(m_icon, (int)(iconSize * 0.05), 0, (int)(iconSize * 0.95), (int)(iconSize * 0.95));
-                    g.DrawImage(getOverlayIcon(SelectedItemPath), 0, iconSize/2,iconSize/2,iconSize/2);
-                    return Icon.FromHandle(b.GetHicon());
+                    if (Settings.Default.ShowOverLayIcon)
+                        m_icon = Utility.CombineBitmap(m_icon,
+                           Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath)),
+                           new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
+                           new Rectangle(0, (int)m_icon.Height / 2, (int)m_icon.Width / 2, (int)m_icon.Height / 2),
+                           new Size((int)m_icon.Width, (int)m_icon.Height));
+                } catch {
+                    Log("Error in reading icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
+                    // read error, draw the default icon
+                    m_icon = Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath));
                 }
             }
-        }
-
-        private Bitmap getOverlayIcon(string path) {
-            switch (AppPackageReader.getAppType(path)){
-                case AppPackageReader.AppType.AndroidApp:
-                    return Properties.Resources.Android;
-                case AppPackageReader.AppType.iOSApp:
-                    return Properties.Resources.Apple;
-                case AppPackageReader.AppType.WindowsPhoneApp:
-                case AppPackageReader.AppType.WindowsPhoneAppBundle:
-                    return Properties.Resources.Windows;
-                default:
-                    return null;
-            }
+            return Icon.FromHandle(Utility.ResizeBitmap(m_icon,new Size((int)iconSize, (int)iconSize)).GetHicon());
         }
 
         [CustomRegisterFunction]
         public static void postDoRegister(Type type, RegistrationType registrationType) {
-            Console.WriteLine("Registering " + type.FullName + "Version" + type.Assembly.GetName().Version.ToString());
+            Console.WriteLine("Registering " + type.FullName + " Version" + type.Assembly.GetName().Version.ToString());
 
             // Todo: clean other icon handler as they were integrated
             //"d5ff6172-1ae5-4c4a-a207-5a2dd100891e"
@@ -110,13 +85,13 @@ namespace ApkShellext2{
                         }
                     }
                 }
-            } catch (Exception e){
-                Logging.Error("Cleaning up apkshellext remaining registry items but see exception" + 
+            } catch (Exception e) {
+                Logging.Error("Cleaning up apkshellext remaining registry items but see exception" +
                     e.Message);
             }
             #endregion
 
-            #region Clean up older versions registry
+            #region Clean up older versions registry and settings
             try {
                 using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
@@ -134,26 +109,23 @@ namespace ApkShellext2{
                 Logging.Error("Cleaning up older version but see exception. "
                      + e.Message);
             }
-            #endregion
 
-            #region enable log print when debug
-//#if DEBUG
-//            try {
-//                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"\SOFTWARE\SharpShell")) {
-//                    if (key != null) {
-//                        key.SetValue("LoggingMode", 4);
-//                        key.SetValue("LogPath", @"%temp%\apkshellext.log");
-//                    }
-//                }
-//            } catch (Exception e){
-//                Logging.Log("error in enable logging" + e.Message);
-//            }
-//#endif
+            Settings.Default.ShowAppStoreWhenMultiSelected = Utility.getRegistrySetting(Utility.keyMultiSelectShowStore)==1;
+            Settings.Default.ShowGooglePlay = Utility.getRegistrySetting(Utility.keyShowGooglePlay) == 1;
+            Settings.Default.ShowOverLayIcon = Utility.getRegistrySetting(Utility.keyShowOverlay)==1;
+            Settings.Default.ShowIpaIcon = Utility.getRegistrySetting(Utility.keyShowIpaIcon) ==1;
+            Settings.Default.ShowAppxIcon = Utility.getRegistrySetting(Utility.keyShowAppxIcon) == 1;
+            Settings.Default.ShowMenuIcon = Utility.getRegistrySetting(Utility.keyShowMenuIcon) == 1;
+
+            if (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode)==1) {
+                Settings.Default.RenamePattern = Resources.strRenamePatternDefault + "_" + Resources.varRevision;
+            }
+            Settings.Default.Save();
             #endregion
         }
 
-        protected override void Log(string message) {
-            Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
-        }
+        //protected override void Log(string message) {
+        //    Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
+        //}
     }
 }

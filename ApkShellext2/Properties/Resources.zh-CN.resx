@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
+  <data name="btnOK" xml:space="preserve">
     <value>确定</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
@@ -154,11 +154,11 @@
     <value>改名为 {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>始终显示GooglePlay菜单</value>
+    <value>当选定多个文件时显示应用程序商店菜单</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>选中时始终显示GooglePlay子菜单,默认只在选中一个文件时显示,
-请注意,当多个文件选中时,多个GooglePlay 页面会占用很多资源,
+    <value>选中时始终显示应用商店菜单, 默认只在选中一个文件时显示,
+请注意, 当多个文件选中时, 多个应用商店页面会占用很多资源,
 可能会使你的电脑响应变很慢</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
@@ -191,20 +191,21 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>读取文件失败</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: 程序名称
-%Version%: 主版本号
-%Revision%: 子版本号
-%Publisher%: 开发者
-%OS%: 程序类型 android/ ios /windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>请使用下面的变量:
+%AppName%: 应用程序名称
+%Version%    : 主要版本号, 对apk来说，它是Version Name。
+%Revision%  : 修订号, 对于apk，它是Version Code, 对于 iOS 和 windows app, 此值为空。
+%Package%  : 包名称空间
+%Publisher%: 作者。
+%OS%            : Android / iOS / Windows
+%FileSize%    : 文件大小
+%LastModify%: 上次修改日期</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>有一些android程序版本的子版本号不同, 但是主版本号相同, 为了避免这种情况, 可以在重命名时加上子版本号
 选中这个选项将使用 程序名称_主版本号_子版本号 重命名
 默认使用 程序名称_主版本号</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>重命名时使用版本代码</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>扫描QR码下载</value>
@@ -216,12 +217,66 @@
     <value>显示 iOS app (ipa) 图标。</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>显示Android小图标</value>
+    <value>显示叠加图标</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>使用覆盖图标显示不同的文件类型</value>
+    <value>使用叠加图标显示不同的文件类型</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>为右键菜单显示图标</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>确认重命名此文件作为 {0} 吗?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>以此模式重命名: (不包括扩展名)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>菜单</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>通用设置</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>在ApkMirror.com查找{0}</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>使用上次一保存的模式</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>在菜单中显示亚马逊应用商店链接</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>在上下文菜单中显示 ApkMirror 的链接</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>在文菜单中显示苹果商店的链接</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>在菜单中显示GooglePlay链接</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>在上下文菜单中显示 Microsoft 存储链接 (为 appx/appxbundle)</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>以此模式显示提示:</value>
   </data>
 </root>

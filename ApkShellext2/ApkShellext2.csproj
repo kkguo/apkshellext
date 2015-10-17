@@ -65,6 +65,7 @@
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
     <Compile Include="ApkContextMenu.cs" />
+    <Compile Include="ApkThumbnailHandler.cs" />
     <Compile Include="AppPackageReader.cs" />
     <Compile Include="AppxBundleReader.cs" />
     <Compile Include="AppxReader.cs" />
@@ -99,7 +100,13 @@
     <Compile Include="Preferences.Designer.cs">
       <DependentUpon>Preferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="QRCoder\QRCoder\QRCoder.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\COMServerAssociationAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
@@ -370,6 +377,13 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\install.bat" />
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
@@ -400,6 +414,8 @@
     <Content Include="Resources\Amazon.png" />
     <EmbeddedResource Include="Resources\de-DE\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\el-GR\ApkShellext2.resources.dll" />
+    <None Include="Resources\apkm.png" />
+    <None Include="Resources\App-store-icon.png" />
     <Content Include="Resources\fr-FR\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\he-IL\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\hu-HU\ApkShellext2.resources.dll" />
@@ -408,6 +424,8 @@
     <None Include="Resources\QR-Scan.png" />
     <EmbeddedResource Include="Resources\pt-PT\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\ru-RU\ApkShellext2.resources.dll" />
+    <None Include="Resources\msft store icon.png" />
+    <None Include="Resources\msft store icon1.png" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />

@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
+  <data name="btnOK" xml:space="preserve">
     <value>oké</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
@@ -154,10 +154,10 @@
     <value>Nevezze át a {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mindig a GooglePlay menü megjelenítése</value>
+    <value>App store menük több fájl kijelölésekor megjelenítése</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Ha be van jelölve, GooglePlay menü kijelölt még több apk fájlt fog megjelenni. 
+    <value>Ha be van jelölve, az app store menük még több kijelölt apk fájlt fog megjelenni. 
 Kérjük, vegye figyelembe, lehet nyit sok legel ablak, és az ütközés a előadás alapvető.
 Alapértelmezés szerint egyetlen mutat a menü egy fájl kiválasztásakor</value>
   </data>
@@ -191,15 +191,15 @@ Alapértelmezés szerint egyetlen mutat a menü egy fájl kiválasztásakor</val
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Nem sikerült olvasni a fájlt</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: alkalmazás neve%Version%: fő változat%Revision%:%Publisher% átvizsgálás szám:%OS% Kiadó: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Felhasználó használata a következő változók:%AppName%:%Version% App neve: fő verziószáma, apk, esetében a verziónevet.
+%Revision%: változatszámot, a apk, ez a változat kódját, iOS és a windows, ez az érték üres.
+%Package%: a csomag neve space%Publisher%: szerző.
+%OS%: Android / iOS / Windows%FileSize%: File méret%LastModify%: utoljára a dátum módosítása</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Az azonos verzióját, de különböző átvizsgálás szám helyzetének elkerülésére, ez a legtöbb, mint android app fájlokat történik. 
 Ennek bejelölésével app fájl átnevezése %AppName _ % Version % _ % Revision %, mint egyébként, %AppName _ % Version % használja.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Nevezze át a VersionCode</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Átkutat a QR-kód letölt</value>
@@ -218,5 +218,59 @@ Ennek bejelölésével app fájl átnevezése %AppName _ % Version % _ % Revisio
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>A szövegkörnyezet étlap ikon megjelenítése</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>nem</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>igen</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Győződjön meg arról, hogy átnevez ez reszelő mint {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Nevezze át a minta: (kiterjesztés nélkül)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Helyi menü</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Általános</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Ikon kezelő</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Átnevezése</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Megállítja kezelő</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Ellenőrizze a {0} a ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Használja az utolsó mentett mintázatok</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Amazon app store hivatkozás megjelenítése a szövegkörnyezet étlap</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Térkép ApkMirror láncszem-ban szövegkörnyezet étlap</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Apple store-link (ipa) a helyi menü megjelenítése</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>A Google play hivatkozás megjelenítése a szövegkörnyezet étlap</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Microsoft Store-link (AlkX/appxbundle) a helyi menü megjelenítése</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Info tipp mintázata:</value>
   </data>
 </root>

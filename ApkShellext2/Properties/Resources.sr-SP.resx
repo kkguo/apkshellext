@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
+  <data name="btnOK" xml:space="preserve">
     <value>у реду</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
@@ -154,10 +154,10 @@
     <value>Преименујте у {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Увијек Прикажи ГооглеПлаy менија</value>
+    <value>Прикажи апликација за складиште меније када је изабрано више датотека</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Ако је изабрано ГооглеПлаy менија ће се изабрано је чак и више апк датотека појавити. 
+    <value>Ако је изабрано апликација за складиште менији ће се изабрано је чак и више апк датотека појавити. 
 Имајте на уму, можете отворити пуно прозора прегледача и значајно да утичу на перформансе.
 По подразумеваној вредности, само се мени прикаже када је изабрана једна датотека</value>
   </data>
@@ -191,15 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Читање датотеке није успело</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: име апликације%Version%: главна верзија%Revision%: број ревизије%Publisher%:%OS% Издавач: Андроид / иОС / Wиндоwс</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Корисник користи прати варијабле:%AppName%:%Version% име апликације: број главне верзије, за апк, то је име које верзије.
+%Revision% : број ревизије, за апк, шифру верзије, за иОС и wиндоwс, ова вредност је празан.
+%Package% :%Publisher% простор за име пакета: аутор.
+%OS%: Андроид / иОС / Wиндоwс%FileSize%:%LastModify% величина датотеке: задњи пут измените датум</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>За избегавање ситуације исту верзију, али број различитих ревизије, ово најчешће као се дешава у андроид апп датотеке. 
 Проверавањем ово, преименујте датотеку апп као %AппНаме _ % верзија % _ % Ревисион %, у супротном, користите %AппНаме _ % верзија %.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Преименуј са ВерсионЦоде</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Скенирајте QР кôд за преузимање</value>
@@ -218,5 +218,59 @@
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Прикажи икону за Контекстуални мени</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Отказивање</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>не</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Потврдите да бисте преименовали ову датотеку као {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Преименуј шара: (без ознака типа датотеке)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Контекстуални мени</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Генерале</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Руковалац икона</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Преименовање</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Информације и савети руковаоца</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Провери {0} на ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Користите последњи сачувани шара</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Прикажи Амазон апликација за складиште везу у контекстуалном менију</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Прикажи АпкМиррор везу у контекстуалном менију</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Прикажи Аппле продавница везу (ипа) у контекстуалном менију</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Прикажи везу Гоогле плаy у контекстуалном менију</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Приказивање Мицрософт Сторе везу (аппx/аппxбундле) у контекстуалном менију</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Инфо напојницу шара:</value>
   </data>
 </root>

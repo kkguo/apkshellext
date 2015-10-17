@@ -17,13 +17,16 @@ using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using Ionic.Zlib;
 
 namespace ApkShellext2 {
     public class IpaReader : AppPackageReader {
         private string strAppRoot;
-        private Dictionary<string,object> dic;
+        private Dictionary<string,object> infoPlistDic;
+        private Dictionary<string, object> itunesMetadataDic;
         private ZipFile zip;
 
+        private readonly string iTunesMetadataPath = @"iTunesMetadata.plist";
         private readonly string infoPlistPath = @"(Payload/.*\.app/)Info\.plist";
         private readonly string CFBundleIcons = @"CFBundleIcons";
         private readonly string CFBundlePrimaryIcon = @"CFBundlePrimaryIcon";
@@ -31,11 +34,23 @@ namespace ApkShellext2 {
         private readonly string CFBundleDisplayName = @"CFBundleDisplayName";
         private readonly string CFBundleIdentifier = @"CFBundleIdentifier";
         private readonly string CFBundleShortVersionString = @"CFBundleShortVersionString";
-        //private readonly string CFBundleVersion = @"CFBundleVersion";
+        private readonly string CFBundleVersion = @"CFBundleVersion";
+
+        public static readonly string flagAppId = @"itemId";
+        public static readonly string flagCopyright = @"copyright";
+        
 
         public IpaReader(string path) {
             FileName = path;
-            zip = new ZipFile(FileName);
+            openStream(new FileStream(path,FileMode.Open, FileAccess.Read,FileShare.Read));
+        }
+
+        public IpaReader(Stream stream) {
+            openStream(stream);
+        }
+
+        private void openStream(Stream stream) {
+            zip = new ZipFile(stream);
             ZipEntry infoPlist = null;
             foreach (ZipEntry en in zip) {
                 Match m = Regex.Match(en.Name, infoPlistPath);
@@ -45,29 +60,32 @@ namespace ApkShellext2 {
                     break;
                 }
             }
+
             if (infoPlist == null) {
                 throw new EntryPointNotFoundException("cannot find info.plist");
             }
-            byte[] infoBytes = new byte[infoPlist.Size];
-            zip.GetInputStream(infoPlist).Read(infoBytes,0,(int)infoPlist.Size);
 
-            dic = (Dictionary<string, object>)Plist.readPlist(infoBytes);
+            byte[] infoBytes = new byte[infoPlist.Size];
+            zip.GetInputStream(infoPlist).Read(infoBytes, 0, (int)infoPlist.Size);
+
+            infoPlistDic = (Dictionary<string, object>)Plist.readPlist(infoBytes);
         }
 
-        public string[] getStrings(string[] keys) {
-            Dictionary<string, object> m_dic = dic;
+        public string[] getStrings(Dictionary<string, object> dic, string[] keys) {
             for (int i = 0; i < keys.Length - 1; i++) {
-               if (m_dic.ContainsKey(keys[i])) {
-                   m_dic = (Dictionary<string, object>)m_dic[keys[i]];
+               if (dic.ContainsKey(keys[i])) {
+                   dic = (Dictionary<string, object>)dic[keys[i]];
                 } else {
                     throw new Exception("Given ID is not valid");
                 }
             }
-            if (m_dic.ContainsKey(keys[keys.Length - 1])) {
-                if (m_dic[keys[keys.Length - 1]] is string) {
-                    return new string[] { m_dic[keys[keys.Length - 1]] as string };
+            if (dic.ContainsKey(keys[keys.Length - 1])) {
+                if (dic[keys[keys.Length - 1]] is string) {
+                    return new string[] { dic[keys[keys.Length - 1]] as string };
+                } if (dic[keys[keys.Length-1]] is int) {
+                    return new string[] {dic[keys[keys.Length - 1]].ToString()};
                 } else { // is list
-                    object[] arr = ((List<object>)m_dic[keys[keys.Length - 1]]).ToArray();
+                    object[] arr = ((List<object>)dic[keys[keys.Length - 1]]).ToArray();
                     return Array.ConvertAll<object, string>(arr, x => x.ToString());
                 }
             } else {
@@ -76,7 +94,7 @@ namespace ApkShellext2 {
         }
 
         public Bitmap getImage(string[] keys) {
-            string[] images = getStrings(keys);
+            string[] images = getStrings(infoPlistDic, keys);
             if (images != null) {
                 return getImage(images[0]);
             }
@@ -110,28 +128,28 @@ namespace ApkShellext2 {
 
         public override string AppName {
             get {
-                return getStrings(new string[] {
+                return getStrings(infoPlistDic, new string[] {
                     CFBundleDisplayName})[0];
             }
         }
 
         public override string Version {
             get {
-                return getStrings(new string[] {
+                return getStrings(infoPlistDic, new string[] {
                     CFBundleShortVersionString})[0];
             }
         }
 
-        //public override string Revision {
-        //    get {
-        //        return getStrings(new string[] {
-        //            CFBundleVersion})[0];
-        //    }
-        //}
+        public override string Revision {
+            get {
+                return getStrings(infoPlistDic, new string[] {
+                    CFBundleVersion})[0];
+            }
+        }
 
         public override string PackageName {
             get {
-                return getStrings(new string[] {
+                return getStrings(infoPlistDic, new string[] {
                     CFBundleIdentifier})[0];
             }
         }
@@ -143,6 +161,29 @@ namespace ApkShellext2 {
                     CFBundleIconFiles });;
             }
         }
+
+        public override string Publisher {
+            get {
+                ZipEntry itunesMetadata = zip.GetEntry(iTunesMetadataPath);
+
+                byte[] itunesMetadataBytes = new byte[itunesMetadata.Size];
+                zip.GetInputStream(itunesMetadata).Read(itunesMetadataBytes, 0, (int)itunesMetadata.Size);
+                itunesMetadataDic = (Dictionary<string, object>)Plist.readPlist(itunesMetadataBytes);
+                return getStrings(itunesMetadataDic, new string [] {flagCopyright})[0];
+            }
+        }
+
+        public override string appid {
+            get {
+                ZipEntry itunesMetadata = zip.GetEntry(iTunesMetadataPath);
+
+                byte[] itunesMetadataBytes = new byte[itunesMetadata.Size];
+                zip.GetInputStream(itunesMetadata).Read(itunesMetadataBytes, 0, (int)itunesMetadata.Size);
+                itunesMetadataDic = (Dictionary<string, object>)Plist.readPlist(itunesMetadataBytes);
+                return getStrings(itunesMetadataDic, new string[] { flagAppId })[0];
+            }
+        }
+
 
         private bool disposed = false;
         protected override void Dispose(bool disposing) {

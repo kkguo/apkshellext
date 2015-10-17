@@ -79,6 +79,7 @@ namespace ApkQuickReader {
         private readonly string AttrVersionCode = @"versionCode";
         private readonly string AttrIcon = @"icon";
         private readonly string AttrPackage = @"package";
+        private readonly string AttrName = @"name";
         private readonly int ConfigurationDensityPosition = 10;
 
         private byte[] use_config = null;
@@ -90,9 +91,15 @@ namespace ApkQuickReader {
         /// <param name="culture"></param>
         public ApkReader(string filename, string culture = "") {
             FileName = filename;
+            openStream(new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read));
+        }
 
-            zip = new ZipFile(filename);
+        public ApkReader(Stream stream, string culture = "") {
+            openStream(stream);
+        }
 
+        private void openStream(Stream stream) {
+            zip = new ZipFile(stream);
             ZipEntry en = zip.GetEntry(AndroidManifextXML);
             BinaryReader s = new BinaryReader(zip.GetInputStream(en));
             manifest = s.ReadBytes((int)en.Size);
@@ -116,6 +123,13 @@ namespace ApkQuickReader {
         public override string Revision {
             get {
                 return getAttribute(TagManifest, AttrVersionCode);
+            }
+        }
+
+        public override string Publisher {
+            get {
+                string appName = getAttribute(TagApplication, AttrName);
+                return appName;
             }
         }
 
@@ -151,9 +165,12 @@ namespace ApkQuickReader {
             // get the biggest density config
             List<byte[]> configs = getResourceConfigs();
             int bestDesityIndex = 0;
+            int bestDensity = configs[0][ConfigurationDensityPosition] + configs[0][ConfigurationDensityPosition + 1] * 256;
             for (int i = 1; i < configs.Count; i++) {
-                if (configs[i][ConfigurationDensityPosition] > configs[bestDesityIndex][ConfigurationDensityPosition]) {
+                int density = configs[i][ConfigurationDensityPosition] + configs[i][ConfigurationDensityPosition + 1] * 256;
+                if (density > bestDensity) {
                     bestDesityIndex = i;
+                    bestDensity = density;
                 }
             }
             use_config = configs[bestDesityIndex];
@@ -168,6 +185,15 @@ namespace ApkQuickReader {
             } else {
                 return null;
             }
+        }
+
+        private uint imageSize;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
+        public void setImageSize(uint size) {
+            imageSize = size;
         }
 
         /// <summary>
@@ -485,8 +511,7 @@ namespace ApkQuickReader {
                                     if (config != null) {
                                         bool match = true;
                                         for (int i = 0; i < config.Length; i++) {
-                                            if (config[i] != 0              //only compare non-0
-                                                && conf[i] != config[i]) { 
+                                            if (conf[i] != config[i]) {
                                                 match = false;
                                                 break;
                                             }
@@ -509,6 +534,8 @@ namespace ApkQuickReader {
                                     ms.Seek(11, SeekOrigin.Current); // skip entry size, flags, key, size, 0
                                     byte dataType = br.ReadByte();
                                     uint data = br.ReadUInt32();
+                                    if (config != null)
+                                        SharpShell.Diagnostics.Logging.Log(string.Format("Extracting Resource {0} using density {1}:",id,config[ConfigurationDensityPosition]));
                                     if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
                                         return QuickSearchResourcesStringPool(data);
                                     } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
@@ -517,7 +544,7 @@ namespace ApkQuickReader {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
                                             continue;
                                         }
-                                        return QuickSearchResource((UInt32)data);
+                                        return QuickSearchResource((UInt32)data, config);
                                     } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
                                         return data.ToString();
                                     }

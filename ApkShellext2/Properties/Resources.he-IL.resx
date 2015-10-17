@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>אישור</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>אוקיי</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,10 +154,10 @@
     <value>שינוי שם ל {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>הצג תמיד תפריטים GooglePlay</value>
+    <value>הצג תפריטים בחנות app כשבוחרים קבצים מרובים</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>אם בדקת, יופיע תפריט GooglePlay אפילו מספר קבצי apk שנבחרו. 
+    <value>אם בדקת, app store תפריטים יופיע אפילו מספר קבצי apk שנבחרו. 
 אנא שימו לב, ייתכן לפתוח הרבה של חלון הדפדפן, להשפיע על הביצועים באופן משמעותי.
 כברירת מחדל, רק להציג את התפריט כשמסמנים קובץ אחד</value>
   </data>
@@ -191,15 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>נכשלה לקרוא את התיק</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%:%Version% שם App: הגירסה הראשית%Revision%:%Publisher% מספר המהדורה: Publisher%OS%: אנדרואיד / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>שימוש המשתמש בעקבות משתנים:%AppName%:%Version% שם App: מספר הגירסה הראשית, apk, זה שמה של גירסת.
+%Revision%: מספר המהדורה, עבור apk, זה הקוד גירסה, עבור iOS ו- windows, ערך זה הוא ריק.
+%Package%: החבילה שם שטח%Publisher%: מחבר.
+%OS%: אנדרואיד / iOS / Windows%FileSize%:%LastModify% גודל קובץ: אחרונה לשנות תאריך</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>להימנע המצב של גירסה זהה אך מספר המהדורה שונים, קורה זאת ברוב כמו קבצי האפליקציה. 
 על-ידי בודק זה, שנה את שם הקובץ app כמו %AppName % _ % גירסה % _ % תיקון %, אחרת, השתמש %AppName % _ % גירסה %.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>שינוי שם עם VersionCode</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>לסרוק קוד QR כדי להוריד</value>
@@ -218,5 +218,59 @@
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>הצג סמל עבור תפריט תלוי-הקשר</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>ביטול</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>לא</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>כן</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>לאשר כדי לשנות שם קובץ זה כמו {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>שינוי שם של תבנית: (ללא סיומת)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>תפריט תלוי-הקשר</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>כללי</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>סמל הנדלר</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>שינוי שם</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>עצת מידע הנדלר</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>בדוק {0} על ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>שימוש נשמר לאחרונה דפוס</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>הצג את אמזון app store הקישור בתפריט ההקשר</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>הצג ApkMirror הקישור בתפריט ההקשר</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>הצג את תפוח החנות בקישור (ipa) במתפריט ההקשר</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>הצג Google play הקישור בתפריט ההקשר</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>הצג במיקרוסופט חנות הקישור (עבור appx/appxbundle) בתפריט ההקשר</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>דפוס טיפ מידע:</value>
   </data>
 </root>

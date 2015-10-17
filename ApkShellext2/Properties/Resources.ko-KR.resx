@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>확인</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>괜찮았던 것</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,12 +154,12 @@
     <value>파일 이름을 {0}(으)로 바꾸기</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>플레이스토어 메뉴 항상 보여주기</value>
+    <value>여러 파일을 선택 하면 응용 프로그램 스토어 메뉴 표시</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>이 옵션을 체크하면, 여러 개의 APK파일을 선택해도 "플레이스토어로 이동하기" 메뉴가 보입니다.
-다만, 선택한 APK파일만큼 많은 브라우저 창이 뜨기 때문에 컴퓨터가 느려질 수 있습니다.
-기본적으로, 한 파일을 선택할 때에만 이 메뉴가 나옵니다.</value>
+    <value>선택 하면 선택한 여러 apk 파일 응용 프로그램 스토어 메뉴 표시 됩니다. 
+제발 note, 많은 브라우저 창 열어 하 고 성능에 크게 영향을 수 있습니다.
+기본적으로만 메뉴를 표시 한 파일을 선택 하면</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>업데이트 확인 중 …</value>
@@ -191,20 +191,16 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>파일을 읽지 못했습니다.</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: 앱 이름
-%Version%: 버전
-%Revision%: 리비전
-%Publisher%: 게시자
-%OS%: 안드로이드 / iOS / 윈도우즈</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>다음 변수 사용자 사용:%AppName%: 응용 프로그램 이름%Version%: 주 버전 번호, apk, 그것은 버전 이름입니다.
+%Revision%: 개정 번호, apk, iOS 및 윈도 버전 코드,이 값이 비어.
+%Package%: 패키지 이름 공간%Publisher%: 저자.
+%OS%: 안 드 로이드 / iOS / 윈도우%FileSize%: 파일 크기%LastModify%: 마지막 수정 날짜</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>일부 안드로이드 앱에서 버전은 같은데 리비전(세부 버전)이 다른 경우가 있습니다.
 이 옵션을 설정하면 파일 이름을 바꿀 때 이름을 %AppName%_%Version%_%Revision% 형식을 사용합니다.
 해제하면 %AppName%_%Version% 을 사용합니다.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>이름을 바꿀 때 리비전 추가하기</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>QR코드를 스캔해서 다운로드하기</value>
@@ -223,5 +219,59 @@
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>상황에 맞는 메뉴에 대 한 아이콘 표시</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>{0}로이 파일의 이름을 확인?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>패턴 이름 바꾸기: (확장) 없이</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>상황에 맞는 메뉴</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>아이콘 처리기</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>이름 바꾸기</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>정보 팁 처리기</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>ApkMirror.com에 {0}를 확인</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>마지막 저장 된 패턴을 사용 하 여</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>상황에 맞는 메뉴에서 아마존 응용 프로그램 스토어 링크를 표시</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>상황에 맞는 메뉴에서 ApkMirror 링크를 표시</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>애플 스토어 링크 (ipa)에 대 한 상황에 맞는 메뉴에 표시</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>상황에 맞는 메뉴에서 구글 플레이 링크 표시</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>마이크로소프트 스토어 링크 (약/appxbundle)에 대 한 상황에 맞는 메뉴에 표시</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>정보 팁 패턴:</value>
   </data>
 </root>

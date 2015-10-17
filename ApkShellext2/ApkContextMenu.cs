@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Web;
 using System.Collections.Specialized;
+using System.Globalization;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -50,63 +51,121 @@ namespace ApkShellext2 {
                 Text = Properties.Resources.menuMain,
             };
 
-            int size = mainMenu.Height;
+            int size = mainMenu.Height + 1;
 
-            bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
-            bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
-            bool isappx = SelectedItemPaths.ElementAt(0).EndsWith(".appx");
-            bool isappxbundle = SelectedItemPaths.ElementAt(0).EndsWith(".appxbundle");      
+            bool hasapk = false, hasipa = false, hasappx = false, hasappxbundle = false;
+            foreach (var p in SelectedItemPaths) {
+                if (p.EndsWith(AppPackageReader.extAPK))
+                    hasapk = true;
+                if (p.EndsWith(AppPackageReader.extIPA))
+                    hasipa = true;
+                if (p.EndsWith(AppPackageReader.extAPPX))
+                    hasappx = true;
+                if (p.EndsWith(AppPackageReader.extAPPXBUNDLE))
+                    hasappxbundle = true;
+            };
+
+            bool singleSelected = SelectedItemPaths.Count() == 1;
+            string appname = "";
+            if (singleSelected) {
+                using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPaths.ElementAt(0)))
+                    appname = reader.AppName;
+            }
 
             #region Rename Menu
-                int addVerCode = Utility.getRegistrySetting(Utility.keyRenameWithVersionCode);
-                ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                    Text = string.Format(Resources.menuRenameAs, @"%AppName%_%Version%" + ((addVerCode == 1) ? "_%Revision%" : "")),
-                    Image = Utility.ResizeBitmap(Properties.Resources.rename, size)
-                };
+            ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
+                Image = Utility.ResizeBitmap(Properties.Resources.iconRename, size)
+            };
 
-                if (SelectedItemPaths.Count() == 1) {
-                    string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
-                    if (newName != "") {
-                        renameMenu.Text = string.Format(Resources.menuRenameAs, Path.GetFileName(newName));
-                    } else {
-                        renameMenu.Text = Resources.strReadFileFailed;
-                        renameMenu.Enabled = false;
-                    }
+            if (singleSelected) {
+                string newName = getNewFileName(SelectedItemPaths.ElementAt(0));
+                if (newName != "") {
+                    renameMenu.Text = string.Format(Resources.menuRenameAs, Path.GetFileName(newName));
+                } else {
+                    renameMenu.Text = Resources.strReadFileFailed;
+                    renameMenu.Enabled = false;
+                }
+            } else {
+                string renamePattern = Settings.Default.RenamePattern;
+                renameMenu.Text = string.Format(Resources.menuRenameAs, renamePattern);
+            }
+
+            renameMenu.Click += (sender, args) => renameWithVersion();
+
+            mainMenu.DropDownItems.Add(renameMenu);
+            #endregion
+
+            if (hasapk) {
+                #region APK Menu
+                ToolStripMenuItem subMenu = null;
+                appname = singleSelected ? appname : AppPackageReader.extAPK;
+
+                if (Settings.Default.ShowGooglePlay) {
+                    subMenu = new ToolStripMenuItem {
+                        Text = string.Format(Resources.menuGotoGooglePlay, appname),
+                        Image = Utility.ResizeBitmap(Resources.iconGooglePlay, size)
+                    };
+
+                    subMenu.Click += (sender, args) => gotoGooglePlay();
+                    mainMenu.DropDownItems.Add(subMenu);
+                    subMenu.Enabled = singleSelected || Settings.Default.ShowAppStoreWhenMultiSelected;
                 }
 
-                renameMenu.Click += (sender, args) => renameWithVersion();
+                if (Settings.Default.ShowAmazonStore) {
+                    subMenu = new ToolStripMenuItem {
+                        Text = string.Format(Resources.menuGotoAmazonAppStore, appname),
+                        Image = Utility.ResizeBitmap(Resources.iconAmazonStore, size)
+                    };
 
-                mainMenu.DropDownItems.Add(renameMenu);
+                    subMenu.Click += (sender, args) => gotoAmazonAppStore();
+                    mainMenu.DropDownItems.Add(subMenu);
+                    subMenu.Enabled = singleSelected || Settings.Default.ShowAppStoreWhenMultiSelected;
+                }
+
+                //    if (Settings.Default.ShowApkMirror) {
+                //        subMenu = new ToolStripMenuItem {
+                //            Text = string.Format(Resources.menuGotoApkMirror, appname),
+                //            Image = Utility.ResizeBitmap(Resources.ApkMirror, size)
+                //        };
+                //        subMenu.Click += (sender,args) => gotoApkMirror();
+                //        mainMenu.DropDownItems.Add(subMenu);
+                //        subMenu.Enabled = (singleselected) ||
+                //Settings.Default.ShowAppStoreWhenMultiSelected;
+                //    }
+
                 #endregion
+            }
+            if (hasipa && Settings.Default.ShowAppleStore) {
+                #region AppleStore Menu
+                appname = singleSelected ? appname : AppPackageReader.extIPA;
+                var appleMenu = new ToolStripMenuItem {
+                    Text = string.Format(Resources.menuGotoAppleAppStore, appname),
+                    Image = Utility.ResizeBitmap(Resources.iconAppStore, size)
+                };
+                appleMenu.Click += (sender, args) => gotoAppleStore();
+                mainMenu.DropDownItems.Add(appleMenu);
+                appleMenu.Enabled = singleSelected ||
+                Settings.Default.ShowAppStoreWhenMultiSelected;
+                #endregion
+            }
 
-            if (isapk) {
-                #region Google Play Menu
-                    using (ApkReader reader = new ApkReader(SelectedItemPaths.ElementAt(0))) {
-                        var playMenu = new ToolStripMenuItem {
-                            Text = string.Format(Resources.menuGotoGooglePlay, reader.AppName),
-                            Image = Utility.ResizeBitmap(Properties.Resources.googleplay, size)
-                        };
-
-                        playMenu.Click += (sender, args) => gotoGooglePlay();
-                        mainMenu.DropDownItems.Add(playMenu);
-                        playMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
-
-                        var amazonMenu = new ToolStripMenuItem {
-                            Text = string.Format(Resources.menuGotoAmazonAppStore, reader.AppName),
-                            Image = Utility.ResizeBitmap(Properties.Resources.Amazon, size)
-                        };
-
-                        amazonMenu.Click += (sender, args) => gotoAmazonAppStore();
-                        mainMenu.DropDownItems.Add(amazonMenu);
-                        amazonMenu.Enabled = (SelectedItemPaths.Count() == 1) ||
-                (Utility.getRegistrySetting(Utility.keyAlwaysShowGooglePlay) == 1);
-                    }
-                    #endregion
+            if ((hasappx || hasappxbundle) && Settings.Default.ShowMSStore) {
+                #region MS Store Menu
+                appname = singleSelected ? appname : 
+                    (AppPackageReader.extAPPX + @"/" + AppPackageReader.extAPPXBUNDLE);
+                var msMenu = new ToolStripMenuItem {
+                    Text = string.Format(Resources.menuGotoMicrosoftStore, appname),
+                    Image = Utility.ResizeBitmap(Resources.iconMSStore, size)
+                };
+                msMenu.Click += (sender, args) => gotoAppleStore();
+                mainMenu.DropDownItems.Add(msMenu);
+                msMenu.Enabled = singleSelected ||
+                Settings.Default.ShowAppStoreWhenMultiSelected;
+                #endregion
             }
 
             #region Barcode
-                /* Not enabled yet
+            /* Not enabled yet
             var barcodeMenu = new ToolStripMenuItem();
             barcodeMenu.Text = Resources.strScanToDownload;
             barcodeMenu.Image = Utility.ResizeBitmap(Resources.QR_Scan, size);
@@ -144,7 +203,7 @@ namespace ApkShellext2 {
             }
             mainMenu.DropDownItems.Add(barcodeMenu);
             */
-                #endregion            
+            #endregion
 
             #region Preferences Menu
             var settingsMenu = new ToolStripMenuItem {
@@ -159,7 +218,7 @@ namespace ApkShellext2 {
             #endregion
 
             #region Mainmenu Icon
-            if (Utility.getRegistrySetting(Utility.keyShowMenuIcon, 1) == 1) {
+            if (Settings.Default.ShowMenuIcon) {
                 // if choose multiple files, will create a icon with upto 3 icons together
                 try { // draw multiple icons
                     int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
@@ -197,17 +256,32 @@ namespace ApkShellext2 {
         /// </summary>
         /// <returns></returns>
         private string getNewFileName(string path) {
-            bool key_RenameWithVersionCode = (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1);
+            //bool key_RenameWithVersionCode = Settings.DefaultRenameWithVersionCode) == 1);
             string suffix = Path.GetExtension(path);
             string newFileName = "";
+            string renamePattern = Settings.Default.RenamePattern;
+            bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
+            bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
+            if (renamePattern == "") {
+                renamePattern = Resources.strRenamePatternDefault;
+            }
             try {
-                using (AppPackageReader reader = AppPackageReader.Read(path)) {                
-                    newFileName = reader.AppName + "_" + reader.Version;
-                    if (key_RenameWithVersionCode) {
-                        string revision = reader.Revision;
-                        if (revision != "")
-                            newFileName = newFileName + "_" + revision;
-                    }
+                using (AppPackageReader reader = AppPackageReader.Read(path)) {
+                    newFileName = renamePattern.Replace(Resources.varAppName, reader.AppName)
+                    .Replace(Resources.varPackage, reader.PackageName)
+                    .Replace(Resources.varPublisher, reader.Publisher)
+                    .Replace(Resources.varVersion, reader.Version)
+                    .Replace(Resources.varRevision, reader.Revision)
+                    .Replace(Resources.varFileSize, Utility.getFileSize(path))
+                    .Replace(Resources.varOS, isapk ? "Android" : (isipa ? "iOS" : "Windows"))
+                    .Replace(Resources.varLastModify,
+                    File.GetLastWriteTime(path).ToString("dd/MM/yy HH:mm:ss"));
+
+                    //if (key_RenameWithVersionCode) {
+                    //    string revision = reader.Revision;
+                    //    if (revision != "")
+                    //        newFileName = newFileName + "_" + revision;
+                    //}
                 }
                 newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s-]+", "_"); // remove invalid char
                 string oldFileName = Path.GetFileName(path);
@@ -256,8 +330,46 @@ namespace ApkShellext2 {
             }
         }
 
+        private void gotoApkMirror() {
+            foreach (var p in SelectedItemPaths) {
+                using (ApkReader reader = new ApkReader(p)) {
+                    string package = reader.PackageName;
+                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlApkMirror, reader.Publisher, package));
+                }
+            }
+        }
+
+        private void gotoAppleStore() {
+            foreach (var p in SelectedItemPaths) {
+                if (p.EndsWith(AppPackageReader.extIPA)) {
+                    using (IpaReader reader = AppPackageReader.Read(p) as IpaReader) {
+                        try {
+                            string appid = reader.getFlags(IpaReader.flagAppId) as string;
+                            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAppleStore, appid));
+                        } catch (Exception ex) {
+                            Log(Path.GetFileName(p) + ex.Message + Environment.NewLine + "Cannot get appid.");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void gotoMicrosoftStore() {
+            foreach (var p in SelectedItemPaths) {
+                if (p.EndsWith(AppPackageReader.extAPPX) || p.EndsWith(AppPackageReader.extAPPXBUNDLE)) {
+                    using (AppPackageReader reader = AppPackageReader.Read(p)) {
+                        string package = reader.PackageName;
+                        CultureInfo ci = System.Threading.Thread.CurrentThread.CurrentCulture;
+                        System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlMicrosoftStore, 
+                            CultureInfo.CreateSpecificCulture(ci.Name).Name, "1",reader.appid));
+                    }
+                }
+            }
+        }
+
         private void showSettings() {
             Preferences settingForm = new Preferences();
+            settingForm.currentFile = SelectedItemPaths.ElementAt(0);
             settingForm.ShowDialog();
         }
 
@@ -269,15 +381,15 @@ namespace ApkShellext2 {
             try {
                 using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
-                        if (key != null && key.GetSubKeyNames().Count() != 0) {
-                            Console.WriteLine("Found old version in registry, cleaning up ...");
-                            foreach (var k in key.GetSubKeyNames()) {
-                                if (k != type.Assembly.GetName().Version.ToString()) {
-                                    Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
-                            type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
-                                }
+                    if (key != null && key.GetSubKeyNames().Count() != 0) {
+                        Console.WriteLine("Found old version in registry, cleaning up ...");
+                        foreach (var k in key.GetSubKeyNames()) {
+                            if (k != type.Assembly.GetName().Version.ToString()) {
+                                Registry.ClassesRoot.DeleteSubKeyTree(@"\CLSID\" +
+                        type.GUID.ToRegistryString() + @"\InprocServer32\" + k);
                             }
                         }
+                    }
                 }
             } catch (Exception e) {
                 Logging.Error("Cleaning up older version but see exception. "

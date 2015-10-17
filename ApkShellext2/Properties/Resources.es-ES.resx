@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancel" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnOK" xml:space="preserve">
+    <value>Vale</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
     <value>GitHub</value>
@@ -154,10 +154,12 @@
     <value>Renombrar a {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostrar siempre el menú de GooglePlay</value>
+    <value>Mostrar menús de la tienda de app cuando múltiples archivos seleccionados</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Si está marcada, el menú de GooglePlay se mostrará incluso cuando haya varios archivos apk seleccionados. Nota: esto puede abrir muchas ventanas del navegador y afectar significativamente al rendimiento. Por defecto, sólo mostrar el menú cuando solo se selecciona un archivo</value>
+    <value>Si está marcada, se mostrarán menús de app store incluso múltiples archivos de apk seleccionados. 
+Nota: puede abrir un montón de ventana del navegador y afectan significativamente al rendimiento.
+Por defecto, sólo mostrar el menú cuando se selecciona un archivo</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Comprobando nueva versión ...</value>
@@ -189,19 +191,15 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Fallo al leer el archivo</value>
   </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>%AppName%: Nombre de la aplicación
-%Version%: Nombre de Version
-%Revision%: Numero de Revisión
-%Publisher%: Publicante
-%OS%: Android / iOS / Windows</value>
+  <data name="strFileInfoPatternVariable" xml:space="preserve">
+    <value>Uso de usuario siguiendo las variables:%AppName%:%Version% nombre de aplicación: número de versión principal, apk, es el nombre de la versión.
+%Revision%: número de revisión, para apk, es el código de la versión para iOS y windows, este valor está vacío.
+%Package%:%Publisher% de espacio de nombre de paquete: autor.
+%OS%: Android / iOS / Windows%FileSize%:%LastModify% de tamaño de archivo: última modificar fecha</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Para evitar la situación de la misma versión pero el diferente número de revisión, especialmente en los archivos de aplicaciones para Android. 
 Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Revisión%, De lo contrario, se va a mostrar como %NombreDeApp%_%Versión%.</value>
-  </data>
-  <data name="strRenameWithVersionCode" xml:space="preserve">
-    <value>Renombrar con "VersionCode"</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Escanear código QR para descargar</value>
@@ -219,6 +217,60 @@ Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Re
     <value>Mostrar un icono superpuesto para este tipo de archivo</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>Mostrar el icono de menú contextual</value>
+    <value>Mostrar icono en el menú contextual</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>¿Confirmar para cambiar el nombre este archivo como {0}?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Cambiar el nombre de patrón: (sin extensión)</value>
+  </data>
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Menú contextual</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Controlador de icono</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Cambio de nombre</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>InfoTip Handler</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Compruebe {0} en ApkMirror.com</value>
+  </data>
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Utilizar el último patrón guardado</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Mostrar la Amazon app store link en el menú contextual</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>Mostrar ApkMirror enlace en el menú contextual</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Mostrar Apple store enlace (ipa) en el menú contextual</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Mostrar enlace de Google play en el menú contextual</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Mostrar enlace Microsoft Store (para aprox/appxbundle) en el menú contextual</value>
+  </data>
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Patrón de punta de información:</value>
   </data>
 </root>
