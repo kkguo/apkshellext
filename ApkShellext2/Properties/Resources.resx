@@ -325,7 +325,7 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>Show ApkMirror link in the context menu</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>Show Apple store link (for ipa) in the context menu</value>
+    <value>Show Apple Store link (for ipa) in the context menu</value>
   </data>
   <data name="strShowGooglePlay" xml:space="preserve">
     <value>Show Google play link in the context menu</value>
@@ -376,5 +376,14 @@ Version: %Version% %Revision%</value>
   </data>
   <data name="varAppid" xml:space="preserve">
     <value>%AppID%</value>
+  </data>
+  <data name="btnBrowse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="btnSearchAdb" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="strAdbPath" xml:space="preserve">
+    <value>Please specify path of adb.exe</value>
   </data>
 </root>

@@ -117,7 +117,7 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(144, 710);
+            this.pnlLeft.Size = new System.Drawing.Size(144, 326);
             this.pnlLeft.TabIndex = 16;
             // 
             // twLeft
@@ -128,7 +128,7 @@
             this.twLeft.Name = "twLeft";
             this.twLeft.Scrollable = false;
             this.twLeft.ShowPlusMinus = false;
-            this.twLeft.Size = new System.Drawing.Size(138, 634);
+            this.twLeft.Size = new System.Drawing.Size(138, 250);
             this.twLeft.TabIndex = 7;
             this.twLeft.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.twLeft_AfterSelect);
             // 
@@ -384,7 +384,7 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRight.Size = new System.Drawing.Size(322, 710);
+            this.pnlRight.Size = new System.Drawing.Size(321, 326);
             this.pnlRight.TabIndex = 24;
             this.pnlRight.Visible = false;
             // 
@@ -575,7 +575,7 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(478, 716);
+            this.pnlMain.Size = new System.Drawing.Size(477, 332);
             this.pnlMain.TabIndex = 25;
             // 
             // Preferences
@@ -584,7 +584,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(478, 716);
+            this.ClientSize = new System.Drawing.Size(477, 332);
             this.Controls.Add(this.pnlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Preferences";

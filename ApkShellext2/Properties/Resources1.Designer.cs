@@ -61,6 +61,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Browse 的本地化字符串。
+        /// </summary>
+        internal static string btnBrowse {
+            get {
+                return ResourceManager.GetString("btnBrowse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Cancel 的本地化字符串。
         /// </summary>
         internal static string btnCancel {
@@ -102,6 +111,15 @@ namespace ApkShellext2.Properties {
         internal static string btnResetPattern {
             get {
                 return ResourceManager.GetString("btnResetPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search 的本地化字符串。
+        /// </summary>
+        internal static string btnSearchAdb {
+            get {
+                return ResourceManager.GetString("btnSearchAdb", resourceCulture);
             }
         }
         
@@ -334,6 +352,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Please specify path of adb.exe 的本地化字符串。
+        /// </summary>
+        internal static string strAdbPath {
+            get {
+                return ResourceManager.GetString("strAdbPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Show app store menus when selected multiple files 的本地化字符串。
         /// </summary>
         internal static string strAlwaysShowGooglePlay {
@@ -545,7 +572,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Apple store link (for ipa) in the context menu 的本地化字符串。
+        ///   查找类似 Show Apple Store link (for ipa) in the context menu 的本地化字符串。
         /// </summary>
         internal static string strShowAppleStore {
             get {
