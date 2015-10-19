@@ -20,11 +20,11 @@ Subscribe Release announcement on Telegram
  * [@apkshellext](https://telegram.me/apkshellext)
 
 #### [Features]
- - [x] Display app icon in explorer:
- - [x] Show Package information in tip bubble
- - [x] Context menu for renaming apk file, batch renaming, with app name + version
+ - [x] Display app icon in explorer with best resolution.
+ - [x] Customize-able Info-Tip for showing package information.
+ - [x] Context menu for batch renaming, use customize-able patterns.
  - [x] Go to app store from context menu.
- - [x] Check new version automatically.
+ - [x] Auto-check new version.
  - [x] Show overlay icon for different type of apps.
  - [x] Support 11+ languages (some are machine translated):
     - English
