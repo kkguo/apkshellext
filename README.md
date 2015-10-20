@@ -12,19 +12,21 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Site page maintenance. Web is not easy for me :(
  * Volunteer for new features. Be prepared for your computer to explode.
 
-Contact me if you want to help. Pull request is also welcome.
+#### Contact
+Support:
  * :email: issue@apkshellext.com
- * ![Telegram](http://telegram.me/favicon.ico) [@kkguo](https://telegram.me/kkguo)
+ * [![Telegram](http://telegram.me/favicon.ico)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
 
-Subscribe Release announcement on Telegram
- * [@apkshellext](https://telegram.me/apkshellext)
+Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
+
+Pull request is always welcome.
 
 #### [Features]
- - [x] Display app icon in explorer:
- - [x] Show Package information in tip bubble
- - [x] Context menu for renaming apk file, batch renaming, with app name + version
+ - [x] Display app icon in explorer with best resolution.
+ - [x] Customize-able Info-Tip for showing package information.
+ - [x] Context menu for batch renaming, use customize-able patterns.
  - [x] Go to app store from context menu.
- - [x] Check new version automatically.
+ - [x] Auto-check new version.
  - [x] Show overlay icon for different type of apps.
  - [x] Support 11+ languages (some are machine translated):
     - English
@@ -43,7 +45,6 @@ Subscribe Release announcement on Telegram
  - [ ] drag-drop to install / uninstall to phone
 
 #### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build
-#### Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
 
 #### Credit :
 |||
