@@ -41,5 +41,21 @@ header {
 
 #second-container {
     padding-top: 2rem;
+}
 
+/* Larger than mobile */
+@media (max-width: 550px) {
+    .feature-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .feature-box {
+        border-right: 0;
+        padding-right: 0;
+    }
 }
