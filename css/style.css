@@ -1,5 +1,5 @@
 body {
-    background-color: #ededed;
+    background-color: #FFFFFF;
 }
 
 header {
@@ -7,7 +7,9 @@ header {
 }
 
 #first-container {
+    background: #ededed;
     padding: 2rem 20px 3.5rem;
+    border-bottom: 1px solid #999999;
 }
 
 .section {
@@ -38,7 +40,6 @@ header {
 }
 
 #second-container {
-    background: #FFFFFF;
     padding-top: 2rem;
-    border-top: 1px solid #999999;
+
 }
