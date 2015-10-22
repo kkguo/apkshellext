@@ -1,9 +1,13 @@
 body {
-    background: #ededed;
+    background-color: #ededed;
 }
 
 header {
     margin-top: 1rem;
+}
+
+#first-container {
+    padding: 2rem 20px 3.5rem;
 }
 
 .section {
@@ -25,10 +29,16 @@ header {
 }
 
 .feature-box {
-    border-right: 1px solid #666666;
+    border-right: 1px solid #999999;
     padding-right: 1rem;
 }
 
 .feature-box:last-child {
     border-right: none;
+}
+
+#second-container {
+    background: #FFFFFF;
+    padding-top: 2rem;
+    border-top: 1px solid #999999;
 }
