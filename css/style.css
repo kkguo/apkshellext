@@ -1,0 +1,34 @@
+body {
+    background: #ededed;
+}
+
+header {
+    margin-top: 1rem;
+}
+
+.section {
+    margin-top: 4rem;
+}
+
+.feature-image {
+    width: 580px;
+    height: 290px;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background: #aeaeae;
+    -webkit-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
+    box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
+}
+
+.button {
+    width: 350px;
+}
+
+.feature-box {
+    border-right: 1px solid #666666;
+    padding-right: 1rem;
+}
+
+.feature-box:last-child {
+    border-right: none;
+}
