@@ -214,7 +214,7 @@ body {
     font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
     line-height: 1.6;
     font-weight: 400;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #222;
 }
 
@@ -316,7 +316,7 @@ input[type="button"] {
     color: #555;
     text-align: center;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 38px;
     letter-spacing: .1rem;
     text-transform: uppercase;
@@ -426,7 +426,7 @@ label,
 legend {
     display: block;
     margin-bottom: .5rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 fieldset {
