@@ -44,7 +44,7 @@ header {
 }
 
 /* Larger than mobile */
-@media (max-width: 550px) {
+@media (max-width: 1000px) {
     .feature-image {
         width: 100%;
         height: auto;
