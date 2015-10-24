@@ -2,14 +2,21 @@ body {
     background-color: #FFFFFF;
 }
 
-header {
+header h3 {
     margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1;
 }
 
 #first-container {
-    background: #ededed;
+    background: #4CAF50;
     padding: 2rem 20px 3.5rem;
     border-bottom: 1px solid #999999;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#first-container h3, #first-container h5, #first-container button {
+    color: #ffffff;
 }
 
 .section {
@@ -20,10 +27,8 @@ header {
     width: 580px;
     height: 290px;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    background: #aeaeae;
-    -webkit-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
-    -moz-box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
-    box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.45);
+    background: #cecece;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .button {

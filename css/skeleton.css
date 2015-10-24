@@ -279,11 +279,11 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-    color: #1EAEDB;
+    color: #FF7D00;
 }
 
 a:hover {
-    color: #0FA0CE;
+    color: #FF4D00;
 }
 
 /* Buttons
@@ -296,7 +296,7 @@ input[type="button"] {
     display: inline-block;
     height: 38px;
     padding: 0 30px;
-    color: #555;
+    color: #fff;
     text-align: center;
     font-size: 11px;
     font-weight: 500;
@@ -322,8 +322,8 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-    color: #333;
-    border-color: #888;
+    color: #fff;
+    border-color: #eee;
     outline: 0;
 }
 
@@ -333,8 +333,8 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
     color: #FFF;
-    background-color: #33C3F0;
-    border-color: #33C3F0;
+    background-color: #FF9500;
+    border-color: #FF9500;
 }
 
 .button.button-primary:hover,
@@ -348,8 +348,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
     color: #FFF;
-    background-color: #1EAEDB;
-    border-color: #1EAEDB;
+    background-color: #FF7D00;
+    border-color: #FF7D00;
 }
 
 /* Lists
