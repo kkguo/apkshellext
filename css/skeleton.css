@@ -296,7 +296,7 @@ input[type="button"] {
     display: inline-block;
     height: 38px;
     padding: 0 30px;
-    color: #fff;
+    color: #777;
     text-align: center;
     font-size: 11px;
     font-weight: 500;
@@ -305,11 +305,11 @@ input[type="button"] {
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
-    background-color: transparent;
-    border-radius: 4px;
+    background-color: #fff;
     border: 1px solid #bbb;
     cursor: pointer;
     box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .button:hover,
@@ -322,9 +322,8 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-    color: #fff;
-    border-color: #eee;
     outline: 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .button.button-primary,
@@ -348,8 +347,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
     color: #FFF;
-    background-color: #FF7D00;
-    border-color: #FF7D00;
+    background-color: #FF8D00;
+    border-color: #FF8D00;
 }
 
 /* Lists
