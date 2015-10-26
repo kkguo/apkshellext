@@ -149,10 +149,10 @@
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnOK" xml:space="preserve">
-    <value>Okay</value>
+    <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Offizielle Seite auf GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Aktualisieren</value>
@@ -202,7 +202,7 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
     <value>Aktuelle Version: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Super! Du hast schon die neueste Version.</value>
+    <value>Toll! Sie haben die neueste Version.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2-Projektseite öffnen</value>
@@ -222,11 +222,8 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Lesen der Datei fehlgeschlagen</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Verwendung der Nutzer folgende Variablen:%AppName%: App-Name%Version%: Main-Versionsnummer, für Apk, ist es den Versionsnamen.
-%Revision%: Revisionsnummer, für Apk, es ist der Versionscode für iOS und Windows, dieser Wert ist leer.
-%Package%: Paket Name Raum%Publisher%: Autor.
-%OS%: Android / iOS / Windows%FileSize%: Datei-Größe%LastModify%: Letzte Änderung Datum</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Verwendung von Variablen finden Sie in der Projekt-Wiki</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Für die Situation der gleichen Version aber unterschiedliche Revisionsnummer zu vermeiden, diese meisten wie geschieht in android app-Dateien. 
@@ -280,13 +277,13 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
     <value>Allgemeine</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Symbol-Handler</value>
+    <value>Symbol</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Umbenennen</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Infotipp-Handler</value>
+    <value>Infotipp</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Überprüfen Sie {0} auf ApkMirror.com</value>
@@ -343,4 +340,21 @@ In der Standardeinstellung nur anzeigen des Menüs, wenn eine Datei ausgewählt<
   <data name="strAdbPath" xml:space="preserve">
     <value>Geben Sie bitte Pfad adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Raum durch _ ersetzen</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Neue Version im Kontextmenü zu erinnern, wenn verfügbar</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Ein Bild</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Strecken-Symbol bei Windows größer anfordern</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Helfen Sie, um dieses Projekt zu übersetzen.</value>
+  </data>
+  
 </root>

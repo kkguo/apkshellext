@@ -152,7 +152,7 @@
     <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Official Page on GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Update</value>
@@ -202,7 +202,7 @@ By default, only show the menu when one file selected</value>
     <value>Current Version: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Great! You got the latest version.</value>
+    <value>Great! You have the latest version.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Go to ApkShellext2 Project site</value>
@@ -222,16 +222,8 @@ By default, only show the menu when one file selected</value>
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Fail to read file</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>User use following variables:
-%AppName%:  App Name
-%Version%:       Main Version number, for apk, it's the version name.
-%Revision%:     Revision Number, for apk, it's the version code, for iOS and windows, this value is empty.
-%Package%:     Package name space
-%Publisher%:    Author.
-%OS%:               Android / iOS / Windows
-%FileSize% :       File size
-%LastModify%: Last modify date</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Variable usage please refer to Project Wiki</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>For avoiding situation of same Version but different revision number, this most like happens in android app files. 
@@ -271,7 +263,7 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>https://play.google.com/store/apps/details?id={0}</value>
   </data>
   <data name="urlMicrosoftStore" xml:space="preserve">
-    <value>https://www.windowsphone.com/{0}/store/apps/{1}/{2}</value>
+    <value>https://www.windowsphone.com/s?appid={0}</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Show icon for context menu</value>
@@ -301,13 +293,13 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>General</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Icon Handler</value>
+    <value>Icon</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Renaming</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>InfoTip Handler</value>
+    <value>InfoTip</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Check {0} on ApkMirror.com</value>
@@ -385,5 +377,26 @@ Version: %Version% %Revision%</value>
   </data>
   <data name="strAdbPath" xml:space="preserve">
     <value>Please specify path of adb.exe</value>
+  </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Replace Space with _</value>
+  </data>
+  <data name="urlPatternVarWiki" xml:space="preserve">
+    <value>https://github.com/kkguo/apkshellext/wiki/Package-information-Pattern-variables</value>
+  </data>
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Remind new version in Context Menu if availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Thumbnail</value>
+  </data>
+  <data name="strStretchThumbnail" xml:space="preserve">
+    <value>Stretch thumbnail if Windows requesting larger size</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Help to translate this project.</value>
+  </data>
+  <data name="urlTranslate" xml:space="preserve">
+    <value>https://crowdin.com/project/apkshellext</value>
   </data>
 </root>

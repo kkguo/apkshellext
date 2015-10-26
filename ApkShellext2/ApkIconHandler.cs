@@ -12,6 +12,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using ApkShellext2.Properties;
+using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace ApkShellext2 {
     /// <summary>
@@ -26,12 +28,12 @@ namespace ApkShellext2 {
     [COMServerAssociation(AssociationType.ClassOfExtension, ".appx")]
     public class ApkIconHandler : SharpIconHandler {
         private Bitmap m_icon = null;
-
+        private static Mutex checkUpdateMutex = new Mutex(false, @"Local\ApkShellextCheckUpdate");
         protected override Icon GetIcon(bool smallIcon, uint iconSize) {
             if (m_icon == null) {
                 try {
                     using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
-                        reader.setFlags("IconSize", iconSize);
+                        //reader.setFlags("IconSize", iconSize);
                         m_icon = reader.Icon;
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
@@ -42,13 +44,29 @@ namespace ApkShellext2 {
                            new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
                            new Rectangle(0, (int)m_icon.Height / 2, (int)m_icon.Width / 2, (int)m_icon.Height / 2),
                            new Size((int)m_icon.Width, (int)m_icon.Height));
-                } catch {
-                    Log("Error in reading icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
+                } catch (Exception ex){
+                    Log("Error in reading icon for " + Path.GetFileName(SelectedItemPath) + ", draw default : " + ex.Message);
                     // read error, draw the default icon
                     m_icon = Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath));
                 }
             }
-            return Icon.FromHandle(Utility.ResizeBitmap(m_icon,new Size((int)iconSize, (int)iconSize)).GetHicon());
+            CheckUpdate();
+
+            return Icon.FromHandle(Utility.ResizeBitmap(m_icon, new Size((int)iconSize, (int)iconSize)).GetHicon());
+        }
+
+        private static void CheckUpdate() {
+            try {
+                checkUpdateMutex.WaitOne();
+                if (Settings.Default.LastCheckUpdateTime < System.DateTime.Today) {
+                    Settings.Default.LastCheckUpdateTime = System.DateTime.Today;
+                    Settings.Default.Save();
+                    Thread thUpdate = new Thread(new ThreadStart(() => { Utility.getLatestVersion(); }));
+                    thUpdate.Start();                    
+                }
+            } catch { } finally {
+                checkUpdateMutex.ReleaseMutex();
+            }
         }
 
         [CustomRegisterFunction]
@@ -72,10 +90,10 @@ namespace ApkShellext2 {
                     }
                 }
                 if (oldVersionCLID != "") {
-                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID)) {
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Classes\CLSID\" + oldVersionCLID)) {
                         if (key != null) {
                             key.Close();
-                            Registry.LocalMachine.DeleteSubKeyTree(@"\SOFTWARE\Classes\CLSID\" + oldVersionCLID);
+                            Registry.LocalMachine.DeleteSubKeyTree(@"SOFTWARE\Classes\CLSID\" + oldVersionCLID);
                         }
                     }
                     using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved\" + oldVersionCLID)) {
@@ -91,7 +109,7 @@ namespace ApkShellext2 {
             }
             #endregion
 
-            #region Clean up older versions registry and settings
+            #region Clean up older versions registry
             try {
                 using (RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"\CLSID\" +
                     type.GUID.ToRegistryString() + @"\InprocServer32")) {
@@ -110,22 +128,39 @@ namespace ApkShellext2 {
                      + e.Message);
             }
 
-            Settings.Default.ShowAppStoreWhenMultiSelected = Utility.getRegistrySetting(Utility.keyMultiSelectShowStore)==1;
+            #endregion
+
+            #region restore the old settings from registry
+            Settings.Default.ShowAppStoreWhenMultiSelected = Utility.getRegistrySetting(Utility.keyMultiSelectShowStore) == 1;
             Settings.Default.ShowGooglePlay = Utility.getRegistrySetting(Utility.keyShowGooglePlay) == 1;
-            Settings.Default.ShowOverLayIcon = Utility.getRegistrySetting(Utility.keyShowOverlay)==1;
-            Settings.Default.ShowIpaIcon = Utility.getRegistrySetting(Utility.keyShowIpaIcon) ==1;
+            Settings.Default.ShowOverLayIcon = Utility.getRegistrySetting(Utility.keyShowOverlay) == 1;
+            Settings.Default.ShowIpaIcon = Utility.getRegistrySetting(Utility.keyShowIpaIcon) == 1;
             Settings.Default.ShowAppxIcon = Utility.getRegistrySetting(Utility.keyShowAppxIcon) == 1;
             Settings.Default.ShowMenuIcon = Utility.getRegistrySetting(Utility.keyShowMenuIcon) == 1;
 
-            if (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode)==1) {
+            if (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1) {
                 Settings.Default.RenamePattern = Resources.strRenamePatternDefault + "_" + Resources.varRevision;
+            }
+
+            int lang = Utility.getRegistrySetting(Utility.keyLanguage, -1);
+            if (lang != -1) {
+                Settings.Default.Language = lang;
             }
             Settings.Default.Save();
             #endregion
+
+            #region Enable debug log
+#if DEBUG
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE", true).CreateSubKey(@"SharpShell", RegistryKeyPermissionCheck.ReadWriteSubTree)) {
+                key.SetValue("LoggingMode", 4);
+                key.SetValue("LogPath", @"%AppData%\apkshellext.log",RegistryValueKind.ExpandString);
+            }
+#endif
+            #endregion
         }
 
-        //protected override void Log(string message) {
-        //    Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
-        //}
+        protected override void Log(string message) {
+            Utility.Log(this, Path.GetFileName(SelectedItemPath), message);
+        }
     }
 }

@@ -14,18 +14,18 @@ namespace ApkShellext2 {
     /// 
     /// </summary>
     public class AppxReader : AppPackageReader {
-        private readonly string AppxManifestXml = @"AppxManifest.xml";
-        private readonly string elemPackage = @"Package";
-        private readonly string elemIdentity = @"Identity";
-        private readonly string elemProperties = @"Properties";
-        private readonly string elemDisplayName = @"DisplayName";
-        private readonly string elemLogo = @"Logo";
-        private readonly string elemPhoneIdentity = @"mp:PhoneIdentity";
+        private const string AppxManifestXml = @"AppxManifest.xml";
+        //private const string elemPackage = @"Package";
+        private const string elemIdentity = @"Identity";
+        private const string elemProperties = @"Properties";
+        private const string elemDisplayName = @"DisplayName";
+        private const string elemLogo = @"Logo";
+        private const string elemPhoneIdentity = @"mp:PhoneIdentity";
 
-        private readonly string attrVersion = @"Version";
-        private readonly string attrName = @"Name";
-        private readonly string attrPublisher = @"Publisher";
-        private readonly string attrPhoneProductID = @"PhoneProductId";
+        private const string attrVersion = @"Version";
+        private const string attrName = @"Name";
+        private const string attrPublisher = @"Publisher";
+        private const string attrPhoneProductID = @"PhoneProductId";
 
         private ZipFile zip;
         private string iconPath;
@@ -64,40 +64,23 @@ namespace ApkShellext2 {
             version = Identity.Attributes[attrVersion].Value.ToString();
             packageName = Identity.Attributes[attrName].Value.ToString();
             publisher = Identity.Attributes[attrPublisher].Value.ToString();
+            Match m = Regex.Match(publisher,@"CN=([^,]*),?");
+            if (m.Success) {
+                publisher = m.Groups[1].Value;
+            }
             
             XmlElement DisplayName = packageNode[elemProperties][elemDisplayName];
             appname = DisplayName.FirstChild.Value.ToString();
             XmlElement Logo = packageNode[elemProperties][elemLogo];
             iconPath = Logo.FirstChild.Value.ToString().Replace(@"\",@"/");
             XmlElement PhoneIdentity = packageNode[elemPhoneIdentity];
-            productid = PhoneIdentity.Attributes[attrPhoneProductID].ToString();
-           
-            //using (XmlReader reader = XmlReader.Create(new MemoryStream(xmlbytes))) {
-            //    bool isInProperites = false;
-            //    while (reader.Read()) {
-            //        if (reader.IsStartElement() && reader.Name == ElemIdentity) {
-            //            version = reader.GetAttribute(AttrVersion);
-            //            packageName = reader.GetAttribute(AttrName);
-            //            publisher = reader.GetAttribute(AttrPublisher);
-            //            continue;
-            //        }
-            //        if (reader.IsStartElement() && reader.Name == ElemProperties) {
-            //            isInProperites = true;
-            //            continue;
-            //        }
-            //        if (isInProperites && reader.IsStartElement() && reader.Name == ElemDisplayName) {
-            //            appname = reader.ReadElementContentAsString();
-            //            continue;
-            //        }
-            //        if (isInProperites && reader.IsStartElement() && reader.Name == ElemLogo) {
-            //            iconPath = reader.ReadElementContentAsString().Replace(@"\", @"/");
-            //            break;
-            //        }
-            //        if (isInProperites && reader.NodeType == XmlNodeType.EndElement && reader.Name == @"Properties") {
-            //            isInProperites = false;
-            //        }
-            //    }
-            //}
+            productid = PhoneIdentity.Attributes[attrPhoneProductID].Value.ToString();
+        }
+
+        public override AppPackageReader.AppType Type {
+            get {
+                return AppType.WindowsPhoneApp;
+            }
         }
 
         public override string AppName {
@@ -124,7 +107,7 @@ namespace ApkShellext2 {
             }
         }
 
-        public override string appid {
+        public override string AppID {
             get {
                 return productid;
             }

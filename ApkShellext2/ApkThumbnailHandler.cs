@@ -10,6 +10,7 @@ using SharpShell.Extensions;
 using SharpShell.ServerRegistration;
 using System.IO;
 using ApkShellext2.Properties;
+using ApkQuickReader;
 
 namespace ApkShellext2 {
     [Guid("d747c5a7-2f66-4b7d-8301-8531838e4ed3")]
@@ -19,26 +20,42 @@ namespace ApkShellext2 {
     public class ApkThumbnailHandler : SharpThumbnailHandler {
         protected override Bitmap GetThumbnailImage(uint width) {
             Bitmap m_icon = null;
+
             try {
-                using (AppPackageReader reader = AppPackageReader.Read(SelectedItemStream, AppPackageReader.AppType.AndroidApp)) {
-                    reader.setFlags("IconSize", width);
+                int outputSize = (int) width;
+                using (AppPackageReader reader = new ApkReader(SelectedItemStream)) {
+                    Log("Reading stream from " + reader.AppName);
                     m_icon = reader.Icon;
-                    if (m_icon == null)
-                        throw new Exception("Cannot find Icon from Stream, draw default");
                 }
-                if (Settings.Default.ShowOverLayIcon)
+
+                if (m_icon == null)
+                    throw new Exception("Cannot find Icon from Stream, draw default");
+                if (m_icon.Height < outputSize && !Settings.Default.StretchThumbnail)
+                    outputSize = m_icon.Height;
+
+                Log("Got icon, resizing...");
+                if (Settings.Default.ShowOverLayIcon) {
                     m_icon = Utility.CombineBitmap(m_icon,
                            Utility.AppTypeIcon(AppPackageReader.AppType.AndroidApp),
                            new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
                            new Rectangle(0, (int)m_icon.Height / 2, (int)m_icon.Width / 2, (int)m_icon.Height / 2),
-                           new Size((int)m_icon.Width, (int)m_icon.Height));
-            } catch {
+                           new Size((int)outputSize, (int)outputSize ));
+                } else {
+                    m_icon = Utility.ResizeBitmap(m_icon, (int)outputSize - 1);
+                }
+#if DEBUG
+                string p = Path.GetTempFileName();
+                m_icon.Save(p);
+                Log("Save m_icon to " + p);
+#endif
+                return m_icon;
+            } catch (Exception ex){
                 Log("Error in reading icon from stream, draw default");
+                Log(ex.Message);
                 // read error, draw the default icon
-                m_icon = Utility.AppTypeIcon(AppPackageReader.AppType.AndroidApp);
+                //m_icon = Utility.AppTypeIcon(AppPackageReader.AppType.AndroidApp);
+                return null;
             }
-
-            return m_icon;
         }
 
         [CustomRegisterFunction]
@@ -71,6 +88,10 @@ namespace ApkShellext2 {
                      + e.Message);
             }
             #endregion
+        }
+
+        protected override void Log(string message) {
+            Utility.Log(this, "", message);
         }
     }
 }

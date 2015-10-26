@@ -79,7 +79,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 GitHub 的本地化字符串。
+        ///   查找类似 Official Page on GitHub 的本地化字符串。
         /// </summary>
         internal static string btnGitHub {
             get {
@@ -408,24 +408,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 User use following variables:
-        ///%AppName%:  App Name
-        ///%Version%:       Main Version number, for apk, it&apos;s the version name.
-        ///%Revision%:     Revision Number, for apk, it&apos;s the version code, for iOS and windows, this value is empty.
-        ///%Package%:     Package name space
-        ///%Publisher%:    Author.
-        ///%OS%:               Android / iOS / Windows
-        ///%FileSize% :       File size
-        ///%LastModify%: Last modify date 的本地化字符串。
-        /// </summary>
-        internal static string strFileInfoPatternVariable {
-            get {
-                return ResourceManager.GetString("strFileInfoPatternVariable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Great! You got the latest version. 的本地化字符串。
+        ///   查找类似 Great! You have the latest version. 的本地化字符串。
         /// </summary>
         internal static string strGotLatest {
             get {
@@ -439,6 +422,15 @@ namespace ApkShellext2.Properties {
         internal static string strGotoProjectSite {
             get {
                 return ResourceManager.GetString("strGotoProjectSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Help to translate this project. 的本地化字符串。
+        /// </summary>
+        internal static string strHelpTranslate {
+            get {
+                return ResourceManager.GetString("strHelpTranslate", resourceCulture);
             }
         }
         
@@ -508,6 +500,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Variable usage please refer to Project Wiki 的本地化字符串。
+        /// </summary>
+        internal static string strReferToWiki {
+            get {
+                return ResourceManager.GetString("strReferToWiki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Confirm to rename this file as {0}? 的本地化字符串。
         /// </summary>
         internal static string strRenameConfirm {
@@ -541,6 +542,15 @@ namespace ApkShellext2.Properties {
         internal static string strRenameToolTip {
             get {
                 return ResourceManager.GetString("strRenameToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Replace Space with _ 的本地化字符串。
+        /// </summary>
+        internal static string strReplaceSpaceWith_ {
+            get {
+                return ResourceManager.GetString("strReplaceSpaceWith_", resourceCulture);
             }
         }
         
@@ -626,6 +636,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Remind new version in Context Menu if availible 的本地化字符串。
+        /// </summary>
+        internal static string strShowNewVerInfo {
+            get {
+                return ResourceManager.GetString("strShowNewVerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Show Overlay Icon 的本地化字符串。
         /// </summary>
         internal static string strShowOverlayIcon {
@@ -640,6 +659,15 @@ namespace ApkShellext2.Properties {
         internal static string strShowOverlayIconToolTip {
             get {
                 return ResourceManager.GetString("strShowOverlayIconToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Stretch thumbnail if Windows requesting larger size 的本地化字符串。
+        /// </summary>
+        internal static string strStretchThumbnail {
+            get {
+                return ResourceManager.GetString("strStretchThumbnail", resourceCulture);
             }
         }
         
@@ -662,7 +690,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Icon Handler 的本地化字符串。
+        ///   查找类似 Icon 的本地化字符串。
         /// </summary>
         internal static string twIcon {
             get {
@@ -671,7 +699,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 InfoTip Handler 的本地化字符串。
+        ///   查找类似 InfoTip 的本地化字符串。
         /// </summary>
         internal static string twInfotip {
             get {
@@ -685,6 +713,15 @@ namespace ApkShellext2.Properties {
         internal static string twRename {
             get {
                 return ResourceManager.GetString("twRename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Thumbnail 的本地化字符串。
+        /// </summary>
+        internal static string twThumbnail {
+            get {
+                return ResourceManager.GetString("twThumbnail", resourceCulture);
             }
         }
         
@@ -752,11 +789,29 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 https://www.windowsphone.com/{0}/store/apps/{1}/{2} 的本地化字符串。
+        ///   查找类似 https://www.windowsphone.com/s?appid={0} 的本地化字符串。
         /// </summary>
         internal static string urlMicrosoftStore {
             get {
                 return ResourceManager.GetString("urlMicrosoftStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://github.com/kkguo/apkshellext/wiki/Package-information-Pattern-variables 的本地化字符串。
+        /// </summary>
+        internal static string urlPatternVarWiki {
+            get {
+                return ResourceManager.GetString("urlPatternVarWiki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://crowdin.com/project/apkshellext 的本地化字符串。
+        /// </summary>
+        internal static string urlTranslate {
+            get {
+                return ResourceManager.GetString("urlTranslate", resourceCulture);
             }
         }
         

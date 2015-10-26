@@ -39,15 +39,7 @@ namespace ApkShellext2 {
                     TipPattern = Resources.strInfoTipDefault;
                 
                 using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
-                    //string splitor = singleLine ? " " : Environment.NewLine;
-                    return TipPattern.Replace(Resources.varAppName, reader.AppName)
-                    .Replace(Resources.varPackage, reader.PackageName)
-                    .Replace(Resources.varPublisher, reader.Publisher)
-                    .Replace(Resources.varVersion, reader.Version)
-                    .Replace(Resources.varRevision, reader.Revision)
-                    .Replace(Resources.varFileSize, Utility.getFileSize(SelectedItemPath))
-                    .Replace(Resources.varOS, isapk ? "Android" : (isipa ? "iOS" : "Windows"))
-                    .Replace(Resources.varLastModify, File.GetLastWriteTime(SelectedItemPath).ToString("dd/MM/yy HH:mm:ss"));
+                    return ApkContextMenu.ReplaceVariables(TipPattern, reader);
                 }
             } catch (Exception ex) {
                 Log("Error happend during GetInfo : " + ex.Message);
@@ -80,9 +72,8 @@ namespace ApkShellext2 {
             #endregion
         }
 
-        protected override void Log(string message)
-        {
-            Logging.Log(Path.GetFileName(SelectedItemPath) + "[" + DateTime.Now.ToString() + "]" + message);
+        protected override void Log(string message){
+            Utility.Log(this, Path.GetFileName(SelectedItemPath), message);
         }
     }
 }

@@ -152,7 +152,7 @@
     <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Página oficial en GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Actualizar</value>
@@ -202,7 +202,7 @@ Por defecto, sólo mostrar el menú cuando se selecciona un archivo</value>
     <value>Versión Actual: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>¡Excelente! Tienes la última versión.</value>
+    <value>¡ Excelente! Tienes la última versión.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Ir al sitio del proyecto ApkShellext2</value>
@@ -222,16 +222,8 @@ Por defecto, sólo mostrar el menú cuando se selecciona un archivo</value>
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Fallo al leer el archivo</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Variables de uso:
-%AppName%: Nombre de App
-%Version%: Número de Versión, para .apk. Es el nombre de la versión
-%Revision%: Número de Revisión, para .apk. Es el codigo de la versión. Para iOS y Windows Phone, este valor esta vacio.
-%Package%: Espacio del nombre del paquete
-%Publisher%: Autor
-%OS%: Android / iOS / Windows
-%FileSize%: Tamaño del archivo
-%LastModify%: Fecha de última modificación</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Uso de variables consulte el Wiki del proyecto</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Para evitar la situación de la misma versión pero el diferente número de revisión, especialmente en los archivos de aplicaciones para Android. 
@@ -285,13 +277,13 @@ Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Re
     <value>General</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Controlador de icono</value>
+    <value>Icono</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Cambio de nombre</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Controlador de InfoTip</value>
+    <value>InfoTip</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Compruebe {0} en ApkMirror.com</value>
@@ -348,4 +340,21 @@ Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Re
   <data name="strAdbPath" xml:space="preserve">
     <value>Por favor especificar ruta de adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Reemplazar el espacio con _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Recordar nueva versión en el menú contextual si availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Miniatura</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Icono de estiramiento cuando Windows solicitando mayor tamaño</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Ayuda para traducir este proyecto.</value>
+  </data>
+  
 </root>

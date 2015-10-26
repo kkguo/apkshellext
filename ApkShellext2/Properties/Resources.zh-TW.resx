@@ -149,9 +149,11 @@
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnOK" xml:space="preserve">
-    <value>還行</value>
+    <value>確認</value>
   </data>
-  
+  <data name="btnGitHub" xml:space="preserve">
+    <value>在 GitHub 上的官方頁面</value>
+  </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -220,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>未能讀取檔案</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>使用者使用下面的變數:%AppName%: 應用程式名稱%Version%: 主要版本號為 apk，它是版本名稱。
-%Revision%: 修訂號為 apk，它是用於 iOS 和 windows 的版本代碼，此值為空。
-%Package%: 包名稱空間%Publisher%: 作者。
-%OS%: Android / iOS / Windows%FileSize%: 檔案大小%LastModify%: 上次修改日期</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>變數用法請參照專案 Wiki</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>为避免情況的版本相同，但不同的版本號，這最喜歡發生在 android 應用程式檔。
@@ -278,13 +277,13 @@
     <value>一般</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>處理常式圖示</value>
+    <value>圖示</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>重命名</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>提示處理常式</value>
+    <value>資訊提示</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>檢查對 ApkMirror.com {0}</value>
@@ -341,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>請指定路徑的 adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>空間替換 _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>提醒在內容功能表中的新版本，如果速效</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>縮略圖</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>拉伸圖示時 Windows 要求更大的大小</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>幫忙翻譯一下這個專案。</value>
+  </data>
+  
 </root>

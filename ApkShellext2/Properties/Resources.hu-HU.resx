@@ -152,7 +152,7 @@
     <value>oké</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Hivatalos oldalon a GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Frissítés</value>
@@ -202,7 +202,7 @@ Alapértelmezés szerint egyetlen mutat a menü egy fájl kiválasztásakor</val
     <value>Aktuális verzió: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>nagyszerű! Megvan a legújabb verziót.</value>
+    <value>nagyszerű! Önnek van a legutolsó változat.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Megy ApkShellext2 projekt honlapján</value>
@@ -222,11 +222,8 @@ Alapértelmezés szerint egyetlen mutat a menü egy fájl kiválasztásakor</val
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Nem sikerült olvasni a fájlt</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Felhasználó használata a következő változók:%AppName%:%Version% App neve: fő verziószáma, apk, esetében a verziónevet.
-%Revision%: változatszámot, a apk, ez a változat kódját, iOS és a windows, ez az érték üres.
-%Package%: a csomag neve space%Publisher%: szerző.
-%OS%: Android / iOS / Windows%FileSize%: File méret%LastModify%: utoljára a dátum módosítása</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Változó felhasználás legyen szíves folyamodik projekt Wiki</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Az azonos verzióját, de különböző átvizsgálás szám helyzetének elkerülésére, ez a legtöbb, mint android app fájlokat történik. 
@@ -280,13 +277,13 @@ Ennek bejelölésével app fájl átnevezése %AppName _ % Version % _ % Revisio
     <value>Általános</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Ikon kezelő</value>
+    <value>Ikon</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Átnevezése</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Megállítja kezelő</value>
+    <value>Megállítja</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Ellenőrizze a {0} a ApkMirror.com</value>
@@ -343,4 +340,21 @@ Ennek bejelölésével app fájl átnevezése %AppName _ % Version % _ % Revisio
   <data name="strAdbPath" xml:space="preserve">
     <value>Adja meg az elérési adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Cserélje ki a tér _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Emlékeztesse a új változat-ban szövegkörnyezet étlap, ha availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Miniatűr</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Stretch ikon ha Windows kérő nagyobb méretben</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Segíts lefordítani ezt a projektet.</value>
+  </data>
+  
 </root>

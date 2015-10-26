@@ -152,7 +152,7 @@
     <value>Ok</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Επίσημη σελίδα για GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Ενημέρωση</value>
@@ -202,7 +202,7 @@
     <value>Τρέχουσα έκδοση: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Μεγάλο! Πήρατε την τελευταία έκδοση.</value>
+    <value>Μεγάλο! Έχετε την τελευταία έκδοση.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Πηγαίνετε στην ιστοσελίδα του έργου ApkShellext2</value>
@@ -222,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Απέτυχε η ανάγνωση αρχείου</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Χρήστης Χρησιμοποιήστε το παρακάτω μεταβλητές:%AppName%:%Version% όνομα App: αριθμό κύριας έκδοσης, για apk, είναι το όνομα του έκδοση.
-%Revision%: αριθμός αναθεώρησης, για apk, πρόκειται για τον κωδικό έκδοσης, για iOS και windows, αυτή η τιμή είναι κενή.
-%Package%: πακέτο όνομα χώρου%Publisher%: συγγραφέας.
-%OS%: Android / iOS / Windows%FileSize%:%LastModify% μέγεθος αρχείου: τελευταία τροποποίηση ημερομηνίας</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Μεταβλητή χρήσης ανατρέξτε στο Wiki έργου</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Για την αποφυγή κατάσταση της ίδια έκδοση αλλά αριθμό διαφορετικών αναθεώρησης, αυτό πιο όπως συμβαίνει στο ανδροειδές app αρχεία. 
@@ -280,13 +277,13 @@
     <value>Γενική</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Εικονίδιο χειρισμού</value>
+    <value>Εικονίδιο</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Μετονομασία</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Πρόγραμμα χειρισμού πληροφοριών</value>
+    <value>Συμβουλή με πληροφορίες</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Ελέγξτε το {0} στο ApkMirror.com</value>
@@ -343,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Παρακαλούμε να προσδιορίσετε την διαδρομή του adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Αντικαταστήστε το χώρο με _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Να υπενθυμίσω την νέα έκδοση του μενού περιβάλλοντος αν availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Μικρογραφία</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Τέντωμα εικονίδιο όταν Windows ζητά μεγαλύτερο μέγεθος</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Βοηθήστε να μεταφράσουμε το έργο αυτό.</value>
+  </data>
+  
 </root>

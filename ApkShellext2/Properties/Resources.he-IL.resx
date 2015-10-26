@@ -152,7 +152,7 @@
     <value>אוקיי</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>דף רשמי ב GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>עדכון</value>
@@ -161,7 +161,7 @@
     <value>לך לאתר הפרוייקט כדי לעדכן</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
+    <value>החלף דפוס</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
     <value>בדוק {0} על אמזון Appstore</value>
@@ -222,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>נכשלה לקרוא את התיק</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>שימוש המשתמש בעקבות משתנים:%AppName%:%Version% שם App: מספר הגירסה הראשית, apk, זה שמה של גירסת.
-%Revision%: מספר המהדורה, עבור apk, זה הקוד גירסה, עבור iOS ו- windows, ערך זה הוא ריק.
-%Package%: החבילה שם שטח%Publisher%: מחבר.
-%OS%: אנדרואיד / iOS / Windows%FileSize%:%LastModify% גודל קובץ: אחרונה לשנות תאריך</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>שימוש משתנה עיין פרוייקט ויקי</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>להימנע המצב של גירסה זהה אך מספר המהדורה שונים, קורה זאת ברוב כמו קבצי האפליקציה. 
@@ -280,13 +277,13 @@
     <value>כללי</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>סמל הנדלר</value>
+    <value>סמל</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>שינוי שם</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>עצת מידע הנדלר</value>
+    <value>עצת מידע</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>בדוק {0} על ApkMirror.com</value>
@@ -343,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>נא ציין את הנתיב של adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>החלף שטח _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>מזכיר גרסה חדשה בתפריט ההקשר אם איסוף עצמי בלבד</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>תמונה ממוזערת</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>סמל מתיחה כאשר Windows מבקש גודל גדול יותר</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>לעזור לתרגם את הפרויקט הזה.</value>
+  </data>
+  
 </root>

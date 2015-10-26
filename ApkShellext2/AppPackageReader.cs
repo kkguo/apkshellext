@@ -15,10 +15,10 @@ namespace ApkShellext2 {
     /// for reusing and simplify in the code
     /// </summary>
     public class AppPackageReader : IDisposable{
-        public static readonly string extAPK = ".apk";
-        public static readonly string extIPA = ".ipa";
-        public static readonly string extAPPX = ".appx";
-        public static readonly string extAPPXBUNDLE = ".appxbundle";
+        public const string extAPK = ".apk";
+        public const string extIPA = ".ipa";
+        public const string extAPPX = ".appx";
+        public const string extAPPXBUNDLE = ".appxbundle";
 
         public enum AppType {
             AndroidApp,
@@ -46,7 +46,9 @@ namespace ApkShellext2 {
 
         public virtual Bitmap Icon { get { return null; } }
 
-        public virtual string appid { get { return ""; } }
+        public virtual string AppID { get { return ""; } }
+
+        public virtual AppType Type { get { return AppType.AndroidApp; } }
 
         // use for other information, or file type specific info
         public virtual void setFlags(string flag, object value) {
@@ -109,19 +111,8 @@ namespace ApkShellext2 {
             }
         }
 
-        public static AppPackageReader Read(Stream stream, AppType type) {
-            switch (type) {
-                case AppType.AndroidApp:
-                    return new ApkReader(stream);
-                case AppType.iOSApp:
-                    return new IpaReader(stream);
-                case AppType.WindowsPhoneAppBundle:
-                    return new AppxBundleReader(stream);
-                case AppType.WindowsPhoneApp:
-                    return new AppxReader(stream);
-                default:
-                    throw new NotSupportedException("File type is not supported.");
-            }
+        protected void Log(string message) {
+            Utility.Log(this, Path.GetFileName(FileName), message);
         }
     }
 }

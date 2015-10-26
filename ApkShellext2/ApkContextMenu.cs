@@ -47,8 +47,12 @@ namespace ApkShellext2 {
             Utility.Localize();
 
             var menu = new ContextMenuStrip();
+
+            string newVerAvai = "";
+            if (Utility.NewVersionAvailible() && Settings.Default.ShowNewVersion)
+                newVerAvai = " (" + string.Format(Resources.strNewVersionAvailible, Settings.Default.LatestVersion) + ")";
             var mainMenu = new ToolStripMenuItem {
-                Text = Properties.Resources.menuMain,
+                Text = Properties.Resources.menuMain + newVerAvai
             };
 
             int size = mainMenu.Height + 1;
@@ -151,13 +155,13 @@ namespace ApkShellext2 {
 
             if ((hasappx || hasappxbundle) && Settings.Default.ShowMSStore) {
                 #region MS Store Menu
-                appname = singleSelected ? appname : 
+                appname = singleSelected ? appname :
                     (AppPackageReader.extAPPX + @"/" + AppPackageReader.extAPPXBUNDLE);
                 var msMenu = new ToolStripMenuItem {
                     Text = string.Format(Resources.menuGotoMicrosoftStore, appname),
                     Image = Utility.ResizeBitmap(Resources.iconMSStore, size)
                 };
-                msMenu.Click += (sender, args) => gotoAppleStore();
+                msMenu.Click += (sender, args) => gotoMicrosoftStore();
                 mainMenu.DropDownItems.Add(msMenu);
                 msMenu.Enabled = singleSelected ||
                 Settings.Default.ShowAppStoreWhenMultiSelected;
@@ -266,24 +270,14 @@ namespace ApkShellext2 {
                 renamePattern = Resources.strRenamePatternDefault;
             }
             try {
-                using (AppPackageReader reader = AppPackageReader.Read(path)) {
-                    newFileName = renamePattern.Replace(Resources.varAppName, reader.AppName)
-                    .Replace(Resources.varPackage, reader.PackageName)
-                    .Replace(Resources.varPublisher, reader.Publisher)
-                    .Replace(Resources.varVersion, reader.Version)
-                    .Replace(Resources.varRevision, reader.Revision)
-                    .Replace(Resources.varFileSize, Utility.getFileSize(path))
-                    .Replace(Resources.varOS, isapk ? "Android" : (isipa ? "iOS" : "Windows"))
-                    .Replace(Resources.varLastModify,
-                    File.GetLastWriteTime(path).ToString("dd/MM/yy HH:mm:ss"));
-
-                    //if (key_RenameWithVersionCode) {
-                    //    string revision = reader.Revision;
-                    //    if (revision != "")
-                    //        newFileName = newFileName + "_" + revision;
-                    //}
+                using (AppPackageReader reader = AppPackageReader.Read(path)) {                    
+                    newFileName = ReplaceVariables(renamePattern,reader);
                 }
-                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|\s-]+", "_"); // remove invalid char
+
+                newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|-]+", ""); // remove invalid chars
+                if (Settings.Default.ReplaceSpace) {
+                    newFileName = Regex.Replace(newFileName, @"\s+", "_");
+                }
                 string oldFileName = Path.GetFileName(path);
                 string folderPath = Path.GetDirectoryName(path);
                 string tmpFileName = newFileName + suffix;
@@ -299,6 +293,31 @@ namespace ApkShellext2 {
                 newFileName = "";
             }
             return newFileName;
+        }
+
+        public static string ReplaceVariables(string ori, AppPackageReader reader) {
+            string newStr = ori;
+            if (newStr.Contains(Resources.varAppName))
+                newStr = newStr.Replace(Resources.varAppName, reader.AppName);
+            if (newStr.Contains(Resources.varPackage))
+                newStr = newStr.Replace(Resources.varPackage, reader.PackageName);
+            if (newStr.Contains(Resources.varPublisher))
+                newStr = newStr.Replace(Resources.varPublisher, reader.Publisher);
+            if (newStr.Contains(Resources.varVersion))
+                newStr = newStr.Replace(Resources.varVersion, reader.Version);
+            if (newStr.Contains(Resources.varRevision))
+                newStr = newStr.Replace(Resources.varRevision, reader.Revision);
+            if (newStr.Contains(Resources.varFileSize))
+                newStr = newStr.Replace(Resources.varFileSize, Utility.getFileSize(reader.FileName));
+            if (newStr.Contains(Resources.varOS))
+                newStr = newStr.Replace(Resources.varOS, 
+                    reader.Type == AppPackageReader.AppType.AndroidApp ? "Android" 
+                    : (reader.Type == AppPackageReader.AppType.iOSApp ? "iOS" 
+                    : "Windows"));
+            if (newStr.Contains(Resources.varLastModify))
+                newStr = newStr.Replace(Resources.varLastModify,
+                File.GetLastWriteTime(reader.FileName).ToString("dd/MM/yy HH:mm:ss"));
+            return newStr;
         }
 
         private void renameWithVersion() {
@@ -344,8 +363,7 @@ namespace ApkShellext2 {
                 if (p.EndsWith(AppPackageReader.extIPA)) {
                     using (IpaReader reader = AppPackageReader.Read(p) as IpaReader) {
                         try {
-                            string appid = reader.getFlags(IpaReader.flagAppId) as string;
-                            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAppleStore, appid));
+                            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAppleStore, reader.AppID));
                         } catch (Exception ex) {
                             Log(Path.GetFileName(p) + ex.Message + Environment.NewLine + "Cannot get appid.");
                         }
@@ -360,8 +378,7 @@ namespace ApkShellext2 {
                     using (AppPackageReader reader = AppPackageReader.Read(p)) {
                         string package = reader.PackageName;
                         CultureInfo ci = System.Threading.Thread.CurrentThread.CurrentCulture;
-                        System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlMicrosoftStore, 
-                            CultureInfo.CreateSpecificCulture(ci.Name).Name, "1",reader.appid));
+                        System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlMicrosoftStore,reader.AppID));
                     }
                 }
             }
@@ -399,7 +416,8 @@ namespace ApkShellext2 {
         }
 
         protected override void Log(string message) {
-            Logging.Log("[" + DateTime.Now.ToString() + "]" + message);
+            string s = (SelectedItemPaths.Count() >0) ?Path.GetFileName(SelectedItemPaths.ElementAt(0)): "";
+            Utility.Log(this, s, message);
         }
     }
 }

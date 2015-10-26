@@ -149,10 +149,10 @@
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnOK" xml:space="preserve">
-    <value>괜찮았던 것</value>
+    <value>확인</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>GitHub에 공식 페이지</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>업데이트</value>
@@ -202,7 +202,7 @@
     <value>현재 버전: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>최신버전을 사용하고 계십니다!</value>
+    <value>좋은! 당신은 최신 버전.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2의 프로젝트 웹 사이트로 이동하기</value>
@@ -222,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>파일을 읽지 못했습니다.</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>다음 변수 사용자 사용:%AppName%: 응용 프로그램 이름%Version%: 주 버전 번호, apk, 그것은 버전 이름입니다.
-%Revision%: 개정 번호, apk, iOS 및 윈도 버전 코드,이 값이 비어.
-%Package%: 패키지 이름 공간%Publisher%: 저자.
-%OS%: 안 드 로이드 / iOS / 윈도우%FileSize%: 파일 크기%LastModify%: 마지막 수정 날짜</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>변수 사용 프로젝트 위 키를 참조 하십시오</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>일부 안드로이드 앱에서 버전은 같은데 리비전(세부 버전)이 다른 경우가 있습니다.
@@ -281,13 +278,13 @@
     <value>일반</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>아이콘 처리기</value>
+    <value>아이콘</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>이름 바꾸기</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>정보 팁 처리기</value>
+    <value>정보 팁</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>ApkMirror.com에 {0}를 확인</value>
@@ -344,4 +341,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Adb.exe의 경로 지정 하십시오</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>_ 공간을 바꿉니다</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Availible 경우 상황에 맞는 메뉴에서 새 버전을 생각나 게</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>축소판 그림</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>스트레치 아이콘 때 더 큰 크기 요청 창</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>이 프로젝트를 번역 하는 데 도움이.</value>
+  </data>
+  
 </root>

@@ -152,7 +152,7 @@
     <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Page officielle sur GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Mettre à jour</value>
@@ -222,16 +222,8 @@ Par défaut, affiche uniquement le menu lorsqu'un fichier est sélectionné</val
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Erreur lors de la lecture du fichier</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Variables disponibles:
-%AppName%: Nom de l'application
-%Version%: Version
-%Revision%: Révision (Android seulement)
-%Package%: Nom du paquet
-%Publisher%: Auteur
-%OS%: Android / iOS / Windows
-%FileSize%: Taille du fichier
-%LastModify%: Date de dernière modification</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Utilisation variable, veuillez vous référer au Wiki du projet</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Pour éviter la situation ou la version est pareille mais pas la révision. 
@@ -301,13 +293,13 @@ En cochant cela, renomme le fichier en %AppName%_%Version%_%Revision%, dans le c
     <value>Général</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Icônes</value>
+    <value>Icône</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Renommage</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Info-bulles</value>
+    <value>Info-bulle</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Chercher {0} sur ApkMirror.com</value>
@@ -386,4 +378,21 @@ Version: %Version% %Revision%</value>
   <data name="strAdbPath" xml:space="preserve">
     <value>Veuillez spécifier le chemin d'accès de adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Remplacer l'espace par _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Rappeler la nouvelle version dans le Menu contextuel si availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Vignette</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Icône extensible lorsque Windows demande de plus grande taille</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Aidez à traduire ce projet.</value>
+  </data>
+  
 </root>

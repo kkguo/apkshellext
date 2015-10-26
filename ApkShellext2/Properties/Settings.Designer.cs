@@ -202,5 +202,77 @@ namespace ApkShellext2.Properties {
                 this["LastPanel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2014-12-31")]
+        public global::System.DateTime LastCheckUpdateTime {
+            get {
+                return ((global::System.DateTime)(this["LastCheckUpdateTime"]));
+            }
+            set {
+                this["LastCheckUpdateTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CheckingUpdate {
+            get {
+                return ((bool)(this["CheckingUpdate"]));
+            }
+            set {
+                this["CheckingUpdate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LatestVersion {
+            get {
+                return ((string)(this["LatestVersion"]));
+            }
+            set {
+                this["LatestVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ReplaceSpace {
+            get {
+                return ((bool)(this["ReplaceSpace"]));
+            }
+            set {
+                this["ReplaceSpace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowNewVersion {
+            get {
+                return ((bool)(this["ShowNewVersion"]));
+            }
+            set {
+                this["ShowNewVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StretchThumbnail {
+            get {
+                return ((bool)(this["StretchThumbnail"]));
+            }
+            set {
+                this["StretchThumbnail"] = value;
+            }
+        }
     }
 }

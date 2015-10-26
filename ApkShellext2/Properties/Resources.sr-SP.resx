@@ -152,7 +152,7 @@
     <value>у реду</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>ГитХуб</value>
+    <value>Званична страница на ГитХуб</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Ажурирање</value>
@@ -222,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Читање датотеке није успело</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Корисник користи прати варијабле:%AppName%:%Version% име апликације: број главне верзије, за апк, то је име које верзије.
-%Revision% : број ревизије, за апк, шифру верзије, за иОС и wиндоwс, ова вредност је празан.
-%Package% :%Publisher% простор за име пакета: аутор.
-%OS%: Андроид / иОС / Wиндоwс%FileSize%:%LastModify% величина датотеке: задњи пут измените датум</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Варијабилна употребе погледајте Wики пројекта</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>За избегавање ситуације исту верзију, али број различитих ревизије, ово најчешће као се дешава у андроид апп датотеке. 
@@ -280,13 +277,13 @@
     <value>Генерале</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Руковалац икона</value>
+    <value>Икона</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Преименовање</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Информације и савети руковаоца</value>
+    <value>Информације и савети</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Провери {0} на ApkMirror.com</value>
@@ -343,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Наведите путању од адб.еxе</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Замените простор _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Подсети нову верзију у контекстуалном менију ако технологијом</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Сличице</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Развлачење икона када Wиндоwс тражи већу величину</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Помози да преведе овај пројекат.</value>
+  </data>
+  
 </root>

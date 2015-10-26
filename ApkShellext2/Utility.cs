@@ -52,19 +52,20 @@ namespace ApkShellext2 {
         }
 
         # region set/get registry settings
-        public static readonly string keyMultiSelectShowStore = @"AlwaysShowGooglePlay";
-        public static readonly string keyShowGooglePlay = @"ShowGooglePlay";
-        public static readonly string keyShowAmazonStore = @"ShowAmazonStore";
-        public static readonly string keyShowApkMirror = @"ShowApkMirror";
-        public static readonly string keyShowAppleStore = @"ShowAppleStore";
-        public static readonly string keyShowMSStore = @"ShowMSStore";
-        public static readonly string keyRenameWithVersionCode = @"RenameWithVersionCode";
-        public static readonly string keyShowOverlay = @"ShowOverLayIcon";
-        public static readonly string keyShowIpaIcon = @"ShowIpaIcon";
-        public static readonly string keyShowAppxIcon = @"ShowAppxIcon";
-        public static readonly string keyShowMenuIcon = @"ShowMenuIcon";
-        public static readonly string keyRenamePattern = @"RenamePattern";
-        public static readonly string keyToolTipPattern = @"ToolTipPattern";
+        public const string keyLanguage = @"language";
+        public const string keyMultiSelectShowStore = @"AlwaysShowGooglePlay";
+        public const string keyShowGooglePlay = @"ShowGooglePlay";
+        public const string keyShowAmazonStore = @"ShowAmazonStore";
+        public const string keyShowApkMirror = @"ShowApkMirror";
+        public const string keyShowAppleStore = @"ShowAppleStore";
+        public const string keyShowMSStore = @"ShowMSStore";
+        public const string keyRenameWithVersionCode = @"RenameWithVersionCode";
+        public const string keyShowOverlay = @"ShowOverLayIcon";
+        public const string keyShowIpaIcon = @"ShowIpaIcon";
+        public const string keyShowAppxIcon = @"ShowAppxIcon";
+        public const string keyShowMenuIcon = @"ShowMenuIcon";
+        public const string keyRenamePattern = @"RenamePattern";
+        public const string keyToolTipPattern = @"ToolTipPattern";
 
         //public static void setRegistrySetting(string key, int value) {
         //    try {
@@ -132,13 +133,13 @@ namespace ApkShellext2 {
         }
 
         public static Assembly ResourceDllResolveEventHandler(object sender, ResolveEventArgs args) {
-            Logging.Log("Resolve resource dll " + args.Name);
+            Log(null, "Localize", "Resolve resource dll " + args.Name);
             AssemblyName MissingAssembly = new AssemblyName(args.Name);
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
             if (_bufCultureInfoLCID != ci.LCID) {
                 string resourceName = "ApkShellext2.Resources." + ci.Name.Replace("-", "_") + "." + MissingAssembly.Name + ".dll";
 
-                Logging.Log("Extracting resource dll: " + resourceName);
+                Log(null, "Localize", "Extracting resource dll: " + resourceName);
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)) {
                     if (stream == null)
                         return null;
@@ -146,7 +147,7 @@ namespace ApkShellext2 {
                     _bufCultureInfoLCID = ci.LCID;
                 }
             }
-            Logging.Log("Loading culture dll with " + new CultureInfo(_bufCultureInfoLCID).DisplayName);
+            Log(null, "Localize", "Loading culture dll with " + new CultureInfo(_bufCultureInfoLCID).DisplayName);
             return Assembly.Load(_binResourceDll);
         }
 
@@ -161,12 +162,9 @@ namespace ApkShellext2 {
             HookResolveResourceDll();
             int lang = Settings.Default.Language;
             if (lang != -1) {
-                CultureInfo cultinfo = new CultureInfo(lang);
-                if (cultinfo.LCID != Thread.CurrentThread.CurrentUICulture.LCID) {
-                    Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-                    Logging.Log("Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
-                }
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                Log(null, "Localize", "Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
             }
         }
 
@@ -187,7 +185,7 @@ namespace ApkShellext2 {
             return result.ToArray();
         }
 
-        public static string getLatestVersion() {
+        public static void getLatestVersion() {
             try {
                 byte[] buf = new byte[1024];
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Resources.urlGithubHomeLatest);
@@ -202,12 +200,27 @@ namespace ApkShellext2 {
                     s = Encoding.ASCII.GetString(buf, 0, count);
                 }
                 s = Regex.Replace(s, @"\t|\n|\r", "");
-
-                Logging.Log("Get the latest version :" + s);
-                return s;
-            } catch {
-                return "0.0.0.0";
+                Settings.Default.LatestVersion = s;
+                Log(null, "Update", "Get the latest version :" + s);
+            } catch (Exception ex) {
+                Log(null, "Update", "Error During check update:" + ex.Message);
             }
+        }
+
+        public static bool NewVersionAvailible() {
+            string[] latestV = Settings.Default.LatestVersion.Split(new Char[] { '.' });
+            if (latestV.Length != 4)
+                return false;
+            string[] curV = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split(new Char[] { '.' });
+            // version number should be always 4 parts
+            for (int i = 0; i < latestV.Length; i++) {
+                if (latestV[i] != curV[i]) {
+                    if (int.Parse(latestV[i]) > int.Parse(curV[i]))
+                        return true;
+                    break;
+                }
+            }
+            return false;
         }
 
         // http://stackoverflow.com/questions/6803073/get-local-ip-address
@@ -278,11 +291,12 @@ namespace ApkShellext2 {
                 return string.Format("{0:0.###}M", filesize / 1024 / 1024);
             }
         }
+
         //public static string[] getSelectedFiles() {
         //    IntPtr handle = User32.GetForegroundWindow();
 
         //    List<string> selected = new List<string>();
-            
+
         //    var shell = new Shell32.Shell();
         //    foreach (SHDocVw.InternetExplorer window in shell.Windows()) {
         //        if (window.HWND == (int)handle) {
@@ -296,6 +310,18 @@ namespace ApkShellext2 {
 
         public static void refreshShell() {
             SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        public static void Log(object caller, string title, string message) {
+#if DEBUG
+            string output;
+            output = "[" + System.DateTime.Now.ToString() + "]";
+            if (caller != null)
+                output += "<" + caller.GetType().Name + ">";
+            if (title != "")
+                output += "|" + title + "|";
+            SharpShell.Diagnostics.Logging.Log(output + message);
+#endif
         }
     }
 }

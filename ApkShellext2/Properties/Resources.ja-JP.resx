@@ -152,7 +152,7 @@
     <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>GitHub 上で公式ページ</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>更新</value>
@@ -202,7 +202,7 @@
     <value>現在のバージョン: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>最新バージョンです。</value>
+    <value>素晴らしい!あなたは最新バージョンを持っています。</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2 プロジェクトサイトへ</value>
@@ -222,16 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>ファイルを読み取れません</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>以下の変数が使えます:
-%AppName%: アプリ名
-%Version%: メインバージョン番号 apkの場合はバージョン名
-%Revision%: リビジョン番号 apkの場合はバージョンコード iOSとWindowsの場合は空
-%Package%: パッケージ名
-%Publisher%: 開発者名
-%OS%: Android / iOS / Windows
-%FileSize% : ファイルサイズ
-%LastModify%: 最終更新日時</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>変数の使用は、プロジェクトの Wiki を参照してください。</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Android アプリでよく起きる、同じバージョンで異なるリビジョン番号、といった状況を回避します。
@@ -285,13 +277,13 @@
     <value>基本設定</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>アイコンハンドラー</value>
+    <value>アイコン</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>名前の変更</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>情報ヒントハンドラー</value>
+    <value>ヒント</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>CheckApkMirror.comで {0} をチェックする</value>
@@ -348,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Adb.exe のパスを指定してください。</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>スペースを _ に置き換える</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>コンテキスト メニューで新しいバージョンを思い出させる場合はフィットネスエクサ サイズ</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>サムネイル</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>ストレッチ アイコンと大きいサイズを要求する Windows</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>このプロジェクトを変換するのに役立ちます。</value>
+  </data>
+  
 </root>

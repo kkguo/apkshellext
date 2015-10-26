@@ -16,17 +16,17 @@ namespace ApkShellext2 {
         private ZipFile zip;
         private AppxReader appxReader= null;
 
-        private readonly string AppxBundleManifestXml = @"AppxMetadata/AppxBundleManifest.xml";
-        private readonly string ElemIdentity = @"Identity";
-        //private readonly string ElemProperties = @"Properties";
-        //private readonly string ElemDisplayName = @"DisplayName";
-        private readonly string ElemPackage = @"Package";
-        //private readonly string AttrVersion = @"Version";
-        private readonly string AttrName = @"Name";
-        //private readonly string AttrPublisher = @"Publisher";
-        private readonly string AttrType = @"Type";
-        private readonly string ValApplication = @"application";
-        private readonly string AttrFileName = @"FileName";
+        private const string AppxBundleManifestXml = @"AppxMetadata/AppxBundleManifest.xml";
+        private const string ElemIdentity = @"Identity";
+        //private const string ElemProperties = @"Properties";
+        //private const string ElemDisplayName = @"DisplayName";
+        private const string ElemPackage = @"Package";
+        //private const string AttrVersion = @"Version";
+        private const string AttrName = @"Name";
+        //private const string AttrPublisher = @"Publisher";
+        private const string AttrType = @"Type";
+        private const string ValApplication = @"application";
+        private const string AttrFileName = @"FileName";
 
         public AppxBundleReader(Stream stream) {
             FileName = "";
@@ -68,6 +68,12 @@ namespace ApkShellext2 {
             appxReader = new AppxReader(zip.GetInputStream(en));
         }
 
+        public override AppPackageReader.AppType Type {
+            get {
+                return AppType.WindowsPhoneAppBundle;
+            }
+        }
+
         public override Bitmap Icon {
             get {
                 return appxReader.Icon;
@@ -98,6 +104,11 @@ namespace ApkShellext2 {
             }
         }
 
+        public override string AppID {
+            get {
+                return appxReader.AppID;
+            }
+        }
         private bool disposed = false;
         protected override void Dispose(bool disposing) {
             if (disposed) return;

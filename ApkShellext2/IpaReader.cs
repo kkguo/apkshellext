@@ -26,18 +26,18 @@ namespace ApkShellext2 {
         private Dictionary<string, object> itunesMetadataDic;
         private ZipFile zip;
 
-        private readonly string iTunesMetadataPath = @"iTunesMetadata.plist";
-        private readonly string infoPlistPath = @"(Payload/.*\.app/)Info\.plist";
-        private readonly string CFBundleIcons = @"CFBundleIcons";
-        private readonly string CFBundlePrimaryIcon = @"CFBundlePrimaryIcon";
-        private readonly string CFBundleIconFiles = @"CFBundleIconFiles";
-        private readonly string CFBundleDisplayName = @"CFBundleDisplayName";
-        private readonly string CFBundleIdentifier = @"CFBundleIdentifier";
-        private readonly string CFBundleShortVersionString = @"CFBundleShortVersionString";
-        private readonly string CFBundleVersion = @"CFBundleVersion";
+        private const string iTunesMetadataPath = @"iTunesMetadata.plist";
+        private const string infoPlistPath = @"(Payload/.*\.app/)Info\.plist";
+        private const string CFBundleIcons = @"CFBundleIcons";
+        private const string CFBundlePrimaryIcon = @"CFBundlePrimaryIcon";
+        private const string CFBundleIconFiles = @"CFBundleIconFiles";
+        private const string CFBundleDisplayName = @"CFBundleDisplayName";
+        private const string CFBundleIdentifier = @"CFBundleIdentifier";
+        private const string CFBundleShortVersionString = @"CFBundleShortVersionString";
+        private const string CFBundleVersion = @"CFBundleVersion";
 
-        public static readonly string flagAppId = @"itemId";
-        public static readonly string flagCopyright = @"copyright";
+        public const string flagAppId = @"itemId";
+        public const string flagCopyright = @"copyright";
         
 
         public IpaReader(string path) {
@@ -126,6 +126,12 @@ namespace ApkShellext2 {
             return new Bitmap(imageOut);
         }
 
+        public override AppPackageReader.AppType Type {
+            get {
+                return AppType.iOSApp;
+            }
+        }
+
         public override string AppName {
             get {
                 return getStrings(infoPlistDic, new string[] {
@@ -165,7 +171,8 @@ namespace ApkShellext2 {
         public override string Publisher {
             get {
                 ZipEntry itunesMetadata = zip.GetEntry(iTunesMetadataPath);
-
+                if (itunesMetadata == null)
+                    return "";
                 byte[] itunesMetadataBytes = new byte[itunesMetadata.Size];
                 zip.GetInputStream(itunesMetadata).Read(itunesMetadataBytes, 0, (int)itunesMetadata.Size);
                 itunesMetadataDic = (Dictionary<string, object>)Plist.readPlist(itunesMetadataBytes);
@@ -173,10 +180,11 @@ namespace ApkShellext2 {
             }
         }
 
-        public override string appid {
+        public override string AppID {
             get {
                 ZipEntry itunesMetadata = zip.GetEntry(iTunesMetadataPath);
-
+                if (itunesMetadata == null)
+                    return "";
                 byte[] itunesMetadataBytes = new byte[itunesMetadata.Size];
                 zip.GetInputStream(itunesMetadata).Read(itunesMetadataBytes, 0, (int)itunesMetadata.Size);
                 itunesMetadataDic = (Dictionary<string, object>)Plist.readPlist(itunesMetadataBytes);

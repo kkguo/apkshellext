@@ -152,7 +152,7 @@
     <value>Хорошо</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Официальная страница на GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Обновление</value>
@@ -202,7 +202,7 @@
     <value>Текущая версия: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Прекрасно! У вас самая последняя версия.</value>
+    <value>Прекрасно! У вас есть последняя версия.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Перейти на сайт проекта ApkShellext2</value>
@@ -222,11 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Ошибка чтения файла</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Пользователя используйте следующие переменные:%AppName%:%Version% название приложения: номер основной версии, для АПК, это имя версии.
-%Revision%: номер редакции, для АПК, это код версии для iOS и windows, это значение является пустым.
-%Package%: пакет имя пространства%Publisher%: автор.
-%OS%: Android / iOS / Windows%FileSize%:%LastModify% размер файла: последние изменения даты</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Использование переменных, пожалуйста, обратитесь к вики проекта</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Для избежания ситуации той же версии, но номер различные редакции, это как происходит в файлах приложения для android. 
@@ -280,13 +277,13 @@
     <value>Общие</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Значок обработчика</value>
+    <value>Значок</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Переименование</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Обработчик всплывающую подсказку</value>
+    <value>Всплывающая подсказка</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Проверить {0} на ApkMirror.com</value>
@@ -343,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Пожалуйста, укажите путь adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Заменить пространство с _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Напоминать новой версии в контекстное меню, если доступный</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Эскиз</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Простирания икона когда Windows с просьбой большего размера</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Помогите перевести этот проект.</value>
+  </data>
+  
 </root>

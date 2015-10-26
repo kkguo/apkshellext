@@ -149,10 +149,10 @@
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnOK" xml:space="preserve">
-    <value>تایید</value>
+    <value>تأیید</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>صفحه رسمی در GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>به روز رسانی</value>
@@ -202,7 +202,7 @@
     <value>نسخه فعلی:{0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه  بروز شد</value>
+    <value>عالی! شما را به آخرین نسخه.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>برو به سایت پروژه</value>
@@ -222,16 +222,8 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>فایل خوانده نشد</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>متغیرهای قابل استفاده برای کاربر :
-نام برنامه :%AppName%
-ورژن برنامه :%Version%
-زیر نسخه ، برای فایلهای  apk  کد ورژن میباشد و برای ویندوز و IOS وجود ندارد: %Revision%
-محل نام پکیج :%Package%
-مولف :%Publisher%
-سیستم عامل :%OS%
-حجم فایل :%FileSize%
-تاریخ آخرین تغییرات :%LastModify%</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>متغیر استفاده مراجعه به ویکی پروژه</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>برای جلوگیری از همنام شدن فایلهای مشابه با ورژن متفاوت که معمولا در برنامه های اندرویید پیش می آید.
@@ -285,13 +277,13 @@
     <value>عمومی</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>کنترلر آیکون</value>
+    <value>آیکون</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>تغییر نام</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>کنترلر توضیحات</value>
+    <value>نکته مفید اطلاعاتی</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>بررسی {0} در ApkMirror.com</value>
@@ -348,4 +340,21 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>لطفا مسیر adb.exe را تعیین کنید</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>جایگزینی فضای با _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>نسخه جدید در منو چهار چوب اگر availible یادآوری</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>تصویر بند انگشتی</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>نماد کشش زمانی که ویندوز درخواست اندازه بزرگتر</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>ترجمه این پروژه کمک کند.</value>
+  </data>
+  
 </root>

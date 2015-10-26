@@ -152,7 +152,7 @@
     <value>Razoável</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub</value>
+    <value>Página oficial no GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
     <value>Atualização</value>
@@ -222,11 +222,8 @@ Por padrão, apenas mostrar o menu quando um arquivo selecionado</value>
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Falha ao ler o arquivo</value>
   </data>
-  <data name="strFileInfoPatternVariable" xml:space="preserve">
-    <value>Seguintes variáveis do utilizador utilize:%AppName%:%Version% nome de App: número de versão principal, para a apk, é o nome da versão.
-%Revision%: número de revisão, para apk, que é o código de versão, para iOS e windows, este valor é vazio.
-%Package%:%Publisher% de espaço de nome de pacote: autor.
-%OS%: Android / iOS / Windows%FileSize%:%LastModify% de tamanho do arquivo: última modificar data</value>
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Uso de variável, consulte Wiki do projeto</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Para evitar a situação de mesma versão mas número diferente de revisão, a maioria como acontece em arquivos app android. 
@@ -280,13 +277,13 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
     <value>Geral</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Manipulador de ícone</value>
+    <value>Ícone de</value>
   </data>
   <data name="twRename" xml:space="preserve">
     <value>Renomeando</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Manipulador de InfoTip</value>
+    <value>InfoTip</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Verificar {0} em ApkMirror.com</value>
@@ -343,4 +340,21 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strAdbPath" xml:space="preserve">
     <value>Por favor, especifique o caminho do adb.exe</value>
   </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Substitua o espaço _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>Lembrar a nova versão no Menu de contexto se availible</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Miniatura</value>
+  </data>
+  <data name="strStretchIcon" xml:space="preserve">
+    <value>Ícone de estiramento quando Windows solicitando tamanho maior</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Ajude a traduzir este projeto.</value>
+  </data>
+  
 </root>

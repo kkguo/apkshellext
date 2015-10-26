@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using ApkShellext2.Properties;
 using System.Globalization;
+using System.Configuration;
 
 namespace ApkShellext2 {
 
@@ -20,16 +21,17 @@ namespace ApkShellext2 {
 
         public string currentFile = "";
         private bool formLoaded = false;
-        private bool updateChecked = false;
-        private Thread thUpdate;
-        private string version = "";
 
         private void Preferences_Load(object sender, EventArgs e) {
             Utility.Localize();
 
+            Log("Using setting file from: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+
             #region Initialize text
             this.Text = Resources.strPreferencesCaption;
             this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
+            
+            btnOK.Text = Resources.btnOK;
 
             // Tree view on the left
             twLeft.BeginUpdate();
@@ -47,24 +49,34 @@ namespace ApkShellext2 {
             // Dropdown
             if (!formLoaded) {
                 CultureInfo[] culs = Utility.getSupportedLanguages();
-                combLanguage.Text = culs[0].NativeName;
                 foreach (var l in culs) {
                     combLanguage.Items.Add(l.NativeName);
                     if (l.LCID == Thread.CurrentThread.CurrentUICulture.LCID) {
                         combLanguage.Text = l.NativeName;
                     }
                 }
+                if (combLanguage.Text == "")
+                    combLanguage.Text = culs[0].NativeName;
             }
 
             lblLanguage.Text = Resources.strLanguages;
-
+            //lblHelpTranslate.Text;
             lblCurrentVersion.Text = string.Format(Resources.strCurrVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            lblNewVer.Text = Resources.strCheckingNewVersion;
+            if (Utility.NewVersionAvailible()) {
+                lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, Settings.Default.LatestVersion);
+                btnUpdate.Text = Resources.btnUpdate;
+                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconUpdate, 16);
+                toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
+            } else {
+                lblNewVer.Text = Resources.strGotLatest;
+                btnUpdate.Text = Resources.btnGitHub;
+                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconGitHub, 16);
+            }
 
-            btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconGitHub, 16);
-            btnOK.Text = Resources.btnOK;
-            btnUpdate.Text = Resources.btnGitHub;
+            //btnUpdate.Visible = false;
             toolTip1.SetToolTip(btnUpdate, Resources.strGotoProjectSite);
+
+            lblHelpTranslate.Text = Resources.strHelpTranslate;
             #endregion
 
             #region Icon Panel
@@ -75,22 +87,18 @@ namespace ApkShellext2 {
             ckShowIPA.Checked = Settings.Default.ShowIpaIcon;
             ckShowAppxIcon.Text = Resources.strShowAppxIcon;
             ckShowAppxIcon.Checked = Settings.Default.ShowAppxIcon;
+            ckStretchThumbnail.Text = Resources.strStretchThumbnail;
+            ckStretchThumbnail.Checked = Settings.Default.StretchThumbnail;
             #endregion
 
             #region ContextMenu Panel
-            #region Renaming Panel
-            lblRenamePattern.Text = Resources.strRenamePattern;
-            lblRenamePatternVariable.Text = Resources.strFileInfoPatternVariable;
-
-            btnResetRenamePattern.Text = Resources.btnResetPattern;
-            btnResetRenamePattern_Click(this, new EventArgs());
-            
-            #endregion
             ckAlwaysShowStore.Text = Resources.strAlwaysShowGooglePlay;
             toolTip1.SetToolTip(ckAlwaysShowStore, Resources.strAlwaysShowGooglePlayToolTip);
             ckAlwaysShowStore.Checked = Settings.Default.ShowAppStoreWhenMultiSelected;
             ckShowMenuIcon.Checked = Settings.Default.ShowMenuIcon;
             ckShowMenuIcon.Text = Resources.strShowContextMenuIcon;
+            ckShowNewVersionInfo.Checked = Settings.Default.ShowNewVersion;
+            ckShowNewVersionInfo.Text = Resources.strShowNewVerInfo;
             ckShowGoogle.Checked = Settings.Default.ShowGooglePlay;
             ckShowGoogle.Text = Resources.strShowGooglePlay;
             ckShowAM.Checked = Settings.Default.ShowApkMirror;
@@ -105,6 +113,17 @@ namespace ApkShellext2 {
             ckShowAM.Text = Resources.strShowApkMirror;
             #endregion
 
+            #region Renaming Panel
+            lblRenamePattern.Text = Resources.strRenamePattern;
+            llbPatternVariables.Text = Resources.strReferToWiki;
+
+            btnResetRenamePattern.Text = Resources.btnResetPattern;
+            btnResetRenamePattern_Click(this, new EventArgs());
+
+            ckReplaceSpace.Text = Resources.strReplaceSpaceWith_;
+            ckReplaceSpace.Checked = Settings.Default.ReplaceSpace;
+            #endregion
+
             #region ToolTip Panel
             lblInfoTipPattern.Text = Resources.strInfoTipPattern;
             string pattern = Settings.Default.ToolTipPattern;
@@ -114,21 +133,10 @@ namespace ApkShellext2 {
                 txtToolTipPattern.Text = pattern;
             }
             btnResetInfoTipPattern.Text = Resources.btnResetPattern;
-            
-            lblToolTipLegend.Text = Resources.strFileInfoPatternVariable;
+
+            llbInfoTipPattVar.Text = Resources.strReferToWiki;
             #endregion
 
-            #endregion
-
-            #region check update thread
-            if (!updateChecked) {
-                timer1.Interval = 1000;
-                timer1.Enabled = true;
-                thUpdate = new Thread(new ThreadStart(() => { version = Utility.getLatestVersion(); }));
-                thUpdate.CurrentCulture = Thread.CurrentThread.CurrentCulture;
-                thUpdate.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-                thUpdate.Start();
-            }
             #endregion
 
             pnlRight.Visible = true;
@@ -142,46 +150,22 @@ namespace ApkShellext2 {
             pnlIcon.Visible = false;
             pnlRenaming.Visible = false;
             pnlInfoTip.Visible = false;
+            btnResetInfoTipPattern.Visible = false;
+            btnResetRenamePattern.Visible = false;
+            btnUpdate.Visible = false;
         }
 
         private void combLanguage_SelectedIndexChanged(object sender, EventArgs e) {
-            CultureInfo[] supported = Utility.getSupportedLanguages();
-            if (formLoaded && supported[combLanguage.SelectedIndex].LCID != Thread.CurrentThread.CurrentCulture.LCID) {
-                Settings.Default.Language = supported[combLanguage.SelectedIndex].LCID;
+            CultureInfo[] culs = Utility.getSupportedLanguages();
+            CultureInfo cul = culs[combLanguage.SelectedIndex];
+            Settings.Default.Language = cul.LCID;
+            if (formLoaded)
                 this.OnLoad(e);
-            }
         }
 
         private void ckShowIPA_CheckedChanged(object sender, EventArgs e) {
             Settings.Default.ShowIpaIcon = ckShowIPA.Checked;
             Utility.refreshShell();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e) {
-            if (version == "") {
-                lblNewVer.Text = Resources.strCheckingNewVersion;
-                btnUpdate.Text = Resources.btnGitHub;
-            } else {
-                string[] latestV = version.Split(new Char[] { '.' });
-                string[] curV = GetType().Assembly.GetName().Version.ToString().Split(new Char[] { '.' });
-
-                // version number should be always 4 parts
-                for (int i = 0; i < latestV.Length; i++) {
-                    if (latestV[i] != curV[i]) {
-                        if (int.Parse(latestV[i]) > int.Parse(curV[i])) {
-                            lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, version);
-                            btnUpdate.Text = Resources.btnUpdate;
-                            btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconUpdate, 16);
-                            toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
-                        } else {
-                            lblNewVer.Text = Resources.strGotLatest;
-                            btnUpdate.Text = Resources.btnGitHub;
-                        }
-                        timer1.Enabled = false;
-                        return;
-                    }
-                }
-            }
         }
 
         private void ckShowAppxIcon_CheckedChanged(object sender, EventArgs e) {
@@ -211,14 +195,17 @@ namespace ApkShellext2 {
             DisablePenels();
             if (twLeft.SelectedNode.Text == Resources.twGeneral) {
                 pnlGeneral.Visible = true;
+                btnUpdate.Visible = true;
             } else if (twLeft.SelectedNode.Text == Resources.twIcon) {
                 pnlIcon.Visible = true;
             } else if (twLeft.SelectedNode.Text == Resources.twRename) {
                 pnlRenaming.Visible = true;
+                btnResetRenamePattern.Visible = true;
             } else if (twLeft.SelectedNode.Text == Resources.twContextMenu) {
                 pnlContextMenu.Visible = true;
             } else if (twLeft.SelectedNode.Text == Resources.twInfotip) {
                 pnlInfoTip.Visible = true;
+                btnResetInfoTipPattern.Visible = true;
             }
             Settings.Default.LastPanel = twLeft.SelectedNode.Index;
         }
@@ -237,10 +224,6 @@ namespace ApkShellext2 {
 
         private void ckbShowGoogle_CheckedChanged(object sender, EventArgs e) {
             Settings.Default.ShowGooglePlay = ckShowGoogle.Checked;
-        }
-
-        private void pnlToolTip_Paint(object sender, PaintEventArgs e) {
-
         }
 
         private void btnResetTooltipPattern_Click(object sender, EventArgs e) {
@@ -282,5 +265,38 @@ namespace ApkShellext2 {
         private void Preferences_FormClosed(object sender, FormClosedEventArgs e) {
             Settings.Default.Save();
         }
+
+        private void ckReplaceSpace_CheckedChanged(object sender, EventArgs e) {
+            Settings.Default.ReplaceSpace = ckReplaceSpace.Checked;
+        }
+
+        private void llbPatternVariables_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start(Resources.urlPatternVarWiki);
+        }
+
+        private void btnUpdate_Click_1(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGithubHomeWithVersion,Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+        }
+
+        private void llbInfoTipPattVar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start(Resources.urlPatternVarWiki);
+        }
+
+        private void ckStretchIcon_CheckedChanged(object sender, EventArgs e) {
+            Settings.Default.StretchThumbnail = ckStretchThumbnail.Checked;
+        }
+
+        private void lblHelpTranslate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start(Resources.urlTranslate);
+        }
+
+        private void ckEnableThumbnail_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Log(string message) {
+            Utility.Log(this, "", message);
+        }
+
     }
 }
