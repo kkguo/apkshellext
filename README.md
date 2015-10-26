@@ -9,8 +9,8 @@ This is the code repository, please visit the project page http://apkshellext.co
 
 #### Please help this project
  * Translators come here -> http://translate.apkshellext.com 
- * Site page maintenance. Web is not easy for me :(
- * Volunteer for new features. Be prepared for your computer to explode.
+ * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
+ * Volunteer for testing new features. Be prepared for your computer to explode.
 
 #### Contact
 Support:
