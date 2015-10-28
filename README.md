@@ -44,8 +44,8 @@ Pull request is always welcome.
     - Greek (by [sakisds](http://github.com/sakisds/))
     - Hungarian (by [eduardo650498](http://translate.apkshellext.com/profile/eduardo650498))
     - Arabic (by [Nayef_Kanno](http://translate.apkshellext.com/profile/Nayef_Kanno))
-    - Russion (by [goshan1598](http://translate.apkshellext.com/profile/goshan1598))
-    - 
+    - Russian (by [goshan1598](http://translate.apkshellext.com/profile/goshan1598))
+ 
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
