@@ -28,7 +28,7 @@ Pull request is always welcome.
  - [x] Go to app store from context menu.
  - [x] Auto-check new version.
  - [x] Show overlay icon for different type of apps.
- - [x] Support 11+ languages (some are machine translated):
+ - [x] Support 15+ languages (some are machine translated):
     - English
     - Chinese/中文(简体/繁體)
     - Italian (by [Vince. M](https://crowdin.com/profile/Widget))
@@ -46,6 +46,7 @@ Pull request is always welcome.
     - Arabic (by [Nayef_Kanno](http://translate.apkshellext.com/profile/Nayef_Kanno))
     - Russian (by [goshan1598](http://translate.apkshellext.com/profile/goshan1598))
  
+#### [Todo]
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
