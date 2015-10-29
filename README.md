@@ -1,4 +1,4 @@
-# ApkShellext2
+# ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)
 
 A windows shell extensions for mobile app files, supporting 
 * .apk (android package)
@@ -12,14 +12,11 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
  * Volunteer for testing new features. Be prepared for your computer to explode.
 
-#### Contact
-Support:
+#### Say something to this project
  * :email: issue@apkshellext.com
- * [![Telegram](http://telegram.me/favicon.ico)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
-
-Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
-
-Pull request is always welcome.
+ * Join us on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
+ * Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
+ * Pull request is always welcome.
 
 #### [Features]
  - [x] Display app icon in explorer with best resolution.
@@ -51,7 +48,7 @@ Pull request is always welcome.
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
 
-#### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build
+#### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build from source code
 
 #### Credit :
 |||
