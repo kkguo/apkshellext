@@ -389,12 +389,12 @@
     <None Include="Resources\play.png" />
     <None Include="Resources\rename.png" />
     <None Include="Resources\GitHub.png" />
+    <EmbeddedResource Include="Properties\Resources.ar-SA.resx" />
     <EmbeddedResource Include="Properties\Resources.de-DE.resx" />
     <EmbeddedResource Include="Properties\Resources.el-GR.resx" />
     <EmbeddedResource Include="Properties\Resources.fa-IR.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
-    <EmbeddedResource Include="Properties\Resources.hu-HU.resx" />
     <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.ko-KR.resx">
       <SubType>Designer</SubType>
@@ -404,8 +404,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
-    <EmbeddedResource Include="Properties\Resources.sr-SP.resx" />
+    <EmbeddedResource Include="Properties\Resources.tr-TR.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="Resources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <None Include="Resources\Apple.png" />
     <None Include="Resources\Android.png" />
@@ -417,9 +420,9 @@
     <EmbeddedResource Include="Resources\el-GR\ApkShellext2.resources.dll" />
     <None Include="Resources\apkm.png" />
     <None Include="Resources\App-store-icon.png" />
+    <EmbeddedResource Include="Resources\ar-SA\ApkShellext2.resources.dll" />
     <Content Include="Resources\fr-FR\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\he-IL\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\hu-HU\ApkShellext2.resources.dll" />
     <EmbeddedResource Include="Resources\ja-JP\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
     <None Include="Resources\QR-Scan.png" />
@@ -427,6 +430,8 @@
     <EmbeddedResource Include="Resources\ru-RU\ApkShellext2.resources.dll" />
     <None Include="Resources\msft store icon.png" />
     <None Include="Resources\msft store icon1.png" />
+    <None Include="Resources\restart.png" />
+    <EmbeddedResource Include="Resources\tr-TR\ApkShellext2.resources.dll" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
     <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />

@@ -40,6 +40,7 @@
             this.ckShowAppxIcon = new System.Windows.Forms.CheckBox();
             this.ckStretchThumbnail = new System.Windows.Forms.CheckBox();
             this.ckEnableThumbnail = new System.Windows.Forms.CheckBox();
+            this.btnClearCache = new System.Windows.Forms.Button();
             this.pnlGeneral = new System.Windows.Forms.TableLayoutPanel();
             this.lblCurrentVersion = new System.Windows.Forms.Label();
             this.lblNewVer = new System.Windows.Forms.Label();
@@ -117,7 +118,7 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(144, 270);
+            this.pnlLeft.Size = new System.Drawing.Size(144, 429);
             this.pnlLeft.TabIndex = 16;
             // 
             // twLeft
@@ -129,7 +130,7 @@
             this.twLeft.Name = "twLeft";
             this.twLeft.Scrollable = false;
             this.twLeft.ShowPlusMinus = false;
-            this.twLeft.Size = new System.Drawing.Size(138, 214);
+            this.twLeft.Size = new System.Drawing.Size(138, 353);
             this.twLeft.TabIndex = 7;
             this.twLeft.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.twLeft_AfterSelect);
             // 
@@ -161,7 +162,7 @@
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRenaming.Size = new System.Drawing.Size(321, 75);
+            this.pnlRenaming.Size = new System.Drawing.Size(347, 75);
             this.pnlRenaming.TabIndex = 21;
             // 
             // txtRenamePattern
@@ -169,7 +170,7 @@
             this.txtRenamePattern.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRenamePattern.Location = new System.Drawing.Point(3, 16);
             this.txtRenamePattern.Name = "txtRenamePattern";
-            this.txtRenamePattern.Size = new System.Drawing.Size(315, 20);
+            this.txtRenamePattern.Size = new System.Drawing.Size(341, 20);
             this.txtRenamePattern.TabIndex = 15;
             this.txtRenamePattern.Text = "%label%_%versionName%_%versionCode%";
             this.txtRenamePattern.TextChanged += new System.EventHandler(this.txtRename_TextChanged);
@@ -191,7 +192,7 @@
             this.llbPatternVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.llbPatternVariables.Location = new System.Drawing.Point(3, 62);
             this.llbPatternVariables.Name = "llbPatternVariables";
-            this.llbPatternVariables.Size = new System.Drawing.Size(315, 13);
+            this.llbPatternVariables.Size = new System.Drawing.Size(341, 13);
             this.llbPatternVariables.TabIndex = 21;
             this.llbPatternVariables.TabStop = true;
             this.llbPatternVariables.Text = "Refer to wiki";
@@ -200,7 +201,7 @@
             // btnResetRenamePattern
             // 
             this.btnResetRenamePattern.AutoSize = true;
-            this.btnResetRenamePattern.Location = new System.Drawing.Point(53, 3);
+            this.btnResetRenamePattern.Location = new System.Drawing.Point(79, 3);
             this.btnResetRenamePattern.Name = "btnResetRenamePattern";
             this.btnResetRenamePattern.Size = new System.Drawing.Size(119, 23);
             this.btnResetRenamePattern.TabIndex = 17;
@@ -216,8 +217,9 @@
             this.pnlIcon.Controls.Add(this.ckShowIPA, 0, 0);
             this.pnlIcon.Controls.Add(this.ckShowOverlay, 0, 2);
             this.pnlIcon.Controls.Add(this.ckShowAppxIcon, 0, 1);
-            this.pnlIcon.Controls.Add(this.ckStretchThumbnail, 0, 3);
-            this.pnlIcon.Controls.Add(this.ckEnableThumbnail, 0, 5);
+            this.pnlIcon.Controls.Add(this.ckStretchThumbnail, 0, 4);
+            this.pnlIcon.Controls.Add(this.ckEnableThumbnail, 0, 3);
+            this.pnlIcon.Controls.Add(this.btnClearCache, 0, 5);
             this.pnlIcon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlIcon.Location = new System.Drawing.Point(3, 163);
             this.pnlIcon.Name = "pnlIcon";
@@ -227,9 +229,9 @@
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlIcon.Size = new System.Drawing.Size(321, 112);
+            this.pnlIcon.Size = new System.Drawing.Size(347, 144);
             this.pnlIcon.TabIndex = 22;
             // 
             // ckShowIPA
@@ -268,7 +270,7 @@
             // ckStretchThumbnail
             // 
             this.ckStretchThumbnail.AutoSize = true;
-            this.ckStretchThumbnail.Location = new System.Drawing.Point(3, 72);
+            this.ckStretchThumbnail.Location = new System.Drawing.Point(3, 95);
             this.ckStretchThumbnail.Name = "ckStretchThumbnail";
             this.ckStretchThumbnail.Size = new System.Drawing.Size(121, 17);
             this.ckStretchThumbnail.TabIndex = 21;
@@ -279,14 +281,24 @@
             // ckEnableThumbnail
             // 
             this.ckEnableThumbnail.AutoSize = true;
-            this.ckEnableThumbnail.Location = new System.Drawing.Point(3, 95);
+            this.ckEnableThumbnail.Location = new System.Drawing.Point(3, 72);
             this.ckEnableThumbnail.Name = "ckEnableThumbnail";
-            this.ckEnableThumbnail.Size = new System.Drawing.Size(87, 14);
+            this.ckEnableThumbnail.Size = new System.Drawing.Size(120, 17);
             this.ckEnableThumbnail.TabIndex = 22;
-            this.ckEnableThumbnail.Text = "ckThumbnail";
+            this.ckEnableThumbnail.Text = "ckEnableThumbnail";
             this.ckEnableThumbnail.UseVisualStyleBackColor = true;
-            this.ckEnableThumbnail.Visible = false;
             this.ckEnableThumbnail.CheckedChanged += new System.EventHandler(this.ckEnableThumbnail_CheckedChanged);
+            // 
+            // btnClearCache
+            // 
+            this.btnClearCache.AutoSize = true;
+            this.btnClearCache.Location = new System.Drawing.Point(3, 118);
+            this.btnClearCache.Name = "btnClearCache";
+            this.btnClearCache.Size = new System.Drawing.Size(120, 23);
+            this.btnClearCache.TabIndex = 23;
+            this.btnClearCache.Text = "btnClearCache";
+            this.btnClearCache.UseVisualStyleBackColor = true;
+            this.btnClearCache.Click += new System.EventHandler(this.btnClearCache_Click);
             // 
             // pnlGeneral
             // 
@@ -309,7 +321,7 @@
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlGeneral.Size = new System.Drawing.Size(327, 79);
+            this.pnlGeneral.Size = new System.Drawing.Size(353, 79);
             this.pnlGeneral.TabIndex = 21;
             // 
             // lblCurrentVersion
@@ -318,7 +330,7 @@
             this.lblCurrentVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblCurrentVersion.Location = new System.Drawing.Point(3, 66);
             this.lblCurrentVersion.Name = "lblCurrentVersion";
-            this.lblCurrentVersion.Size = new System.Drawing.Size(321, 13);
+            this.lblCurrentVersion.Size = new System.Drawing.Size(347, 13);
             this.lblCurrentVersion.TabIndex = 11;
             this.lblCurrentVersion.Text = "Current version";
             this.lblCurrentVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -329,7 +341,7 @@
             this.lblNewVer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNewVer.Location = new System.Drawing.Point(3, 53);
             this.lblNewVer.Name = "lblNewVer";
-            this.lblNewVer.Size = new System.Drawing.Size(321, 13);
+            this.lblNewVer.Size = new System.Drawing.Size(347, 13);
             this.lblNewVer.TabIndex = 10;
             this.lblNewVer.Text = "About--NewVersion";
             this.lblNewVer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -349,7 +361,7 @@
             this.combLanguage.FormattingEnabled = true;
             this.combLanguage.Location = new System.Drawing.Point(3, 16);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(321, 21);
+            this.combLanguage.Size = new System.Drawing.Size(347, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
@@ -368,7 +380,7 @@
             // 
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(178, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(204, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 25);
             this.btnUpdate.TabIndex = 24;
@@ -425,7 +437,7 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRight.Size = new System.Drawing.Size(324, 270);
+            this.pnlRight.Size = new System.Drawing.Size(353, 429);
             this.pnlRight.TabIndex = 24;
             this.pnlRight.Visible = false;
             // 
@@ -438,16 +450,16 @@
             this.pnlButtons.Controls.Add(this.btnResetInfoTipPattern);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(3, 613);
+            this.pnlButtons.Location = new System.Drawing.Point(3, 645);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(321, 31);
+            this.pnlButtons.Size = new System.Drawing.Size(347, 31);
             this.pnlButtons.TabIndex = 21;
             // 
             // btnOK
             // 
             this.btnOK.AutoSize = true;
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOK.Location = new System.Drawing.Point(251, 3);
+            this.btnOK.Location = new System.Drawing.Point(277, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(67, 25);
             this.btnOK.TabIndex = 0;
@@ -458,7 +470,7 @@
             // btnResetInfoTipPattern
             // 
             this.btnResetInfoTipPattern.AutoSize = true;
-            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(203, 34);
+            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(229, 34);
             this.btnResetInfoTipPattern.Name = "btnResetInfoTipPattern";
             this.btnResetInfoTipPattern.Size = new System.Drawing.Size(115, 23);
             this.btnResetInfoTipPattern.TabIndex = 2;
@@ -481,7 +493,7 @@
             this.pnlContextMenu.Controls.Add(this.ckShowAM, 0, 7);
             this.pnlContextMenu.Controls.Add(this.ckShowNewVersionInfo, 0, 1);
             this.pnlContextMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContextMenu.Location = new System.Drawing.Point(3, 281);
+            this.pnlContextMenu.Location = new System.Drawing.Point(3, 313);
             this.pnlContextMenu.Name = "pnlContextMenu";
             this.pnlContextMenu.RowCount = 9;
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -493,7 +505,7 @@
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlContextMenu.Size = new System.Drawing.Size(321, 204);
+            this.pnlContextMenu.Size = new System.Drawing.Size(347, 204);
             this.pnlContextMenu.TabIndex = 24;
             // 
             // ckShowGoogle
@@ -572,7 +584,7 @@
             this.pnlInfoTip.Controls.Add(this.txtToolTipPattern, 0, 1);
             this.pnlInfoTip.Controls.Add(this.llbInfoTipPattVar, 0, 7);
             this.pnlInfoTip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInfoTip.Location = new System.Drawing.Point(3, 491);
+            this.pnlInfoTip.Location = new System.Drawing.Point(3, 523);
             this.pnlInfoTip.Name = "pnlInfoTip";
             this.pnlInfoTip.RowCount = 8;
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -583,7 +595,7 @@
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlInfoTip.Size = new System.Drawing.Size(321, 116);
+            this.pnlInfoTip.Size = new System.Drawing.Size(347, 116);
             this.pnlInfoTip.TabIndex = 25;
             // 
             // lblInfoTipPattern
@@ -601,7 +613,7 @@
             this.txtToolTipPattern.Location = new System.Drawing.Point(3, 16);
             this.txtToolTipPattern.Multiline = true;
             this.txtToolTipPattern.Name = "txtToolTipPattern";
-            this.txtToolTipPattern.Size = new System.Drawing.Size(315, 84);
+            this.txtToolTipPattern.Size = new System.Drawing.Size(341, 84);
             this.txtToolTipPattern.TabIndex = 1;
             this.txtToolTipPattern.TextChanged += new System.EventHandler(this.txtToolTipPattern_TextChanged);
             // 
@@ -611,7 +623,7 @@
             this.llbInfoTipPattVar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.llbInfoTipPattVar.Location = new System.Drawing.Point(3, 103);
             this.llbInfoTipPattVar.Name = "llbInfoTipPattVar";
-            this.llbInfoTipPattVar.Size = new System.Drawing.Size(315, 13);
+            this.llbInfoTipPattVar.Size = new System.Drawing.Size(341, 13);
             this.llbInfoTipPattVar.TabIndex = 3;
             this.llbInfoTipPattVar.TabStop = true;
             this.llbInfoTipPattVar.Text = "refer to wiki";
@@ -630,7 +642,7 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(480, 276);
+            this.pnlMain.Size = new System.Drawing.Size(509, 435);
             this.pnlMain.TabIndex = 25;
             // 
             // Preferences
@@ -639,7 +651,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(480, 276);
+            this.ClientSize = new System.Drawing.Size(509, 435);
             this.Controls.Add(this.pnlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Preferences";
@@ -716,5 +728,6 @@
         private System.Windows.Forms.CheckBox ckStretchThumbnail;
         private System.Windows.Forms.LinkLabel lblHelpTranslate;
         private System.Windows.Forms.CheckBox ckEnableThumbnail;
+        private System.Windows.Forms.Button btnClearCache;
     }
 }

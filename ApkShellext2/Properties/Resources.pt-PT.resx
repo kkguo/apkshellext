@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,37 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnOK" xml:space="preserve">
     <value>Razoável</value>
   </data>
@@ -244,13 +213,6 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Mostrar um ícone de sobreposição para tipo de arquivo</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Mostrar o ícone de menu de contexto</value>
   </data>
@@ -269,7 +231,6 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strRenamePattern" xml:space="preserve">
     <value>Renomear padrão: (sem extensão)</value>
   </data>
-  
   <data name="twContextMenu" xml:space="preserve">
     <value>Menu de contexto</value>
   </data>
@@ -288,7 +249,6 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Verificar {0} em ApkMirror.com</value>
   </data>
-  
   <data name="btnResetPattern" xml:space="preserve">
     <value>Use o último padrão salvo</value>
   </data>
@@ -307,29 +267,8 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strShowMSStore" xml:space="preserve">
     <value>Mostrar o link de Microsoft Store (para appx/appxbundle) no menu de contexto</value>
   </data>
-  
   <data name="strInfoTipPattern" xml:space="preserve">
     <value>Padrão de ponta de informação:</value>
-  </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="varAppid" xml:space="preserve">
-    <value>%AppID%</value>
   </data>
   <data name="btnBrowse" xml:space="preserve">
     <value>Procurar</value>
@@ -343,18 +282,28 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>Substitua o espaço _</value>
   </data>
-  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Lembrar a nova versão no Menu de contexto se availible</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
     <value>Miniatura</value>
   </data>
-  <data name="strStretchIcon" xml:space="preserve">
-    <value>Ícone de estiramento quando Windows solicitando tamanho maior</value>
+  <data name="strStretchThumbnail" xml:space="preserve">
+    <value>Estiramento em miniatura se Windows solicitando tamanho maior</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Ajude a traduzir este projeto.</value>
   </data>
-  
+  <data name="strClearCache" xml:space="preserve">
+    <value>Cache de ícone clara e miniatura</value>
+  </data>
+  <data name="dialogClearCache" xml:space="preserve">
+    <value>Aberto todos os File Explorer será fechado, continuar?</value>
+  </data>
+  <data name="strEnableThumbnail" xml:space="preserve">
+    <value>Exibir a miniatura em vez de ícone.</value>
+  </data>
+  <data name="dialogNeedClearCache" xml:space="preserve">
+    <value>Para exibir o ícone e miniatura corretamente, o cache precisa ser limpo, limpá-la agora?</value>
+  </data>
 </root>

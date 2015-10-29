@@ -274,5 +274,17 @@ namespace ApkShellext2.Properties {
                 this["StretchThumbnail"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableThumbnail {
+            get {
+                return ((bool)(this["EnableThumbnail"]));
+            }
+            set {
+                this["EnableThumbnail"] = value;
+            }
+        }
     }
 }

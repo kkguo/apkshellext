@@ -151,6 +151,33 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe 的本地化字符串。
+        /// </summary>
+        internal static string cmdClearCache {
+            get {
+                return ResourceManager.GetString("cmdClearCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 All open File Explorer will be closed, Continue? 的本地化字符串。
+        /// </summary>
+        internal static string dialogClearCache {
+            get {
+                return ResourceManager.GetString("dialogClearCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 In order to display icon and thumbnail correctly, the cache need to be cleared, clear it now? 的本地化字符串。
+        /// </summary>
+        internal static string dialogNeedClearCache {
+            get {
+                return ResourceManager.GetString("dialogNeedClearCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap iconAmazonStore {
@@ -399,11 +426,29 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   查找类似 Clear Icon and Thumbnail cache 的本地化字符串。
+        /// </summary>
+        internal static string strClearCache {
+            get {
+                return ResourceManager.GetString("strClearCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Current Version: {0} 的本地化字符串。
         /// </summary>
         internal static string strCurrVersion {
             get {
                 return ResourceManager.GetString("strCurrVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Display Thumbnail instead of Icon. 的本地化字符串。
+        /// </summary>
+        internal static string strEnableThumbnail {
+            get {
+                return ResourceManager.GetString("strEnableThumbnail", resourceCulture);
             }
         }
         
@@ -564,7 +609,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Amazon app store link in the context menu 的本地化字符串。
+        ///   查找类似 Display Amazon app store link in the context menu 的本地化字符串。
         /// </summary>
         internal static string strShowAmazonStore {
             get {
@@ -573,7 +618,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show ApkMirror link in the context menu 的本地化字符串。
+        ///   查找类似 Display ApkMirror link in the context menu 的本地化字符串。
         /// </summary>
         internal static string strShowApkMirror {
             get {
@@ -582,7 +627,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Apple Store link (for ipa) in the context menu 的本地化字符串。
+        ///   查找类似 Display Apple Store link (for ipa) in the context menu 的本地化字符串。
         /// </summary>
         internal static string strShowAppleStore {
             get {
@@ -591,7 +636,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show WindowsPhone app (appx, appxbundle) icon. 的本地化字符串。
+        ///   查找类似 Display WindowsPhone app (appx, appxbundle) icon. 的本地化字符串。
         /// </summary>
         internal static string strShowAppxIcon {
             get {
@@ -600,7 +645,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show icon for context menu 的本地化字符串。
+        ///   查找类似 Display icon for context menu 的本地化字符串。
         /// </summary>
         internal static string strShowContextMenuIcon {
             get {
@@ -609,7 +654,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Google play link in the context menu 的本地化字符串。
+        ///   查找类似 Show Google play link 的本地化字符串。
         /// </summary>
         internal static string strShowGooglePlay {
             get {
@@ -618,7 +663,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show iOS app (ipa) icon. 的本地化字符串。
+        ///   查找类似 Display iOS app (ipa) icon. 的本地化字符串。
         /// </summary>
         internal static string strShowIpaIcon {
             get {
@@ -627,7 +672,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Microsoft Store link (for appx/appxbundle) in the context menu 的本地化字符串。
+        ///   查找类似 Show Microsoft Store link (for appx/appxbundle) 的本地化字符串。
         /// </summary>
         internal static string strShowMSStore {
             get {
@@ -636,7 +681,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Remind new version in Context Menu if availible 的本地化字符串。
+        ///   查找类似 Remind new version 的本地化字符串。
         /// </summary>
         internal static string strShowNewVerInfo {
             get {
@@ -645,7 +690,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show Overlay Icon 的本地化字符串。
+        ///   查找类似 Display Overlay Icon for different OS 的本地化字符串。
         /// </summary>
         internal static string strShowOverlayIcon {
             get {
@@ -654,7 +699,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Show an overlay icon for file type 的本地化字符串。
+        ///   查找类似 Display overlay icon for different OS 的本地化字符串。
         /// </summary>
         internal static string strShowOverlayIconToolTip {
             get {

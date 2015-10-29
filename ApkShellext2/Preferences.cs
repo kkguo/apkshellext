@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ApkShellext2.Properties;
 using System.Globalization;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace ApkShellext2 {
 
@@ -21,6 +22,7 @@ namespace ApkShellext2 {
 
         public string currentFile = "";
         private bool formLoaded = false;
+        private bool needClearThumbnailCache = false;
 
         private void Preferences_Load(object sender, EventArgs e) {
             Utility.Localize();
@@ -89,6 +91,9 @@ namespace ApkShellext2 {
             ckShowAppxIcon.Checked = Settings.Default.ShowAppxIcon;
             ckStretchThumbnail.Text = Resources.strStretchThumbnail;
             ckStretchThumbnail.Checked = Settings.Default.StretchThumbnail;
+            ckEnableThumbnail.Text = Resources.strEnableThumbnail;
+            ckEnableThumbnail.Checked = Settings.Default.EnableThumbnail;
+            btnClearCache.Text = Resources.strClearCache;
             #endregion
 
             #region ContextMenu Panel
@@ -176,7 +181,12 @@ namespace ApkShellext2 {
 
         private void ckShowOverlay_CheckedChanged(object sender, EventArgs e) {
             Settings.Default.ShowOverLayIcon = ckShowOverlay.Checked;
-            SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+            Utility.setRegistrySetting(Utility.keyShowOverlay, ckShowOverlay.Checked ? 1 : 0);
+            if (formLoaded) {
+                SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
+                if (Settings.Default.EnableThumbnail)
+                    needClearThumbnailCache = true;
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
@@ -252,18 +262,25 @@ namespace ApkShellext2 {
 
         private bool RenamePatternIsDirty = false;
         private void txtRename_TextChanged(object sender, EventArgs e) {
-            if (formLoaded)
-                RenamePatternIsDirty = true;
+                RenamePatternIsDirty = formLoaded;
         }
 
         private bool ToolTipPatternIsDirty = false;
         private void txtToolTipPattern_TextChanged(object sender, EventArgs e) {
-            if (formLoaded)
-                ToolTipPatternIsDirty = true;
+                ToolTipPatternIsDirty = formLoaded;
         }
 
         private void Preferences_FormClosed(object sender, FormClosedEventArgs e) {
             Settings.Default.Save();
+            if (needClearThumbnailCache) {
+                if (System.Windows.Forms.MessageBox.Show(
+                    Resources.dialogNeedClearCache,
+                    Resources.strClearCache,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation) == DialogResult.Yes) {
+                        btnClearCache_Click(sender, new EventArgs());
+                }
+            }
         }
 
         private void ckReplaceSpace_CheckedChanged(object sender, EventArgs e) {
@@ -284,6 +301,8 @@ namespace ApkShellext2 {
 
         private void ckStretchIcon_CheckedChanged(object sender, EventArgs e) {
             Settings.Default.StretchThumbnail = ckStretchThumbnail.Checked;
+            Utility.setRegistrySetting(Utility.keyStretchThumbnail, ckStretchThumbnail.Checked ? 1 : 0);
+            needClearThumbnailCache = formLoaded;
         }
 
         private void lblHelpTranslate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -291,12 +310,29 @@ namespace ApkShellext2 {
         }
 
         private void ckEnableThumbnail_CheckedChanged(object sender, EventArgs e) {
-
+            Settings.Default.EnableThumbnail = ckEnableThumbnail.Checked;
+            Utility.setRegistrySetting(Utility.keyEnableThumbnail, ckEnableThumbnail.Checked ? 1 : 0);
+            needClearThumbnailCache = formLoaded;
         }
 
         private void Log(string message) {
             Utility.Log(this, "", message);
         }
 
+        private void btnClearCache_Click(object sender, EventArgs e) {
+            if (System.Windows.Forms.MessageBox.Show(
+                    Resources.dialogClearCache,
+                    Resources.strClearCache,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation) == DialogResult.Yes) {
+                Process process = new Process();
+                string path = Path.GetTempPath() + "\\clearcache.bat";
+                File.WriteAllText(path, Resources.cmdClearCache);
+                process.StartInfo.FileName = path;
+                process.StartInfo.UseShellExecute = true;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.Start();
+            }
+        }
     }
 }

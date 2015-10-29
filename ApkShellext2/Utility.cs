@@ -66,17 +66,19 @@ namespace ApkShellext2 {
         public const string keyShowMenuIcon = @"ShowMenuIcon";
         public const string keyRenamePattern = @"RenamePattern";
         public const string keyToolTipPattern = @"ToolTipPattern";
+        public const string keyEnableThumbnail = @"EnableThumbnail";
+        public const string keyStretchThumbnail = @"StretchThumbnail";
 
-        //public static void setRegistrySetting(string key, int value) {
-        //    try {
-        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-        //        using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
-        //            k.SetValue(key, value);
-        //        }
-        //    } catch (Exception ex) {
-        //        Logging.Log("Error happens during write settings :" + ex.Message);
-        //    }
-        //}
+        public static void setRegistrySetting(string key, int value) {
+            try {
+                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+                using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
+                    k.SetValue(key, value);
+                }
+            } catch (Exception ex) {
+                Logging.Log("Error happens during write settings :" + ex.Message);
+            }
+        }
 
         //public static void setRegistrySettingString(string key, string value) {
         //    try {

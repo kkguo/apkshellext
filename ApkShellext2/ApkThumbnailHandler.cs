@@ -11,6 +11,7 @@ using SharpShell.ServerRegistration;
 using System.IO;
 using ApkShellext2.Properties;
 using ApkQuickReader;
+using System.Configuration;
 
 namespace ApkShellext2 {
     [Guid("d747c5a7-2f66-4b7d-8301-8531838e4ed3")]
@@ -21,6 +22,15 @@ namespace ApkShellext2 {
         protected override Bitmap GetThumbnailImage(uint width) {
             Bitmap m_icon = null;
 
+            Log("Thumbnail is using setting file from: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+
+            //if (!Settings.Default.EnableThumbnail) {
+            //    return null;
+            //}
+            if (Utility.getRegistrySetting(Utility.keyEnableThumbnail) == 0) {
+                return null;
+            }
+
             try {
                 int outputSize = (int) width;
                 using (AppPackageReader reader = new ApkReader(SelectedItemStream)) {
@@ -30,18 +40,22 @@ namespace ApkShellext2 {
 
                 if (m_icon == null)
                     throw new Exception("Cannot find Icon from Stream, draw default");
-                if (m_icon.Height < outputSize && !Settings.Default.StretchThumbnail)
+                if (m_icon.Height < outputSize &&
+                    //!Settings.Default.StretchThumbnail)
+                    (Utility.getRegistrySetting(Utility.keyStretchThumbnail, 1) ==0))
                     outputSize = m_icon.Height;
 
                 Log("Got icon, resizing...");
-                if (Settings.Default.ShowOverLayIcon) {
+                //if (Settings.Default.ShowOverLayIcon) {
+                if (Utility.getRegistrySetting(Utility.keyShowOverlay)==1) {
+                    Log("Draw overlay");
                     m_icon = Utility.CombineBitmap(m_icon,
                            Utility.AppTypeIcon(AppPackageReader.AppType.AndroidApp),
-                           new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
-                           new Rectangle(0, (int)m_icon.Height / 2, (int)m_icon.Width / 2, (int)m_icon.Height / 2),
-                           new Size((int)outputSize, (int)outputSize ));
+                           new Rectangle(0, 0, outputSize , outputSize),
+                           new Rectangle(0, (int)outputSize / 2, (int)outputSize / 2, (int)outputSize / 2),
+                           new Size(outputSize, outputSize));
                 } else {
-                    m_icon = Utility.ResizeBitmap(m_icon, (int)outputSize - 1);
+                    m_icon = Utility.ResizeBitmap(m_icon, outputSize);
                 }
 #if DEBUG
                 string p = Path.GetTempFileName();

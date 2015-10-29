@@ -19,6 +19,7 @@ using System.Net;
 using System.Web;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -335,7 +336,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
+                    Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
                 }
             }
         }
@@ -344,7 +345,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAmazonAppStore, package));
+                    Process.Start(string.Format(Properties.Resources.urlAmazonAppStore, package));
                 }
             }
         }
@@ -353,7 +354,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlApkMirror, reader.Publisher, package));
+                    Process.Start(string.Format(Properties.Resources.urlApkMirror, reader.Publisher, package));
                 }
             }
         }
@@ -363,7 +364,7 @@ namespace ApkShellext2 {
                 if (p.EndsWith(AppPackageReader.extIPA)) {
                     using (IpaReader reader = AppPackageReader.Read(p) as IpaReader) {
                         try {
-                            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlAppleStore, reader.AppID));
+                            Process.Start(string.Format(Properties.Resources.urlAppleStore, reader.AppID));
                         } catch (Exception ex) {
                             Log(Path.GetFileName(p) + ex.Message + Environment.NewLine + "Cannot get appid.");
                         }
@@ -378,7 +379,7 @@ namespace ApkShellext2 {
                     using (AppPackageReader reader = AppPackageReader.Read(p)) {
                         string package = reader.PackageName;
                         CultureInfo ci = System.Threading.Thread.CurrentThread.CurrentCulture;
-                        System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlMicrosoftStore,reader.AppID));
+                        Process.Start(string.Format(Properties.Resources.urlMicrosoftStore,reader.AppID));
                     }
                 }
             }
