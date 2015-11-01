@@ -8,7 +8,7 @@ A windows shell extensions for mobile app files, supporting
 This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
 
 #### Please help this project
- * Translators come here -> http://translate.apkshellext.com 
+ * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate)
  * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
  * Volunteer for testing new features. Be prepared for your computer to explode.
 
