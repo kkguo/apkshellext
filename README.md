@@ -10,7 +10,7 @@ This is the code repository, please visit the project page http://apkshellext.co
 #### Please help this project
  * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate)
  * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
- * Volunteer for testing new features. Be prepared for your computer to explode.
+ * Beta testers are always needed. Be prepared for your computer to explode.
 
 #### Say something to this project
  * :email: issue@apkshellext.com
