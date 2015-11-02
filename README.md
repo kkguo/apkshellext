@@ -1,6 +1,6 @@
 # ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)
 
-A windows shell extensions for mobile app files, supporting 
+A Windows shell extension for mobile app files supporting 
 * .apk (android package)
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
