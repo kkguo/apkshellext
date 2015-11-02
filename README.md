@@ -1,4 +1,5 @@
-# ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)
+# ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)  
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.svg)](http://translate.apkshellext.com/project/apkshellext)
 
 A Windows shell extension for mobile app files supporting 
 * .apk (android package)
@@ -8,8 +9,9 @@ A Windows shell extension for mobile app files supporting
 This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
 
 #### Please help this project
- * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate)
- * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
+
+ * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
+ * Project page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
  * Beta testers are always needed. Be prepared for your computer to explode.
 
 #### Say something to this project
