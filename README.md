@@ -1,6 +1,7 @@
-# ApkShellext2
+# ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)  
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.svg)](http://translate.apkshellext.com/project/apkshellext)
 
-A windows shell extensions for mobile app files, supporting 
+A Windows shell extension for mobile app files supporting 
 * .apk (android package)
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
@@ -8,18 +9,16 @@ A windows shell extensions for mobile app files, supporting
 This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
 
 #### Please help this project
- * Translators come here -> http://translate.apkshellext.com 
- * Front page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
- * Volunteer for testing new features. Be prepared for your computer to explode.
 
-#### Contact
-Support:
+ * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
+ * Project page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
+ * Beta testers are always needed. Be prepared for your computer to explode.
+
+#### Say something to this project
  * :email: issue@apkshellext.com
- * [![Telegram](http://telegram.me/favicon.ico)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
-
-Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
-
-Pull request is always welcome.
+ * Join us on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
+ * Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
+ * Pull request is always welcome.
 
 #### [Features]
  - [x] Display app icon in explorer with best resolution.
@@ -51,7 +50,7 @@ Pull request is always welcome.
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
 
-#### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build
+#### Check [Wiki](https://github.com/kkguo/apkshellext/wiki) for how to build from source code
 
 #### Credit :
 |||
