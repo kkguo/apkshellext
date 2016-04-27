@@ -158,7 +158,7 @@
     <value>Update</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Go to project site to update</value>
+    <value>Check the project site for update</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
     <value>RenamePattern</value>
@@ -311,19 +311,19 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>Use Last Saved Pattern</value>
   </data>
   <data name="strShowAmazonStore" xml:space="preserve">
-    <value>Display Amazon app store link in the context menu</value>
+    <value>Show menu to Amazon App Store</value>
   </data>
   <data name="strShowApkMirror" xml:space="preserve">
-    <value>Display ApkMirror link in the context menu</value>
+    <value>Show menu to ApkMirror</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>Display Apple Store link (for ipa) in the context menu</value>
+    <value>Show menu to Apple App Store (for ipa)</value>
   </data>
   <data name="strShowGooglePlay" xml:space="preserve">
-    <value>Show Google play link</value>
+    <value>Show menu to Google play</value>
   </data>
   <data name="strShowMSStore" xml:space="preserve">
-    <value>Show Microsoft Store link (for appx/appxbundle)</value>
+    <value>Show menu to Microsoft Store (for appx/appxbundle)</value>
   </data>
   <data name="strInfoTipDefault" xml:space="preserve">
     <value>%AppName%
@@ -385,7 +385,7 @@ Version: %Version% %Revision%</value>
     <value>https://github.com/kkguo/apkshellext/wiki/Package-information-Pattern-variables</value>
   </data>
   <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>Remind new version</value>
+    <value>Notice me when new version is availible</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
     <value>Thumbnail</value>
@@ -413,5 +413,8 @@ Version: %Version% %Revision%</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>In order to display icon and thumbnail correctly, the cache need to be cleared, clear it now?</value>
+  </data>
+  <data name="varDebuggable" xml:space="preserve">
+    <value>%Debuggable%</value>
   </data>
 </root>

@@ -1024,6 +1024,17 @@ namespace ApkQuickReader {
 	    zAdjustment = 16843201, // 0x10101c1
     }
 
+    enum Density : uint {
+        Density120 = 36,
+        Density160 = 48,
+        Density240 = 72,
+        Density320 = 96,
+        Density480 = 144,
+        Density640 = 192
+    }
+    enum ConfigBytesPos : uint {
+        Density = 10
+    }
     public class ApkReader : AppPackageReader {
         private ZipFile zip;
         private byte[] resources;
@@ -1039,9 +1050,8 @@ namespace ApkQuickReader {
         private const string AttrIcon = @"icon";
         private const string AttrPackage = @"package";
         //private const string AttrName = @"name";
-        private const int ConfigurationDensityPosition = 10;
-
-        private byte[] use_config = null;
+        private const string AttrDebuggable = @"debuggable";
+        private const string ConstTrue = "true";
 
         /// <summary>
         /// extract the manifext
@@ -1074,13 +1084,11 @@ namespace ApkQuickReader {
                 return AppType.AndroidApp;
             }
         }
-
         public override string AppName {
             get {
                 return getAttribute(TagApplication, AttrLabel);
             }
         }
-
         public override string Version {
             get {
                 return getAttribute(TagManifest, AttrVersionName);
@@ -1091,7 +1099,6 @@ namespace ApkQuickReader {
                 return getAttribute(TagManifest, AttrVersionCode);
             }
         }
-
         public override string Publisher {
             get {
                 string[] names = PackageName.Split(new char[] {'.'});
@@ -1099,16 +1106,19 @@ namespace ApkQuickReader {
                 return string.Join(".", Slice);
             }
         }
-
         public override Bitmap Icon {
             get {
                 return getImage(TagApplication, AttrIcon);
             }
         }
-
         public override string PackageName {
             get {
                 return getAttribute(TagManifest, AttrPackage);
+            }
+        }
+        public bool Debuggable {
+            get {
+                return getAttribute(TagApplication, AttrDebuggable) == ConstTrue;
             }
         }
 
@@ -1119,7 +1129,7 @@ namespace ApkQuickReader {
         /// <param name="attr"></param>
         /// <returns></returns>
         public string getAttribute(string tag, string attr) {
-            return QuickSearchManifestXml(tag, attr);
+            return (string)QuickSearchManifestXml(tag, attr).defaultValue;
         }
 
         /// <summary>
@@ -1128,39 +1138,34 @@ namespace ApkQuickReader {
         /// <param name="tag"></param>
         /// <param name="attr"></param>
         /// <returns></returns>
-        public Bitmap getImage(string tag, string attr) {
-            // get the biggest density config
-            List<byte[]> configs = getResourceConfigs();
-            int bestDesityIndex = 0;
-            int bestDensity = configs[0][ConfigurationDensityPosition] + configs[0][ConfigurationDensityPosition + 1] * 256;
-            for (int i = 1; i < configs.Count; i++) {
-                int density = configs[i][ConfigurationDensityPosition] + configs[i][ConfigurationDensityPosition + 1] * 256;
-                if (density > bestDensity) {
-                    bestDesityIndex = i;
-                    bestDensity = density;
+        public Bitmap getImage(string tag, string attr) {         
+            ApkResource res = QuickSearchManifestXml(tag, attr);
+            if (res == null || res.Count == 0) {
+                Log("Cannot find image for <" + tag + ">.<" + attr + ">");
+                throw new Exception("Cannot find image for <" + tag + ">.<" + attr + ">");
+            }
+            string path;
+            // find the best image
+            int bestImageIndex = 0;
+            if (res.Count > 1) {
+                int bestDensity = 0;
+                for (int i = 0; i < res.Count; i++) {
+                    if (res.configs[i].Length >= (int)ConfigBytesPos.Density
+                        && res.configs[i][(int)ConfigBytesPos.Density + 1] * 256 + 
+                           res.configs[i][(int)ConfigBytesPos.Density] > bestDensity) {
+                    }
+                    bestImageIndex = i;
                 }
             }
-            use_config = configs[bestDesityIndex];
-            ZipEntry en = zip.GetEntry(QuickSearchManifestXml(tag, attr));
-            use_config = null;
-            if (en != null) {
-                try {
-                    return (Bitmap)Bitmap.FromStream(zip.GetInputStream(en));
-                } catch {
-                    return null;
-                }
-            } else {
+            path = (string)res.values[bestImageIndex];
+
+            Log("Get Image path : " + path);
+            try {
+                return (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.GetEntry(path)));
+            } catch (Exception ex) {
+                Log("Error happens during extracting image, " + ex.Message);
                 return null;
             }
-        }
-
-        private uint imageSize;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="size"></param>
-        public void setImageSize(uint size) {
-            imageSize = size;
         }
 
         /// <summary>
@@ -1169,7 +1174,7 @@ namespace ApkQuickReader {
         /// <param name="tag"></param>
         /// <param name="attribute"></param>
         /// <returns></returns>
-        private string QuickSearchManifestXml(string tag, string attribute) {
+        private ApkResource QuickSearchManifestXml(string tag, string attribute) {
             using (MemoryStream ms = new MemoryStream(manifest))
             using (BinaryReader br = new BinaryReader(ms)) {
                 ms.Seek(8, SeekOrigin.Begin); // skip header
@@ -1185,6 +1190,7 @@ namespace ApkQuickReader {
                 ms.Seek(4, SeekOrigin.Current);
                 ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // skip StartNamespaceChunk
 
+                ApkResource result = new ApkResource(0);  
                 // XML_START_ELEMENT CHUNK
                 while (true) {
                     long chunkPos = ms.Position;
@@ -1203,11 +1209,11 @@ namespace ApkQuickReader {
                     }
                     int attributeStart = br.ReadInt16();
                     int attributeSize = br.ReadInt16();
-                    int attributeCount = br.ReadInt16();
+                    int attributeCount = br.ReadInt16();  
                     for (int i = 0; i < attributeSize; i++) {
                         int offset = headerSize + attributeStart + attributeSize * i + 4;
                         if (offset >= chunkSize) { // Error: comes to out of chunk
-                            return null;
+                            return new ApkResource(0);
                         }
                         ms.Seek(chunkPos + offset, SeekOrigin.Begin); // ignore the ns                            
                         uint ind = br.ReadUInt32();
@@ -1219,15 +1225,17 @@ namespace ApkQuickReader {
                             byte dataType = br.ReadByte();
                             uint data = br.ReadUInt32();
                             if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
-                                return QuickSearchManifestStringPool(data);
+                                result.defaultValue = QuickSearchManifestStringPool(data);
+                                return result;
                             } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
-                                return QuickSearchResource((UInt32)data,use_config);
+                                return QuickSearchResource((UInt32)data);
                             } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
-                                return data.ToString();
+                                result.defaultValue = data.ToString(); 
                             }
+                            return result;
                         }
                     }
-                    return null;
+                    return null ;
                 }
             }
 
@@ -1247,7 +1255,6 @@ namespace ApkQuickReader {
                 ms.Seek(headerSize, SeekOrigin.Begin);
                 return QuickSearchStringPool(ms, stringID);
             }
-
         }
 
         private string QuickSearchManifestResMap(uint stringID) {
@@ -1279,7 +1286,6 @@ namespace ApkQuickReader {
                 ms.Seek(headerSize, SeekOrigin.Begin);
                 return QuickSearchStringPool(ms, stringID);
             }
-
         }
 
         /// <summary>
@@ -1361,68 +1367,68 @@ namespace ApkQuickReader {
         /// get all configuations
         /// </summary>
         /// <returns>list of configurations</returns>
-        private List<byte[]> getResourceConfigs() {
-            List<byte[]> result = new List<byte[]>();
+        //private List<byte[]> getResourceConfigs() {
+        //    List<byte[]> result = new List<byte[]>();
 
-            using (MemoryStream ms = new MemoryStream(resources))
-            using (BinaryReader br = new BinaryReader(ms)) {
-                ms.Seek(8, SeekOrigin.Begin); // jump type/headersize/chunksize
-                int packageCount = br.ReadInt32();
-                // comes to stringpool chunk, skipit
-                long stringPoolPos = ms.Position;
-                ms.Seek(4, SeekOrigin.Current);
-                int stringPoolSize = br.ReadInt32();
-                ms.Seek(stringPoolSize - 8, SeekOrigin.Current); // jump to the end
+        //    using (MemoryStream ms = new MemoryStream(resources))
+        //    using (BinaryReader br = new BinaryReader(ms)) {
+        //        ms.Seek(8, SeekOrigin.Begin); // jump type/headersize/chunksize
+        //        int packageCount = br.ReadInt32();
+        //        // comes to stringpool chunk, skipit
+        //        long stringPoolPos = ms.Position;
+        //        ms.Seek(4, SeekOrigin.Current);
+        //        int stringPoolSize = br.ReadInt32();
+        //        ms.Seek(stringPoolSize - 8, SeekOrigin.Current); // jump to the end
 
-                //Package chunk now
-                for (int pack = 0; pack < packageCount; pack++) {
-                    long PackChunkPos = ms.Position;
-                    ms.Seek(2, SeekOrigin.Current); // jump type/headersize
-                    int headerSize = br.ReadInt16();
-                    int PackChunkSize = br.ReadInt32();
-                    int packID = br.ReadInt32();
+        //        //Package chunk now
+        //        for (int pack = 0; pack < packageCount; pack++) {
+        //            long PackChunkPos = ms.Position;
+        //            ms.Seek(2, SeekOrigin.Current); // jump type/headersize
+        //            int headerSize = br.ReadInt16();
+        //            int PackChunkSize = br.ReadInt32();
+        //            int packID = br.ReadInt32();
 
-                    ms.Seek(PackChunkPos + headerSize, SeekOrigin.Begin);
+        //            ms.Seek(PackChunkPos + headerSize, SeekOrigin.Begin);
 
-                    // skip typestring chunk
-                    ms.Seek(4, SeekOrigin.Current);
-                    ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
-                    // skip keystring chunk
-                    ms.Seek(4, SeekOrigin.Current);
-                    ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
+        //            // skip typestring chunk
+        //            ms.Seek(4, SeekOrigin.Current);
+        //            ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
+        //            // skip keystring chunk
+        //            ms.Seek(4, SeekOrigin.Current);
+        //            ms.Seek(br.ReadInt32() - 8, SeekOrigin.Current); // jump to the end
 
-                    do {
-                        long chunkPos = ms.Position;
-                        short chunkType = br.ReadInt16();
-                        headerSize = br.ReadInt16();
-                        int chunkSize = br.ReadInt32();
-                        if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_TYPE) {
-                            ms.Seek(4 + 4 + 4, SeekOrigin.Current); // skip typeid ,0, entrycount, entrystart
+        //            do {
+        //                long chunkPos = ms.Position;
+        //                short chunkType = br.ReadInt16();
+        //                headerSize = br.ReadInt16();
+        //                int chunkSize = br.ReadInt32();
+        //                if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_TYPE) {
+        //                    ms.Seek(4 + 4 + 4, SeekOrigin.Current); // skip typeid ,0, entrycount, entrystart
 
-                            // read the config section
-                            int config_size = br.ReadInt32();
-                            byte[] config = br.ReadBytes(config_size - 4);
-                            bool match = false;
-                            foreach (byte[] conf in result) {
-                                match = true;
-                                for (int i = 0; i < conf.Length; i++) {
-                                    if (conf[i] != config[i]) {
-                                        match = false;
-                                        break;
-                                    }
-                                }
-                                if (match)
-                                    break;
-                            };
-                            if (match == false)
-                                result.Add(config);
-                        }
-                        ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip this chunk
-                    } while (ms.Position < PackChunkPos + PackChunkSize);
-                }
-            }
-            return result;
-        }
+        //                    // read the config section
+        //                    int config_size = br.ReadInt32();
+        //                    byte[] config = br.ReadBytes(config_size - 4);
+        //                    bool match = false;
+        //                    foreach (byte[] conf in result) {
+        //                        match = true;
+        //                        for (int i = 0; i < conf.Length; i++) {
+        //                            if (conf[i] != config[i]) {
+        //                                match = false;
+        //                                break;
+        //                            }
+        //                        }
+        //                        if (match)
+        //                            break;
+        //                    };
+        //                    if (match == false)
+        //                        result.Add(config);
+        //                }
+        //                ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip this chunk
+        //            } while (ms.Position < PackChunkPos + PackChunkSize);
+        //        }
+        //    }
+        //    return result;
+        //}
 
         /// <summary>
         /// Find the requested resource, according to config setting, if the config was set.
@@ -1430,10 +1436,8 @@ namespace ApkQuickReader {
         /// </summary>
         /// <param name="id">resourceID</param>
         /// <returns>the resource, in string format, if resource id not found, return null value</returns>
-        private string QuickSearchResource(UInt32 id, byte[] config = null) {
-            uint PackageID = (id & 0xff000000) >> 24;
-            uint TypeID = (id & 0x00ff0000) >> 16;
-            uint EntryID = (id & 0x0000ffff);
+        private ApkResource QuickSearchResource(UInt32 id) {
+            ApkResource res = new ApkResource(id);
 
             using (MemoryStream ms = new MemoryStream(resources))
             using (BinaryReader br = new BinaryReader(ms)) {
@@ -1453,7 +1457,7 @@ namespace ApkQuickReader {
                     int PackChunkSize = br.ReadInt32();
                     int packID = br.ReadInt32();
 
-                    if (packID != PackageID) { // check if the resource is in this pack
+                    if (packID != res.PackageID) { // check if the resource is in this pack
                         // goto next chunk
                         ms.Seek(PackChunkPos + PackChunkSize, SeekOrigin.Begin);
                         continue;
@@ -1480,15 +1484,10 @@ namespace ApkQuickReader {
                             headerSize = br.ReadInt16();
                             int chunkSize = br.ReadInt32();
                             byte typeid;
-                            //if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_SPEC_TYPE) {
-                            //    typeid = br.ReadByte();
-                            //    if (typeid == TypeID) {
-                            //        // todo: get the flags
-                            //    }
-                            //} else 
+
                             if (chunkType == (short)RES_TYPE.RES_TABLE_TYPE_TYPE) {
                                 typeid = br.ReadByte();
-                                if (typeid == TypeID) {
+                                if (typeid == res.TypeID) {
                                     ms.Seek(3, SeekOrigin.Current); // skip 0
                                     int entryCount = br.ReadInt32();
                                     int entryStart = br.ReadInt32();
@@ -1497,21 +1496,7 @@ namespace ApkQuickReader {
                                     int config_size = br.ReadInt32();
                                     byte[] conf = br.ReadBytes(config_size - 4);
 
-                                    if (config != null) {
-                                        bool match = true;
-                                        for (int i = 0; i < config.Length; i++) {
-                                            if (conf[i] != config[i]) {
-                                                match = false;
-                                                break;
-                                            }
-                                        }
-                                        if (match == false) {// config does not fit, jump to next chunk
-                                            ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
-                                            continue;
-                                        }
-                                    }
-
-                                    ms.Seek(chunkPos + headerSize + EntryID *4, SeekOrigin.Begin);
+                                    ms.Seek(chunkPos + headerSize + res.EntryID * 4, SeekOrigin.Begin);
                                     //ms.Seek(EntryID * 4, SeekOrigin.Current); // goto index
                                     uint entryIndic = br.ReadUInt32();
                                     if (entryIndic == 0xffffffff) {
@@ -1524,34 +1509,29 @@ namespace ApkQuickReader {
                                     ms.Seek(11, SeekOrigin.Current); // skip entry size, flags, key, size, 0
                                     byte dataType = br.ReadByte();
                                     uint data = br.ReadUInt32();
-                                    if (config != null)
-                                        Log(string.Format("Extracting Resource {0} using density {1}:",id,config[ConfigurationDensityPosition]));
                                     if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
-                                        return QuickSearchResourcesStringPool(data);
+                                        res.Add(conf,QuickSearchResourcesStringPool(data));
                                     } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
                                         // the entry is null, or it's referencing itself, go to next chunk
                                         if (data == 0x00000000 || data == id) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
                                             continue;
                                         }
-                                        return QuickSearchResource((UInt32)data, config);
+                                        res.Add(QuickSearchResource((UInt32)data));
                                     } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
-                                        return data.ToString();
+                                        res.Add(conf,data.ToString());
                                     }
                                 }
-                            //} else {
-                            //    // chunk Type is not what we want.
                             }
                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin); // skip this chunk
                         } while (ms.Position < PackChunkPos + PackChunkSize);
-                        if (config != null) // no config fits, search default
-                            return QuickSearchResource(id);
                     }
                 }
+                return res;
             }
-            return null;
         }
 
+        #region IDispose
         private bool disposed = false;
         protected override void Dispose(bool disposing) {
             if (disposed) return;
@@ -1571,6 +1551,63 @@ namespace ApkQuickReader {
 
         ~ApkReader() {
             Dispose(true);
+        }
+        #endregion
+    }
+
+    public class ApkResource {
+        protected UInt32 ID;
+        public List<byte[]> configs;
+        public List<object> values;
+
+        public ApkResource(UInt32 id) {
+            ID = id;
+            configs = new List<byte[]>();
+            values = new List<object>();
+        }
+
+        public uint PackageID {
+            get {
+                return (ID & 0xff000000) >> 24;
+            }
+        }
+        public uint TypeID {
+            get {
+                return (ID & 0x00ff0000) >> 16;
+            }
+        }
+        public uint EntryID {
+            get {
+                return (ID & 0x0000ffff);
+            }
+        }
+        public object defaultValue {
+            set {
+                configs = new List<byte[]>();
+                configs.Add(new byte[0]);
+                values.Add(value);
+            }
+            get {
+                if (Count >= 1)
+                    return values[0];
+                else
+                    return null;
+            }
+        }
+        public uint Count {
+            get {
+                return (uint)configs.Count;
+            }
+        }
+        
+        public void Add(byte[] conf, object val) {
+            configs.Add(conf);
+            values.Add(val);
+        }
+        public void Add(ApkResource res) {
+            for(int i=0; i<Count; i++) {
+                Add(res.configs[i],values[i]);
+            }
         }
     }
 

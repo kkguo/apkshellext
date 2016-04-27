@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,12 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnOK" xml:space="preserve">
-    <value>확인</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnGitHub" xml:space="preserve">
-    <value>GitHub에 공식 페이지</value>
+  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  
+  
   <data name="btnUpdate" xml:space="preserve">
     <value>업데이트</value>
   </data>
@@ -154,12 +181,12 @@
     <value>파일 이름을 {0}(으)로 바꾸기</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>여러 파일을 선택 하면 응용 프로그램 스토어 메뉴 표시</value>
+    <value>여러개의 파일을 선택했을 때에도 앱 스토어 메뉴 표시</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>선택 하면 선택한 여러 apk 파일 응용 프로그램 스토어 메뉴 표시 됩니다. 
-제발 note, 많은 브라우저 창 열어 하 고 성능에 크게 영향을 수 있습니다.
-기본적으로만 메뉴를 표시 한 파일을 선택 하면</value>
+    <value>이 옵션을 체크하면, 여러 개의 앱 파일을 선택해도 "앱 스토어로 이동하기" 메뉴가 보입니다.
+다만, 선택한 파일만큼 많은 브라우저 창이 뜨기 때문에 컴퓨터가 느려질 수 있습니다.
+기본적으로, 한 파일을 선택할 때에만 이 메뉴가 나옵니다.</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>업데이트 확인 중 …</value>
@@ -171,7 +198,7 @@
     <value>현재 버전: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>좋은! 당신은 최신 버전.</value>
+    <value>현재 최신버전입니다.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2의 프로젝트 웹 사이트로 이동하기</value>
@@ -192,7 +219,7 @@
     <value>파일을 읽지 못했습니다.</value>
   </data>
   <data name="strReferToWiki" xml:space="preserve">
-    <value>변수 사용 프로젝트 위 키를 참조 하십시오</value>
+    <value>변수의 사용법은 위키를 참조하십시오.</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>일부 안드로이드 앱에서 버전은 같은데 리비전(세부 버전)이 다른 경우가 있습니다.
@@ -214,97 +241,98 @@
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>파일 형식에 따른 오버레이 아이콘 표시</value>
   </data>
-  <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>상황에 맞는 메뉴에 대 한 아이콘 표시</value>
-  </data>
-  <data name="btnCancel" xml:space="preserve">
-    <value>취소</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="btnNo" xml:space="preserve">
-    <value>없음</value>
+    <value>아니오</value>
   </data>
-  <data name="btnYes" xml:space="preserve">
-    <value>예</value>
-  </data>
+  
   <data name="strRenameConfirm" xml:space="preserve">
-    <value>{0}로이 파일의 이름을 확인?</value>
+    <value>파일 이름을 {0} (으)로 바꾸시겠습니까?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>패턴 이름 바꾸기: (확장) 없이</value>
+    <value>이름 바꾸기 패턴: (확장자 없음)</value>
   </data>
+  
   <data name="twContextMenu" xml:space="preserve">
-    <value>상황에 맞는 메뉴</value>
+    <value>우클릭 메뉴</value>
   </data>
-  <data name="twGeneral" xml:space="preserve">
-    <value>일반</value>
-  </data>
-  <data name="twIcon" xml:space="preserve">
-    <value>아이콘</value>
-  </data>
-  <data name="twRename" xml:space="preserve">
-    <value>이름 바꾸기</value>
-  </data>
-  <data name="twInfotip" xml:space="preserve">
-    <value>정보 팁</value>
-  </data>
+  
+  
+  
+  
   <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>ApkMirror.com에 {0}를 확인</value>
+    <value>ApkMirror.com에서 {0} 찾기</value>
   </data>
-  <data name="btnResetPattern" xml:space="preserve">
-    <value>마지막 저장 된 패턴을 사용 하 여</value>
-  </data>
+  
+  
   <data name="strShowAmazonStore" xml:space="preserve">
-    <value>상황에 맞는 메뉴에서 아마존 응용 프로그램 스토어 링크를 표시</value>
+    <value>우클릭 메뉴에서 아마존 앱 스토어 링크를 표시하기</value>
   </data>
   <data name="strShowApkMirror" xml:space="preserve">
-    <value>상황에 맞는 메뉴에서 ApkMirror 링크를 표시</value>
+    <value>우클릭 메뉴에서 ApkMirror 링크를 표시하기</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>애플 스토어 링크 (ipa)에 대 한 상황에 맞는 메뉴에 표시</value>
+    <value>(ipa 파일) 우클릭 메뉴에서 애플 앱 스토어 메뉴에 표시하기</value>
   </data>
-  <data name="strShowGooglePlay" xml:space="preserve">
-    <value>상황에 맞는 메뉴에서 구글 플레이 링크 표시</value>
-  </data>
+  
   <data name="strShowMSStore" xml:space="preserve">
-    <value>마이크로소프트 스토어 링크 (약/appxbundle)에 대 한 상황에 맞는 메뉴에 표시</value>
+    <value>(appx/appxbundle 파일) 우클릭 메뉴에서 마이크로소프트 스토어 링크 표시하기</value>
   </data>
-  <data name="strInfoTipPattern" xml:space="preserve">
-    <value>정보 팁 패턴:</value>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnBrowse" xml:space="preserve">
-    <value>찾아보기</value>
+  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnSearchAdb" xml:space="preserve">
-    <value>검색</value>
+  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  
+  
+  
   <data name="strAdbPath" xml:space="preserve">
-    <value>Adb.exe의 경로 지정 하십시오</value>
+    <value>adb.exe의 경로를 지정해 주십시오.</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>_ 공간을 바꿉니다</value>
+    <value>공백을 밑줄(_)로 바꿉니다.</value>
   </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>Availible 경우 상황에 맞는 메뉴에서 새 버전을 생각나 게</value>
+    <value>새 버전 알리기</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
-    <value>축소판 그림</value>
+    <value>썸네일</value>
   </data>
-  <data name="strStretchThumbnail" xml:space="preserve">
-    <value>스트레치 축소판 경우 더 큰 크기 요청 창</value>
-  </data>
+  
   <data name="strHelpTranslate" xml:space="preserve">
-    <value>이 프로젝트를 번역 하는 데 도움이.</value>
+    <value>이 프로젝트의 번역을 도와주세요.</value>
   </data>
-  <data name="strClearCache" xml:space="preserve">
-    <value>분명 아이콘 및 썸네일 캐시</value>
-  </data>
+  
+  
+  
   <data name="dialogClearCache" xml:space="preserve">
-    <value>모든 열려 있는 파일 탐색기 폐쇄가 될 것입니다, 그리고 계속?</value>
+    <value>열려 있는 모든 탐색기 창이 닫힙니다. 계속하시겠습니까?</value>
   </data>
-  <data name="strEnableThumbnail" xml:space="preserve">
-    <value>아이콘 대신 미리 보기를 표시 합니다.</value>
-  </data>
+  
   <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>아이콘 및 미리 보기 이미지를 올바르게 표시 하려면 캐시 삭제, 지금 그것을 분명 필요가 있다?</value>
+    <value>아이콘 및 미리 보기 이미지를 올바르게 표시하려면 캐시를 삭제해야 합니다. 지금 삭제하시겠습니까?</value>
   </data>
 </root>

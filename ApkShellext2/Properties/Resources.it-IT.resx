@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,6 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btnOK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -130,19 +161,19 @@
     <value>Vai al Sito Ufficiale per aggiornare</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>RenamePattern</value>
+    <value>Rinomina Modello</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Verifica {0} su Amazon Appstore</value>
+    <value>Verifica {0} sull'Appstore Amazon</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Verifica {0} su Appstore di Apple</value>
+    <value>Verifica {0} sull'Appstore di Apple</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
     <value>Visualizza sul Google Play</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Verifica {0} su Microsoft Store</value>
+    <value>Verifica {0} sull'Appstore Microsoft</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
@@ -154,12 +185,12 @@
     <value>Rinomina in {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostra app store menu selezionando più file</value>
+    <value>Mostra i Menu dei vari Appstore quando selezioni più di un FIle</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se selezionata, menu Archivio app apparirà anche più file apk selezionati. 
-Siete pregati di notare che è possibile aprire un sacco di finestra del browser e avere un impatto significativo delle prestazioni.
-Per impostazione predefinita, solo mostrare il menu quando un file selezionato</value>
+    <value>Se selezionato, il menu Google Play (o altro Appstore) apparirà anche se hai selezionato più di un file APK.
+Si apriranno più finestre del Browser e questo potrebbe influire sulle prestazioni del Computer in modo significativo.
+Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un File</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Verificando nuova versione ...</value>
@@ -171,7 +202,7 @@ Per impostazione predefinita, solo mostrare il menu quando un file selezionato</
     <value>Versione attuale: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Grande! Hai l'ultima versione.</value>
+    <value>Grande! Hai già l'ultima versione.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>Vai al Sito ufficiale di ApkShellext2</value>
@@ -180,7 +211,7 @@ Per impostazione predefinita, solo mostrare il menu quando un file selezionato</
     <value>Lingua:</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>Questa funzionalità richiede ApkShellextService, si prega di assicurarsi di avviare il servizio.</value>
+    <value>Questa funzionalità richiede ApkShellextService, si prega di assicurarsi il servizio sia avviato.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>Nuova versione {0} disponibile</value>
@@ -189,20 +220,20 @@ Per impostazione predefinita, solo mostrare il menu quando un file selezionato</
     <value>Impostazioni di ApkShellext2</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>Impossibile leggere il file</value>
+    <value>Impossibile leggere il File</value>
   </data>
   <data name="strReferToWiki" xml:space="preserve">
-    <value>Utilizzo della variabile fare riferimento al progetto Wiki</value>
+    <value>Per l'utilizzo della variabile fare riferimento al progetto Wiki</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Per evitare la situazione della stessa versione, ma numero di revisione diversi, nella maggior parte dei come accade nei file app per android. 
-Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revisione %, in caso contrario, utilizzare %AppName _ % versione %.</value>
+    <value>Per evitare situazioni del tipo: stessa Versione ma numero Revisione differente, come spesso succede nelle App Android. Selezionando questo, i FIle verranno rinominati come segue
+%AppName%_%Version%_%Revision%, altrimenti usa %AppName%_%Version%.</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Scansiona il codice QR per scaricare</value>
   </data>
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>Visualizza icona di WindowsPhone app (appx, appxbundle).</value>
+    <value>Visualizza le icone delle App WIndowsPhone (appx, appxbundle).</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
     <value>Mostra l'icona iOs (ipa)</value>
@@ -211,10 +242,17 @@ Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revi
     <value>Mostra Icona in sovrapposizione</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Visualizza un'icona di sovrapposizione per tipo di file</value>
+    <value>Mostra un'icona in sovrapposizione per diversi S.O. </value>
   </data>
+  
+  
+  
+  
+  
+  
+  
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>Mostra l'icona per il menu contestuale</value>
+    <value>Visualizza un'icona per il Menu Contestuale</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
     <value>Annulla</value>
@@ -223,16 +261,17 @@ Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revi
     <value>No</value>
   </data>
   <data name="btnYes" xml:space="preserve">
-    <value>Sì</value>
+    <value>Si</value>
   </data>
   <data name="strRenameConfirm" xml:space="preserve">
-    <value>Confermare per rinominare il file come {0}?</value>
+    <value>Confermi di rinominare il file come {0}?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
     <value>Rinominare il modello: (senza estensione)</value>
   </data>
+  
   <data name="twContextMenu" xml:space="preserve">
-    <value>Menu di scelta rapida</value>
+    <value>Menu contestuale</value>
   </data>
   <data name="twGeneral" xml:space="preserve">
     <value>Generale</value>
@@ -241,69 +280,92 @@ Selezionando questa, rinominare il file app come %AppName _ % Version % _ % revi
     <value>Icona</value>
   </data>
   <data name="twRename" xml:space="preserve">
-    <value>Ridenominazione di</value>
+    <value>Rinominazione in corso</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Finestra popup</value>
+    <value>Info</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>Verifica {0} su ApkMirror.com</value>
   </data>
+  
   <data name="btnResetPattern" xml:space="preserve">
-    <value>Uso dell'ultimo salvataggio modello</value>
+    <value>Usa l'ultimo modello salvato</value>
   </data>
   <data name="strShowAmazonStore" xml:space="preserve">
-    <value>Visualizza Amazon app store link nel menu contestuale</value>
+    <value>Visualizza il link all'Appstore di Amazon nel Menu Contestuale</value>
   </data>
   <data name="strShowApkMirror" xml:space="preserve">
-    <value>Link ApkMirror Mostra nel menu contestuale</value>
+    <value>Visualizza il link a ApkMirror nel Menu Contestuale</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>Visualizza link store Apple (per ipa) nel menu contestuale</value>
+    <value>Visualizza il link all'Appstore Apple (per i FIle ipa) nel Menu Contestuale</value>
   </data>
   <data name="strShowGooglePlay" xml:space="preserve">
-    <value>Visualizza Google play collegamento nel menu contestuale</value>
+    <value>Mostra il link sul Google Play Store</value>
   </data>
   <data name="strShowMSStore" xml:space="preserve">
-    <value>Visualizza link Microsoft Store (per appx/appxbundle) nel menu contestuale</value>
+    <value>Visualizza il link all'Appstore Microsoft (file appx/appxbundle)</value>
   </data>
+  
   <data name="strInfoTipPattern" xml:space="preserve">
-    <value>Modello di punta di informazioni:</value>
+    <value>Info modello:</value>
   </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  
   <data name="btnBrowse" xml:space="preserve">
     <value>Sfoglia</value>
   </data>
   <data name="btnSearchAdb" xml:space="preserve">
-    <value>Ricerca</value>
+    <value>Cerca</value>
   </data>
   <data name="strAdbPath" xml:space="preserve">
-    <value>Si prega di specificare il percorso di adb.exe</value>
+    <value>Specifica il percorso di adb.exe</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>Sostituire lo spazio con _</value>
   </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>Ricordare la nuova versione nel menu di scelta rapida se availible</value>
+    <value>Ricordami la nuova versione</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
-    <value>Miniatura</value>
+    <value>Anteprima</value>
   </data>
   <data name="strStretchThumbnail" xml:space="preserve">
-    <value>Stiramento delle miniature se Windows richiede maggiori dimensioni</value>
+    <value>Ridimensione l'anteprima se WIndows richiede dimensioni maggiori</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Aiutaci a tradurre questo progetto.</value>
   </data>
+  
+  
   <data name="strClearCache" xml:space="preserve">
-    <value>Icona libera e Thumbnail cache</value>
+    <value>Pulisci la cache icone ed anteprime</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
-    <value>Tutti aprire File Explorer verrà chiuso, continuare?</value>
+    <value>Tutti i FIle aperti verranno chiusi. Continuare?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
-    <value>Visualizzare l'anteprima invece di icona.</value>
+    <value>Visualizza l'anteprima invece dell'icona.</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>Al fine di visualizzare correttamente le icone e miniatura, cache necessario essere deselezionata, deselezionarla in questo momento?</value>
+    <value>Al fine di visualizzare correttamente le icone e le miniature è necessario pulire la cache, pulire adesso?</value>
   </data>
 </root>

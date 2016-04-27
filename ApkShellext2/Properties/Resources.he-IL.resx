@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,12 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnOK" xml:space="preserve">
-    <value>אוקיי</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnGitHub" xml:space="preserve">
-    <value>דף רשמי ב GitHub</value>
+  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  
+  
   <data name="btnUpdate" xml:space="preserve">
     <value>עדכון</value>
   </data>
@@ -132,18 +159,12 @@
   <data name="lblRenamePattern" xml:space="preserve">
     <value>החלף דפוס</value>
   </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>בדוק {0} על אמזון Appstore</value>
-  </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>בדוק {0} ב Appstore של אפל</value>
-  </data>
+  
+  
   <data name="menuGotoGooglePlay" xml:space="preserve">
     <value>בדוק ב-GooglePlay</value>
   </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>בדוק {0} על חנות Microsoft</value>
-  </data>
+  
   <data name="menuMain" xml:space="preserve">
     <value>הרחבת מעטפת APK</value>
   </data>
@@ -153,157 +174,89 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>שינוי שם ל {0}</value>
   </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>הצג תפריטים בחנות app כשבוחרים קבצים מרובים</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>אם בדקת, app store תפריטים יופיע אפילו מספר קבצי apk שנבחרו. 
-אנא שימו לב, ייתכן לפתוח הרבה של חלון הדפדפן, להשפיע על הביצועים באופן משמעותי.
-כברירת מחדל, רק להציג את התפריט כשמסמנים קובץ אחד</value>
-  </data>
+  
+  
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>בדיקת גירסה חדשה...</value>
   </data>
-  <data name="strCheckProjectSite" xml:space="preserve">
-    <value>בדוק את אתר פרוייקט עבור עדכון.</value>
-  </data>
+  
   <data name="strCurrVersion" xml:space="preserve">
     <value>הגירסה הנוכחית: {0}</value>
   </data>
-  <data name="strGotLatest" xml:space="preserve">
-    <value>נהדר! יש לך את הגירסה העדכנית ביותר.</value>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="strGotoProjectSite" xml:space="preserve">
-    <value>לכו לאתר הפרויקט ApkShellext2</value>
+  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="strLanguages" xml:space="preserve">
-    <value>שימוש בשפה:</value>
+  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>תכונה זו דורשת ApkShellextService, נא ודא ששירות התחיל.</value>
-  </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0} גירסה חדשה הוא איסוף עצמי בלבד</value>
-  </data>
-  <data name="strPreferencesCaption" xml:space="preserve">
-    <value>ApkShellext2 העדפות</value>
-  </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>נכשלה לקרוא את התיק</value>
-  </data>
-  <data name="strReferToWiki" xml:space="preserve">
-    <value>שימוש משתנה עיין פרוייקט ויקי</value>
-  </data>
-  <data name="strRenameToolTip" xml:space="preserve">
-    <value>להימנע המצב של גירסה זהה אך מספר המהדורה שונים, קורה זאת ברוב כמו קבצי האפליקציה. 
-על-ידי בודק זה, שנה את שם הקובץ app כמו %AppName % _ % גירסה % _ % תיקון %, אחרת, השתמש %AppName % _ % גירסה %.</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>לסרוק קוד QR כדי להוריד</value>
-  </data>
-  <data name="strShowAppxIcon" xml:space="preserve">
-    <value>הצג סמל app (appx, appxbundle) WindowsPhone.</value>
-  </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>הצג סמל app (ipa) iOS.</value>
-  </data>
-  <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>הצג שכבת-על סמל</value>
-  </data>
-  <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>הצגת סמל כיסוי עבור סוג קובץ</value>
-  </data>
-  <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>הצג סמל עבור תפריט תלוי-הקשר</value>
-  </data>
-  <data name="btnCancel" xml:space="preserve">
-    <value>ביטול</value>
-  </data>
-  <data name="btnNo" xml:space="preserve">
-    <value>לא</value>
-  </data>
-  <data name="btnYes" xml:space="preserve">
-    <value>כן</value>
-  </data>
-  <data name="strRenameConfirm" xml:space="preserve">
-    <value>לאשר כדי לשנות שם קובץ זה כמו {0}?</value>
-  </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>שינוי שם של תבנית: (ללא סיומת)</value>
-  </data>
-  <data name="twContextMenu" xml:space="preserve">
-    <value>תפריט תלוי-הקשר</value>
-  </data>
-  <data name="twGeneral" xml:space="preserve">
-    <value>כללי</value>
-  </data>
-  <data name="twIcon" xml:space="preserve">
-    <value>סמל</value>
-  </data>
-  <data name="twRename" xml:space="preserve">
-    <value>שינוי שם</value>
-  </data>
-  <data name="twInfotip" xml:space="preserve">
-    <value>עצת מידע</value>
-  </data>
-  <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>בדוק {0} על ApkMirror.com</value>
-  </data>
-  <data name="btnResetPattern" xml:space="preserve">
-    <value>שימוש נשמר לאחרונה דפוס</value>
-  </data>
-  <data name="strShowAmazonStore" xml:space="preserve">
-    <value>הצג את אמזון app store הקישור בתפריט ההקשר</value>
-  </data>
-  <data name="strShowApkMirror" xml:space="preserve">
-    <value>הצג ApkMirror הקישור בתפריט ההקשר</value>
-  </data>
-  <data name="strShowAppleStore" xml:space="preserve">
-    <value>הצג את תפוח החנות בקישור (ipa) במתפריט ההקשר</value>
-  </data>
-  <data name="strShowGooglePlay" xml:space="preserve">
-    <value>הצג Google play הקישור בתפריט ההקשר</value>
-  </data>
-  <data name="strShowMSStore" xml:space="preserve">
-    <value>הצג במיקרוסופט חנות הקישור (עבור appx/appxbundle) בתפריט ההקשר</value>
-  </data>
-  <data name="strInfoTipPattern" xml:space="preserve">
-    <value>דפוס טיפ מידע:</value>
-  </data>
-  <data name="btnBrowse" xml:space="preserve">
-    <value>עיון</value>
-  </data>
-  <data name="btnSearchAdb" xml:space="preserve">
-    <value>חיפוש</value>
-  </data>
-  <data name="strAdbPath" xml:space="preserve">
-    <value>נא ציין את הנתיב של adb.exe</value>
-  </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>החלף שטח _</value>
-  </data>
-  <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>מזכיר גרסה חדשה בתפריט ההקשר אם איסוף עצמי בלבד</value>
-  </data>
-  <data name="twThumbnail" xml:space="preserve">
-    <value>תמונה ממוזערת</value>
-  </data>
-  <data name="strStretchThumbnail" xml:space="preserve">
-    <value>אם תמונות ממוזערות מתיחה Windows מבקש גודל גדול יותר</value>
-  </data>
-  <data name="strHelpTranslate" xml:space="preserve">
-    <value>לעזור לתרגם את הפרויקט הזה.</value>
-  </data>
-  <data name="strClearCache" xml:space="preserve">
-    <value>סמל ברור של התמונה הממוזערת של מטמון</value>
-  </data>
-  <data name="dialogClearCache" xml:space="preserve">
-    <value>כל סייר קבצים פתוחים יהיה סגור, להמשיך?</value>
-  </data>
-  <data name="strEnableThumbnail" xml:space="preserve">
-    <value>הצגת תמונה ממוזערת במקום הסמל.</value>
-  </data>
-  <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>כדי להציג סמל של תמונה ממוזערת כראוי, המטמון צריך לנקות, לנקות את זה עכשיו?</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </root>

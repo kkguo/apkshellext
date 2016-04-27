@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -117,6 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btnOK" xml:space="preserve">
     <value>Tamam</value>
   </data>
@@ -213,6 +244,13 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Dosya türü için bir bindirme simgesi göster</value>
   </data>
+  
+  
+  
+  
+  
+  
+  
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Bağlam menüsü için simge göster</value>
   </data>
@@ -231,6 +269,7 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strRenamePattern" xml:space="preserve">
     <value>Yeniden Adlandırma Kalıbı: (uzantı olmadan)</value>
   </data>
+  
   <data name="twContextMenu" xml:space="preserve">
     <value>Bağlam Menüsü</value>
   </data>
@@ -249,6 +288,7 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>{0} için ApkMirror.com'u denetle</value>
   </data>
+  
   <data name="btnResetPattern" xml:space="preserve">
     <value>Son Kaydedilen Kalıbı Kullan</value>
   </data>
@@ -267,9 +307,28 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strShowMSStore" xml:space="preserve">
     <value>Bağlam menüsünde Microsoft Mağazası (appx/appxbundle için) bağlantısını göster</value>
   </data>
+  
   <data name="strInfoTipPattern" xml:space="preserve">
     <value>Bilgi İpucu Kalıbı:</value>
   </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  
   <data name="btnBrowse" xml:space="preserve">
     <value>Gözat</value>
   </data>
@@ -282,6 +341,7 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>Boşluğun yerini _ ile değiştirin</value>
   </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Yeni sürüm bulunursa bağlam menüsünde belirt</value>
   </data>
@@ -294,16 +354,18 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Bu projeyi çevirmek için yardım edin.</value>
   </data>
+  
+  
   <data name="strClearCache" xml:space="preserve">
-    <value>Açık simgesi ve küçük resim önbellek</value>
+    <value>Simge ve küçük resim önbelleğini temizle</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
-    <value>Tüm açık dosya Explorer kapatılacak, devam etmek?</value>
+    <value>Tüm açık dosya gezginleri kapatılacak, devam edilsin mi?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
-    <value>Simge yerine küçük resmini görüntüler.</value>
+    <value>Simge yerine küçük resim görüntüle.</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>Önbellek doğru simgesi ve küçük resim görüntülemek için temizlenmiş, hemen temizlemek ihtiyacınız var?</value>
+    <value>Simge ve küçük resimleri doğru görüntülemek için önbelleğin temizlenmesi gerekiyor, şimdi temizlensin mi?</value>
   </data>
 </root>

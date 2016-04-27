@@ -39,7 +39,6 @@ namespace ApkShellext2 {
         public const string flagAppId = @"itemId";
         public const string flagCopyright = @"copyright";
         
-
         public IpaReader(string path) {
             FileName = path;
             openStream(new FileStream(path,FileMode.Open, FileAccess.Read,FileShare.Read));

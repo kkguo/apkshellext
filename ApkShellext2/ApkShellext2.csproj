@@ -28,7 +28,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -59,9 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApkChunkEnumerator.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ApkQuickReader.cs" />
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
@@ -107,7 +105,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="QRCoder\QRCoder\QRCoder.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\COMServerAssociationAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
@@ -406,37 +403,19 @@
     <EmbeddedResource Include="Properties\Resources.ru-RU.resx" />
     <EmbeddedResource Include="Properties\Resources.tr-TR.resx" />
     <EmbeddedResource Include="Properties\Resources.zh-TW.resx" />
-    <EmbeddedResource Include="Resources.tr-TR.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\it-IT\ApkShellext2.resources.dll" />
     <None Include="Resources\Apple.png" />
     <None Include="Resources\Android.png" />
-    <EmbeddedResource Include="Resources\ko-KR\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\es-ES\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\fa-IR\ApkShellext2.resources.dll" />
     <Content Include="Resources\Amazon.png" />
-    <EmbeddedResource Include="Resources\de-DE\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\el-GR\ApkShellext2.resources.dll" />
     <None Include="Resources\apkm.png" />
     <None Include="Resources\App-store-icon.png" />
-    <EmbeddedResource Include="Resources\ar-SA\ApkShellext2.resources.dll" />
-    <Content Include="Resources\fr-FR\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\he-IL\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\ja-JP\ApkShellext2.resources.dll" />
     <Content Include="Resources\logo.png" />
     <None Include="Resources\QR-Scan.png" />
-    <EmbeddedResource Include="Resources\pt-PT\ApkShellext2.resources.dll" />
-    <EmbeddedResource Include="Resources\ru-RU\ApkShellext2.resources.dll" />
     <None Include="Resources\msft store icon.png" />
     <None Include="Resources\msft store icon1.png" />
     <None Include="Resources\restart.png" />
-    <EmbeddedResource Include="Resources\tr-TR\ApkShellext2.resources.dll" />
     <Content Include="Resources\udpate.png" />
     <EmbeddedResource Include="Properties\Resources.it-IT.resx" />
-    <EmbeddedResource Include="Resources\zh-CN\ApkShellext2.resources.dll" />
     <Content Include="Resources\Windows.png" />
-    <EmbeddedResource Include="Resources\zh-TW\ApkShellext2.resources.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge32.dll" />
     <Content Include="SharpShell\SharpShell\SharpShell\NativeBridge\SharpShellNativeBridge64.dll" />
     <None Include="Resources\restart_explorer.bat" />
@@ -475,9 +454,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>powershell.exe remove-item -force -recurse -path $(ProjectDir)\Resources\??-??
-powershell.exe mv -force $(TargetDir)\??-?? $(ProjectDir)\Resources\
-copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

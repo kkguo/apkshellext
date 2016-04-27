@@ -318,6 +318,10 @@ namespace ApkShellext2 {
             if (newStr.Contains(Resources.varLastModify))
                 newStr = newStr.Replace(Resources.varLastModify,
                 File.GetLastWriteTime(reader.FileName).ToString("dd/MM/yy HH:mm:ss"));
+            if (newStr.Contains(Resources.varDebuggable))
+                if (reader.Type == AppPackageReader.AppType.AndroidApp)
+                newStr = newStr.Replace(Resources.varDebuggable,
+                    ((ApkReader)reader).Debuggable?"Debug":"Release");
             return newStr;
         }
 

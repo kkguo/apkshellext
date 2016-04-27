@@ -33,7 +33,7 @@ namespace ApkShellext2 {
             if (m_icon == null) {
                 try {
                     using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
-                        //reader.setFlags("IconSize", iconSize);
+                        reader.setFlag("ImageSize", iconSize);
                         m_icon = reader.Icon;
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
@@ -131,22 +131,23 @@ namespace ApkShellext2 {
             #endregion
 
             #region restore the old settings from registry
-            Settings.Default.ShowAppStoreWhenMultiSelected = Utility.getRegistrySetting(Utility.keyMultiSelectShowStore) == 1;
-            Settings.Default.ShowGooglePlay = Utility.getRegistrySetting(Utility.keyShowGooglePlay) == 1;
-            Settings.Default.ShowOverLayIcon = Utility.getRegistrySetting(Utility.keyShowOverlay) == 1;
-            Settings.Default.ShowIpaIcon = Utility.getRegistrySetting(Utility.keyShowIpaIcon) == 1;
-            Settings.Default.ShowAppxIcon = Utility.getRegistrySetting(Utility.keyShowAppxIcon) == 1;
-            Settings.Default.ShowMenuIcon = Utility.getRegistrySetting(Utility.keyShowMenuIcon) == 1;
+            // This is not possible as at this time, the user is admin, which is different when running explorer, so comment this out for now.
+            //Settings.Default.ShowAppStoreWhenMultiSelected = Utility.getRegistrySetting(Utility.keyMultiSelectShowStore) == 1;
+            //Settings.Default.ShowGooglePlay = Utility.getRegistrySetting(Utility.keyShowGooglePlay) == 1;
+            //Settings.Default.ShowOverLayIcon = Utility.getRegistrySetting(Utility.keyShowOverlay) == 1;
+            //Settings.Default.ShowIpaIcon = Utility.getRegistrySetting(Utility.keyShowIpaIcon) == 1;
+            //Settings.Default.ShowAppxIcon = Utility.getRegistrySetting(Utility.keyShowAppxIcon) == 1;
+            //Settings.Default.ShowMenuIcon = Utility.getRegistrySetting(Utility.keyShowMenuIcon) == 1;
 
-            if (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1) {
-                Settings.Default.RenamePattern = Resources.strRenamePatternDefault + "_" + Resources.varRevision;
-            }
+            //if (Utility.getRegistrySetting(Utility.keyRenameWithVersionCode) == 1) {
+            //    Settings.Default.RenamePattern = Resources.strRenamePatternDefault + "_" + Resources.varRevision;
+            //}
 
-            int lang = Utility.getRegistrySetting(Utility.keyLanguage, -1);
-            if (lang != -1) {
-                Settings.Default.Language = lang;
-            }
-            Settings.Default.Save();
+            //int lang = Utility.getRegistrySetting(Utility.keyLanguage, -1);
+            //if (lang != -1) {
+            //    Settings.Default.Language = lang;
+            //}
+            //Settings.Default.Save();
             #endregion
 
             #region Enable debug log

@@ -51,13 +51,13 @@ namespace ApkShellext2 {
         public virtual AppType Type { get { return AppType.AndroidApp; } }
 
         // use for other information, or file type specific info
-        public virtual void setFlags(string flag, object value) {
+        public virtual void setFlag(string flag, object value) {
             if (Flags == null)
                 Flags = new Dictionary<string, object>();
             Flags[flag] = value;
         }
 
-        public virtual object getFlags(string flag) {
+        public virtual object getFlag(string flag) {
             if (Flags != null && Flags.ContainsKey(flag))
                 return Flags[flag];
             else

@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
+using SharpShell.Extensions;
 using SharpShell.Interop;
 using ApkShellext2.Properties;
 
@@ -91,29 +92,24 @@ namespace ApkShellext2 {
         //    }
         //}
 
-        public static int getRegistrySetting(string key, int defValue = 0) {
+        static object getRegisterySetting(string key, object defValue) {
+            string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
             try {
-                string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
-                    return (int)k.GetValue(key, (object)defValue);
-                }
-            } catch (Exception ex) {
+                using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name))
+                    return k.GetValue(key, defValue);
+            }catch (Exception ex) {
                 Logging.Log("Error happens during reading settings :" + ex.Message);
                 return defValue;
             }
         }
 
-        //public static string getRegistrySettingString(string key, string defValue = "") {
-        //    try {
-        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-        //        using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name)) {
-        //            return k.GetValue(key, (object)defValue) as string;
-        //        }
-        //    } catch (Exception ex) {
-        //        Logging.Log("Error happens during reading settings :" + ex.Message);
-        //        return defValue;
-        //    }
-        //}
+        public static int getRegistrySetting(string key, int defValue = 0) {
+            return (int)getRegisterySetting(key,defValue);
+        }
+
+        public static string getRegistrySettingString(string key, string defValue = "") {
+            return (string)getRegisterySetting(key,defValue);
+        }
         # endregion
 
         #region Resolve resource dll by internal resource
@@ -161,7 +157,7 @@ namespace ApkShellext2 {
         /// This is needed before any thread loading localize string
         /// </summary>
         public static void Localize() {
-            HookResolveResourceDll();
+            //HookResolveResourceDll();
             int lang = Settings.Default.Language;
             if (lang != -1) {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
@@ -171,20 +167,25 @@ namespace ApkShellext2 {
         }
 
         /// <summary>
-        ///  Enumerate all language resouce dll, get culture code
+        ///  Enumerate satallite dll folders, get lang code
         /// </summary>
         /// <returns></returns>
         public static CultureInfo[] getSupportedLanguages() {
             List<CultureInfo> result = new List<CultureInfo>();
             result.Add(new CultureInfo("en-US")); //default is en-US
-            foreach (var s in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
-                Match m = Regex.Match(s, @"ApkShellext2\.Resources\.([a-z][a-z]_[A-Z][A-Z])\.ApkShellext2.resources.dll");
-                if (m.Success) {
-                    CultureInfo ci = new CultureInfo(m.Groups[1].Value.Replace("_", "-"));
-                    result.Add(ci);
-                }
+            DirectoryInfo dir = new DirectoryInfo(getInstallPath());
+            DirectoryInfo[] sub = dir.GetDirectories("??-??");
+            foreach (var d in sub) {
+                FileInfo[] f = d.GetFiles("ApkShellext2.resources.dll");
+                if (f.Length == 1)
+                    result.Add(new CultureInfo(d.Name));
             }
             return result.ToArray();
+        }
+
+        public static string getInstallPath() {
+            string codebase = new Uri(Assembly.GetExecutingAssembly().EscapedCodeBase).LocalPath;
+            return Path.GetDirectoryName(codebase);
         }
 
         public static void getLatestVersion() {
