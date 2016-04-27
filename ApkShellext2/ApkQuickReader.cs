@@ -1052,6 +1052,7 @@ namespace ApkQuickReader {
         //private const string AttrName = @"name";
         private const string AttrDebuggable = @"debuggable";
         private const string ConstTrue = "true";
+        private const string ConstFalse = "false";
 
         /// <summary>
         /// extract the manifext
@@ -1229,6 +1230,8 @@ namespace ApkQuickReader {
                                 return result;
                             } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
                                 return QuickSearchResource((UInt32)data);
+                            } else if (dataType == (byte)DATA_TYPE.TYPE_INT_BOOLEAN) {
+                                result.defaultValue = (data == 0) ? ConstFalse : ConstTrue; 
                             } else { // I would like to expect we only will recieve TYPE_STRING/TYPE_REFERENCE/any integer type, complex is not considering here,yet
                                 result.defaultValue = data.ToString(); 
                             }
