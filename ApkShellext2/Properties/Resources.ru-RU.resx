@@ -164,19 +164,19 @@
     <value>Шаблон переименования</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Страница {0} в Amazon AppStore</value>
+    <value>{0} в Amazon AppStore</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Страница {0} в Apple AppStore</value>
+    <value>{0} в Apple AppStore</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Страница {0} в Google Play</value>
+    <value>{0} в Google Play</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Страница {0} в Microsoft Store</value>
+    <value>{0} в Microsoft Store</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>Файл APK</value>
+    <value>Расширение оболочки проводника APK</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
     <value>Настройки &amp;&amp; обновления</value>
@@ -196,7 +196,7 @@
     <value>Проверка на наличие новой версии...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Зайдите на сайт проекта для обновления.</value>
+    <value>Проверить сайт проекта для обновления.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
     <value>Текущая версия: {0}</value>
@@ -211,7 +211,7 @@
     <value>Язык:</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>Эта функция требует работающей службы ApkShellextService, убедитесь, что служба запущена.</value>
+    <value>Эта функция требует ApkShellextService, убедитесь, что служба запущена.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
     <value>Доступна новая версия {0}</value>
@@ -226,8 +226,8 @@
     <value>Пожалуйста используйте переменные</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Для избежания ситуации когда версия та же, но другой ревизии, что часто случается в Android приложениях.
-Отметив это, переименуйте файл приложения как %AppName%_%Version%_%Revision%, иначе, используйте %AppName%_%Version%.</value>
+    <value>Для избежания ситуации когда версии одинаковы, а ревизии разные, это часто встречается в установщиках Android приложений.
+Отметив это, переименование будет происходить по паттерну %AppName%_%Version%_%Revision%, иначе, будет использоваться %AppName%_%Version%.</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
     <value>Сканировать QR-Код для загрузки</value>
@@ -242,7 +242,7 @@
     <value>Показать значок в оверлее</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Отображать оверлей значок разных OS</value>
+    <value>Отображать тип OS приложения</value>
   </data>
   
   
@@ -286,7 +286,7 @@
     <value>Всплывающая подсказка</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>Страница {0} на ApkMirror.com</value>
+    <value>{0} на ApkMirror.com</value>
   </data>
   
   <data name="btnResetPattern" xml:space="preserve">
@@ -309,7 +309,7 @@
   </data>
   
   <data name="strInfoTipPattern" xml:space="preserve">
-    <value>Шаблон всплывающей подсказки:</value>
+    <value>Информация о шаблоне:</value>
   </data>
   
   
@@ -346,10 +346,10 @@
     <value>Сообщать о новых версиях</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
-    <value>Миниатюра</value>
+    <value>Эскиз</value>
   </data>
   <data name="strStretchThumbnail" xml:space="preserve">
-    <value>Растягивать миниатюру, если Windows требует большего размера</value>
+    <value>Растягивать значок если Windows требует большего размера</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Помогите перевести этот проект.</value>
@@ -357,13 +357,13 @@
   
   
   <data name="strClearCache" xml:space="preserve">
-    <value>Очистить кеш значков и миниатюр</value>
+    <value>Очистить кеш значков и эскизов</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
     <value>Все открытые окна Проводника будут закрыты. Продолжить?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
-    <value>Отображать миниатюру вместо значка.</value>
+    <value>Отображать Эскиз вместо иконки.</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Для корректного отображения значков и миниатюр, кеш должен быть очищен, продолжить?</value>

@@ -184,8 +184,14 @@
   <data name="menuRenameAs" xml:space="preserve">
     <value>Umbenennen in {0}</value>
   </data>
-  
-  
+  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
+    <value>Zeige App-Store-Menüs, wenn mehrere Dateien ausgewählt sind</value>
+  </data>
+  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
+    <value>Wenn diese Option aktiviert ist, wird das App-Store-Menü bei mehreren ausgewählten apk-Dateien angezeigt. 
+Bitte beachten Sie, dass dabei viele Browser-Fenster bzw. Tabs geöffnet werden, dies kann die Leistung erheblich beeinträchtigen.
+Standardmäßig wird das Menü nur angezeigt, wenn Sie eine Datei auswählen</value>
+  </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
     <value>Neue Version wird gesucht...</value>
   </data>
@@ -195,11 +201,15 @@
   <data name="strCurrVersion" xml:space="preserve">
     <value>Aktuelle Version: {0}</value>
   </data>
-  
+  <data name="strGotLatest" xml:space="preserve">
+    <value>Toll! Du hast die neueste Version.</value>
+  </data>
   <data name="strGotoProjectSite" xml:space="preserve">
     <value>ApkShellext2-Projektseite öffnen</value>
   </data>
-  
+  <data name="strLanguages" xml:space="preserve">
+    <value>Sprache:</value>
+  </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
     <value>Dieses Feature erfordert ApkShellextService, stelle bitte sicher, dass der Dienst gestartet ist.</value>
   </data>
@@ -212,14 +222,22 @@
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Lesen der Datei fehlgeschlagen</value>
   </data>
-  
+  <data name="strReferToWiki" xml:space="preserve">
+    <value>Die Variablen-Nutzung wird im Projekt-Wiki näher erläutert</value>
+  </data>
   
   <data name="strScanToDownload" xml:space="preserve">
     <value>QR-Code scannen zum Herunterladen</value>
   </data>
-  
-  
-  
+  <data name="strShowAppxIcon" xml:space="preserve">
+    <value>Zeige Symbole für Windows-Phone-Apps (appx, appxbundle) an.</value>
+  </data>
+  <data name="strShowIpaIcon" xml:space="preserve">
+    <value>Zeige Symbole für iOS-Apps (ipa) an.</value>
+  </data>
+  <data name="strShowOverlayIcon" xml:space="preserve">
+    <value>Zeige Overlays für die jeweilige Plattform an</value>
+  </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Ein Overlay-Icon für diesen Dateityp anzeigen</value>
   </data>
@@ -230,28 +248,66 @@
   
   
   
+  <data name="strShowContextMenuIcon" xml:space="preserve">
+    <value>Verwende Symbole im Kontextmenü</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="btnNo" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="btnYes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="strRenameConfirm" xml:space="preserve">
+    <value>Diese Datei zu {0} umbenennen?</value>
+  </data>
+  <data name="strRenamePattern" xml:space="preserve">
+    <value>Umbenennungsmuster: (ohne Dateiendung)</value>
+  </data>
   
+  <data name="twContextMenu" xml:space="preserve">
+    <value>Kontextmenü</value>
+  </data>
+  <data name="twGeneral" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="twIcon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="twRename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
+  <data name="twInfotip" xml:space="preserve">
+    <value>Tool-Tip</value>
+  </data>
+  <data name="menuGotoApkMirror" xml:space="preserve">
+    <value>Suche {0} auf ApkMirror.com</value>
+  </data>
   
+  <data name="btnResetPattern" xml:space="preserve">
+    <value>Benutze zuletzt verwendetes Muster</value>
+  </data>
+  <data name="strShowAmazonStore" xml:space="preserve">
+    <value>Amazon App-Store im Kontext-Menü anzeigen</value>
+  </data>
+  <data name="strShowApkMirror" xml:space="preserve">
+    <value>ApkMirror Link in das Kontext-Menü anzeigen</value>
+  </data>
+  <data name="strShowAppleStore" xml:space="preserve">
+    <value>Apple Store Link (ipa) im Kontextmenü anzeigen</value>
+  </data>
+  <data name="strShowGooglePlay" xml:space="preserve">
+    <value>Google Play link anzeigen</value>
+  </data>
+  <data name="strShowMSStore" xml:space="preserve">
+    <value>Microsoft Store-Link anzeigen (für appx/appxbundle)</value>
+  </data>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <data name="strInfoTipPattern" xml:space="preserve">
+    <value>Tool-Tip Muster:</value>
+  </data>
   
   
   
@@ -270,19 +326,43 @@
     <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   
+  <data name="btnBrowse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
+  <data name="btnSearchAdb" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
+  <data name="strAdbPath" xml:space="preserve">
+    <value>Bitte Pfad zu adb.exe angeben</value>
+  </data>
+  <data name="strReplaceSpaceWith_" xml:space="preserve">
+    <value>Ersetze Leerzeichen mit _</value>
+  </data>
+  
+  <data name="strShowNewVerInfo" xml:space="preserve">
+    <value>An neue Version erinnern</value>
+  </data>
+  <data name="twThumbnail" xml:space="preserve">
+    <value>Vorschaubild</value>
+  </data>
+  <data name="strStretchThumbnail" xml:space="preserve">
+    <value>Vorschaubild vergrößern wenn benötigt</value>
+  </data>
+  <data name="strHelpTranslate" xml:space="preserve">
+    <value>Hilfe bei der Übersetzung dieses Projektes!</value>
+  </data>
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <data name="strClearCache" xml:space="preserve">
+    <value>Symbol- und Vorschaubildcache löschen</value>
+  </data>
+  <data name="dialogClearCache" xml:space="preserve">
+    <value>Sollen alle Explorer-Fenster geschlossen werden?</value>
+  </data>
+  <data name="strEnableThumbnail" xml:space="preserve">
+    <value>Zeige Vorschaubilder anstatt von Symbolen.</value>
+  </data>
+  <data name="dialogNeedClearCache" xml:space="preserve">
+    <value>Um Symbol und Vorschaubilder korrekt anzuzeigen, muss der Cache gelöscht werden. Soll der Cache jetzt gelöscht werden?</value>
+  </data>
 </root>

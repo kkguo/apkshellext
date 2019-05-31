@@ -148,102 +148,6 @@
   <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnOK" xml:space="preserve">
-    <value>تأیید</value>
-  </data>
-  <data name="btnGitHub" xml:space="preserve">
-    <value>صفحه رسمی در GitHub</value>
-  </data>
-  <data name="btnUpdate" xml:space="preserve">
-    <value>به روز رسانی</value>
-  </data>
-  <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>به روز رسانی در وب سایت پروژه</value>
-  </data>
-  <data name="lblRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام</value>
-  </data>
-  <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>بررسی {0} درفروشگاه آمازون</value>
-  </data>
-  <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>بررسی {0} در فروشگاه اپل</value>
-  </data>
-  <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>برو به گوگل پلی استور</value>
-  </data>
-  <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>بررسی {0} در  فروشگاه مایکروسافت</value>
-  </data>
-  <data name="menuMain" xml:space="preserve">
-    <value>APK ابزارهای</value>
-  </data>
-  <data name="menuPreferences" xml:space="preserve">
-    <value>تنظیمات و بروزرسانی</value>
-  </data>
-  <data name="menuRenameAs" xml:space="preserve">
-    <value>{0} تغییر نام به </value>
-  </data>
-  <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>نمایش منو فروشگاه هنگامیکه چند فایل انخاب شده</value>
-  </data>
-  <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-لطفا توجه کنید ممکن است شما پنجره های باز دیگری هم داشته باشید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود
-بصورت پیشفرض، منو فقط زمانی که یک فایل انتخاب شده باشد نمایش داده میشود</value>
-  </data>
-  <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>جستجوی نسخه جدید...</value>
-  </data>
-  <data name="strCheckProjectSite" xml:space="preserve">
-    <value>جستجوی نسخه جدید در سایت پروژه.</value>
-  </data>
-  <data name="strCurrVersion" xml:space="preserve">
-    <value>نسخه فعلی:{0}</value>
-  </data>
-  <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه شما بروز است.</value>
-  </data>
-  <data name="strGotoProjectSite" xml:space="preserve">
-    <value>برو به سایت پروژه</value>
-  </data>
-  <data name="strLanguages" xml:space="preserve">
-    <value>زبان مورد استفاده:</value>
-  </data>
-  <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>این ابزار نیازمند ApkShellextService میباشد ، لظفا از اجرای سرویس مربوطه مطمئن شوید.</value>
-  </data>
-  <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0}نسخه جدید موجود است</value>
-  </data>
-  <data name="strPreferencesCaption" xml:space="preserve">
-    <value> تنظیمات</value>
-  </data>
-  <data name="strReadFileFailed" xml:space="preserve">
-    <value>فایل خوانده نشد</value>
-  </data>
-  <data name="strReferToWiki" xml:space="preserve">
-    <value>مراجعه کنید به پروژه در ویکیپدیا</value>
-  </data>
-  <data name="strRenameToolTip" xml:space="preserve">
-    <value>برای جلوگیری از همنام شدن فایلهای مشابه با ورژن متفاوت که معمولا در برنامه های اندرویید پیش می آید.
-با انتخاب این گزینه تغییر نام بصورت %نام برنامه%_%ورژن%_%شماره ساخت%، در غیر اینصورت تغییر نام بصورت %نام برنامه%_%ورژن% انجام خواهد شد.</value>
-  </data>
-  <data name="strScanToDownload" xml:space="preserve">
-    <value>اسکن QR کد برای دانلود</value>
-  </data>
-  <data name="strShowAppxIcon" xml:space="preserve">
-    <value>نمایش ایکون برنامه های ویندوز فون (appx, appxbundle).</value>
-  </data>
-  <data name="strShowIpaIcon" xml:space="preserve">
-    <value>نمایش آیکون برنامه های ایفون(IPA)</value>
-  </data>
-  <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>نمایش آیکون عمومی</value>
-  </data>
-  <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>نمایش آیکون عمومی نسبت به نوع فایل</value>
-  </data>
   
   
   
@@ -251,66 +155,59 @@
   
   
   
-  <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>نمایش آیکن برای منوی راست کلیک</value>
-  </data>
-  <data name="btnCancel" xml:space="preserve">
-    <value>انصراف</value>
-  </data>
-  <data name="btnNo" xml:space="preserve">
-    <value>خير</value>
-  </data>
-  <data name="btnYes" xml:space="preserve">
-    <value>بله</value>
-  </data>
-  <data name="strRenameConfirm" xml:space="preserve">
-    <value>تغییر نام این فایل به {0} مورد تایید است?</value>
-  </data>
-  <data name="strRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام: (بدون پسوند فایل)</value>
-  </data>
   
-  <data name="twContextMenu" xml:space="preserve">
-    <value>منوی راست کلیک</value>
-  </data>
-  <data name="twGeneral" xml:space="preserve">
-    <value>عمومی</value>
-  </data>
-  <data name="twIcon" xml:space="preserve">
-    <value>آیکن</value>
-  </data>
-  <data name="twRename" xml:space="preserve">
-    <value>تغییر نام</value>
-  </data>
-  <data name="twInfotip" xml:space="preserve">
-    <value>توضیحات</value>
-  </data>
-  <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>بررسی {0} در ApkMirror.com</value>
-  </data>
   
-  <data name="btnResetPattern" xml:space="preserve">
-    <value>استفاده از آخرین الگو دخیره شده</value>
-  </data>
-  <data name="strShowAmazonStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه آمازون در منو</value>
-  </data>
-  <data name="strShowApkMirror" xml:space="preserve">
-    <value>نمایش لینک ApkMirror در منو</value>
-  </data>
-  <data name="strShowAppleStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه اپل (برای برنامه های اپل) در منو</value>
-  </data>
-  <data name="strShowGooglePlay" xml:space="preserve">
-    <value>نمایش لینک گوگل پلی استور</value>
-  </data>
-  <data name="strShowMSStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه مایکروسافت (برای برنامه های ویندوز فون)</value>
-  </data>
   
-  <data name="strInfoTipPattern" xml:space="preserve">
-    <value>الگوی نمایش توضیحات:</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -329,43 +226,19 @@
     <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   
-  <data name="btnBrowse" xml:space="preserve">
-    <value>مرور</value>
-  </data>
-  <data name="btnSearchAdb" xml:space="preserve">
-    <value>جستجو</value>
-  </data>
-  <data name="strAdbPath" xml:space="preserve">
-    <value>لطفا مسیر adb.exe را تعیین کنید</value>
-  </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>جایگزینی فاصله با _</value>
-  </data>
-  
-  <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>یادآوری نسخه جدید</value>
-  </data>
-  <data name="twThumbnail" xml:space="preserve">
-    <value>تصویر بند انگشتی</value>
-  </data>
-  <data name="strStretchThumbnail" xml:space="preserve">
-    <value>اگر ویندوز آیکن بزرگتر را درخواست کرد، تصویر بند انگشتی را بزرگتر نشان بده</value>
-  </data>
-  <data name="strHelpTranslate" xml:space="preserve">
-    <value>کمک به ترجمه پروژه.</value>
-  </data>
   
   
-  <data name="strClearCache" xml:space="preserve">
-    <value>حافظه موقت آیکن و تصویر بند انگشتی را پاک کن</value>
-  </data>
-  <data name="dialogClearCache" xml:space="preserve">
-    <value>همه پنجره های باز فایل اکسپلورر بسته خواهد شد، ادامه می دهید?</value>
-  </data>
-  <data name="strEnableThumbnail" xml:space="preserve">
-    <value>بجای آیکن، تصویر بند انگشتی را نشان بده.</value>
-  </data>
-  <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>به منظور درست نمایش دادن آیکون و تصویر بند انگشتی ، حافظه موقت نیاز به پاک شدن دارد، آن را پاک می کنید؟</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </root>

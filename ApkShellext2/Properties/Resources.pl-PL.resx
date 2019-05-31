@@ -149,100 +149,100 @@
     <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="btnOK" xml:space="preserve">
-    <value>تأیید</value>
+    <value>OK</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>صفحه رسمی در GitHub</value>
+    <value>Oficjalna strona na GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>به روز رسانی</value>
+    <value>Zaktualizuj</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>به روز رسانی در وب سایت پروژه</value>
+    <value>Przejdź do witryny projektu, aby zaktualizować</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام</value>
+    <value>Wzór zmiany nazwy</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>بررسی {0} درفروشگاه آمازون</value>
+    <value>Sprawdź {0} w Amazon Appstore</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>بررسی {0} در فروشگاه اپل</value>
+    <value>Sprawdź {0} w Apple App Store</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>برو به گوگل پلی استور</value>
+    <value>Sprawdź {0} w Google Play</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>بررسی {0} در  فروشگاه مایکروسافت</value>
+    <value>Sprawdź {0} w Sklepie Microsoft</value>
   </data>
   <data name="menuMain" xml:space="preserve">
-    <value>APK ابزارهای</value>
+    <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>تنظیمات و بروزرسانی</value>
+    <value>Preferencje i aktualizacje</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>{0} تغییر نام به </value>
+    <value>Zmień nazwę na {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>نمایش منو فروشگاه هنگامیکه چند فایل انخاب شده</value>
+    <value>Pokaż menu sklepów przy wyborze wielu plików</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>اگر این گزینه انتخاب شود منوی گوگل پلی نمایش داده میشود حتی اگر چندین فایل انتخاب شده باشد
-لطفا توجه کنید ممکن است شما پنجره های باز دیگری هم داشته باشید که انتخاب این گزینه باعث پایین آمدن کارایی سیستم میشود
-بصورت پیشفرض، منو فقط زمانی که یک فایل انتخاب شده باشد نمایش داده میشود</value>
+    <value>Jeśli zaznaczone, odnośniki do sklepów pojawią się nawet przy zaznaczaniu wielu aplikacji.
+Pamiętaj, że ta opcja może spowodować otwarcie wielu okien przeglądarki na raz i znacznie wpłynąć na wydajność.
+Domyślnie, odnośniki wyświetlane są tylko przy zaznaczeniu jednego pliku.</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>جستجوی نسخه جدید...</value>
+    <value>Sprawdzanie nowej wersji...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>جستجوی نسخه جدید در سایت پروژه.</value>
+    <value>Sprawdź stronę projektu, aby zaktualizować.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>نسخه فعلی:{0}</value>
+    <value>Bieżąca wersja: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>برنامه شما بروز است.</value>
+    <value>Świetnie! Posiadasz najnowszą wersję.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>برو به سایت پروژه</value>
+    <value>Przejdź do witryny projektu ApkShellext2</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>زبان مورد استفاده:</value>
+    <value>Wybór języka:</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>این ابزار نیازمند ApkShellextService میباشد ، لظفا از اجرای سرویس مربوطه مطمئن شوید.</value>
+    <value>Ta funkcja wymaga ApkShellextService. Upewnij się, że usługa działa.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>{0}نسخه جدید موجود است</value>
+    <value>Dostępna jest nowa wersja {0}</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value> تنظیمات</value>
+    <value>Preferencje ApkShellext2</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>فایل خوانده نشد</value>
+    <value>Błąd odczytu pliku</value>
   </data>
   <data name="strReferToWiki" xml:space="preserve">
-    <value>مراجعه کنید به پروژه در ویکیپدیا</value>
+    <value>Użycie zmiennych: skorzystaj z Wiki projektu</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>برای جلوگیری از همنام شدن فایلهای مشابه با ورژن متفاوت که معمولا در برنامه های اندرویید پیش می آید.
-با انتخاب این گزینه تغییر نام بصورت %نام برنامه%_%ورژن%_%شماره ساخت%، در غیر اینصورت تغییر نام بصورت %نام برنامه%_%ورژن% انجام خواهد شد.</value>
+    <value>Dla uniknięcia sytuacji, w której pakiety mają taki sam numer wersji, ale inny numer subwersji (najczęściej zdarza się dla aplikacji na Androida).
+Zaznaczając to, w przypadku gdy numer subwersji będzie się różnił, wykorzystany zostanie wzór %AppName%_%Version%_%Revision%, w przeciwnym razie - %AppName%_%Version%.</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
-    <value>اسکن QR کد برای دانلود</value>
+    <value>Zeskanuj kod QR, aby pobrać</value>
   </data>
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>نمایش ایکون برنامه های ویندوز فون (appx, appxbundle).</value>
+    <value>Wyświetlaj ikonę aplikacji Windows (*.appx, *.appxbundle).</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>نمایش آیکون برنامه های ایفون(IPA)</value>
+    <value>Wyświetlaj ikonę aplikacji iOS (*.ipa).</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>نمایش آیکون عمومی</value>
+    <value>Wyświetlaj nakładkę z ikoną systemu</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>نمایش آیکون عمومی نسبت به نوع فایل</value>
+    <value>Wyświetlaj nakładkę z ikoną systemu</value>
   </data>
   
   
@@ -252,64 +252,64 @@
   
   
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>نمایش آیکن برای منوی راست کلیک</value>
+    <value>Wyświetlaj ikonę w menu kontekstowym</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
-    <value>انصراف</value>
+    <value>Anuluj</value>
   </data>
   <data name="btnNo" xml:space="preserve">
-    <value>خير</value>
+    <value>Nie</value>
   </data>
   <data name="btnYes" xml:space="preserve">
-    <value>بله</value>
+    <value>Tak</value>
   </data>
   <data name="strRenameConfirm" xml:space="preserve">
-    <value>تغییر نام این فایل به {0} مورد تایید است?</value>
+    <value>Potwierdzasz zmianę nazwy pliku na {0}?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>الگوی تغییر نام: (بدون پسوند فایل)</value>
+    <value>Wzór zmiany nazwy (bez rozszerzenia):</value>
   </data>
   
   <data name="twContextMenu" xml:space="preserve">
-    <value>منوی راست کلیک</value>
+    <value>Menu kontekstowe</value>
   </data>
   <data name="twGeneral" xml:space="preserve">
-    <value>عمومی</value>
+    <value>Ogólne</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>آیکن</value>
+    <value>Ikona</value>
   </data>
   <data name="twRename" xml:space="preserve">
-    <value>تغییر نام</value>
+    <value>Zmiana nazwy</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>توضیحات</value>
+    <value>Dymek informacji</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>بررسی {0} در ApkMirror.com</value>
+    <value>Sprawdź {0} na ApkMirror.com</value>
   </data>
   
   <data name="btnResetPattern" xml:space="preserve">
-    <value>استفاده از آخرین الگو دخیره شده</value>
+    <value>Wykorzystaj ostatnio zapisany wzór</value>
   </data>
   <data name="strShowAmazonStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه آمازون در منو</value>
+    <value>Wyświetlaj odnośnik do Amazon Appstore w menu kontekstowym</value>
   </data>
   <data name="strShowApkMirror" xml:space="preserve">
-    <value>نمایش لینک ApkMirror در منو</value>
+    <value>Wyświetlaj odnośnik do ApkMirror.com w menu kontekstowym</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه اپل (برای برنامه های اپل) در منو</value>
+    <value>Wyświetlaj odnośnik do Apple App Store w menu kontekstowym (pliki *.ipa)</value>
   </data>
   <data name="strShowGooglePlay" xml:space="preserve">
-    <value>نمایش لینک گوگل پلی استور</value>
+    <value>Wyświetlaj odnośnik do Sklepu Google Play</value>
   </data>
   <data name="strShowMSStore" xml:space="preserve">
-    <value>نمایش لینک فروشگاه مایکروسافت (برای برنامه های ویندوز فون)</value>
+    <value>Wyświetlaj odnośnik do Sklepu Microsoft (pliki *.appx/*.appxbundle)</value>
   </data>
   
   <data name="strInfoTipPattern" xml:space="preserve">
-    <value>الگوی نمایش توضیحات:</value>
+    <value>Wzór dymka z informacją o pliku:</value>
   </data>
   
   
@@ -330,42 +330,42 @@
   </data>
   
   <data name="btnBrowse" xml:space="preserve">
-    <value>مرور</value>
+    <value>Przeglądaj</value>
   </data>
   <data name="btnSearchAdb" xml:space="preserve">
-    <value>جستجو</value>
+    <value>Wyszukaj</value>
   </data>
   <data name="strAdbPath" xml:space="preserve">
-    <value>لطفا مسیر adb.exe را تعیین کنید</value>
+    <value>Określ ścieżkę do adb.exe</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>جایگزینی فاصله با _</value>
+    <value>Zastąp spacje znakiem _</value>
   </data>
   
   <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>یادآوری نسخه جدید</value>
+    <value>Przypominaj o nowej wersji</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
-    <value>تصویر بند انگشتی</value>
+    <value>Miniatura</value>
   </data>
   <data name="strStretchThumbnail" xml:space="preserve">
-    <value>اگر ویندوز آیکن بزرگتر را درخواست کرد، تصویر بند انگشتی را بزرگتر نشان بده</value>
+    <value>Rozciągnij miniaturę, jeśli Windows zażąda większego rozmiaru</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
-    <value>کمک به ترجمه پروژه.</value>
+    <value>Pomóż w tłumaczeniu tego projektu.</value>
   </data>
   
   
   <data name="strClearCache" xml:space="preserve">
-    <value>حافظه موقت آیکن و تصویر بند انگشتی را پاک کن</value>
+    <value>Wyczyść pamięć podręczną ikon i miniatur</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
-    <value>همه پنجره های باز فایل اکسپلورر بسته خواهد شد، ادامه می دهید?</value>
+    <value>Wszystkie instancje Eksploratora Windows zostaną zamknięte, kontynuować?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
-    <value>بجای آیکن، تصویر بند انگشتی را نشان بده.</value>
+    <value>Wyświetlaj miniatury zamiast ikon.</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>به منظور درست نمایش دادن آیکون و تصویر بند انگشتی ، حافظه موقت نیاز به پاک شدن دارد، آن را پاک می کنید؟</value>
+    <value>Aby poprawnie wyświetlić ikony i miniatury, pamięć podręczna musi zostać wyczyszczona, wyczyścić teraz?</value>
   </data>
 </root>
