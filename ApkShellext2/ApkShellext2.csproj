@@ -111,7 +111,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="QRCoder\QRCoder\QRCoder.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\COMServerAssociationAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
