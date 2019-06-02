@@ -38,7 +38,7 @@ namespace ApkShellext2 {
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
                     }
-                    if (Settings.Default.ShowOverLayIcon)
+                    if (Utility.GetSetting("ShowOverLayIcon") == "true")
                         m_icon = Utility.CombineBitmap(m_icon,
                            Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath)),
                            new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
@@ -58,9 +58,9 @@ namespace ApkShellext2 {
         private static void CheckUpdate() {
             try {
                 checkUpdateMutex.WaitOne();
-                if (Settings.Default.LastCheckUpdateTime < System.DateTime.Today) {
-                    Settings.Default.LastCheckUpdateTime = System.DateTime.Today;
-                    Settings.Default.Save();
+                DateTime t = DateTime.Parse(Utility.GetSetting("LastCheckUpdateTime"));
+                if (t < System.DateTime.Today) {
+                    Utility.SaveSetting("LastCheckUpdateTime", System.DateTime.Today.ToString());
                     Thread thUpdate = new Thread(new ThreadStart(() => { Utility.getLatestVersion(); }));
                     thUpdate.Start();                    
                 }
@@ -71,7 +71,7 @@ namespace ApkShellext2 {
 
         [CustomRegisterFunction]
         public static void postDoRegister(Type type, RegistrationType registrationType) {
-            Console.WriteLine("Registering " + type.FullName + " Version" + type.Assembly.GetName().Version.ToString());
+            Console.WriteLine("Registering " + type.FullName + " Version " + type.Assembly.GetName().Version.ToString());
 
             // Todo: clean other icon handler as they were integrated
             //"d5ff6172-1ae5-4c4a-a207-5a2dd100891e"
