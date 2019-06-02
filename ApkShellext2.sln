@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApkShellext2", "ApkShellext2\ApkShellext2.csproj", "{091659BA-A36B-45D5-AAF2-3CE764453FF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apkShellextService", "apkShellextService\apkShellextService.csproj", "{3F77E975-68ED-4083-B8F8-56EB56372889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apkshellextTest", "apkshellextTest\apkshellextTest.csproj", "{6853DDBC-05EA-476A-B1CA-47F6E64FF795}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +21,15 @@ Global
 		{091659BA-A36B-45D5-AAF2-3CE764453FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F77E975-68ED-4083-B8F8-56EB56372889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F77E975-68ED-4083-B8F8-56EB56372889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6853DDBC-05EA-476A-B1CA-47F6E64FF795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6853DDBC-05EA-476A-B1CA-47F6E64FF795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6853DDBC-05EA-476A-B1CA-47F6E64FF795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6853DDBC-05EA-476A-B1CA-47F6E64FF795}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A438C55-B459-43B6-999D-11D7A8991B0F}
 	EndGlobalSection
 EndGlobal

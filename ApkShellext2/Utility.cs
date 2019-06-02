@@ -52,25 +52,28 @@ namespace ApkShellext2 {
             return ResizeBitmap(original, new Size(width, width));
         }
 
-        # region set/get registry settings
-        public const string keyLanguage = @"language";
-        public const string keyMultiSelectShowStore = @"AlwaysShowGooglePlay";
-        public const string keyShowGooglePlay = @"ShowGooglePlay";
-        public const string keyShowAmazonStore = @"ShowAmazonStore";
-        public const string keyShowApkMirror = @"ShowApkMirror";
-        public const string keyShowAppleStore = @"ShowAppleStore";
-        public const string keyShowMSStore = @"ShowMSStore";
-        public const string keyRenameWithVersionCode = @"RenameWithVersionCode";
-        public const string keyShowOverlay = @"ShowOverLayIcon";
-        public const string keyShowIpaIcon = @"ShowIpaIcon";
-        public const string keyShowAppxIcon = @"ShowAppxIcon";
-        public const string keyShowMenuIcon = @"ShowMenuIcon";
-        public const string keyRenamePattern = @"RenamePattern";
-        public const string keyToolTipPattern = @"ToolTipPattern";
-        public const string keyEnableThumbnail = @"EnableThumbnail";
-        public const string keyStretchThumbnail = @"StretchThumbnail";
+        #region set/get registry settings
+        public const bool UseRegisteryForSettings = true;
 
-        public static void setRegistrySetting(string key, int value) {
+        //public const string keyLanguage = @"language";
+        //public const string keyMultiSelectShowStore = @"AlwaysShowGooglePlay";
+        //public const string keyShowGooglePlay = @"ShowGooglePlay";
+        //public const string keyShowAmazonStore = @"ShowAmazonStore";
+        //public const string keyShowApkMirror = @"ShowApkMirror";
+        //public const string keyShowAppleStore = @"ShowAppleStore";
+        //public const string keyShowMSStore = @"ShowMSStore";
+        //public const string keyRenameWithVersionCode = @"RenameWithVersionCode";
+        //public const string keyShowOverlay = @"ShowOverLayIcon";
+        //public const string keyShowIpaIcon = @"ShowIpaIcon";
+        //public const string keyShowAppxIcon = @"ShowAppxIcon";
+        //public const string keyShowMenuIcon = @"ShowMenuIcon";
+        //public const string keyRenamePattern = @"RenamePattern";
+        //public const string keyToolTipPattern = @"ToolTipPattern";
+        //public const string keyEnableThumbnail = @"EnableThumbnail";
+        //public const string keyStretchThumbnail = @"StretchThumbnail";
+        //public const string keyLastCheckUpdateTime = @"LastCheckUpdateTime";
+
+        public static void SetRegistrySetting(string key, int value) {
             try {
                 string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                 using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
@@ -81,19 +84,19 @@ namespace ApkShellext2 {
             }
         }
 
-        //public static void setRegistrySettingString(string key, string value) {
-        //    try {
-        //        string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-        //        using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
-        //            k.SetValue(key, value);
-        //        }
-        //    } catch (Exception ex) {
-        //        Logging.Log("Error happens during write settings :" + ex.Message);
-        //    }
-        //}
+        public static void setRegistrySettingString(string key, string value) {
+            try {
+                string assembly_name = Assembly.GetExecutingAssembly().GetName().Name;
+                using (RegistryKey k = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\" + assembly_name)) {
+                    k.SetValue(key, value);
+                }
+            } catch (Exception ex) {
+                Logging.Log("Error happens during write settings :" + ex.Message);
+            }
+        }
 
         static object getRegisterySetting(string key, object defValue) {
-            string assembly_name = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+            string assembly_name = Assembly.GetExecutingAssembly().GetName().Name;
             try {
                 using (RegistryKey k = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\" + assembly_name))
                     return k.GetValue(key, defValue);
@@ -110,7 +113,26 @@ namespace ApkShellext2 {
         public static string getRegistrySettingString(string key, string defValue = "") {
             return (string)getRegisterySetting(key,defValue);
         }
-        # endregion
+
+#pragma warning disable CS0162 // Unreachable code detected
+        public static string GetSetting(string key) {
+            if (UseRegisteryForSettings) {
+                return getRegisterySetting(key, "").ToString();
+            } else {
+                return Settings.Default[key].ToString();
+            }
+        }
+
+        public static void SaveSetting(string key, object value) {
+            if (UseRegisteryForSettings) {
+                setRegistrySettingString(key, value.ToString());
+            } else {
+                Settings.Default[key] = value;
+                Settings.Default.Save();
+            }
+        }
+#pragma warning restore CS0162 // Unreachable code detected
+        #endregion
 
         #region Resolve resource dll by internal resource
         // buffer for loaded resource dll;
@@ -158,7 +180,7 @@ namespace ApkShellext2 {
         /// </summary>
         public static void Localize() {
             //HookResolveResourceDll();
-            int lang = Settings.Default.Language;
+            int lang = Int16.Parse(Utility.GetSetting("Language"));
             if (lang != -1) {
                 Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
@@ -203,7 +225,7 @@ namespace ApkShellext2 {
                     s = Encoding.ASCII.GetString(buf, 0, count);
                 }
                 s = Regex.Replace(s, @"\t|\n|\r", "");
-                Settings.Default.LatestVersion = s;
+                Utility.SaveSetting("LatestVersion", s);
                 Log(null, "Update", "Get the latest version :" + s);
             } catch (Exception ex) {
                 Log(null, "Update", "Error During check update:" + ex.Message);
@@ -211,7 +233,7 @@ namespace ApkShellext2 {
         }
 
         public static bool NewVersionAvailible() {
-            string[] latestV = Settings.Default.LatestVersion.Split(new Char[] { '.' });
+            string[] latestV = Utility.GetSetting("LatestVersion").Split(new Char[] { '.' });
             if (latestV.Length != 4)
                 return false;
             string[] curV = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split(new Char[] { '.' });

@@ -11,6 +11,8 @@
     <AssemblyName>ApkShellext2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,12 +40,15 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>apkshellext2.key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Protobuf, Version=3.8.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.8.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -60,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApkChunk.cs" />
     <Compile Include="ApkQuickReader.cs" />
     <Compile Include="ApkIconHandler.cs" />
     <Compile Include="ApkInfoTipHandler.cs" />
@@ -105,6 +111,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="QRCoder\QRCoder\QRCoder.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\AssociationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\COMServerAssociationAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomRegisterFunctionAttribute.cs" />
@@ -375,6 +382,7 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="apkshellext2.key.pfx" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -442,9 +450,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="key.pfx" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
@@ -454,8 +459,32 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)
+"C:\Program Files\7-Zip\7z.exe" a ApkShellext2.7z ApkShellext2.dll *.bat
+"C:\Program Files\7-Zip\7z.exe" a ar-SA.7z ar-SA
+"C:\Program Files\7-Zip\7z.exe" a de-DE.7z de-DE
+"C:\Program Files\7-Zip\7z.exe" a el-GR.7z el-GR
+"C:\Program Files\7-Zip\7z.exe" a es-ES.7z es-ES
+"C:\Program Files\7-Zip\7z.exe" a fa-IR.7z fa-IR
+"C:\Program Files\7-Zip\7z.exe" a  fr-FR.7z fr-FR
+"C:\Program Files\7-Zip\7z.exe" a  he-IL.7z he-IL
+"C:\Program Files\7-Zip\7z.exe" a  it-IT.7z it-IT
+"C:\Program Files\7-Zip\7z.exe" a  ja-JP.7z ja-JP
+"C:\Program Files\7-Zip\7z.exe" a  ko-KR.7z ko-KR
+"C:\Program Files\7-Zip\7z.exe" a  pt-PT.7z pt-PT
+"C:\Program Files\7-Zip\7z.exe" a  ru-RU.7z ru-RU
+"C:\Program Files\7-Zip\7z.exe" a  tr-TR.7z tr-TR
+"C:\Program Files\7-Zip\7z.exe" a zh-CN.7z zh-CN
+"C:\Program Files\7-Zip\7z.exe" a zh-TW.7z zh-TW
+start $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Google.Protobuf.Tools.3.8.0\build\Google.Protobuf.Tools.targets" Condition="Exists('..\packages\Google.Protobuf.Tools.3.8.0\build\Google.Protobuf.Tools.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Google.Protobuf.Tools.3.8.0\build\Google.Protobuf.Tools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Google.Protobuf.Tools.3.8.0\build\Google.Protobuf.Tools.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

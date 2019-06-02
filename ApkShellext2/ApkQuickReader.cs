@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 
 namespace ApkQuickReader {
-    public enum RES_TYPE : ushort {
+    public enum RES_TYPE : UInt16 {
         RES_NULL_TYPE = 0x0000,
         RES_STRING_POOL_TYPE = 0x0001,
         RES_TABLE_TYPE = 0x0002,
@@ -1040,7 +1040,7 @@ namespace ApkQuickReader {
         private byte[] resources;
         private byte[] manifest;
 
-        private const string AndroidManifextXML = @"androidmanifest.xml";
+        private const string AndroidManifestXML = @"androidmanifest.xml";
         private const string Resources_arsc = @"resources.arsc";
         private const string TagApplication = @"application";
         private const string TagManifest = @"manifest";
@@ -1071,7 +1071,7 @@ namespace ApkQuickReader {
 
         private void openStream(Stream stream) {
             zip = new ZipFile(stream);
-            ZipEntry en = zip.GetEntry(AndroidManifextXML);
+            ZipEntry en = zip.GetEntry(AndroidManifestXML);
             BinaryReader s = new BinaryReader(zip.GetInputStream(en));
             manifest = s.ReadBytes((int)en.Size);
 
@@ -1107,21 +1107,9 @@ namespace ApkQuickReader {
                 return string.Join(".", Slice);
             }
         }
-        public override Bitmap Icon {
-            get {
-                return getImage(TagApplication, AttrIcon);
-            }
-        }
-        public override string PackageName {
-            get {
-                return getAttribute(TagManifest, AttrPackage);
-            }
-        }
-        public bool Debuggable {
-            get {
-                return getAttribute(TagApplication, AttrDebuggable) == ConstTrue;
-            }
-        }
+        public override Bitmap Icon => getImage(TagApplication, AttrIcon);
+        public override string PackageName => getAttribute(TagManifest, AttrPackage);
+        public bool Debuggable => getAttribute(TagApplication, AttrDebuggable) == ConstTrue;
 
         /// <summary>
         /// get a string from manifest.xml
@@ -1145,29 +1133,34 @@ namespace ApkQuickReader {
                 Log("Cannot find image for <" + tag + ">.<" + attr + ">");
                 throw new Exception("Cannot find image for <" + tag + ">.<" + attr + ">");
             }
-            string path;
+            string path="";
             // find the best image
             int bestImageIndex = 0;
-            if (res.Count > 1) {
+            while (path == "" || path.EndsWith(".xml")) {
                 int bestDensity = 0;
                 for (int i = 0; i < res.Count; i++) {
                     if (res.configs[i].Length >= (int)ConfigBytesPos.Density
-                        && res.configs[i][(int)ConfigBytesPos.Density + 1] * 256 + 
+                        && res.configs[i][(int)ConfigBytesPos.Density + 1] * 256 +
                            res.configs[i][(int)ConfigBytesPos.Density] > bestDensity) {
                     }
                     bestImageIndex = i;
                 }
-            }
-            path = (string)res.values[bestImageIndex];
-
+                path = (string)res.values[bestImageIndex];
+                if (path.EndsWith(".xml") && res.configs.Count >1) {
+                    res.configs.RemoveAt(bestImageIndex);
+                }
+            }            
+            
             Log("Get Image path : " + path);
             try {
-                return (Bitmap)Bitmap.FromStream(zip.GetInputStream(zip.GetEntry(path)));
+                return (Bitmap)Image.FromStream(zip.GetInputStream(zip.GetEntry(path)));
             } catch (Exception ex) {
                 Log("Error happens during extracting image, " + ex.Message);
                 return null;
             }
         }
+
+
 
         /// <summary>
         /// 
@@ -1176,7 +1169,12 @@ namespace ApkQuickReader {
         /// <param name="attribute"></param>
         /// <returns></returns>
         private ApkResource QuickSearchManifestXml(string tag, string attribute) {
-            using (MemoryStream ms = new MemoryStream(manifest))
+            return QuickSearchCompressedXml(manifest, tag, attribute);
+        }
+
+        private ApkResource QuickSearchCompressedXml(byte[] xml, string tag, string attribute, bool firstonly=true)
+        {
+            using (MemoryStream ms = new MemoryStream(xml))
             using (BinaryReader br = new BinaryReader(ms)) {
                 ms.Seek(8, SeekOrigin.Begin); // skip header
 
@@ -1214,7 +1212,9 @@ namespace ApkQuickReader {
                     for (int i = 0; i < attributeSize; i++) {
                         int offset = headerSize + attributeStart + attributeSize * i + 4;
                         if (offset >= chunkSize) { // Error: comes to out of chunk
-                            return new ApkResource(0);
+                            //result = null;
+                            //return new ApkResource(0);
+                            return result;
                         }
                         ms.Seek(chunkPos + offset, SeekOrigin.Begin); // ignore the ns                            
                         uint ind = br.ReadUInt32();
@@ -1241,7 +1241,6 @@ namespace ApkQuickReader {
                     return null ;
                 }
             }
-
         }
 
         /// <summary>
@@ -1250,7 +1249,11 @@ namespace ApkQuickReader {
         /// <param name="stringID"></param>
         /// <returns></returns>
         private string QuickSearchManifestStringPool(uint stringID) {
-            using (MemoryStream ms = new MemoryStream(manifest))
+            return QuickSearchCompressedXmlStringPool(manifest, stringID);
+        }
+
+        private string QuickSearchCompressedXmlStringPool(byte[] xml, uint stringID) { 
+            using (MemoryStream ms = new MemoryStream(xml))
             using (BinaryReader br = new BinaryReader(ms)) {
                 // the first chunk is always stringpool for manifest and resources
                 ms.Seek(2, SeekOrigin.Begin);
@@ -1613,98 +1616,4 @@ namespace ApkQuickReader {
             }
         }
     }
-
-    /// <summary>
-    /// ChunkInfo class
-    /// </summary>
-    //[DebuggerDisplay("{Type}")]
-    //public class ApkChunkInfo : IEnumerable {
-    //    public long Offset { get; private set; }
-    //    public RES_TYPE Type { get; private set; }
-    //    public UInt32 Size;
-    //    public List<ApkChunkInfo> subChunks = new List<ApkChunkInfo>();
-    //    public ApkChunkInfo parentChunk = null;
-    //    public UInt16 headerSize;
-
-    //    public MemoryStream baseStream { get; private set; }
-
-    //    public static ApkChunkInfo FromMemoryStream(MemoryStream stream) {
-    //        return new ApkChunkInfo(stream);
-    //    }
-
-    //    public void AttachStream(MemoryStream stream) {
-    //        if (stream != null) {
-    //            baseStream = stream;
-    //            baseStream.Seek(Offset, SeekOrigin.Begin);
-    //        }
-    //    }
-
-    //    private ApkChunkInfo(MemoryStream stream) {
-    //        Offset = stream.Position;
-    //        AttachStream(stream);
-    //        using (BinaryReader br = new BinaryReader(stream, Encoding.UTF8, true)) {
-
-    //            Type = (RES_TYPE)br.ReadUInt16();
-    //            headerSize = br.ReadUInt16();
-    //            Size = br.ReadUInt32();
-
-    //            // skip whole header
-    //            stream.Seek(Offset + headerSize, SeekOrigin.Begin);
-    //            // and come to the chunk body
-
-    //            switch (Type) {
-    //                case RES_TYPE.RES_TABLE_TYPE:
-    //                case RES_TYPE.RES_TABLE_PACKAGE_TYPE:
-    //                case RES_TYPE.RES_XML_TYPE:
-    //                    // Get subChunks
-    //                    while (stream.Position < (Offset + Size)) {
-    //                        ApkChunkInfo sub = new ApkChunkInfo(stream);
-    //                        sub.parentChunk = this;
-    //                        subChunks.Add(sub);
-    //                    }
-    //                    break;
-    //                default:
-    //                    stream.Seek(Offset + Size, SeekOrigin.Begin);
-    //                    break;
-    //            }
-    //            if (stream.Position != Offset + Size) {
-    //                throw new Exception("Read through the end of chunk, but not match the ChunkSize");
-    //            }
-    //        }
-    //    }
-
-    //    /// <summary>
-    //    /// find the first chunk fits specific type in sub chunks 
-    //    /// </summary>
-    //    /// <param name="type"></param>
-    //    /// <returns></returns>
-    //    public ApkChunkInfo findFirstSubChunk(RES_TYPE type) {
-    //        foreach (ApkChunkInfo chunk in subChunks) {
-    //            if (chunk.Type == type) {
-    //                chunk.AttachStream(baseStream);
-    //                return chunk;
-    //            }
-    //        }
-    //        return null;
-    //    }
-
-    //    /// <summary>
-    //    ///  get the next chunk at the same level
-    //    /// </summary>
-    //    /// <param name="type"></param>
-    //    /// <returns></returns>
-    //    public ApkChunkInfo findNextChunk(RES_TYPE type) {
-    //        foreach (ApkChunkInfo chunk in parentChunk.subChunks) {
-    //            if (chunk.Offset > Offset && chunk.Type == type) {
-    //                return chunk;
-    //            }
-    //        }
-    //        return null;
-    //    }
-
-    //    public IEnumerator GetEnumerator() {
-    //        throw new NotImplementedException();
-    //        //return new ApkChunkEnumerator(BaseStream);
-    //    }
-    //}
 }
