@@ -117,37 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnOK" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -164,22 +133,22 @@
     <value>RenamePattern</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Check {0} on Amazon Appstore</value>
+    <value>Search {0} in Amazon Appstore</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Check {0} on Apple Appstore</value>
+    <value>Search {0} in Apple Appstore</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Check {0} on GooglePlay</value>
+    <value>Search {0} in GooglePlay</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Check {0} on Microsoft Store</value>
+    <value>Search {0} in Microsoft Store</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Preferences &amp;&amp; Update</value>
+    <value>Preferences</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
     <value>Rename to {0}</value>
@@ -244,27 +213,6 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>Display overlay icon for different OS</value>
   </data>
-  <data name="urlAmazonAppStore" xml:space="preserve">
-    <value>http://www.amazon.com/gp/mas/dl/android?p={0}</value>
-  </data>
-  <data name="urlAppleStore" xml:space="preserve">
-    <value>http://itunes.apple.com/app/id{0}</value>
-  </data>
-  <data name="urlGithubHome" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext</value>
-  </data>
-  <data name="urlGithubHomeLatest" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext/latest</value>
-  </data>
-  <data name="urlGithubHomeWithVersion" xml:space="preserve">
-    <value>https://kkguo.github.io/apkshellext/index.html?version={0}</value>
-  </data>
-  <data name="urlGooglePlay" xml:space="preserve">
-    <value>https://play.google.com/store/apps/details?id={0}</value>
-  </data>
-  <data name="urlMicrosoftStore" xml:space="preserve">
-    <value>https://www.windowsphone.com/s?appid={0}</value>
-  </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>Display icon for context menu</value>
   </data>
@@ -302,10 +250,7 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>InfoTip</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>Check {0} on ApkMirror.com</value>
-  </data>
-  <data name="urlApkMirror" xml:space="preserve">
-    <value>http://www.apkmirror.com/apk/{0}/{1}</value>
+    <value>Search {0} in ApkMirror.com</value>
   </data>
   <data name="btnResetPattern" xml:space="preserve">
     <value>Use Last Saved Pattern</value>
@@ -333,42 +278,6 @@ Version: %Version% %Revision%</value>
   <data name="strInfoTipPattern" xml:space="preserve">
     <value>Info Tip Pattern:</value>
   </data>
-  <data name="varAppName" xml:space="preserve">
-    <value>%AppName%</value>
-  </data>
-  <data name="varFileSize" xml:space="preserve">
-    <value>%FileSize%</value>
-  </data>
-  <data name="varLastModify" xml:space="preserve">
-    <value>%LastModify%</value>
-  </data>
-  <data name="varOS" xml:space="preserve">
-    <value>%OS%</value>
-  </data>
-  <data name="varPackage" xml:space="preserve">
-    <value>%Package%</value>
-  </data>
-  <data name="varPublisher" xml:space="preserve">
-    <value>%Publisher%</value>
-  </data>
-  <data name="varRevision" xml:space="preserve">
-    <value>%Revision%</value>
-  </data>
-  <data name="varVersion" xml:space="preserve">
-    <value>%Version%</value>
-  </data>
-  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="varAppid" xml:space="preserve">
-    <value>%AppID%</value>
-  </data>
   <data name="btnBrowse" xml:space="preserve">
     <value>Browse</value>
   </data>
@@ -381,9 +290,6 @@ Version: %Version% %Revision%</value>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>Replace Space with _</value>
   </data>
-  <data name="urlPatternVarWiki" xml:space="preserve">
-    <value>https://github.com/kkguo/apkshellext/wiki/Package-information-Pattern-variables</value>
-  </data>
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Notice me when new version is availible</value>
   </data>
@@ -395,9 +301,6 @@ Version: %Version% %Revision%</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Help to translate this project.</value>
-  </data>
-  <data name="urlTranslate" xml:space="preserve">
-    <value>https://crowdin.com/project/apkshellext</value>
   </data>
   <data name="cmdClearCache" xml:space="preserve">
     <value>taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe</value>
@@ -414,7 +317,7 @@ Version: %Version% %Revision%</value>
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>In order to display icon and thumbnail correctly, the cache need to be cleared, clear it now?</value>
   </data>
-  <data name="varDebuggable" xml:space="preserve">
-    <value>%Debuggable%</value>
+  <data name="strSearchStore" xml:space="preserve">
+    <value>Search in Stores</value>
   </data>
 </root>

@@ -115,9 +115,9 @@ namespace ApkShellext2 {
         }
 
 #pragma warning disable CS0162 // Unreachable code detected
-        public static string GetSetting(string key) {
+        public static string GetSetting(string key, string defvalue = "") {
             if (UseRegisteryForSettings) {
-                return getRegisterySetting(key, "").ToString();
+                return getRegisterySetting(key, defvalue).ToString();
             } else {
                 return Settings.Default[key].ToString();
             }
@@ -180,12 +180,20 @@ namespace ApkShellext2 {
         /// </summary>
         public static void Localize() {
             //HookResolveResourceDll();
-            int lang = Int16.Parse(Utility.GetSetting("Language"));
-            if (lang != -1) {
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-                Log(null, "Localize", "Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
+            string lang = Utility.GetSetting("Language", "en-US");
+            if (lang != Thread.CurrentThread.CurrentUICulture.Name) {
+                try {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                } catch {
+                    lang = "en-US";
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+                } finally {
+                    Log(null, "Localize", "Set current Thread culture to " + Thread.CurrentThread.CurrentCulture.DisplayName);
+                }
             }
+            
         }
 
         /// <summary>
@@ -213,7 +221,7 @@ namespace ApkShellext2 {
         public static void getLatestVersion() {
             try {
                 byte[] buf = new byte[1024];
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Resources.urlGithubHomeLatest);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.NonLocalizeResources.urlGithubHomeLatest);
                 // execute the request
                 HttpWebResponse response = (HttpWebResponse)
                     request.GetResponse();
@@ -262,34 +270,34 @@ namespace ApkShellext2 {
         //    return localIP;
         //}
 
-        //public static string GetMd5Hash(MD5 md5Hash, string input) {
+        public static string GetMd5Hash(MD5 md5Hash, string input) {
 
-        //    // Convert the input string to a byte array and compute the hash. 
-        //    byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            // Convert the input string to a byte array and compute the hash. 
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-        //    // Create a new Stringbuilder to collect the bytes 
-        //    // and create a string.
-        //    StringBuilder sBuilder = new StringBuilder();
+            // Create a new Stringbuilder to collect the bytes 
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
 
-        //    // Loop through each byte of the hashed data  
-        //    // and format each one as a hexadecimal string. 
-        //    for (int i = 0; i < data.Length; i++) {
-        //        sBuilder.Append(data[i].ToString("x2"));
-        //    }
+            // Loop through each byte of the hashed data  
+            // and format each one as a hexadecimal string. 
+            for (int i = 0; i < data.Length; i++) {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
 
-        //    // Return the hexadecimal string. 
-        //    return sBuilder.ToString();
-        //}
+            // Return the hexadecimal string, only left 6 chars 
+            return sBuilder.ToString().Substring(0,6);
+        }
 
         public static Bitmap AppTypeIcon(AppPackageReader.AppType type) {
             switch (type) {
                 case AppPackageReader.AppType.AndroidApp:
-                    return Properties.Resources.iconAndroid;
+                    return Properties.NonLocalizeResources.iconAndroid;
                 case AppPackageReader.AppType.iOSApp:
-                    return Properties.Resources.iconApple;
+                    return Properties.NonLocalizeResources.iconApple;
                 case AppPackageReader.AppType.WindowsPhoneApp:
                 case AppPackageReader.AppType.WindowsPhoneAppBundle:
-                    return Properties.Resources.Windows;
+                    return Properties.NonLocalizeResources.windows;
                 default:
                     return null;
             }

@@ -50,7 +50,7 @@ namespace ApkShellext2 {
             var menu = new ContextMenuStrip();
 
             string newVerAvai = "";
-            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion") == "true")
+            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion") == "True")
                 newVerAvai = " (" + string.Format(Resources.strNewVersionAvailible, Utility.GetSetting("LatestVersion")) + ")";
             var mainMenu = new ToolStripMenuItem {
                 Text = Properties.Resources.menuMain + newVerAvai
@@ -79,7 +79,7 @@ namespace ApkShellext2 {
 
             #region Rename Menu
             ToolStripMenuItem renameMenu = new ToolStripMenuItem() {
-                Image = Utility.ResizeBitmap(Properties.Resources.iconRename, size)
+                Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.iconRename, size)
             };
 
             if (singleSelected) {
@@ -98,6 +98,8 @@ namespace ApkShellext2 {
             renameMenu.Click += (sender, args) => renameWithVersion();
 
             mainMenu.DropDownItems.Add(renameMenu);
+            mainMenu.DropDownItems.Add("-");
+            
             #endregion
 
             if (hasapk) {
@@ -105,26 +107,26 @@ namespace ApkShellext2 {
                 ToolStripMenuItem subMenu = null;
                 appname = singleSelected ? appname : AppPackageReader.extAPK;
 
-                if (Utility.GetSetting("ShowGooglePlay")=="true") {
+                if (Utility.GetSetting("ShowGooglePlay")=="True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoGooglePlay, appname),
-                        Image = Utility.ResizeBitmap(Resources.iconGooglePlay, size)
+                        Image = Utility.ResizeBitmap(NonLocalizeResources.iconGooglePlay, size)
                     };
 
                     subMenu.Click += (sender, args) => gotoGooglePlay();
                     mainMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "true");
+                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True");
                 }
 
-                if (Utility.GetSetting("ShowAmazonStore") == "true") {
+                if (Utility.GetSetting("ShowAmazonStore")== "True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoAmazonAppStore, appname),
-                        Image = Utility.ResizeBitmap(Resources.iconAmazonStore, size)
+                        Image = Utility.ResizeBitmap(NonLocalizeResources.iconAmazonStore, size)
                     };
 
                     subMenu.Click += (sender, args) => gotoAmazonAppStore();
                     mainMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="true";
+                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="True";
                 }
 
                 //    if (Utility.GetSetting("ShowApkMirror) {
@@ -140,32 +142,32 @@ namespace ApkShellext2 {
 
                 #endregion
             }
-            if (hasipa && Utility.GetSetting("ShowAppleStore")=="true") {
+            if (hasipa && Utility.GetSetting("ShowAppleStore")=="True") {
                 #region AppleStore Menu
                 appname = singleSelected ? appname : AppPackageReader.extIPA;
                 var appleMenu = new ToolStripMenuItem {
                     Text = string.Format(Resources.menuGotoAppleAppStore, appname),
-                    Image = Utility.ResizeBitmap(Resources.iconAppStore, size)
+                    Image = Utility.ResizeBitmap(NonLocalizeResources.iconAppStore, size)
                 };
                 appleMenu.Click += (sender, args) => gotoAppleStore();
                 mainMenu.DropDownItems.Add(appleMenu);
                 appleMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="true";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected")== "True";
                 #endregion
             }
 
-            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore")=="true") {
+            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore")=="True") {
                 #region MS Store Menu
                 appname = singleSelected ? appname :
                     (AppPackageReader.extAPPX + @"/" + AppPackageReader.extAPPXBUNDLE);
                 var msMenu = new ToolStripMenuItem {
                     Text = string.Format(Resources.menuGotoMicrosoftStore, appname),
-                    Image = Utility.ResizeBitmap(Resources.iconMSStore, size)
+                    Image = Utility.ResizeBitmap(NonLocalizeResources.iconMSStore, size)
                 };
                 msMenu.Click += (sender, args) => gotoMicrosoftStore();
                 mainMenu.DropDownItems.Add(msMenu);
                 msMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="true";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected")== "True";
                 #endregion
             }
 
@@ -213,17 +215,17 @@ namespace ApkShellext2 {
             #region Preferences Menu
             var settingsMenu = new ToolStripMenuItem {
                 Text = Resources.menuPreferences,
-                Image = Utility.ResizeBitmap(Properties.Resources.logo, size)
+                Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.logo, size)
             };
-            settingsMenu.Click += (sender, args) => showSettings();
-            if (mainMenu.DropDownItems.Count > 0) {
+            if (mainMenu.DropDownItems.Count > 1) {
                 mainMenu.DropDownItems.Add("-");
             }
+            settingsMenu.Click += (sender, args) => showSettings();            
             mainMenu.DropDownItems.Add(settingsMenu);
             #endregion
 
             #region Mainmenu Icon
-            if (Utility.GetSetting("ShowMenuIcon")=="true") {
+            if (Utility.GetSetting("ShowMenuIcon")=="True") {
                 // if choose multiple files, will create a icon with upto 3 icons together
                 try { // draw multiple icons
                     int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
@@ -239,8 +241,11 @@ namespace ApkShellext2 {
                     }
                     mainMenu.Image = b;
                 } catch (Exception ex) {
+                    mainMenu.Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.logo, size);
                     Log("Error happens during extracting icon " + ex.Message);
                 }
+            } else {
+                mainMenu.Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.logo, size);
             }
             #endregion
 
@@ -264,19 +269,17 @@ namespace ApkShellext2 {
             //bool key_RenameWithVersionCode = Settings.DefaultRenameWithVersionCode) == 1);
             string suffix = Path.GetExtension(path);
             string newFileName = "";
-            string renamePattern = Utility.GetSetting("RenamePattern");
+            string renamePattern = Utility.GetSetting("RenamePattern", Resources.strRenamePatternDefault);
             bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
             bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
-            if (renamePattern == "") {
-                renamePattern = Resources.strRenamePatternDefault;
-            }
+
             try {
                 using (AppPackageReader reader = AppPackageReader.Read(path)) {                    
                     newFileName = ReplaceVariables(renamePattern,reader);
                 }
 
                 newFileName = Regex.Replace(newFileName, @"[\/:*?""<>|-]+", ""); // remove invalid chars
-                if (Utility.GetSetting("ReplaceSpace")=="true") {
+                if (Utility.GetSetting("ReplaceSpace")=="True") {
                     newFileName = Regex.Replace(newFileName, @"\s+", "_");
                 }
                 string oldFileName = Path.GetFileName(path);
@@ -298,28 +301,28 @@ namespace ApkShellext2 {
 
         public static string ReplaceVariables(string ori, AppPackageReader reader) {
             string newStr = ori;
-            if (newStr.Contains(Resources.varAppName))
-                newStr = newStr.Replace(Resources.varAppName, reader.AppName);
-            if (newStr.Contains(Resources.varPackage))
-                newStr = newStr.Replace(Resources.varPackage, reader.PackageName);
-            if (newStr.Contains(Resources.varPublisher))
-                newStr = newStr.Replace(Resources.varPublisher, reader.Publisher);
-            if (newStr.Contains(Resources.varVersion))
-                newStr = newStr.Replace(Resources.varVersion, reader.Version);
-            if (newStr.Contains(Resources.varRevision))
-                newStr = newStr.Replace(Resources.varRevision, reader.Revision);
-            if (newStr.Contains(Resources.varFileSize))
-                newStr = newStr.Replace(Resources.varFileSize, Utility.getFileSize(reader.FileName));
-            if (newStr.Contains(Resources.varOS))
-                newStr = newStr.Replace(Resources.varOS, 
+            if (newStr.Contains(NonLocalizeResources.varAppName))
+                newStr = newStr.Replace(NonLocalizeResources.varAppName, reader.AppName);
+            if (newStr.Contains(NonLocalizeResources.varPackage))
+                newStr = newStr.Replace(NonLocalizeResources.varPackage, reader.PackageName);
+            if (newStr.Contains(NonLocalizeResources.varPublisher))
+                newStr = newStr.Replace(NonLocalizeResources.varPublisher, reader.Publisher);
+            if (newStr.Contains(NonLocalizeResources.varVersion))
+                newStr = newStr.Replace(NonLocalizeResources.varVersion, reader.Version);
+            if (newStr.Contains(NonLocalizeResources.varRevision))
+                newStr = newStr.Replace(NonLocalizeResources.varRevision, reader.Revision);
+            if (newStr.Contains(NonLocalizeResources.varFileSize))
+                newStr = newStr.Replace(NonLocalizeResources.varFileSize, Utility.getFileSize(reader.FileName));
+            if (newStr.Contains(NonLocalizeResources.varOS))
+                newStr = newStr.Replace(NonLocalizeResources.varOS, 
                     reader.Type == AppPackageReader.AppType.AndroidApp ? "Android" 
                     : (reader.Type == AppPackageReader.AppType.iOSApp ? "iOS" 
                     : "Windows"));
-            if (newStr.Contains(Resources.varLastModify))
-                newStr = newStr.Replace(Resources.varLastModify,
+            if (newStr.Contains(NonLocalizeResources.varLastModify))
+                newStr = newStr.Replace(NonLocalizeResources.varLastModify,
                 File.GetLastWriteTime(reader.FileName).ToString("dd/MM/yy HH:mm:ss"));
-            if (newStr.Contains(Resources.varDebuggable))
-                newStr = newStr.Replace(Resources.varDebuggable,
+            if (newStr.Contains(NonLocalizeResources.varDebuggable))
+                newStr = newStr.Replace(NonLocalizeResources.varDebuggable,
                     (reader.Type == AppPackageReader.AppType.AndroidApp)?
                     (((ApkReader)reader).Debuggable?"Debug":"Release"):"");
             return newStr;
@@ -340,7 +343,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    Process.Start(string.Format(Properties.Resources.urlGooglePlay, package));
+                    Process.Start(string.Format(Properties.NonLocalizeResources.urlGooglePlay, package));
                 }
             }
         }
@@ -349,7 +352,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    Process.Start(string.Format(Properties.Resources.urlAmazonAppStore, package));
+                    Process.Start(string.Format(Properties.NonLocalizeResources.urlAmazonAppStore, package));
                 }
             }
         }
@@ -358,7 +361,7 @@ namespace ApkShellext2 {
             foreach (var p in SelectedItemPaths) {
                 using (ApkReader reader = new ApkReader(p)) {
                     string package = reader.PackageName;
-                    Process.Start(string.Format(Properties.Resources.urlApkMirror, reader.Publisher, package));
+                    Process.Start(string.Format(Properties.NonLocalizeResources.urlApkMirror, reader.Publisher, package));
                 }
             }
         }
@@ -368,7 +371,7 @@ namespace ApkShellext2 {
                 if (p.EndsWith(AppPackageReader.extIPA)) {
                     using (IpaReader reader = AppPackageReader.Read(p) as IpaReader) {
                         try {
-                            Process.Start(string.Format(Properties.Resources.urlAppleStore, reader.AppID));
+                            Process.Start(string.Format(Properties.NonLocalizeResources.urlAppleStore, reader.AppID));
                         } catch (Exception ex) {
                             Log(Path.GetFileName(p) + ex.Message + Environment.NewLine + "Cannot get appid.");
                         }
@@ -383,7 +386,7 @@ namespace ApkShellext2 {
                     using (AppPackageReader reader = AppPackageReader.Read(p)) {
                         string package = reader.PackageName;
                         CultureInfo ci = System.Threading.Thread.CurrentThread.CurrentCulture;
-                        Process.Start(string.Format(Properties.Resources.urlMicrosoftStore,reader.AppID));
+                        Process.Start(string.Format(Properties.NonLocalizeResources.urlMicrosoftStore,reader.AppID));
                     }
                 }
             }

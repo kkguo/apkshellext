@@ -31,7 +31,7 @@ namespace ApkShellext2 {
 
             #region Initialize text
             this.Text = Resources.strPreferencesCaption;
-            this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.Resources.logo, 16).GetHicon());
+            this.Icon = Icon.FromHandle(Utility.ResizeBitmap(Properties.NonLocalizeResources.logo, 16).GetHicon());
             
             btnOK.Text = Resources.btnOK;
 
@@ -43,7 +43,7 @@ namespace ApkShellext2 {
             twLeft.Nodes.Add(new TreeNode(Resources.twContextMenu));
             twLeft.Nodes.Add(new TreeNode(Resources.twRename));
             twLeft.Nodes.Add(new TreeNode(Resources.twInfotip));
-            twLeft.SelectedNode = twLeft.Nodes[Utility.GetSetting("LastPanel")];
+            twLeft.SelectedNode = twLeft.Nodes[Int16.Parse(Utility.GetSetting("LastPanel"))];
             twLeft.ExpandAll();
             twLeft.EndUpdate();
 
@@ -67,12 +67,12 @@ namespace ApkShellext2 {
             if (Utility.NewVersionAvailible()) {
                 lblNewVer.Text = string.Format(Resources.strNewVersionAvailible, Utility.GetSetting("LatestVersion"));
                 btnUpdate.Text = Resources.btnUpdate;
-                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconUpdate, 16);
+                btnUpdate.Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.iconUpdate, 16);
                 toolTip1.SetToolTip(btnUpdate, Resources.btnUpdateToolTip);
             } else {
                 lblNewVer.Text = Resources.strGotLatest;
                 btnUpdate.Text = Resources.btnGitHub;
-                btnUpdate.Image = Utility.ResizeBitmap(Properties.Resources.iconGitHub, 16);
+                btnUpdate.Image = Utility.ResizeBitmap(Properties.NonLocalizeResources.iconGitHub, 16);
             }
 
             //btnUpdate.Visible = false;
@@ -84,37 +84,37 @@ namespace ApkShellext2 {
             #region Icon Panel
             ckShowOverlay.Text = Resources.strShowOverlayIcon;
             toolTip1.SetToolTip(ckShowOverlay, Resources.strShowOverlayIconToolTip);
-            ckShowOverlay.Checked = Utility.GetSetting("ShowOverLayIcon")=="true";
+            ckShowOverlay.Checked = Utility.GetSetting("ShowOverLayIcon")=="True";
             ckShowIPA.Text = Resources.strShowIpaIcon;
-            ckShowIPA.Checked = Utility.GetSetting("ShowIpaIcon") == "true";
+            ckShowIPA.Checked = Utility.GetSetting("ShowIpaIcon") == "True";
             ckShowAppxIcon.Text = Resources.strShowAppxIcon;
-            ckShowAppxIcon.Checked = Utility.GetSetting("ShowAppxIcon") == "true";
+            ckShowAppxIcon.Checked = Utility.GetSetting("ShowAppxIcon") == "True";
             ckStretchThumbnail.Text = Resources.strStretchThumbnail;
-            ckStretchThumbnail.Checked = Utility.GetSetting("StretchThumbnail") == "true";
+            ckStretchThumbnail.Checked = Utility.GetSetting("StretchThumbnail") == "True";
             ckEnableThumbnail.Text = Resources.strEnableThumbnail;
-            ckEnableThumbnail.Checked = Utility.GetSetting("EnableThumbnail") == "true";
+            ckEnableThumbnail.Checked = Utility.GetSetting("EnableThumbnail") == "True";
             btnClearCache.Text = Resources.strClearCache;
             #endregion
 
             #region ContextMenu Panel
             ckAlwaysShowStore.Text = Resources.strAlwaysShowGooglePlay;
             toolTip1.SetToolTip(ckAlwaysShowStore, Resources.strAlwaysShowGooglePlayToolTip);
-            ckAlwaysShowStore.Checked = Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "true";
-            ckShowMenuIcon.Checked = Utility.GetSetting("ShowMenuIcon") == "true";
+            ckAlwaysShowStore.Checked = Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True";
+            ckShowMenuIcon.Checked = Utility.GetSetting("ShowMenuIcon") == "True";
             ckShowMenuIcon.Text = Resources.strShowContextMenuIcon;
-            ckShowNewVersionInfo.Checked = Utility.GetSetting("ShowNewVersion") == "true";
+            ckShowNewVersionInfo.Checked = Utility.GetSetting("ShowNewVersion") == "True";
             ckShowNewVersionInfo.Text = Resources.strShowNewVerInfo;
-            ckShowGoogle.Checked = Utility.GetSetting("ShowGooglePlay") == "true";
+            ckShowGoogle.Checked = Utility.GetSetting("ShowGooglePlay") == "True";
             ckShowGoogle.Text = Resources.strShowGooglePlay;
-            ckShowAM.Checked = Utility.GetSetting("ShowApkMirror") == "true";
+            ckShowAM.Checked = Utility.GetSetting("ShowApkMirror") == "True";
             ckShowAM.Text = Resources.strShowApkMirror;
-            ckShowAmazon.Checked = Utility.GetSetting("ShowAmazonStore") == "true";
+            ckShowAmazon.Checked = Utility.GetSetting("ShowAmazonStore") == "True";
             ckShowAmazon.Text = Resources.strShowAmazonStore;
-            ckShowApple.Checked = Utility.GetSetting("ShowAppleStore") == "true";
+            ckShowApple.Checked = Utility.GetSetting("ShowAppleStore") == "True";
             ckShowApple.Text = Resources.strShowAppleStore;
-            ckShowMS.Checked = Utility.GetSetting("ShowMSStore") == "true";
+            ckShowMS.Checked = Utility.GetSetting("ShowMSStore") == "True";
             ckShowMS.Text = Resources.strShowMSStore;
-            ckShowAM.Checked = Utility.GetSetting("ShowApkMirror") == "true";
+            ckShowAM.Checked = Utility.GetSetting("ShowApkMirror") == "True";
             ckShowAM.Text = Resources.strShowApkMirror;
             #endregion
 
@@ -126,7 +126,7 @@ namespace ApkShellext2 {
             btnResetRenamePattern_Click(this, new EventArgs());
 
             ckReplaceSpace.Text = Resources.strReplaceSpaceWith_;
-            ckReplaceSpace.Checked = Utility.GetSetting("ReplaceSpace") == "true";
+            ckReplaceSpace.Checked = Utility.GetSetting("ReplaceSpace") == "True";
             #endregion
 
             #region ToolTip Panel
@@ -144,6 +144,7 @@ namespace ApkShellext2 {
 
             #endregion
 
+            twLeft.Select();
             pnlRight.Visible = true;
             btnOK.Focus();
             formLoaded = true;
@@ -163,7 +164,7 @@ namespace ApkShellext2 {
         private void combLanguage_SelectedIndexChanged(object sender, EventArgs e) {
             CultureInfo[] culs = Utility.getSupportedLanguages();
             CultureInfo cul = culs[combLanguage.SelectedIndex];
-            Utility.SaveSetting("Language", cul.LCID);
+            Utility.SaveSetting("Language", cul.Name);
             if (formLoaded)
                 this.OnLoad(e);
         }
@@ -183,13 +184,13 @@ namespace ApkShellext2 {
             Utility.SaveSetting("ShowOverLayIcon", ckShowOverlay.Checked);
             if (formLoaded) {
                 SharpShell.Interop.Shell32.SHChangeNotify(0x08000000, 0, IntPtr.Zero, IntPtr.Zero);
-                if (Utility.GetSetting("EnableThumbnail")=="true")
+                if (Utility.GetSetting("EnableThumbnail")=="True")
                     needClearThumbnailCache = true;
             }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start(string.Format(Resources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+            System.Diagnostics.Process.Start(string.Format(NonLocalizeResources.urlGithubHomeWithVersion, Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
         private void ckShowMenuIcon_CheckedChanged(object sender, EventArgs e) {
@@ -286,15 +287,15 @@ namespace ApkShellext2 {
         }
 
         private void llbPatternVariables_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start(Resources.urlPatternVarWiki);
+            System.Diagnostics.Process.Start(NonLocalizeResources.urlPatternVarWiki);
         }
 
         private void btnUpdate_Click_1(object sender, EventArgs e) {
-            System.Diagnostics.Process.Start(string.Format(Properties.Resources.urlGithubHomeWithVersion,Assembly.GetExecutingAssembly().GetName().Version.ToString()));
+            System.Diagnostics.Process.Start(string.Format(Properties.NonLocalizeResources.urlGithubHomeWithVersion,Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
 
         private void llbInfoTipPattVar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start(Resources.urlPatternVarWiki);
+            System.Diagnostics.Process.Start(NonLocalizeResources.urlPatternVarWiki);
         }
 
         private void ckStretchIcon_CheckedChanged(object sender, EventArgs e) {
@@ -303,7 +304,7 @@ namespace ApkShellext2 {
         }
 
         private void lblHelpTranslate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start(Resources.urlTranslate);
+            System.Diagnostics.Process.Start(NonLocalizeResources.urlTranslate);
         }
 
         private void ckEnableThumbnail_CheckedChanged(object sender, EventArgs e) {

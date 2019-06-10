@@ -38,7 +38,7 @@ namespace ApkShellext2 {
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
                     }
-                    if (Utility.GetSetting("ShowOverLayIcon") == "true")
+                    if (Utility.GetSetting("ShowOverLayIcon") == "True")
                         m_icon = Utility.CombineBitmap(m_icon,
                            Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath)),
                            new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
