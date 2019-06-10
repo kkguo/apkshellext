@@ -27,24 +27,8 @@ This is the code repository, please visit the project page http://apkshellext.co
  - [x] Go to app store from context menu.
  - [x] Auto-check new version.
  - [x] Show overlay icon for different type of apps.
- - [x] Support 15+ languages (some are machine translated):
-    - English
-    - Chinese/中文(简体/繁體)
-    - Italian (by [Vince. M](https://crowdin.com/profile/Widget))
-    - Korean (by [zinc](https://crowdin.com/profile/zinc))
-    - Spain (by [eXDead22](http://translate.apkshellext.com/profile/eXDead22))
-    - Persian (by [Ali Rex](http://translate.apkshellext.com/profile/ali-sholug))
-    - Hebrew (by [gbyx](http://translate.apkshellext.com/profile/gbyx) [Mottybig](http://translate.apkshellext.com/profile/Mottybig))
-    - Portuguese (by [Eduardo Santos](http://translate.apkshellext.com/profile/eduardo650498))
-    - German (by [rekire](https://github.com/rekire/))
-    - Japanese (by [Noumi](https://github.com/AndroPlus-org))
-    - French (by [Charles Milette](https://github.com/charlesmilette) [gds38](http://translate.apkshellext.com/profile/gds38))
-    - Turkish (by [Mertcan](http://translate.apkshellext.com/profile/Mertcan))
-    - Greek (by [sakisds](http://github.com/sakisds/))
-    - Hungarian (by [eduardo650498](http://translate.apkshellext.com/profile/eduardo650498))
-    - Arabic (by [Nayef_Kanno](http://translate.apkshellext.com/profile/Nayef_Kanno))
-    - Russian (by [goshan1598](http://translate.apkshellext.com/profile/goshan1598))
- 
+ - [x] Support multiple languages: check https://crowdin.com/project/apkshellext for credit
+    
 #### [Todo]
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
