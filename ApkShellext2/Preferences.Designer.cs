@@ -93,7 +93,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ApkShellext2.Properties.NonLocalizeResources.logo;
+            this.pictureBox1.Image = global::ApkShellext2.Properties.NonLocalizeResources.logo;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(40, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -164,6 +164,7 @@
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.Size = new System.Drawing.Size(347, 75);
             this.pnlRenaming.TabIndex = 21;
+            this.pnlRenaming.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlRenaming_Paint);
             // 
             // txtRenamePattern
             // 
@@ -573,6 +574,7 @@
             this.ckShowNewVersionInfo.TabIndex = 27;
             this.ckShowNewVersionInfo.Text = "ShowNewVersionInfo";
             this.ckShowNewVersionInfo.UseVisualStyleBackColor = true;
+            this.ckShowNewVersionInfo.CheckedChanged += new System.EventHandler(this.CkShowNewVersionInfo_CheckedChanged);
             // 
             // pnlInfoTip
             // 

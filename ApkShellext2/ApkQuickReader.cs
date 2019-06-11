@@ -1146,8 +1146,11 @@ namespace ApkQuickReader {
                     bestImageIndex = i;
                 }
                 path = (string)res.values[bestImageIndex];
-                if (path.EndsWith(".xml") && res.configs.Count >1) {
+                if (path.EndsWith(".xml")) {
                     res.configs.RemoveAt(bestImageIndex);
+                    if (res.configs.Count == 0) {
+                        throw new Exception("Cannot find an image icon");
+                    }
                 }
             }            
             

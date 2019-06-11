@@ -32,6 +32,7 @@ namespace ApkShellext2 {
         private const string CFBundlePrimaryIcon = @"CFBundlePrimaryIcon";
         private const string CFBundleIconFiles = @"CFBundleIconFiles";
         private const string CFBundleDisplayName = @"CFBundleDisplayName";
+        private const string FacebookDisplayName = @"FacebookDisplayName";
         private const string CFBundleIdentifier = @"CFBundleIdentifier";
         private const string CFBundleShortVersionString = @"CFBundleShortVersionString";
         private const string CFBundleVersion = @"CFBundleVersion";
@@ -88,7 +89,7 @@ namespace ApkShellext2 {
                     return Array.ConvertAll<object, string>(arr, x => x.ToString());
                 }
             } else {
-                return null;
+                return new string[] {""};
             }
         }
 
@@ -120,9 +121,13 @@ namespace ApkShellext2 {
 
             byte[] imageBytes = new byte[image.Size];
             zip.GetInputStream(image).Read(imageBytes, 0, (int)image.Size);
-            MemoryStream imageOut = new MemoryStream();
-            PNGDecrusher.Decrush(new MemoryStream(imageBytes), imageOut);
-            return new Bitmap(imageOut);
+            try {
+                MemoryStream imageOut = new MemoryStream();
+                PNGDecrusher.Decrush(new MemoryStream(imageBytes), imageOut);
+                return new Bitmap(imageOut);
+            } catch (InvalidDataException e) {
+                return new Bitmap(new MemoryStream(imageBytes));
+            }
         }
 
         public override AppPackageReader.AppType Type {
@@ -133,8 +138,13 @@ namespace ApkShellext2 {
 
         public override string AppName {
             get {
-                return getStrings(infoPlistDic, new string[] {
-                    CFBundleDisplayName})[0];
+                string[] n = getStrings(infoPlistDic, new string[] {
+                    CFBundleDisplayName});
+                if (n.Count() == 1 && n[0]=="") {
+                    n = getStrings(infoPlistDic, new string[] {
+                        FacebookDisplayName });
+                }
+                return n[0];
             }
         }
 

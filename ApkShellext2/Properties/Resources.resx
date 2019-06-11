@@ -302,9 +302,6 @@ Version: %Version% %Revision%</value>
   <data name="strHelpTranslate" xml:space="preserve">
     <value>Help to translate this project.</value>
   </data>
-  <data name="cmdClearCache" xml:space="preserve">
-    <value>taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe</value>
-  </data>
   <data name="strClearCache" xml:space="preserve">
     <value>Clear Icon and Thumbnail cache</value>
   </data>

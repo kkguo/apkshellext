@@ -13,7 +13,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("ApkShellext2")]
 [assembly: AssemblyCopyright("Copyright © KK 2019")]
 [assembly: AssemblyTrademark("ApkShellExt")]
-[assembly: AssemblyCulture("en-US")]
 
 // 将 ComVisible 设置为 false 使此程序集中的类型
 // 对 COM 组件不可见。  如果需要从 COM 访问此程序集中的类型，
@@ -32,7 +31,7 @@ using System.Runtime.InteropServices;
 //
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: 
-[assembly: AssemblyVersion("0.2.0.2")]
+[assembly: AssemblyVersion("0.2.0.3")]
 [assembly: NeutralResourcesLanguage("en-US")]
 //[assembly: AssemblyVersion("0.1.2.*")]
 //[assembly: AssemblyFileVersion("0.1.0")]

@@ -151,15 +151,6 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe.
-        /// </summary>
-        internal static string cmdClearCache {
-            get {
-                return ResourceManager.GetString("cmdClearCache", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All open File Explorer will be closed, Continue?.
         /// </summary>
         internal static string dialogClearCache {

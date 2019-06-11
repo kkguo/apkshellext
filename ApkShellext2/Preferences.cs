@@ -324,12 +324,20 @@ namespace ApkShellext2 {
                     MessageBoxIcon.Exclamation) == DialogResult.Yes) {
                 Process process = new Process();
                 string path = Path.GetTempPath() + "\\clearcache.bat";
-                File.WriteAllText(path, Resources.cmdClearCache);
+                File.WriteAllText(path, NonLocalizeResources.cmdClearCache);
                 process.StartInfo.FileName = path;
                 process.StartInfo.UseShellExecute = true;
                 process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 process.Start();
             }
+        }
+
+        private void CkShowNewVersionInfo_CheckedChanged(object sender, EventArgs e) {
+            Utility.SaveSetting("ShowNewVersion", ckShowNewVersionInfo.Checked);
+        }
+
+        private void PnlRenaming_Paint(object sender, PaintEventArgs e) {
+
         }
     }
 }
