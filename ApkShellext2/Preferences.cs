@@ -43,7 +43,7 @@ namespace ApkShellext2 {
             twLeft.Nodes.Add(new TreeNode(Resources.twContextMenu));
             twLeft.Nodes.Add(new TreeNode(Resources.twRename));
             twLeft.Nodes.Add(new TreeNode(Resources.twInfotip));
-            twLeft.SelectedNode = twLeft.Nodes[Int16.Parse(Utility.GetSetting("LastPanel"))];
+            //twLeft.SelectedNode = twLeft.Nodes[Int16.Parse(Utility.GetSetting("LastPanel","0"))];
             twLeft.ExpandAll();
             twLeft.EndUpdate();
 

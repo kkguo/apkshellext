@@ -104,6 +104,11 @@ namespace ApkShellext2 {
 
             if (hasapk) {
                 #region APK Menu
+                ToolStripMenuItem storeMenu = new ToolStripMenuItem {
+                    Text = Resources.strSearchStore,
+                    Image = Utility.ResizeBitmap(NonLocalizeResources.iconGooglePlay, size)
+                };
+
                 ToolStripMenuItem subMenu = null;
                 appname = singleSelected ? appname : AppPackageReader.extAPK;
 
@@ -114,8 +119,9 @@ namespace ApkShellext2 {
                     };
 
                     subMenu.Click += (sender, args) => gotoGooglePlay();
-                    mainMenu.DropDownItems.Add(subMenu);
+                    storeMenu.DropDownItems.Add(subMenu);
                     subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True");
+                    
                 }
 
                 if (Utility.GetSetting("ShowAmazonStore")== "True") {
@@ -125,21 +131,23 @@ namespace ApkShellext2 {
                     };
 
                     subMenu.Click += (sender, args) => gotoAmazonAppStore();
-                    mainMenu.DropDownItems.Add(subMenu);
+                    storeMenu.DropDownItems.Add(subMenu);
                     subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="True";
                 }
 
-                //    if (Utility.GetSetting("ShowApkMirror) {
-                //        subMenu = new ToolStripMenuItem {
-                //            Text = string.Format(Resources.menuGotoApkMirror, appname),
-                //            Image = Utility.ResizeBitmap(Resources.ApkMirror, size)
-                //        };
-                //        subMenu.Click += (sender,args) => gotoApkMirror();
-                //        mainMenu.DropDownItems.Add(subMenu);
-                //        subMenu.Enabled = (singleselected) ||
-                //Utility.GetSetting("ShowAppStoreWhenMultiSelected;
-                //    }
+                if (Utility.GetSetting("ShowApkMirror", "False") == "True") {
+                    subMenu = new ToolStripMenuItem {
+                        Text = string.Format(Resources.menuGotoApkMirror, appname),
+                        Image = Utility.ResizeBitmap(NonLocalizeResources.iconApkMirror, size)
+                    };
+                    subMenu.Click += (sender, args) => gotoApkMirror();
+                    storeMenu.DropDownItems.Add(subMenu);
+                    subMenu.Enabled = (singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True");
+                }
 
+                if (storeMenu.DropDownItems.Count>0) {
+                    mainMenu.DropDownItems.Add(storeMenu);
+                }
                 #endregion
             }
             if (hasipa && Utility.GetSetting("ShowAppleStore")=="True") {
