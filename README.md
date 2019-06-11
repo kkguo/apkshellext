@@ -30,6 +30,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  - [x] Support multiple languages: check https://crowdin.com/project/apkshellext for credit
     
 #### [Todo]
+ - [ ] Adaptive-icon support
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
