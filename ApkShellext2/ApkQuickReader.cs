@@ -1152,7 +1152,7 @@ namespace ApkQuickReader {
                         throw new Exception("Cannot find an image icon");
                     }
                 }
-            }            
+            }
             
             Log("Get Image path : " + path);
             try {
@@ -1179,6 +1179,7 @@ namespace ApkQuickReader {
         {
             using (MemoryStream ms = new MemoryStream(xml))
             using (BinaryReader br = new BinaryReader(ms)) {
+                Log("Comes to begining of xml for " + tag + attribute);
                 ms.Seek(8, SeekOrigin.Begin); // skip header
 
                 long stringPoolPos = ms.Position;
@@ -1439,6 +1440,9 @@ namespace ApkQuickReader {
         //    return result;
         //}
 
+            // for handling loop reference
+        private Stack<UInt32> searchstack = new Stack<UInt32>();
+
         /// <summary>
         /// Find the requested resource, according to config setting, if the config was set.
         /// This method is NOT HANDLING ANY ERROR, yet!!!!
@@ -1446,6 +1450,7 @@ namespace ApkQuickReader {
         /// <param name="id">resourceID</param>
         /// <returns>the resource, in string format, if resource id not found, return null value</returns>
         private ApkResource QuickSearchResource(UInt32 id) {
+            searchstack.Push(id);
             ApkResource res = new ApkResource(id);
 
             using (MemoryStream ms = new MemoryStream(resources))
@@ -1521,8 +1526,8 @@ namespace ApkQuickReader {
                                     if (dataType == (byte)DATA_TYPE.TYPE_STRING) {
                                         res.Add(conf,QuickSearchResourcesStringPool(data));
                                     } else if (dataType == (byte)DATA_TYPE.TYPE_REFERENCE) {
-                                        // the entry is null, or it's referencing itself, go to next chunk
-                                        if (data == 0x00000000 || data == id) {
+                                        // the entry is null, or it's referencing in loop, go to next chunk
+                                        if (data == 0x00000000 || searchstack.Contains(data)) {
                                             ms.Seek(chunkPos + chunkSize, SeekOrigin.Begin);
                                             continue;
                                         }
@@ -1536,7 +1541,8 @@ namespace ApkQuickReader {
                         } while (ms.Position < PackChunkPos + PackChunkSize);
                     }
                 }
-                return res;
+                searchstack.Pop();
+                return res;                
             }
         }
 
@@ -1613,9 +1619,10 @@ namespace ApkQuickReader {
             configs.Add(conf);
             values.Add(val);
         }
+
         public void Add(ApkResource res) {
-            for(int i=0; i<Count; i++) {
-                Add(res.configs[i],values[i]);
+            for(int i=0; i<res.Count; i++) {
+                Add(res.configs[i],res.values[i]);
             }
         }
     }

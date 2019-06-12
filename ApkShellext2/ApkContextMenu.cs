@@ -50,7 +50,7 @@ namespace ApkShellext2 {
             var menu = new ContextMenuStrip();
 
             string newVerAvai = "";
-            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion") == "True")
+            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion","True") == "True")
                 newVerAvai = " (" + string.Format(Resources.strNewVersionAvailible, Utility.GetSetting("LatestVersion")) + ")";
             var mainMenu = new ToolStripMenuItem {
                 Text = Properties.Resources.menuMain + newVerAvai
@@ -91,7 +91,7 @@ namespace ApkShellext2 {
                     renameMenu.Enabled = false;
                 }
             } else {
-                string renamePattern = Utility.GetSetting("RenamePattern");
+                string renamePattern = Utility.GetSetting("RenamePattern", NonLocalizeResources.strRenamePatternDefault);
                 renameMenu.Text = string.Format(Resources.menuRenameAs, renamePattern);
             }
 
@@ -112,7 +112,7 @@ namespace ApkShellext2 {
                 ToolStripMenuItem subMenu = null;
                 appname = singleSelected ? appname : AppPackageReader.extAPK;
 
-                if (Utility.GetSetting("ShowGooglePlay")=="True") {
+                if (Utility.GetSetting("ShowGooglePlay","True")=="True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoGooglePlay, appname),
                         Image = Utility.ResizeBitmap(NonLocalizeResources.iconGooglePlay, size)
@@ -120,11 +120,11 @@ namespace ApkShellext2 {
 
                     subMenu.Click += (sender, args) => gotoGooglePlay();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True");
+                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected","True") == "True");
                     
                 }
 
-                if (Utility.GetSetting("ShowAmazonStore")== "True") {
+                if (Utility.GetSetting("ShowAmazonStore","True")== "True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoAmazonAppStore, appname),
                         Image = Utility.ResizeBitmap(NonLocalizeResources.iconAmazonStore, size)
@@ -132,7 +132,7 @@ namespace ApkShellext2 {
 
                     subMenu.Click += (sender, args) => gotoAmazonAppStore();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected")=="True";
+                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")=="True";
                 }
 
                 if (Utility.GetSetting("ShowApkMirror", "False") == "True") {
@@ -142,7 +142,7 @@ namespace ApkShellext2 {
                     };
                     subMenu.Click += (sender, args) => gotoApkMirror();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = (singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected") == "True");
+                    subMenu.Enabled = (singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected","True") == "True");
                 }
 
                 if (storeMenu.DropDownItems.Count>0) {
@@ -150,7 +150,7 @@ namespace ApkShellext2 {
                 }
                 #endregion
             }
-            if (hasipa && Utility.GetSetting("ShowAppleStore")=="True") {
+            if (hasipa && Utility.GetSetting("ShowAppleStore","True")=="True") {
                 #region AppleStore Menu
                 appname = singleSelected ? appname : AppPackageReader.extIPA;
                 var appleMenu = new ToolStripMenuItem {
@@ -160,11 +160,11 @@ namespace ApkShellext2 {
                 appleMenu.Click += (sender, args) => gotoAppleStore();
                 mainMenu.DropDownItems.Add(appleMenu);
                 appleMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected")== "True";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")== "True";
                 #endregion
             }
 
-            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore")=="True") {
+            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore","True")=="True") {
                 #region MS Store Menu
                 appname = singleSelected ? appname :
                     (AppPackageReader.extAPPX + @"/" + AppPackageReader.extAPPXBUNDLE);
@@ -175,7 +175,7 @@ namespace ApkShellext2 {
                 msMenu.Click += (sender, args) => gotoMicrosoftStore();
                 mainMenu.DropDownItems.Add(msMenu);
                 msMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected")== "True";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")== "True";
                 #endregion
             }
 
@@ -228,12 +228,12 @@ namespace ApkShellext2 {
             if (mainMenu.DropDownItems.Count > 1) {
                 mainMenu.DropDownItems.Add("-");
             }
-            settingsMenu.Click += (sender, args) => showSettings();            
+            settingsMenu.Click += (sender, args) => showSettings();
             mainMenu.DropDownItems.Add(settingsMenu);
             #endregion
 
             #region Mainmenu Icon
-            if (Utility.GetSetting("ShowMenuIcon")=="True") {
+            if (Utility.GetSetting("ShowMenuIcon","True")=="True") {
                 // if choose multiple files, will create a icon with upto 3 icons together
                 try { // draw multiple icons
                     int totalIconToDraw = (SelectedItemPaths.Count() > 3) ? 3 : SelectedItemPaths.Count();
@@ -258,6 +258,8 @@ namespace ApkShellext2 {
             #endregion
 
             menu.Items.Add(mainMenu);
+
+            Utility.CheckUpdate();
             return menu;
         }
 
@@ -277,7 +279,7 @@ namespace ApkShellext2 {
             //bool key_RenameWithVersionCode = Settings.DefaultRenameWithVersionCode) == 1);
             string suffix = Path.GetExtension(path);
             string newFileName = "";
-            string renamePattern = Utility.GetSetting("RenamePattern", Resources.strRenamePatternDefault);
+            string renamePattern = Utility.GetSetting("RenamePattern", NonLocalizeResources.strRenamePatternDefault);
             bool isapk = SelectedItemPaths.ElementAt(0).EndsWith(".apk");
             bool isipa = SelectedItemPaths.ElementAt(0).EndsWith(".ipa");
 

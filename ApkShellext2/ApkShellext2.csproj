@@ -387,6 +387,7 @@
     <Compile Include="SharpZipLib\src\Zip\ZipInputStream.cs" />
     <Compile Include="SharpZipLib\src\Zip\ZipNameTransform.cs" />
     <Compile Include="SharpZipLib\src\Zip\ZipOutputStream.cs" />
+    <Compile Include="SVGMiniRender.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>

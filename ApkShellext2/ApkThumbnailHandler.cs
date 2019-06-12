@@ -27,7 +27,7 @@ namespace ApkShellext2 {
             //if (!Settings.Default.EnableThumbnail) {
             //    return null;
             //}
-            if (Utility.getRegistrySetting("EnableThumbnail") == 0) {
+            if (Utility.GetSetting("EnableThumbnail") != "True") {
                 return null;
             }
 
@@ -42,12 +42,12 @@ namespace ApkShellext2 {
                     throw new Exception("Cannot find Icon from Stream, draw default");
                 if (m_icon.Height < outputSize &&
                     //!Settings.Default.StretchThumbnail)
-                    (Utility.getRegistrySetting("StretchThumbnail", 1) ==0))
+                    (Utility.GetSetting("StretchThumbnail","True")!="True"))
                     outputSize = m_icon.Height;
 
                 Log("Got icon, resizing...");
                 //if (Settings.Default.ShowOverLayIcon) {
-                if (Utility.getRegistrySetting("ShowOverlayIcon")==1) {
+                if (Utility.GetSetting("ShowOverlayIcon")=="True") {
                     Log("Draw overlay");
                     m_icon = Utility.CombineBitmap(m_icon,
                            Utility.AppTypeIcon(AppPackageReader.AppType.AndroidApp),

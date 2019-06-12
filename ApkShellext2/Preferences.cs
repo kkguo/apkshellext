@@ -84,15 +84,15 @@ namespace ApkShellext2 {
             #region Icon Panel
             ckShowOverlay.Text = Resources.strShowOverlayIcon;
             toolTip1.SetToolTip(ckShowOverlay, Resources.strShowOverlayIconToolTip);
-            ckShowOverlay.Checked = Utility.GetSetting("ShowOverLayIcon")=="True";
+            ckShowOverlay.Checked = Utility.GetSetting("ShowOverLayIcon","False")=="True";
             ckShowIPA.Text = Resources.strShowIpaIcon;
-            ckShowIPA.Checked = Utility.GetSetting("ShowIpaIcon") == "True";
+            ckShowIPA.Checked = Utility.GetSetting("ShowIpaIcon","True") == "True";
             ckShowAppxIcon.Text = Resources.strShowAppxIcon;
-            ckShowAppxIcon.Checked = Utility.GetSetting("ShowAppxIcon") == "True";
+            ckShowAppxIcon.Checked = Utility.GetSetting("ShowAppxIcon","False") == "True";
             ckStretchThumbnail.Text = Resources.strStretchThumbnail;
-            ckStretchThumbnail.Checked = Utility.GetSetting("StretchThumbnail") == "True";
+            ckStretchThumbnail.Checked = Utility.GetSetting("StretchThumbnail","True") == "True";
             ckEnableThumbnail.Text = Resources.strEnableThumbnail;
-            ckEnableThumbnail.Checked = Utility.GetSetting("EnableThumbnail") == "True";
+            ckEnableThumbnail.Checked = Utility.GetSetting("EnableThumbnail", "True") == "True";
             btnClearCache.Text = Resources.strClearCache;
             #endregion
 
@@ -121,22 +121,19 @@ namespace ApkShellext2 {
             #region Renaming Panel
             lblRenamePattern.Text = Resources.strRenamePattern;
             llbPatternVariables.Text = Resources.strReferToWiki;
+            txtRenamePattern.Text = Utility.GetSetting("RenamePattern", NonLocalizeResources.strRenamePatternDefault);
 
             btnResetRenamePattern.Text = Resources.btnResetPattern;
             btnResetRenamePattern_Click(this, new EventArgs());
 
             ckReplaceSpace.Text = Resources.strReplaceSpaceWith_;
-            ckReplaceSpace.Checked = Utility.GetSetting("ReplaceSpace") == "True";
+            ckReplaceSpace.Checked = Utility.GetSetting("ReplaceSpace", "False") == "True";
             #endregion
 
             #region ToolTip Panel
             lblInfoTipPattern.Text = Resources.strInfoTipPattern;
-            string pattern = Utility.GetSetting("ToolTipPattern");
-            if (pattern == "") {
-                txtToolTipPattern.Text = Resources.strInfoTipDefault;
-            } else {
-                txtToolTipPattern.Text = pattern;
-            }
+            txtToolTipPattern.Text = Utility.GetSetting("ToolTipPattern", NonLocalizeResources.strInfoTipDefault);
+            
             btnResetInfoTipPattern.Text = Resources.btnResetPattern;
 
             llbInfoTipPattVar.Text = Resources.strReferToWiki;
@@ -237,15 +234,11 @@ namespace ApkShellext2 {
         }
 
         private void btnResetTooltipPattern_Click(object sender, EventArgs e) {
-            txtToolTipPattern.Text = Resources.strInfoTipDefault;
+            txtToolTipPattern.Text = NonLocalizeResources.strInfoTipDefault;
         }
 
         private void btnResetRenamePattern_Click(object sender, EventArgs e) {
-            string pattern = Utility.GetSetting("RenamePattern").ToString();
-            if (pattern == "")
-                txtRenamePattern.Text = Resources.strRenamePatternDefault;                
-            else 
-                txtRenamePattern.Text = pattern;
+            txtRenamePattern.Text = Utility.GetSetting("RenamePattern", NonLocalizeResources.strRenamePatternDefault);
         }
 
         private void ckShowApple_CheckedChanged(object sender, EventArgs e) {

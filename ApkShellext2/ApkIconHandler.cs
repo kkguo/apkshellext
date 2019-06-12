@@ -23,20 +23,25 @@ namespace ApkShellext2 {
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".apk")]
-    [COMServerAssociation(AssociationType.ClassOfExtension, ".APK")]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".ipa")]
-    [COMServerAssociation(AssociationType.ClassOfExtension, ".IPA")]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".appxbundle")]
     [COMServerAssociation(AssociationType.ClassOfExtension, ".appx")]
     public class ApkIconHandler : SharpIconHandler {
         private Bitmap m_icon = null;
-        private static Mutex checkUpdateMutex = new Mutex(false, @"Local\ApkShellextCheckUpdate");
         protected override Icon GetIcon(bool smallIcon, uint iconSize) {
             if (m_icon == null) {
                 try {
                     using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
-                        reader.setFlag("ImageSize", iconSize);
-                        m_icon = reader.Icon;
+                        if (reader.Type == AppPackageReader.AppType.iOSApp && Utility.GetSetting("ShowIpaIcon", "True") != "True") {
+                            m_icon = Utility.AppTypeIcon(reader.Type);
+                        } else if ((reader.Type == AppPackageReader.AppType.WindowsPhoneApp ||
+                            reader.Type == AppPackageReader.AppType.WindowsPhoneAppBundle) &&
+                            Utility.GetSetting("ShowAppxIcon", "False") != "True") {
+                            m_icon = Utility.AppTypeIcon(reader.Type);
+                        } else {
+                            reader.setFlag("ImageSize", iconSize);
+                            m_icon = reader.Icon;
+                        }
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");
                     }
@@ -46,29 +51,15 @@ namespace ApkShellext2 {
                            new Rectangle((int)(m_icon.Width * 0.05), 0, (int)(m_icon.Width * 0.95), (int)(m_icon.Height * 0.95)),
                            new Rectangle(0, (int)m_icon.Height / 2, (int)m_icon.Width / 2, (int)m_icon.Height / 2),
                            new Size((int)m_icon.Width, (int)m_icon.Height));
-                } catch (Exception ex){
+                } catch (Exception ex) {
                     Log("Error in reading icon for " + Path.GetFileName(SelectedItemPath) + ", draw default : " + ex.Message);
                     // read error, draw the default icon
                     m_icon = Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath));
                 }
             }
-            CheckUpdate();
+            //Utility.CheckUpdate(); move to context menu
 
             return Icon.FromHandle(Utility.ResizeBitmap(m_icon, new Size((int)iconSize, (int)iconSize)).GetHicon());
-        }
-
-        private static void CheckUpdate() {
-            try {
-                checkUpdateMutex.WaitOne();
-                DateTime t = DateTime.Parse(Utility.GetSetting("LastCheckUpdateTime"));
-                if (t < System.DateTime.Today) {
-                    Utility.SaveSetting("LastCheckUpdateTime", System.DateTime.Today.ToString());
-                    Thread thUpdate = new Thread(new ThreadStart(() => { Utility.getLatestVersion(); }));
-                    thUpdate.Start();                    
-                }
-            } catch { } finally {
-                checkUpdateMutex.ReleaseMutex();
-            }
         }
 
         [CustomRegisterFunction]

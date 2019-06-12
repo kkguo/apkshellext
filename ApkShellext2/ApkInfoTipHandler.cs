@@ -32,11 +32,9 @@ namespace ApkShellext2 {
         protected override string GetInfo(RequestedInfoType infoType, bool singleLine) {
             try {
                 Utility.Localize();
-                string TipPattern = Utility.GetSetting("ToolTipPattern");
+                string TipPattern = Utility.GetSetting("ToolTipPattern", NonLocalizeResources.strInfoTipDefault);
                 bool isapk = SelectedItemPath.EndsWith(".apk");
                 bool isipa = SelectedItemPath.EndsWith(".ipa");
-                if (TipPattern == "")
-                    TipPattern = Resources.strInfoTipDefault;
                 
                 using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPath)) {
                     return ApkContextMenu.ReplaceVariables(TipPattern, reader);

@@ -18,6 +18,8 @@ using ApkShellext2.Properties;
 
 namespace ApkShellext2 {
     public static class Utility {
+        private static Mutex checkUpdateMutex = new Mutex(false, @"Local\ApkShellextCheckUpdate");
+
         /// <summary>
         /// resize bitmap with high quality
         /// </summary>
@@ -216,6 +218,20 @@ namespace ApkShellext2 {
         public static string getInstallPath() {
             string codebase = new Uri(Assembly.GetExecutingAssembly().EscapedCodeBase).LocalPath;
             return Path.GetDirectoryName(codebase);
+        }
+
+        public static void CheckUpdate() {
+            try {
+                checkUpdateMutex.WaitOne();
+                DateTime t = DateTime.Parse(Utility.GetSetting("LastCheckUpdateTime", "0"));
+                if (t < System.DateTime.Today) {
+                    Utility.SaveSetting("LastCheckUpdateTime", System.DateTime.Today.ToString());
+                    Thread thUpdate = new Thread(new ThreadStart(() => { Utility.getLatestVersion(); }));
+                    thUpdate.Start();
+                }
+            } catch { } finally {
+                checkUpdateMutex.ReleaseMutex();
+            }
         }
 
         public static void getLatestVersion() {
