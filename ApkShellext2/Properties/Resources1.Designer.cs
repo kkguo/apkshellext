@@ -351,17 +351,6 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %AppName%
-        ///%Package%
-        ///Version: %Version% %Revision%.
-        /// </summary>
-        internal static string strInfoTipDefault {
-            get {
-                return ResourceManager.GetString("strInfoTipDefault", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Info Tip Pattern:.
         /// </summary>
         internal static string strInfoTipPattern {
@@ -439,15 +428,6 @@ namespace ApkShellext2.Properties {
         internal static string strRenamePattern {
             get {
                 return ResourceManager.GetString("strRenamePattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to %AppName%_%Version%.
-        /// </summary>
-        internal static string strRenamePatternDefault {
-            get {
-                return ResourceManager.GetString("strRenamePatternDefault", resourceCulture);
             }
         }
         

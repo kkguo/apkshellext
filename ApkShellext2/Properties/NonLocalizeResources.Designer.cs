@@ -190,11 +190,31 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to %AppName%
+        ///%Package%
+        ///Version: %Version% %Revision%.
+        /// </summary>
+        internal static string strInfoTipDefault {
+            get {
+                return ResourceManager.GetString("strInfoTipDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %AppName%_%Version%.
         /// </summary>
         internal static string strRenamePatternDefault {
             get {
                 return ResourceManager.GetString("strRenamePatternDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %AppName%_%Version%.
+        /// </summary>
+        internal static string strRenamePatternDefault1 {
+            get {
+                return ResourceManager.GetString("strRenamePatternDefault1", resourceCulture);
             }
         }
         

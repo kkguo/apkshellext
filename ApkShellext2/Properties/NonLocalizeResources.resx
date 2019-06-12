@@ -226,4 +226,12 @@
   <data name="windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="strInfoTipDefault" xml:space="preserve">
+    <value>%AppName%
+%Package%
+Version: %Version% %Revision%</value>
+  </data>
+  <data name="strRenamePatternDefault1" xml:space="preserve">
+    <value>%AppName%_%Version%</value>
+  </data>
 </root>

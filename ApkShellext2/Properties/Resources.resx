@@ -231,9 +231,6 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
   <data name="strRenamePattern" xml:space="preserve">
     <value>Rename Pattern: (without extension)</value>
   </data>
-  <data name="strRenamePatternDefault" xml:space="preserve">
-    <value>%AppName%_%Version%</value>
-  </data>
   <data name="twContextMenu" xml:space="preserve">
     <value>Context Menu</value>
   </data>
@@ -269,11 +266,6 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
   </data>
   <data name="strShowMSStore" xml:space="preserve">
     <value>Show menu to Microsoft Store (for appx/appxbundle)</value>
-  </data>
-  <data name="strInfoTipDefault" xml:space="preserve">
-    <value>%AppName%
-%Package%
-Version: %Version% %Revision%</value>
   </data>
   <data name="strInfoTipPattern" xml:space="preserve">
     <value>Info Tip Pattern:</value>
