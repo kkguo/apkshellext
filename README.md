@@ -18,6 +18,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  * :email: issue@apkshellext.com
  * Join us on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
  * Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
+ * if you see it doesn't work on certain app file (apk/ipa), please upload that package. If there is copy right issue, please paste link.
  * Pull request is always welcome.
 
 #### [Features]
@@ -30,6 +31,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  - [x] Support multiple languages: check https://crowdin.com/project/apkshellext for credit
     
 #### [Todo]
+ - [ ] Adaptive-icon support
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
