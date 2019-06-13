@@ -33,6 +33,7 @@ This is the code repository, please visit the project page http://apkshellext.co
 #### [Todo]
  - [ ] Adaptive-icon support
  - [ ] protobuf support
+ - [ ] support .NET 4.0??
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
