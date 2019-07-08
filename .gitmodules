@@ -19,3 +19,6 @@
 [submodule "ApkShellext2/QRCoder"]
 	path = ApkShellext2/QRCoder
 	url = https://github.com/codebude/QRCoder.git
+[submodule "ApkShellext2/SVG"]
+	path = ApkShellext2/SVG
+	url = https://github.com/vvvv/SVG.git
