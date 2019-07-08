@@ -22,7 +22,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Pull request is always welcome.
 
 #### [Features]
- - [x] Display app icon in explorer with best resolution.
+ - [x] Display app icon in Windows:registered: File Explorer with best resolution. __DOES NOT work with other file manager due to .NET restriction__
  - [x] Customize-able Info-Tip for showing package information.
  - [x] Context menu for batch renaming, use customize-able patterns.
  - [x] Go to app store from context menu.
@@ -32,6 +32,8 @@ This is the code repository, please visit the project page http://apkshellext.co
     
 #### [Todo]
  - [ ] Adaptive-icon support
+ - [ ] protobuf support
+ - [ ] support .NET 4.0??
  - [ ] QR code to download to phone
  - [ ] Hook up adb function with namespace extension.
  - [ ] drag-drop to install / uninstall to phone
