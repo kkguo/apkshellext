@@ -134,7 +134,7 @@ namespace ApkShellext2
                 MemoryStream imageOut = new MemoryStream();
                 PNGDecrusher.Decrush(new MemoryStream(imageBytes), imageOut);
                 return new Bitmap(imageOut);
-            } catch (InvalidDataException) {
+            } catch (InvalidDataException) { // image is not crushed
                 return new Bitmap(new MemoryStream(imageBytes));
             }
         }

@@ -93,6 +93,9 @@ namespace ApkShellext2 {
             ckStretchThumbnail.Checked = Utility.GetSetting("StretchThumbnail","True") == "True";
             ckEnableThumbnail.Text = Resources.strEnableThumbnail;
             ckEnableThumbnail.Checked = Utility.GetSetting("EnableThumbnail", "True") == "True";
+            ckAdaptiveIconSupport.Text = Resources.strSupportAdaptiveIcon;
+            ckAdaptiveIconSupport.Checked = Utility.GetSetting("SupportAdaptiveIcon", "False") == "True";
+
             btnClearCache.Text = Resources.strClearCache;
             #endregion
 
@@ -128,6 +131,8 @@ namespace ApkShellext2 {
 
             ckReplaceSpace.Text = Resources.strReplaceSpaceWith_;
             ckReplaceSpace.Checked = Utility.GetSetting("ReplaceSpace", "False") == "True";
+            txtReplaceWhiteSpace.Enabled = ckReplaceSpace.Checked;
+            txtReplaceWhiteSpace.Text = Utility.GetSetting("ReplaceSpaceChar", "_");
             #endregion
 
             #region ToolTip Panel
@@ -222,6 +227,8 @@ namespace ApkShellext2 {
                 Utility.SaveSetting("RenamePattern", txtRenamePattern.Text);
             if (ToolTipPatternIsDirty)
                 Utility.SaveSetting("ToolTipPattern", txtToolTipPattern.Text);
+            if (txtReplaceWhiteSpaceDirty)
+                Utility.SaveSetting("ReplaceSpaceChar", txtReplaceWhiteSpace.Text);
             this.Close();
         }
 
@@ -277,6 +284,7 @@ namespace ApkShellext2 {
 
         private void ckReplaceSpace_CheckedChanged(object sender, EventArgs e) {
             Utility.SaveSetting("ReplaceSpace", ckReplaceSpace.Checked);
+            txtReplaceWhiteSpace.Enabled = ckReplaceSpace.Checked;
         }
 
         private void llbPatternVariables_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -329,8 +337,18 @@ namespace ApkShellext2 {
             Utility.SaveSetting("ShowNewVersion", ckShowNewVersionInfo.Checked);
         }
 
-        private void PnlRenaming_Paint(object sender, PaintEventArgs e) {
+        private void CkAdaptiveIconSupport_CheckedChanged(object sender, EventArgs e) {
+            Utility.SaveSetting("SupportAdaptiveIcon", ckAdaptiveIconSupport.Checked);
+            needClearThumbnailCache = formLoaded;
+        }
 
+        private void Label1_Click(object sender, EventArgs e) {
+
+        }
+
+        private bool txtReplaceWhiteSpaceDirty = false;
+        private void TxtReplaceWhiteSpace_TextChanged(object sender, EventArgs e) {
+            txtReplaceWhiteSpaceDirty = formLoaded;
         }
     }
 }

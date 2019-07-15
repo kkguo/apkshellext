@@ -280,7 +280,7 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
     <value>Please specify path of adb.exe</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Replace Space with _</value>
+    <value>Replace Space with :</value>
   </data>
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Notice me when new version is availible</value>
@@ -308,5 +308,26 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
   </data>
   <data name="strSearchStore" xml:space="preserve">
     <value>Search in Stores</value>
+  </data>
+  <data name="menuDump" xml:space="preserve">
+    <value>Dump</value>
+  </data>
+  <data name="strSupportAdaptiveIcon" xml:space="preserve">
+    <value>Support Adaptive Icon (beta)</value>
+  </data>
+  <data name="strEnableLog" xml:space="preserve">
+    <value>Enable debug logging</value>
+  </data>
+  <data name="menuDumpManifest" xml:space="preserve">
+    <value>Dump androidmanifest.xml</value>
+  </data>
+  <data name="menuDumpOthers" xml:space="preserve">
+    <value>Dump XML ...</value>
+  </data>
+  <data name="strDumpXML" xml:space="preserve">
+    <value>Dump XML</value>
+  </data>
+  <data name="strDumpXMLPrompt" xml:space="preserve">
+    <value>Path to XML, eg: res\drawable\icon.xml</value>
   </data>
 </root>

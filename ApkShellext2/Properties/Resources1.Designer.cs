@@ -178,6 +178,33 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dump.
+        /// </summary>
+        internal static string menuDump {
+            get {
+                return ResourceManager.GetString("menuDump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dump androidmanifest.xml.
+        /// </summary>
+        internal static string menuDumpManifest {
+            get {
+                return ResourceManager.GetString("menuDumpManifest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dump XML ....
+        /// </summary>
+        internal static string menuDumpOthers {
+            get {
+                return ResourceManager.GetString("menuDumpOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search {0} in Amazon Appstore.
         /// </summary>
         internal static string menuGotoAmazonAppStore {
@@ -315,6 +342,33 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dump XML.
+        /// </summary>
+        internal static string strDumpXML {
+            get {
+                return ResourceManager.GetString("strDumpXML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to XML, eg: res\drawable\icon.xml.
+        /// </summary>
+        internal static string strDumpXMLPrompt {
+            get {
+                return ResourceManager.GetString("strDumpXMLPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable debug logging.
+        /// </summary>
+        internal static string strEnableLog {
+            get {
+                return ResourceManager.GetString("strEnableLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Thumbnail instead of Icon..
         /// </summary>
         internal static string strEnableThumbnail {
@@ -442,7 +496,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace Space with _.
+        ///   Looks up a localized string similar to Replace Space with :.
         /// </summary>
         internal static string strReplaceSpaceWith_ {
             get {
@@ -573,6 +627,15 @@ namespace ApkShellext2.Properties {
         internal static string strStretchThumbnail {
             get {
                 return ResourceManager.GetString("strStretchThumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support Adaptive Icon (beta).
+        /// </summary>
+        internal static string strSupportAdaptiveIcon {
+            get {
+                return ResourceManager.GetString("strSupportAdaptiveIcon", resourceCulture);
             }
         }
         

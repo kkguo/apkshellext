@@ -30,9 +30,11 @@
             this.twLeft = new System.Windows.Forms.TreeView();
             this.lblRenamePattern = new System.Windows.Forms.Label();
             this.pnlRenaming = new System.Windows.Forms.TableLayoutPanel();
-            this.txtRenamePattern = new System.Windows.Forms.TextBox();
-            this.ckReplaceSpace = new System.Windows.Forms.CheckBox();
             this.llbPatternVariables = new System.Windows.Forms.LinkLabel();
+            this.txtRenamePattern = new System.Windows.Forms.TextBox();
+            this.pnlRenamingReplace = new System.Windows.Forms.TableLayoutPanel();
+            this.ckReplaceSpace = new System.Windows.Forms.CheckBox();
+            this.txtReplaceWhiteSpace = new System.Windows.Forms.TextBox();
             this.btnResetRenamePattern = new System.Windows.Forms.Button();
             this.pnlIcon = new System.Windows.Forms.TableLayoutPanel();
             this.ckShowIPA = new System.Windows.Forms.CheckBox();
@@ -40,6 +42,7 @@
             this.ckShowAppxIcon = new System.Windows.Forms.CheckBox();
             this.ckStretchThumbnail = new System.Windows.Forms.CheckBox();
             this.ckEnableThumbnail = new System.Windows.Forms.CheckBox();
+            this.ckAdaptiveIconSupport = new System.Windows.Forms.CheckBox();
             this.btnClearCache = new System.Windows.Forms.Button();
             this.pnlGeneral = new System.Windows.Forms.TableLayoutPanel();
             this.lblCurrentVersion = new System.Windows.Forms.Label();
@@ -69,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlLeft.SuspendLayout();
             this.pnlRenaming.SuspendLayout();
+            this.pnlRenamingReplace.SuspendLayout();
             this.pnlIcon.SuspendLayout();
             this.pnlGeneral.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -118,7 +122,7 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(144, 429);
+            this.pnlLeft.Size = new System.Drawing.Size(144, 378);
             this.pnlLeft.TabIndex = 16;
             // 
             // twLeft
@@ -149,37 +153,68 @@
             this.pnlRenaming.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRenaming.ColumnCount = 1;
             this.pnlRenaming.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlRenaming.Controls.Add(this.llbPatternVariables, 0, 3);
             this.pnlRenaming.Controls.Add(this.txtRenamePattern, 0, 1);
             this.pnlRenaming.Controls.Add(this.lblRenamePattern, 0, 0);
-            this.pnlRenaming.Controls.Add(this.ckReplaceSpace, 0, 3);
-            this.pnlRenaming.Controls.Add(this.llbPatternVariables, 0, 4);
+            this.pnlRenaming.Controls.Add(this.pnlRenamingReplace, 0, 2);
             this.pnlRenaming.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRenaming.Location = new System.Drawing.Point(3, 3);
             this.pnlRenaming.Name = "pnlRenaming";
-            this.pnlRenaming.RowCount = 5;
+            this.pnlRenaming.RowCount = 4;
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRenaming.Size = new System.Drawing.Size(347, 75);
+            this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.pnlRenaming.Size = new System.Drawing.Size(436, 84);
             this.pnlRenaming.TabIndex = 21;
-            this.pnlRenaming.Paint += new System.Windows.Forms.PaintEventHandler(this.PnlRenaming_Paint);
+            // 
+            // llbPatternVariables
+            // 
+            this.llbPatternVariables.AutoSize = true;
+            this.llbPatternVariables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.llbPatternVariables.Location = new System.Drawing.Point(3, 71);
+            this.llbPatternVariables.Name = "llbPatternVariables";
+            this.llbPatternVariables.Size = new System.Drawing.Size(430, 13);
+            this.llbPatternVariables.TabIndex = 23;
+            this.llbPatternVariables.TabStop = true;
+            this.llbPatternVariables.Text = "Refer to wiki";
             // 
             // txtRenamePattern
             // 
             this.txtRenamePattern.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRenamePattern.Location = new System.Drawing.Point(3, 16);
             this.txtRenamePattern.Name = "txtRenamePattern";
-            this.txtRenamePattern.Size = new System.Drawing.Size(341, 20);
+            this.txtRenamePattern.Size = new System.Drawing.Size(430, 20);
             this.txtRenamePattern.TabIndex = 15;
             this.txtRenamePattern.Text = "%label%_%versionName%_%versionCode%";
             this.txtRenamePattern.TextChanged += new System.EventHandler(this.txtRename_TextChanged);
             // 
+            // pnlRenamingReplace
+            // 
+            this.pnlRenamingReplace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlRenamingReplace.AutoSize = true;
+            this.pnlRenamingReplace.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlRenamingReplace.ColumnCount = 2;
+            this.pnlRenamingReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlRenamingReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.pnlRenamingReplace.Controls.Add(this.ckReplaceSpace, 0, 0);
+            this.pnlRenamingReplace.Controls.Add(this.txtReplaceWhiteSpace, 1, 0);
+            this.pnlRenamingReplace.Location = new System.Drawing.Point(3, 42);
+            this.pnlRenamingReplace.Name = "pnlRenamingReplace";
+            this.pnlRenamingReplace.RowCount = 1;
+            this.pnlRenamingReplace.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlRenamingReplace.Size = new System.Drawing.Size(430, 26);
+            this.pnlRenamingReplace.TabIndex = 22;
+            // 
             // ckReplaceSpace
             // 
             this.ckReplaceSpace.AutoSize = true;
-            this.ckReplaceSpace.Location = new System.Drawing.Point(3, 42);
+            this.ckReplaceSpace.Location = new System.Drawing.Point(3, 3);
             this.ckReplaceSpace.Name = "ckReplaceSpace";
             this.ckReplaceSpace.Size = new System.Drawing.Size(109, 17);
             this.ckReplaceSpace.TabIndex = 20;
@@ -187,22 +222,21 @@
             this.ckReplaceSpace.UseVisualStyleBackColor = true;
             this.ckReplaceSpace.CheckedChanged += new System.EventHandler(this.ckReplaceSpace_CheckedChanged);
             // 
-            // llbPatternVariables
+            // txtReplaceWhiteSpace
             // 
-            this.llbPatternVariables.AutoSize = true;
-            this.llbPatternVariables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.llbPatternVariables.Location = new System.Drawing.Point(3, 62);
-            this.llbPatternVariables.Name = "llbPatternVariables";
-            this.llbPatternVariables.Size = new System.Drawing.Size(341, 13);
-            this.llbPatternVariables.TabIndex = 21;
-            this.llbPatternVariables.TabStop = true;
-            this.llbPatternVariables.Text = "Refer to wiki";
-            this.llbPatternVariables.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llbPatternVariables_LinkClicked);
+            this.txtReplaceWhiteSpace.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReplaceWhiteSpace.Location = new System.Drawing.Point(118, 3);
+            this.txtReplaceWhiteSpace.Name = "txtReplaceWhiteSpace";
+            this.txtReplaceWhiteSpace.Size = new System.Drawing.Size(309, 20);
+            this.txtReplaceWhiteSpace.TabIndex = 22;
+            this.txtReplaceWhiteSpace.TextChanged += new System.EventHandler(this.TxtReplaceWhiteSpace_TextChanged);
             // 
             // btnResetRenamePattern
             // 
             this.btnResetRenamePattern.AutoSize = true;
-            this.btnResetRenamePattern.Location = new System.Drawing.Point(79, 3);
+            this.btnResetRenamePattern.Location = new System.Drawing.Point(168, 3);
             this.btnResetRenamePattern.Name = "btnResetRenamePattern";
             this.btnResetRenamePattern.Size = new System.Drawing.Size(119, 23);
             this.btnResetRenamePattern.TabIndex = 17;
@@ -220,19 +254,20 @@
             this.pnlIcon.Controls.Add(this.ckShowAppxIcon, 0, 1);
             this.pnlIcon.Controls.Add(this.ckStretchThumbnail, 0, 4);
             this.pnlIcon.Controls.Add(this.ckEnableThumbnail, 0, 3);
-            this.pnlIcon.Controls.Add(this.btnClearCache, 0, 5);
+            this.pnlIcon.Controls.Add(this.ckAdaptiveIconSupport, 0, 5);
+            this.pnlIcon.Controls.Add(this.btnClearCache, 0, 6);
             this.pnlIcon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlIcon.Location = new System.Drawing.Point(3, 163);
+            this.pnlIcon.Location = new System.Drawing.Point(3, 172);
             this.pnlIcon.Name = "pnlIcon";
-            this.pnlIcon.RowCount = 6;
+            this.pnlIcon.RowCount = 7;
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlIcon.Size = new System.Drawing.Size(347, 144);
+            this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlIcon.Size = new System.Drawing.Size(436, 167);
             this.pnlIcon.TabIndex = 22;
             // 
             // ckShowIPA
@@ -290,10 +325,21 @@
             this.ckEnableThumbnail.UseVisualStyleBackColor = true;
             this.ckEnableThumbnail.CheckedChanged += new System.EventHandler(this.ckEnableThumbnail_CheckedChanged);
             // 
+            // ckAdaptiveIconSupport
+            // 
+            this.ckAdaptiveIconSupport.AutoSize = true;
+            this.ckAdaptiveIconSupport.Location = new System.Drawing.Point(3, 118);
+            this.ckAdaptiveIconSupport.Name = "ckAdaptiveIconSupport";
+            this.ckAdaptiveIconSupport.Size = new System.Drawing.Size(101, 17);
+            this.ckAdaptiveIconSupport.TabIndex = 24;
+            this.ckAdaptiveIconSupport.Text = "ckAdaptiveIcon";
+            this.ckAdaptiveIconSupport.UseVisualStyleBackColor = true;
+            this.ckAdaptiveIconSupport.CheckedChanged += new System.EventHandler(this.CkAdaptiveIconSupport_CheckedChanged);
+            // 
             // btnClearCache
             // 
             this.btnClearCache.AutoSize = true;
-            this.btnClearCache.Location = new System.Drawing.Point(3, 118);
+            this.btnClearCache.Location = new System.Drawing.Point(3, 141);
             this.btnClearCache.Name = "btnClearCache";
             this.btnClearCache.Size = new System.Drawing.Size(120, 23);
             this.btnClearCache.TabIndex = 23;
@@ -313,7 +359,7 @@
             this.pnlGeneral.Controls.Add(this.combLanguage, 0, 1);
             this.pnlGeneral.Controls.Add(this.lblHelpTranslate, 0, 2);
             this.pnlGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGeneral.Location = new System.Drawing.Point(0, 81);
+            this.pnlGeneral.Location = new System.Drawing.Point(0, 90);
             this.pnlGeneral.Margin = new System.Windows.Forms.Padding(0);
             this.pnlGeneral.Name = "pnlGeneral";
             this.pnlGeneral.RowCount = 5;
@@ -322,7 +368,7 @@
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlGeneral.Size = new System.Drawing.Size(353, 79);
+            this.pnlGeneral.Size = new System.Drawing.Size(442, 79);
             this.pnlGeneral.TabIndex = 21;
             // 
             // lblCurrentVersion
@@ -331,7 +377,7 @@
             this.lblCurrentVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblCurrentVersion.Location = new System.Drawing.Point(3, 66);
             this.lblCurrentVersion.Name = "lblCurrentVersion";
-            this.lblCurrentVersion.Size = new System.Drawing.Size(347, 13);
+            this.lblCurrentVersion.Size = new System.Drawing.Size(436, 13);
             this.lblCurrentVersion.TabIndex = 11;
             this.lblCurrentVersion.Text = "Current version";
             this.lblCurrentVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -342,7 +388,7 @@
             this.lblNewVer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNewVer.Location = new System.Drawing.Point(3, 53);
             this.lblNewVer.Name = "lblNewVer";
-            this.lblNewVer.Size = new System.Drawing.Size(347, 13);
+            this.lblNewVer.Size = new System.Drawing.Size(436, 13);
             this.lblNewVer.TabIndex = 10;
             this.lblNewVer.Text = "About--NewVersion";
             this.lblNewVer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -362,7 +408,7 @@
             this.combLanguage.FormattingEnabled = true;
             this.combLanguage.Location = new System.Drawing.Point(3, 16);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(347, 21);
+            this.combLanguage.Size = new System.Drawing.Size(436, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
@@ -381,7 +427,7 @@
             // 
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(204, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(293, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 25);
             this.btnUpdate.TabIndex = 24;
@@ -438,7 +484,7 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRight.Size = new System.Drawing.Size(353, 429);
+            this.pnlRight.Size = new System.Drawing.Size(442, 378);
             this.pnlRight.TabIndex = 24;
             this.pnlRight.Visible = false;
             // 
@@ -451,16 +497,16 @@
             this.pnlButtons.Controls.Add(this.btnResetInfoTipPattern);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(3, 645);
+            this.pnlButtons.Location = new System.Drawing.Point(3, 657);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(347, 31);
+            this.pnlButtons.Size = new System.Drawing.Size(436, 31);
             this.pnlButtons.TabIndex = 21;
             // 
             // btnOK
             // 
             this.btnOK.AutoSize = true;
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOK.Location = new System.Drawing.Point(277, 3);
+            this.btnOK.Location = new System.Drawing.Point(366, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(67, 25);
             this.btnOK.TabIndex = 0;
@@ -471,7 +517,7 @@
             // btnResetInfoTipPattern
             // 
             this.btnResetInfoTipPattern.AutoSize = true;
-            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(229, 34);
+            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(47, 3);
             this.btnResetInfoTipPattern.Name = "btnResetInfoTipPattern";
             this.btnResetInfoTipPattern.Size = new System.Drawing.Size(115, 23);
             this.btnResetInfoTipPattern.TabIndex = 2;
@@ -494,7 +540,7 @@
             this.pnlContextMenu.Controls.Add(this.ckShowAM, 0, 7);
             this.pnlContextMenu.Controls.Add(this.ckShowNewVersionInfo, 0, 1);
             this.pnlContextMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContextMenu.Location = new System.Drawing.Point(3, 313);
+            this.pnlContextMenu.Location = new System.Drawing.Point(3, 345);
             this.pnlContextMenu.Name = "pnlContextMenu";
             this.pnlContextMenu.RowCount = 9;
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -505,8 +551,8 @@
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlContextMenu.Size = new System.Drawing.Size(347, 204);
+            this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.pnlContextMenu.Size = new System.Drawing.Size(436, 184);
             this.pnlContextMenu.TabIndex = 24;
             // 
             // ckShowGoogle
@@ -586,7 +632,7 @@
             this.pnlInfoTip.Controls.Add(this.txtToolTipPattern, 0, 1);
             this.pnlInfoTip.Controls.Add(this.llbInfoTipPattVar, 0, 7);
             this.pnlInfoTip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInfoTip.Location = new System.Drawing.Point(3, 523);
+            this.pnlInfoTip.Location = new System.Drawing.Point(3, 535);
             this.pnlInfoTip.Name = "pnlInfoTip";
             this.pnlInfoTip.RowCount = 8;
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -597,7 +643,7 @@
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlInfoTip.Size = new System.Drawing.Size(347, 116);
+            this.pnlInfoTip.Size = new System.Drawing.Size(436, 116);
             this.pnlInfoTip.TabIndex = 25;
             // 
             // lblInfoTipPattern
@@ -615,7 +661,7 @@
             this.txtToolTipPattern.Location = new System.Drawing.Point(3, 16);
             this.txtToolTipPattern.Multiline = true;
             this.txtToolTipPattern.Name = "txtToolTipPattern";
-            this.txtToolTipPattern.Size = new System.Drawing.Size(341, 84);
+            this.txtToolTipPattern.Size = new System.Drawing.Size(430, 84);
             this.txtToolTipPattern.TabIndex = 1;
             this.txtToolTipPattern.TextChanged += new System.EventHandler(this.txtToolTipPattern_TextChanged);
             // 
@@ -625,7 +671,7 @@
             this.llbInfoTipPattVar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.llbInfoTipPattVar.Location = new System.Drawing.Point(3, 103);
             this.llbInfoTipPattVar.Name = "llbInfoTipPattVar";
-            this.llbInfoTipPattVar.Size = new System.Drawing.Size(341, 13);
+            this.llbInfoTipPattVar.Size = new System.Drawing.Size(430, 13);
             this.llbInfoTipPattVar.TabIndex = 3;
             this.llbInfoTipPattVar.TabStop = true;
             this.llbInfoTipPattVar.Text = "refer to wiki";
@@ -644,7 +690,7 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(509, 435);
+            this.pnlMain.Size = new System.Drawing.Size(598, 384);
             this.pnlMain.TabIndex = 25;
             // 
             // Preferences
@@ -653,7 +699,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(509, 435);
+            this.ClientSize = new System.Drawing.Size(598, 384);
             this.Controls.Add(this.pnlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Preferences";
@@ -668,6 +714,8 @@
             this.pnlLeft.PerformLayout();
             this.pnlRenaming.ResumeLayout(false);
             this.pnlRenaming.PerformLayout();
+            this.pnlRenamingReplace.ResumeLayout(false);
+            this.pnlRenamingReplace.PerformLayout();
             this.pnlIcon.ResumeLayout(false);
             this.pnlIcon.PerformLayout();
             this.pnlGeneral.ResumeLayout(false);
@@ -724,12 +772,15 @@
         private System.Windows.Forms.CheckBox ckShowAM;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.CheckBox ckReplaceSpace;
-        private System.Windows.Forms.LinkLabel llbPatternVariables;
         private System.Windows.Forms.LinkLabel llbInfoTipPattVar;
         private System.Windows.Forms.CheckBox ckShowNewVersionInfo;
         private System.Windows.Forms.CheckBox ckStretchThumbnail;
         private System.Windows.Forms.LinkLabel lblHelpTranslate;
         private System.Windows.Forms.CheckBox ckEnableThumbnail;
         private System.Windows.Forms.Button btnClearCache;
+        private System.Windows.Forms.CheckBox ckAdaptiveIconSupport;
+        private System.Windows.Forms.LinkLabel llbPatternVariables;
+        private System.Windows.Forms.TableLayoutPanel pnlRenamingReplace;
+        private System.Windows.Forms.TextBox txtReplaceWhiteSpace;
     }
 }

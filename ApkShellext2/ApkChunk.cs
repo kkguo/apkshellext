@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.IO;
+using System.Xml;
 
 namespace ApkShellext2.ApkChunk
 {
@@ -1050,7 +1051,7 @@ namespace ApkShellext2.ApkChunk
         }
 
         protected ApkChunkHeader ReadChunkHeader(MemoryStream ms) {
-            using (BinaryReader br = new BinaryReader(ms, Encoding.Default,true)) {
+            using (BinaryReader br = new BinaryReader(ms, Encoding.Default, true)) {
                 ApkChunkHeader header = new ApkChunkHeader();
                 header.type = (RES_TYPE)br.ReadUInt16();
                 header.headerSize = br.ReadUInt16();
@@ -1143,11 +1144,38 @@ namespace ApkShellext2.ApkChunk
     [Serializable]
     public class ApkXMLChunk : ApkChunk
     {
-        protected ApkStringPoolChunk stringpool;
+        protected ApkStringPoolChunk StringPool;
         protected ApkXMLResourceMapChunk ResourceMap;
+        protected XmlDocument doc;
 
         public ApkXMLChunk(byte[] bytes) : base(bytes) { }
-        public ApkXMLChunk(MemoryStream ms, ApkChunk top=null) : base(ms, top) { }
+        public ApkXMLChunk(MemoryStream ms, ApkChunk top=null) : base(ms, top) {
+            if (istop)
+                doc = new XmlDocument();            
+        }
+
+        public XmlDocument XMLDoc {
+            get {
+                if (istop) {
+                    return doc;
+                } else {
+                    var topchunk = top as ApkXMLChunk;
+                    return topchunk.doc;
+                }
+            }
+        }
+
+        public XmlNode Node {
+            get {
+                return doc;
+            }
+        }
+
+        private bool istop {
+            get {
+                return top == null;
+            }
+        }
 
         protected override void ReadChunkBody(MemoryStream ms) {
             if (top != this) { // if not top
@@ -1162,7 +1190,7 @@ namespace ApkShellext2.ApkChunk
                     switch (chunktype) {
                         case RES_TYPE.RES_STRING_POOL_TYPE:
                             chunk = new ApkStringPoolChunk(ms,this);
-                            stringpool = (ApkStringPoolChunk)chunk;
+                            StringPool = (ApkStringPoolChunk)chunk;
                             break;
                         case RES_TYPE.RES_XML_RESOURCE_MAP_TYPE:
                             chunk = new ApkXMLResourceMapChunk(ms, this);
@@ -1197,7 +1225,7 @@ namespace ApkShellext2.ApkChunk
         }
 
         protected string LookupStringPool(uint id) {
-            return ((ApkXMLChunk)top).stringpool.LookUp(id);
+            return ((ApkXMLChunk)top).StringPool.LookUp(id);
         }
 
         protected string LookupResourceMap(uint id) {
@@ -1210,6 +1238,13 @@ namespace ApkShellext2.ApkChunk
     {
 
         public ApkXMLElementChunk(MemoryStream ms, ApkXMLChunk top) : base(ms,top) { }
+
+        public XmlNode Node {
+            get {
+                XmlElement elem = XMLDoc.CreateElement("");
+                return elem;
+            }
+        }
 
         public override string OutputXML() {
             string ns,name;
@@ -1260,16 +1295,16 @@ namespace ApkShellext2.ApkChunk
     [Serializable]
     public class ApkXMLNameSpaceChunk : ApkXMLChunk
     {
-        private UInt16 prefix;
-        private UInt16 uri;
+        private UInt32 prefix;
+        private UInt32 uri;
         public ApkXMLNameSpaceChunk(MemoryStream ms, ApkXMLChunk top) : base(ms,top) {}
 
         public override string OutputXML() {
             using (MemoryStream ms = GetMemoryStream())
             using (BinaryReader br = new BinaryReader(ms)) {
                 ms.Seek(offset + header.headerSize, SeekOrigin.Begin);
-                prefix = br.ReadUInt16();
-                uri = br.ReadUInt16();
+                prefix = br.ReadUInt32();
+                uri = br.ReadUInt32();
             }
             string xml = "xmlns:";
             xml += LookupStringPool(prefix);

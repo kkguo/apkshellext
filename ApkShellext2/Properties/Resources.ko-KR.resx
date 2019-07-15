@@ -117,37 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   
   
   <data name="btnUpdate" xml:space="preserve">
@@ -243,13 +212,6 @@
   </data>
   
   
-  
-  
-  
-  
-  
-  
-  
   <data name="btnNo" xml:space="preserve">
     <value>아니오</value>
   </data>
@@ -260,7 +222,6 @@
   <data name="strRenamePattern" xml:space="preserve">
     <value>이름 바꾸기 패턴: (확장자 없음)</value>
   </data>
-  
   <data name="twContextMenu" xml:space="preserve">
     <value>우클릭 메뉴</value>
   </data>
@@ -271,7 +232,6 @@
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>ApkMirror.com에서 {0} 찾기</value>
   </data>
-  
   
   <data name="strShowAmazonStore" xml:space="preserve">
     <value>우클릭 메뉴에서 아마존 앱 스토어 링크를 표시하기</value>
@@ -289,32 +249,12 @@
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
-  
-  
   <data name="strAdbPath" xml:space="preserve">
     <value>adb.exe의 경로를 지정해 주십시오.</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>공백을 밑줄(_)로 바꿉니다.</value>
   </data>
-  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>새 버전 알리기</value>
   </data>
@@ -326,8 +266,6 @@
     <value>이 프로젝트의 번역을 도와주세요.</value>
   </data>
   
-  
-  
   <data name="dialogClearCache" xml:space="preserve">
     <value>열려 있는 모든 탐색기 창이 닫힙니다. 계속하시겠습니까?</value>
   </data>
@@ -335,4 +273,12 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>아이콘 및 미리 보기 이미지를 올바르게 표시하려면 캐시를 삭제해야 합니다. 지금 삭제하시겠습니까?</value>
   </data>
+  
+  
+  
+  
+  
+  
+  
+  
 </root>

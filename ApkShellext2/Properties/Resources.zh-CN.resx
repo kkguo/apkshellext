@@ -117,37 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
-  <data name="iconGitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconGooglePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconRename" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rename.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconUpdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\udpate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconApple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_Scan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR-Scan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAndroid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\android.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAmazonStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\amazon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnOK" xml:space="preserve">
     <value>确定</value>
   </data>
@@ -245,13 +214,6 @@
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
     <value>使用叠加图标显示不同的文件类型</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
   <data name="strShowContextMenuIcon" xml:space="preserve">
     <value>为右键菜单显示图标</value>
   </data>
@@ -270,7 +232,6 @@
   <data name="strRenamePattern" xml:space="preserve">
     <value>以此模式重命名: (不包括扩展名)</value>
   </data>
-  
   <data name="twContextMenu" xml:space="preserve">
     <value>菜单</value>
   </data>
@@ -289,7 +250,6 @@
   <data name="menuGotoApkMirror" xml:space="preserve">
     <value>在ApkMirror.com查找{0}</value>
   </data>
-  
   <data name="btnResetPattern" xml:space="preserve">
     <value>使用上次保存的模式</value>
   </data>
@@ -308,28 +268,9 @@
   <data name="strShowMSStore" xml:space="preserve">
     <value>在菜单中显示 Microsoft 商店链接 (仅对appx/appxbundle文件有效)</value>
   </data>
-  
   <data name="strInfoTipPattern" xml:space="preserve">
     <value>以此模式显示提示:</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  <data name="iconApkMirror" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apkm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconAppStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\App-store-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconMSStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msft store icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  
   <data name="btnBrowse" xml:space="preserve">
     <value>浏览</value>
   </data>
@@ -342,7 +283,6 @@
   <data name="strReplaceSpaceWith_" xml:space="preserve">
     <value>使用 _ 取代空格</value>
   </data>
-  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>有新版本时,在右键菜单显示提醒</value>
   </data>
@@ -355,8 +295,6 @@
   <data name="strHelpTranslate" xml:space="preserve">
     <value>我要帮忙翻译..</value>
   </data>
-  
-  
   <data name="strClearCache" xml:space="preserve">
     <value>清除图标和缩略图缓存</value>
   </data>
@@ -368,5 +306,29 @@
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>正确显示图标和缩略图需要清除缓存,现在就清除吗?</value>
+  </data>
+  <data name="strSearchStore" xml:space="preserve">
+    <value>搜索商店</value>
+  </data>
+  <data name="menuDump" xml:space="preserve">
+    <value>提取文件</value>
+  </data>
+  <data name="strSupportAdaptiveIcon" xml:space="preserve">
+    <value>支持自适应图标 (试用)</value>
+  </data>
+  <data name="strEnableLog" xml:space="preserve">
+    <value>启用调试日志</value>
+  </data>
+  <data name="menuDumpManifest" xml:space="preserve">
+    <value>提取 androidmanifest.xml</value>
+  </data>
+  <data name="menuDumpOthers" xml:space="preserve">
+    <value>提取XML文件...</value>
+  </data>
+  <data name="strDumpXML" xml:space="preserve">
+    <value>提取XML文件</value>
+  </data>
+  <data name="strDumpXMLPrompt" xml:space="preserve">
+    <value>XML 路径，例如：res\placle\cotion.xml</value>
   </data>
 </root>

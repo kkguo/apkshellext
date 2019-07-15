@@ -129,8 +129,7 @@ namespace ApkShellext2 {
                             logo = en;
                             break;
                         } else { // find the biggest scale
-                            int newScale = int.Parse(m.Groups[2].Value);
-                            if (newScale > scale) {
+                            int newScale = int.Parse(m.Groups[2].Value);                            if (newScale > scale) {
                                 logo = en;
                                 scale = newScale;
                             }

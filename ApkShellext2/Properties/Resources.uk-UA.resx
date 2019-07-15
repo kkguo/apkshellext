@@ -118,193 +118,195 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnOK" xml:space="preserve">
-    <value>OK</value>
+    <value>ОК</value>
   </data>
   <data name="btnGitHub" xml:space="preserve">
-    <value>Pagina ufficiale su GitHub</value>
+    <value>Сторінка проекту на GitHub</value>
   </data>
   <data name="btnUpdate" xml:space="preserve">
-    <value>Aggiorna</value>
+    <value>Оновити</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Vai al Sito Ufficiale per aggiornare</value>
+    <value>Оновлення через сайт проекту</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
-    <value>Rinomina Modello</value>
+    <value>Шаблон перейменування</value>
   </data>
   <data name="menuGotoAmazonAppStore" xml:space="preserve">
-    <value>Verifica {0} sull'Appstore Amazon</value>
+    <value>{0} на Amazon AppStore</value>
   </data>
   <data name="menuGotoAppleAppStore" xml:space="preserve">
-    <value>Verifica {0} sull'Appstore di Apple</value>
+    <value>{0} на Apple AppStore</value>
   </data>
   <data name="menuGotoGooglePlay" xml:space="preserve">
-    <value>Visualizza sul Google Play</value>
+    <value>{0} на Google Play</value>
   </data>
   <data name="menuGotoMicrosoftStore" xml:space="preserve">
-    <value>Verifica {0} sull'Appstore Microsoft</value>
+    <value>{0} на Microsoft Store</value>
   </data>
   <data name="menuMain" xml:space="preserve">
     <value>APK Shell Extension</value>
   </data>
   <data name="menuPreferences" xml:space="preserve">
-    <value>Impostazioni del Programma</value>
+    <value>Налаштування &amp;&amp; оновлення</value>
   </data>
   <data name="menuRenameAs" xml:space="preserve">
-    <value>Rinomina in {0}</value>
+    <value>Перейменувати в {0}</value>
   </data>
   <data name="strAlwaysShowGooglePlay" xml:space="preserve">
-    <value>Mostra i Menu dei vari Appstore quando selezioni più di un FIle</value>
+    <value>Показувати меню "В магазині...", коли вибрано кілька файлів</value>
   </data>
   <data name="strAlwaysShowGooglePlayToolTip" xml:space="preserve">
-    <value>Se selezionato, il menu Google Play (o altro Appstore) apparirà anche se hai selezionato più di un file APK.
-Si apriranno più finestre del Browser e questo potrebbe influire sulle prestazioni del Computer in modo significativo.
-Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un File</value>
+    <value>Якщо вибрано, в меню пункт "Сторінка додатки в..." буде показуватися при виборі декількох файлів.
+Зауважте, так ви можете відкрити занадто багато вкладо і навантажити ваш комп'ютер.
+За замовчуванням меню показується тільки при виділенні одного файлу</value>
   </data>
   <data name="strCheckingNewVersion" xml:space="preserve">
-    <value>Verificando nuova versione ...</value>
+    <value>Перевірка на наявність нової версії...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Cerca aggiornamenti sul Sito.</value>
+    <value>Перевірити сайт проекту для оновлення.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
-    <value>Versione attuale: {0}</value>
+    <value>Поточна версія: {0}</value>
   </data>
   <data name="strGotLatest" xml:space="preserve">
-    <value>Grande! Hai già l'ultima versione.</value>
+    <value>Чудово! У вас остання версія.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Vai al Sito ufficiale di ApkShellext2</value>
+    <value>Перейти на сайт проекту ApkShellext2</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
-    <value>Lingua:</value>
+    <value>Мова:</value>
   </data>
   <data name="strNeedApkShellextService" xml:space="preserve">
-    <value>Questa funzionalità richiede ApkShellextService, si prega di assicurarsi il servizio sia avviato.</value>
+    <value>Ця функція вимагає ApkShellextService, переконайтеся, що служба запущена.</value>
   </data>
   <data name="strNewVersionAvailible" xml:space="preserve">
-    <value>Nuova versione {0} disponibile</value>
+    <value>Доступна нова версія {0}</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>Impostazioni di ApkShellext2</value>
+    <value>Налаштування ApkShellext2</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
-    <value>Impossibile leggere il File</value>
+    <value>Неможливо прочитати файл</value>
   </data>
   <data name="strReferToWiki" xml:space="preserve">
-    <value>Per l'utilizzo della variabile fare riferimento al progetto Wiki</value>
+    <value>Будь ласка, використовуйте доступні змінні</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
-    <value>Per evitare situazioni del tipo: stessa Versione ma numero Revisione differente, come spesso succede nelle App Android. Selezionando questo, i FIle verranno rinominati come segue
-%AppName%_%Version%_%Revision%, altrimenti usa %AppName%_%Version%.</value>
+    <value>Для уникнення ситуації коли версії однакові, а ревізії різні, це часто зустрічається в Android додатках.
+Вибравши це, перейменування буде відбуватися по шаблону
+%AppName% _%Version% _%Revision%, інакше, буде використовуватися
+%AppName% _%Version%.</value>
   </data>
   <data name="strScanToDownload" xml:space="preserve">
-    <value>Scansiona il codice QR per scaricare</value>
+    <value>Сканувати QR-Код для завантаження</value>
   </data>
   <data name="strShowAppxIcon" xml:space="preserve">
-    <value>Visualizza le icone delle App WIndowsPhone (appx, appxbundle).</value>
+    <value>Показувати значки додатків WindowsPhone (appx, appxbundle).</value>
   </data>
   <data name="strShowIpaIcon" xml:space="preserve">
-    <value>Mostra l'icona iOs (ipa)</value>
+    <value>Показувати значки додатків iOS (ipa).</value>
   </data>
   <data name="strShowOverlayIcon" xml:space="preserve">
-    <value>Mostra Icona in sovrapposizione</value>
+    <value>Відображати іконку OS</value>
   </data>
   <data name="strShowOverlayIconToolTip" xml:space="preserve">
-    <value>Mostra un'icona in sovrapposizione per diversi S.O. </value>
+    <value>Показує іконку OS в лівому нижньому кутку</value>
   </data>
   <data name="strShowContextMenuIcon" xml:space="preserve">
-    <value>Visualizza un'icona per il Menu Contestuale</value>
+    <value>Відображати значок в контекстному меню</value>
   </data>
   <data name="btnCancel" xml:space="preserve">
-    <value>Annulla</value>
+    <value>Скасувати</value>
   </data>
   <data name="btnNo" xml:space="preserve">
-    <value>No</value>
+    <value>Ні</value>
   </data>
   <data name="btnYes" xml:space="preserve">
-    <value>Si</value>
+    <value>Так</value>
   </data>
   <data name="strRenameConfirm" xml:space="preserve">
-    <value>Confermi di rinominare il file come {0}?</value>
+    <value>Перейменувати файл в {0}?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>Rinominare il modello: (senza estensione)</value>
+    <value>Шаблон перейменування (без розширення)</value>
   </data>
   <data name="twContextMenu" xml:space="preserve">
-    <value>Menu contestuale</value>
+    <value>Контекстне меню</value>
   </data>
   <data name="twGeneral" xml:space="preserve">
-    <value>Generale</value>
+    <value>Загальне</value>
   </data>
   <data name="twIcon" xml:space="preserve">
-    <value>Icona</value>
+    <value>Іконка</value>
   </data>
   <data name="twRename" xml:space="preserve">
-    <value>Rinominazione in corso</value>
+    <value>Перейменування</value>
   </data>
   <data name="twInfotip" xml:space="preserve">
-    <value>Info</value>
+    <value>Підказка</value>
   </data>
   <data name="menuGotoApkMirror" xml:space="preserve">
-    <value>Verifica {0} su ApkMirror.com</value>
+    <value>{0} на ApkMirror.com</value>
   </data>
   <data name="btnResetPattern" xml:space="preserve">
-    <value>Usa l'ultimo modello salvato</value>
+    <value>Використовувати останній збережений шаблон</value>
   </data>
   <data name="strShowAmazonStore" xml:space="preserve">
-    <value>Visualizza il link all'Appstore di Amazon nel Menu Contestuale</value>
+    <value>Відображати посилання на Amazon App в контекстному меню</value>
   </data>
   <data name="strShowApkMirror" xml:space="preserve">
-    <value>Visualizza il link a ApkMirror nel Menu Contestuale</value>
+    <value>Відображати посилання на ApkMirror в контекстному меню</value>
   </data>
   <data name="strShowAppleStore" xml:space="preserve">
-    <value>Visualizza il link all'Appstore Apple (per i FIle ipa) nel Menu Contestuale</value>
+    <value>Відображати посилання на Apple Store (ipa) в контекстному меню</value>
   </data>
   <data name="strShowGooglePlay" xml:space="preserve">
-    <value>Mostra il link sul Google Play Store</value>
+    <value>Відображати посилання на Google play в контекстному меню</value>
   </data>
   <data name="strShowMSStore" xml:space="preserve">
-    <value>Visualizza il link all'Appstore Microsoft (file appx/appxbundle)</value>
+    <value>Відображати посилання на Microsoft Store (appx/appxbundle) в контекстному меню</value>
   </data>
   <data name="strInfoTipPattern" xml:space="preserve">
-    <value>Info modello:</value>
+    <value>Шаблон підказки:</value>
   </data>
   <data name="btnBrowse" xml:space="preserve">
-    <value>Sfoglia</value>
+    <value>Огляд</value>
   </data>
   <data name="btnSearchAdb" xml:space="preserve">
-    <value>Cerca</value>
+    <value>Пошук</value>
   </data>
   <data name="strAdbPath" xml:space="preserve">
-    <value>Specifica il percorso di adb.exe</value>
+    <value>Вкажіть шлях до adb.exe</value>
   </data>
   <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Sostituire lo spazio con _</value>
+    <value>Заміняти пробіл нижнім підкресленням "_"</value>
   </data>
   <data name="strShowNewVerInfo" xml:space="preserve">
-    <value>Ricordami la nuova versione</value>
+    <value>Повідомляти про нові версії</value>
   </data>
   <data name="twThumbnail" xml:space="preserve">
-    <value>Anteprima</value>
+    <value>Мініатюра</value>
   </data>
   <data name="strStretchThumbnail" xml:space="preserve">
-    <value>Ridimensione l'anteprima se WIndows richiede dimensioni maggiori</value>
+    <value>Розтягувати мініатюру якщо Windows вимагає більшого розміру</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
-    <value>Aiutaci a tradurre questo progetto.</value>
+    <value>Допоможіть перекласти цей проект.</value>
   </data>
   <data name="strClearCache" xml:space="preserve">
-    <value>Pulisci la cache icone ed anteprime</value>
+    <value>Очистити кеш значків і мініатюр</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
-    <value>Tutti i FIle aperti verranno chiusi. Continuare?</value>
+    <value>Всі відкриті вікна Провідника будуть закриті. Продовжити?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
-    <value>Visualizza l'anteprima invece dell'icona.</value>
+    <value>Відображати мініатюру замість значка.</value>
   </data>
   <data name="dialogNeedClearCache" xml:space="preserve">
-    <value>Al fine di visualizzare correttamente le icone e le miniature è necessario pulire la cache, pulire adesso?</value>
+    <value>Для коректного відображення значків і мініатюр, кеш повинен бути очищений, продовжити?</value>
   </data>
   
   

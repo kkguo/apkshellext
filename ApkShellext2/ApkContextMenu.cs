@@ -20,6 +20,8 @@ using System.Web;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Diagnostics;
+using System.Xml;
+using Microsoft.VisualBasic;
 
 namespace ApkShellext2 {
     [Guid("dcb629fc-f86f-456f-8e24-98b9b2643a9b")]
@@ -50,7 +52,7 @@ namespace ApkShellext2 {
             var menu = new ContextMenuStrip();
 
             string newVerAvai = "";
-            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion","True") == "True")
+            if (Utility.NewVersionAvailible() && Utility.GetSetting("ShowNewVersion", "True") == "True")
                 newVerAvai = " (" + string.Format(Resources.strNewVersionAvailible, Utility.GetSetting("LatestVersion")) + ")";
             var mainMenu = new ToolStripMenuItem {
                 Text = Properties.Resources.menuMain + newVerAvai
@@ -96,11 +98,31 @@ namespace ApkShellext2 {
             }
 
             renameMenu.Click += (sender, args) => renameWithVersion();
-
             mainMenu.DropDownItems.Add(renameMenu);
-            mainMenu.DropDownItems.Add("-");
             
             #endregion
+
+            #region Dump menu
+            if (hasapk) {
+                var dumpMenu = new ToolStripMenuItem {
+                    Text = Resources.menuDump,
+                    Image = Utility.ResizeBitmap(NonLocalizeResources.output, size),
+                };
+                var manifestMenu = new ToolStripMenuItem {
+                    Text = Resources.menuDumpManifest,
+                };
+                var dumpotherMenu = new ToolStripMenuItem {
+                    Text = Resources.menuDumpOthers,
+                };
+                dumpMenu.DropDownItems.Add(manifestMenu);
+                dumpMenu.DropDownItems.Add(dumpotherMenu);
+                manifestMenu.Click += (sender, args) => dumpManifest();
+                dumpotherMenu.Click += (sender, args) => dumpXML();
+                mainMenu.DropDownItems.Add(dumpMenu);
+            }
+            #endregion
+
+            mainMenu.DropDownItems.Add("-");
 
             if (hasapk) {
                 #region APK Menu
@@ -112,7 +134,7 @@ namespace ApkShellext2 {
                 ToolStripMenuItem subMenu = null;
                 appname = singleSelected ? appname : AppPackageReader.extAPK;
 
-                if (Utility.GetSetting("ShowGooglePlay","True")=="True") {
+                if (Utility.GetSetting("ShowGooglePlay", "True") == "True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoGooglePlay, appname),
                         Image = Utility.ResizeBitmap(NonLocalizeResources.iconGooglePlay, size)
@@ -120,11 +142,11 @@ namespace ApkShellext2 {
 
                     subMenu.Click += (sender, args) => gotoGooglePlay();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected","True") == "True");
-                    
+                    subMenu.Enabled = singleSelected || (Utility.GetSetting("ShowAppStoreWhenMultiSelected", "True") == "True");
+
                 }
 
-                if (Utility.GetSetting("ShowAmazonStore","True")== "True") {
+                if (Utility.GetSetting("ShowAmazonStore", "True") == "True") {
                     subMenu = new ToolStripMenuItem {
                         Text = string.Format(Resources.menuGotoAmazonAppStore, appname),
                         Image = Utility.ResizeBitmap(NonLocalizeResources.iconAmazonStore, size)
@@ -132,7 +154,7 @@ namespace ApkShellext2 {
 
                     subMenu.Click += (sender, args) => gotoAmazonAppStore();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")=="True";
+                    subMenu.Enabled = singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected", "True") == "True";
                 }
 
                 if (Utility.GetSetting("ShowApkMirror", "False") == "True") {
@@ -142,15 +164,15 @@ namespace ApkShellext2 {
                     };
                     subMenu.Click += (sender, args) => gotoApkMirror();
                     storeMenu.DropDownItems.Add(subMenu);
-                    subMenu.Enabled = (singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected","True") == "True");
+                    subMenu.Enabled = (singleSelected || Utility.GetSetting("ShowAppStoreWhenMultiSelected", "True") == "True");
                 }
 
-                if (storeMenu.DropDownItems.Count>0) {
+                if (storeMenu.DropDownItems.Count > 0) {
                     mainMenu.DropDownItems.Add(storeMenu);
                 }
                 #endregion
             }
-            if (hasipa && Utility.GetSetting("ShowAppleStore","True")=="True") {
+            if (hasipa && Utility.GetSetting("ShowAppleStore", "True") == "True") {
                 #region AppleStore Menu
                 appname = singleSelected ? appname : AppPackageReader.extIPA;
                 var appleMenu = new ToolStripMenuItem {
@@ -160,11 +182,11 @@ namespace ApkShellext2 {
                 appleMenu.Click += (sender, args) => gotoAppleStore();
                 mainMenu.DropDownItems.Add(appleMenu);
                 appleMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")== "True";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected", "True") == "True";
                 #endregion
             }
 
-            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore","True")=="True") {
+            if ((hasappx || hasappxbundle) && Utility.GetSetting("ShowMSStore", "True") == "True") {
                 #region MS Store Menu
                 appname = singleSelected ? appname :
                     (AppPackageReader.extAPPX + @"/" + AppPackageReader.extAPPXBUNDLE);
@@ -175,7 +197,7 @@ namespace ApkShellext2 {
                 msMenu.Click += (sender, args) => gotoMicrosoftStore();
                 mainMenu.DropDownItems.Add(msMenu);
                 msMenu.Enabled = singleSelected ||
-                Utility.GetSetting("ShowAppStoreWhenMultiSelected","True")== "True";
+                Utility.GetSetting("ShowAppStoreWhenMultiSelected", "True") == "True";
                 #endregion
             }
 
@@ -241,6 +263,7 @@ namespace ApkShellext2 {
                     for (int i = 0; i < totalIconToDraw; i++) {
                         using (AppPackageReader reader = AppPackageReader.Read(SelectedItemPaths.ElementAt(totalIconToDraw - i - 1)))
                         using (Graphics g = Graphics.FromImage((Image)b)) {
+                            reader.setFlag("ImageSize", size);
                             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
@@ -309,6 +332,35 @@ namespace ApkShellext2 {
             return newFileName;
         }
 
+        private void dumpXML() {
+            string xml = Interaction.InputBox(Resources.strDumpXMLPrompt, Resources.strDumpXML);
+            foreach (var path in SelectedItemPaths) {
+                dumpXML(path, xml);
+            }
+        }
+
+        private void dumpXML(string apk, string xml) {
+            using (ApkReader reader = (ApkReader)AppPackageReader.Read(apk)) {
+                try {
+                    XmlDocument doc = reader.ExtractCompressedXml(xml);
+                    string filepath = apk + "." + Regex.Replace(xml, @"[\/:*?""<>|-]+", "_"); // remove invalid chars
+                    XmlWriterSettings setting = new XmlWriterSettings();
+                    setting.Indent = true;
+                    XmlWriter writer = XmlWriter.Create(filepath,setting);
+                    doc.WriteTo(writer);
+                    writer.Close();
+                } catch (Exception ex) {
+                    Log(ex.Message + "\nError happens during extracting " + xml + " in " + apk);
+                }
+            }
+        }
+
+        private void dumpManifest() {
+            foreach (var path in SelectedItemPaths) {
+                dumpXML(path, "androidmanifest.xml");
+            }
+        }
+
         public static string ReplaceVariables(string ori, AppPackageReader reader) {
             string newStr = ori;
             if (newStr.Contains(NonLocalizeResources.varAppName))
@@ -335,6 +387,18 @@ namespace ApkShellext2 {
                 newStr = newStr.Replace(NonLocalizeResources.varDebuggable,
                     (reader.Type == AppPackageReader.AppType.AndroidApp)?
                     (((ApkReader)reader).Debuggable?"Debug":"Release"):"");
+            if (reader.Type == AppPackageReader.AppType.AndroidApp) {
+                var apkreader = reader as ApkReader;
+                Regex rx = new Regex(NonLocalizeResources.varAttribute);
+                Match m = rx.Match(newStr);
+                if (m.Success) {
+                    if (m.Captures.Count == 3) {
+                        string tag = m.Captures[1].Value;
+                        string attr = m.Captures[2].Value;
+                        rx.Replace(newStr, apkreader.QuickSearchManifestXml(tag, attr));
+                    }
+                }
+            }
             return newStr;
         }
 

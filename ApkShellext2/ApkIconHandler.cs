@@ -10,7 +10,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows;
 using ApkShellext2.Properties;
 using System.Threading;
 using System.Text.RegularExpressions;
@@ -39,8 +38,7 @@ namespace ApkShellext2 {
                             Utility.GetSetting("ShowAppxIcon", "False") != "True") {
                             m_icon = Utility.AppTypeIcon(reader.Type);
                         } else {
-                            reader.setFlag("ImageSize", iconSize);
-                            m_icon = reader.Icon;
+                            m_icon = reader.getIcon(new Size((int)iconSize, (int)iconSize));
                         }
                         if (m_icon == null)
                             throw new Exception("Cannot find Icon for " + Path.GetFileName(SelectedItemPath) + ", draw default");

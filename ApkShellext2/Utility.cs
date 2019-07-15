@@ -15,6 +15,7 @@ using System.Web;
 using SharpShell.Extensions;
 using SharpShell.Interop;
 using ApkShellext2.Properties;
+using System.Windows.Forms;
 
 namespace ApkShellext2 {
     public static class Utility {
@@ -264,7 +265,7 @@ namespace ApkShellext2 {
             // version number should be always 4 parts
             for (int i = 0; i < latestV.Length; i++) {
                 if (latestV[i] != curV[i]) {
-                    if (int.Parse(latestV[i]) > int.Parse(curV[i]))
+                    if (float.Parse(latestV[i]) > float.Parse(curV[i]))
                         return true;
                     break;
                 }

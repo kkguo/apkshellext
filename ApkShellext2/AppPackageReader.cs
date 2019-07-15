@@ -64,6 +64,10 @@ namespace ApkShellext2 {
                 return null;
         }
 
+        public virtual Bitmap getIcon(Size size) {
+            return Utility.ResizeBitmap(Icon, size);
+        }
+
         // Public implementation of Dispose pattern callable by consumers. 
         public void Dispose() {
             Dispose(true);

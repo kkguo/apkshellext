@@ -182,6 +182,16 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap output {
+            get {
+                object obj = ResourceManager.GetObject("output", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap QR_Scan {
             get {
                 object obj = ResourceManager.GetObject("QR_Scan", resourceCulture);
@@ -206,15 +216,6 @@ namespace ApkShellext2.Properties {
         internal static string strRenamePatternDefault {
             get {
                 return ResourceManager.GetString("strRenamePatternDefault", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to %AppName%_%Version%.
-        /// </summary>
-        internal static string strRenamePatternDefault1 {
-            get {
-                return ResourceManager.GetString("strRenamePatternDefault1", resourceCulture);
             }
         }
         
@@ -332,6 +333,15 @@ namespace ApkShellext2.Properties {
         internal static string varAppName {
             get {
                 return ResourceManager.GetString("varAppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;%Attr\(([\w_-\\/]*),([\w_-\\/]*)\)%&quot;.
+        /// </summary>
+        internal static string varAttribute {
+            get {
+                return ResourceManager.GetString("varAttribute", resourceCulture);
             }
         }
         
