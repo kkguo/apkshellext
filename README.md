@@ -1,7 +1,7 @@
 # ApkShellext2![logo](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/Apkshellext_icons/apkshell_b64.png?raw=true)  
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.svg)](http://translate.apkshellext.com/project/apkshellext)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/apkshellext/localized.svg)](http://translate.apkshellext.com/)
 
-A Windows shell extension for mobile app files supporting 
+A Windows shell extension supporting icon for files of
 * .apk (android package)
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
@@ -16,9 +16,8 @@ This is the code repository, please visit the project page http://apkshellext.co
 
 #### Say something to this project
  * :email: issue@apkshellext.com
- * Join us on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
+ * Join discussion on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
  * Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
- * if you see it doesn't work on certain app file (apk/ipa), please upload that package. If there is copy right issue, please paste link.
  * Pull request is always welcome.
 
 #### [Features]
@@ -28,10 +27,10 @@ This is the code repository, please visit the project page http://apkshellext.co
  - [x] Go to app store from context menu.
  - [x] Auto-check new version.
  - [x] Show overlay icon for different type of apps.
- - [x] Support multiple languages: check https://crowdin.com/project/apkshellext for credit
+ - [x] Support multiple languages: Thanks to contributors on https://crowdin.com/project/apkshellext
     
 #### [Todo]
- - [ ] Adaptive-icon support
+ - [X] Adaptive-icon support (Beta)
  - [ ] protobuf support
  - [ ] support .NET 4.0??
  - [ ] QR code to download to phone
@@ -51,6 +50,7 @@ This is the code repository, please visit the project page http://apkshellext.co
 | [Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)               | Another Zip implementation, used by PNGDecrush |
 | [QRCoder](https://github.com/codebude/QRCoder)                      | QR code generator                              |
 | [Ultimate Social](https://www.iconfinder.com/iconsets/ultimate-social) | A free icon set for social medias           |
+| [SVG](https://github.com/vvvv/SVG)                                  | SVG renderer                                    |
 
 --------------
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
