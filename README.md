@@ -42,15 +42,16 @@ This is the code repository, please visit the project page http://apkshellext.co
 #### Credit :
 |||
 | --- | --- |
-| [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell extension library                           |
+| [SharpShell](https://github.com/dwmkerr/sharpshell)                 | Shell extension library                        |
 | [SharpZip](https://github.com/icsharpcode/SharpZipLib)              | Zip function implementation in C#              |
-| [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the original APK reader, not in use currently     |
+| [Iteedee.ApkReader](https://github.com/hylander0/Iteedee.ApkReader) | the original APK reader, not in use currently  |
 | [PlistCS](https://github.com/animetrics/PlistCS)                    | iOS plist file reader                          |
 | [PNGDecrush](https://github.com/MikeWeller/PNGDecrush)              | PNG decrush lib                                |
 | [Ionic.Zlib](https://github.com/jstedfast/Ionic.Zlib)               | Another Zip implementation, used by PNGDecrush |
 | [QRCoder](https://github.com/codebude/QRCoder)                      | QR code generator                              |
 | [Ultimate Social](https://www.iconfinder.com/iconsets/ultimate-social) | A free icon set for social medias           |
-| [SVG](https://github.com/vvvv/SVG)                                  | SVG renderer                                    |
+| [SVG](https://github.com/vvvv/SVG)                                  | SVG format renderer                            |
+| [WebP-Wrapper](https://github.com/JosePineiro/WebP-wrapper)         | WebP format renderer
 
 --------------
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
