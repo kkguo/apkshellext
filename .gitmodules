@@ -22,3 +22,6 @@
 [submodule "ApkShellext2/SVG"]
 	path = ApkShellext2/SVG
 	url = https://github.com/vvvv/SVG.git
+[submodule "ApkShellext2/WebP-wrapper"]
+	path = ApkShellext2/WebP-wrapper
+	url = https://github.com/JosePineiro/WebP-wrapper.git
