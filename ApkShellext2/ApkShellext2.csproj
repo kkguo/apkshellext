@@ -141,6 +141,8 @@
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\CustomUnregisterFunctionAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\DisplayNameAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\HandlerSubkeyAttribute.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\PredefinedShellObjectAttribute.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\RegistrationNameAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\ServerTypeAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Attributes\SpecialClassKeyAttribute.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Components\CategoryManager.cs" />
@@ -195,6 +197,7 @@
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\FontQuality.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\FontWeight.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\GCS.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Interop\Gdi32.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\GILInFlags.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\GILOutFlags.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Interop\ICatRegister.cs" />
@@ -303,7 +306,14 @@
     <Compile Include="SharpShell\SharpShell\SharpShell\Pidl\IdList.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Pidl\PidlManager.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\Pidl\ShellId.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\InMemoryRegistry.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\InMemoryRegistryKey.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\IRegistry.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\IRegistryKey.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\WindowsRegistry.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\Registry\WindowsRegistryKey.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\ClassRegistration.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\FileExtensionClass.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\RegistrationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\ServerRegistationType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\ServerRegistrationManager.cs" />
@@ -311,6 +321,7 @@
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\ShellExtensionType.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerRegistration\SpecialRegistryClass.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\ServerType.cs" />
+    <Compile Include="SharpShell\SharpShell\SharpShell\ServiceRegistry\ServiceRegistry.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpContextMenu\InvokeCommandInfo.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpContextMenu\NativeContextMenuWrapper.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpContextMenu\PARGB32.cs" />
@@ -349,7 +360,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpPreviewHandler\PreviewHandlerHost.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpPreviewHandler\PreviewHandlerRegistrar.cs" />
     <Compile Include="SharpShell\SharpShell\SharpShell\SharpPreviewHandler\SharpPreviewHandler.cs" />
@@ -640,8 +651,12 @@
     <Compile Include="SVG\Source\Web\SvgHandler.cs" />
     <Compile Include="VectorDrawableRender.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="WebP-wrapper\WebPTest\WebPWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Patreon_Mark_Coral.jpg" />
+    <Content Include="WebP-wrapper\WebPTest\libwebp_x64.dll" />
+    <Content Include="WebP-wrapper\WebPTest\libwebp_x86.dll" />
     <None Include="apkshellext2.key.pfx" />
     <None Include="app.config">
       <SubType>Designer</SubType>
@@ -720,8 +735,12 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y $(ProjectDir)\Resources\*.bat  $(TargetDir)
-"C:\Program Files\7-Zip\7z.exe" a ApkShellext2.7z ApkShellext2.dll *.bat
+    <PostBuildEvent>copy /Y $(ProjectDir)\Resources\install.bat  $(TargetDir)
+copy /Y $(ProjectDir)\Resources\restart_explorer.bat  $(TargetDir)
+copy /Y $(ProjectDir)\Resources\uninstall.bat  $(TargetDir)
+copy /Y $(ProjectDir)\WebP-wrapper\WebPTest\libwebp_*.dll $(TargetDir)
+if $(ConfigurationName) == Release (
+"C:\Program Files\7-Zip\7z.exe" a ApkShellext2.7z ApkShellext2.dll *.bat libwebp_*.dll
 "C:\Program Files\7-Zip\7z.exe" a ar-SA.7z ar-SA
 "C:\Program Files\7-Zip\7z.exe" a de-DE.7z de-DE
 "C:\Program Files\7-Zip\7z.exe" a el-GR.7z el-GR
@@ -737,6 +756,9 @@
 "C:\Program Files\7-Zip\7z.exe" a  tr-TR.7z tr-TR
 "C:\Program Files\7-Zip\7z.exe" a zh-CN.7z zh-CN
 "C:\Program Files\7-Zip\7z.exe" a zh-TW.7z zh-TW
+) else (
+copy /Y $(ProjectDir)\Resources\debug.bat  $(TargetDir)
+)
 start $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -279,9 +279,7 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="strAdbPath" xml:space="preserve">
     <value>Lütfen adb.exe yolunu belirtin</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Boşluğun yerini _ ile değiştirin</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Yeni sürüm bulunursa bağlam menüsünde belirt</value>
   </data>
@@ -306,6 +304,8 @@ Bu işaretlendiğinde uygulama dosyası %AppName%_%Version%_%Revision%, otherwis
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Simge ve küçük resimleri doğru görüntülemek için önbelleğin temizlenmesi gerekiyor, şimdi temizlensin mi?</value>
   </data>
+  
+  
   
   
   

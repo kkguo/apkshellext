@@ -279,9 +279,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>請指定的adb.exe路徑 </value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>替換空格為 _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>在內容功能表中提醒新版本</value>
   </data>
@@ -306,6 +304,8 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>為了正確顯示圖示和縮略圖，緩存需要被清除，現在清除嗎?</value>
   </data>
+  
+  
   
   
   

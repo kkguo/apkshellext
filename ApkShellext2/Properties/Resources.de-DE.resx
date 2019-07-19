@@ -225,7 +225,7 @@ Standardmäßig wird das Menü nur angezeigt, wenn Sie eine Datei auswählen</va
     <value>Ja</value>
   </data>
   <data name="strRenameConfirm" xml:space="preserve">
-    <value>Diese Datei zu {0} umbenennen?</value>
+    <value>Diese Datei zu {0} umbenennen ?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
     <value>Umbenennungsmuster: (ohne Dateiendung)</value>
@@ -278,9 +278,7 @@ Standardmäßig wird das Menü nur angezeigt, wenn Sie eine Datei auswählen</va
   <data name="strAdbPath" xml:space="preserve">
     <value>Bitte Pfad zu adb.exe angeben</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Ersetze Leerzeichen mit _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>An neue Version erinnern</value>
   </data>
@@ -291,13 +289,13 @@ Standardmäßig wird das Menü nur angezeigt, wenn Sie eine Datei auswählen</va
     <value>Vorschaubild vergrößern wenn benötigt</value>
   </data>
   <data name="strHelpTranslate" xml:space="preserve">
-    <value>Hilfe bei der Übersetzung dieses Projektes!</value>
+    <value>Hilfe bei der Übersetzung dieses Projektes.</value>
   </data>
   <data name="strClearCache" xml:space="preserve">
     <value>Symbol- und Vorschaubildcache löschen</value>
   </data>
   <data name="dialogClearCache" xml:space="preserve">
-    <value>Sollen alle Explorer-Fenster geschlossen werden?</value>
+    <value>Sollen alle Explorer-Fenster geschlossen werden, weiter ?</value>
   </data>
   <data name="strEnableThumbnail" xml:space="preserve">
     <value>Zeige Vorschaubilder anstatt von Symbolen.</value>
@@ -305,12 +303,30 @@ Standardmäßig wird das Menü nur angezeigt, wenn Sie eine Datei auswählen</va
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Um Symbol und Vorschaubilder korrekt anzuzeigen, muss der Cache gelöscht werden. Soll der Cache jetzt gelöscht werden?</value>
   </data>
-  
-  
-  
-  
-  
-  
+  <data name="strSearchStore" xml:space="preserve">
+    <value>In Stores suchen</value>
+  </data>
+  <data name="menuDump" xml:space="preserve">
+    <value>Mülleimer anzeigen...</value>
+  </data>
+  <data name="strSupportAdaptiveIcon" xml:space="preserve">
+    <value>Unterstütze Adaptive Icon (Beta)</value>
+  </data>
+  <data name="strEnableLog" xml:space="preserve">
+    <value>Debug-Protokoll aktivieren</value>
+  </data>
+  <data name="menuDumpManifest" xml:space="preserve">
+    <value>Mülleimer androidmanifest.xml</value>
+  </data>
+  <data name="menuDumpOthers" xml:space="preserve">
+    <value>XML Mülleimer ...</value>
+  </data>
+  <data name="strDumpXML" xml:space="preserve">
+    <value>XML Mülleimer</value>
+  </data>
+  <data name="strDumpXMLPrompt" xml:space="preserve">
+    <value>Pfad zu XML, z. B. : res\drawable\icon.xml</value>
+  </data>
   
   
 </root>

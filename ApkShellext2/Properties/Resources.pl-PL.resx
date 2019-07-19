@@ -279,9 +279,7 @@ Zaznaczając to, w przypadku gdy numer subwersji będzie się różnił, wykorzy
   <data name="strAdbPath" xml:space="preserve">
     <value>Określ ścieżkę do adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Zastąp spacje znakiem _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Przypominaj o nowej wersji</value>
   </data>
@@ -306,6 +304,8 @@ Zaznaczając to, w przypadku gdy numer subwersji będzie się różnił, wykorzy
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Aby poprawnie wyświetlić ikony i miniatury, pamięć podręczna musi zostać wyczyszczona, wyczyścić teraz?</value>
   </data>
+  
+  
   
   
   

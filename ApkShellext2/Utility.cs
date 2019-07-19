@@ -16,6 +16,8 @@ using SharpShell.Extensions;
 using SharpShell.Interop;
 using ApkShellext2.Properties;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace ApkShellext2 {
     public static class Utility {
@@ -364,8 +366,8 @@ namespace ApkShellext2 {
 
         public static void Log(object caller, string title, string message) {
 #if DEBUG
-            string output;
-            output = "[" + System.DateTime.Now.ToString() + "]";
+            string output="";
+            //output = "[" + System.DateTime.Now.ToString() + "]";
             if (caller != null)
                 output += "<" + caller.GetType().Name + ">";
             if (title != "")
@@ -373,5 +375,7 @@ namespace ApkShellext2 {
             SharpShell.Diagnostics.Logging.Log(output + message);
 #endif
         }
+
+        
     }
 }

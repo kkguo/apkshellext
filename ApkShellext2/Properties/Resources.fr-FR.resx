@@ -127,7 +127,7 @@
     <value>Mettre à jour</value>
   </data>
   <data name="btnUpdateToolTip" xml:space="preserve">
-    <value>Aller sur le site du projet afin de mettre à jour</value>
+    <value>Consulter le site du projet pour les mises à jour</value>
   </data>
   <data name="lblRenamePattern" xml:space="preserve">
     <value>Modèle de renommage</value>
@@ -165,7 +165,7 @@ Par défaut, APK Shell Extension n'affiche les liens que lors de la sélection d
     <value>Vérification de la disponibilité d'une nouvelle mise à jour...</value>
   </data>
   <data name="strCheckProjectSite" xml:space="preserve">
-    <value>Vérifiez le site du projet pour les mises à jours</value>
+    <value>Consulter le site du projet pour les mises à jour.</value>
   </data>
   <data name="strCurrVersion" xml:space="preserve">
     <value>Version actuelle: {0}</value>
@@ -174,7 +174,7 @@ Par défaut, APK Shell Extension n'affiche les liens que lors de la sélection d
     <value>Félicitations! Vous disposez de la dernière version.</value>
   </data>
   <data name="strGotoProjectSite" xml:space="preserve">
-    <value>Aller sur le site de APK Shell Extensions</value>
+    <value>Aller sur le site du projet ApkShellext2</value>
   </data>
   <data name="strLanguages" xml:space="preserve">
     <value>Langue:</value>
@@ -186,13 +186,13 @@ Par défaut, APK Shell Extension n'affiche les liens que lors de la sélection d
     <value>Une nouvelle version ({0}) est disponible!</value>
   </data>
   <data name="strPreferencesCaption" xml:space="preserve">
-    <value>Paramètres d'APK Shell Extension</value>
+    <value>Préférences de ApkShellext2</value>
   </data>
   <data name="strReadFileFailed" xml:space="preserve">
     <value>Erreur lors de la lecture du fichier</value>
   </data>
   <data name="strReferToWiki" xml:space="preserve">
-    <value>Pour les variables disponibles, veuillez vous référer au wiki du projet</value>
+    <value>Pour l'utilisation des variables, veuillez vous référer au wiki du projet</value>
   </data>
   <data name="strRenameToolTip" xml:space="preserve">
     <value>Pour éviter les situations où la révision change, mais pas la version
@@ -229,7 +229,7 @@ Si cette case est cochée, le fichier sera renommée comme %AppName%_%Version%_%
     <value>Renommer ce fichier en {0}?</value>
   </data>
   <data name="strRenamePattern" xml:space="preserve">
-    <value>Modèle de renommage (sans extension de fichier):</value>
+    <value>Modèle de renommage (sans extension de fichier) :</value>
   </data>
   <data name="twContextMenu" xml:space="preserve">
     <value>Menu contextuel</value>
@@ -279,9 +279,7 @@ Si cette case est cochée, le fichier sera renommée comme %AppName%_%Version%_%
   <data name="strAdbPath" xml:space="preserve">
     <value>Veuillez spécifier l'emplacement de adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Remplacer les espaces par des traits de soulignement</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Notifier lors de la disponibilité d'une nouvelle version</value>
   </data>
@@ -306,12 +304,30 @@ Si cette case est cochée, le fichier sera renommée comme %AppName%_%Version%_%
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Afin d'afficher les miniatures et icônes correctement, le cache doit être nettoyé. Le faire maintenant?</value>
   </data>
-  
-  
-  
-  
-  
-  
+  <data name="strSearchStore" xml:space="preserve">
+    <value>Rechercher dans les stores</value>
+  </data>
+  <data name="menuDump" xml:space="preserve">
+    <value>Extraire</value>
+  </data>
+  <data name="strSupportAdaptiveIcon" xml:space="preserve">
+    <value>Support des icônes adaptatives (bêta)</value>
+  </data>
+  <data name="strEnableLog" xml:space="preserve">
+    <value>Activer les journaux de débogage</value>
+  </data>
+  <data name="menuDumpManifest" xml:space="preserve">
+    <value>Extraire androidmanifest.xml</value>
+  </data>
+  <data name="menuDumpOthers" xml:space="preserve">
+    <value>Extraire un fichier XML...</value>
+  </data>
+  <data name="strDumpXML" xml:space="preserve">
+    <value>Extraire un fichier XML</value>
+  </data>
+  <data name="strDumpXMLPrompt" xml:space="preserve">
+    <value>Chemin vers le fichier XML, ex : res\drawable\icon.xml</value>
+  </data>
   
   
 </root>

@@ -55,7 +55,6 @@ namespace ApkShellext2 {
                     m_icon = Utility.AppTypeIcon(AppPackageReader.getAppType(SelectedItemPath));
                 }
             }
-            //Utility.CheckUpdate(); move to context menu
 
             return Icon.FromHandle(Utility.ResizeBitmap(m_icon, new Size((int)iconSize, (int)iconSize)).GetHicon());
         }

@@ -279,9 +279,7 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="strAdbPath" xml:space="preserve">
     <value>Por favor, especifique o caminho do adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Substitua o espaço com _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Relembrar nova versão</value>
   </data>
@@ -306,6 +304,8 @@ Verificando isso, renomeie o arquivo app como %AppName % _ % versão % _ % revis
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Para exibir o ícone e miniatura corretamente, o cache precisa ser limpo, limpá-la agora?</value>
   </data>
+  
+  
   
   
   

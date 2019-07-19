@@ -192,6 +192,16 @@ namespace ApkShellext2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Patreon {
+            get {
+                object obj = ResourceManager.GetObject("Patreon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap QR_Scan {
             get {
                 object obj = ResourceManager.GetObject("QR_Scan", resourceCulture);
@@ -301,6 +311,15 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://www.patreon.com/apkshellext.
+        /// </summary>
+        internal static string urlPatreon {
+            get {
+                return ResourceManager.GetString("urlPatreon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://github.com/kkguo/apkshellext/wiki/Package-information-Pattern-variables.
         /// </summary>
         internal static string urlPatternVarWiki {
@@ -319,7 +338,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %AppID%.
+        ///   Looks up a localized string similar to AppID.
         /// </summary>
         internal static string varAppid {
             get {
@@ -328,7 +347,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %AppName%.
+        ///   Looks up a localized string similar to AppName.
         /// </summary>
         internal static string varAppName {
             get {
@@ -337,7 +356,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;%Attr\(([\w_-\\/]*),([\w_-\\/]*)\)%&quot;.
+        ///   Looks up a localized string similar to Attr\((.*),(.*)\).
         /// </summary>
         internal static string varAttribute {
             get {
@@ -346,7 +365,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Debuggable%.
+        ///   Looks up a localized string similar to Debuggable.
         /// </summary>
         internal static string varDebuggable {
             get {
@@ -355,7 +374,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %FileSize%.
+        ///   Looks up a localized string similar to FileSize.
         /// </summary>
         internal static string varFileSize {
             get {
@@ -364,7 +383,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %LastModify%.
+        ///   Looks up a localized string similar to LastModify.
         /// </summary>
         internal static string varLastModify {
             get {
@@ -373,7 +392,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %OS%.
+        ///   Looks up a localized string similar to OS.
         /// </summary>
         internal static string varOS {
             get {
@@ -382,7 +401,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Package%.
+        ///   Looks up a localized string similar to Package.
         /// </summary>
         internal static string varPackage {
             get {
@@ -391,7 +410,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Publisher%.
+        ///   Looks up a localized string similar to Publisher.
         /// </summary>
         internal static string varPublisher {
             get {
@@ -400,7 +419,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Revision%.
+        ///   Looks up a localized string similar to Revision.
         /// </summary>
         internal static string varRevision {
             get {
@@ -409,7 +428,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to %Version%.
+        ///   Looks up a localized string similar to Version.
         /// </summary>
         internal static string varVersion {
             get {

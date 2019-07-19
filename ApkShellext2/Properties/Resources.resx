@@ -330,4 +330,10 @@ By checking this, rename app file as %AppName%_%Version%_%Revision%, otherwise, 
   <data name="strDumpXMLPrompt" xml:space="preserve">
     <value>Path to XML, eg: res\drawable\icon.xml</value>
   </data>
+  <data name="strPatreonBtn" xml:space="preserve">
+    <value>Support me!</value>
+  </data>
+  <data name="strPatreonTip" xml:space="preserve">
+    <value>Support me on Patreon</value>
+  </data>
 </root>

@@ -9,7 +9,10 @@ using System.Xml;
 
 namespace ApkShellext2.ApkChunk
 {
-    public enum RDefaultString : uint
+    /// <summary>
+    /// From R.java
+    /// </summary>
+    public enum R_attr : uint
     {
         absListViewStyle = 16842858, // 0x101006a
         accessibilityEventTypes = 16843648, // 0x1010380
@@ -968,6 +971,10 @@ namespace ApkShellext2.ApkChunk
         yesNoPreferenceStyle = 16842896, // 0x1010090
         zAdjustment = 16843201, // 0x10101c1
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public enum RES_TYPE : UInt16
     {
         RES_NULL_TYPE = 0x0000,
@@ -1336,7 +1343,7 @@ namespace ApkShellext2.ApkChunk
             using (MemoryStream ms = GetMemoryStream())
             using (BinaryReader br = new BinaryReader(ms)) {
                 ms.Seek(offset + header.headerSize +id *4, SeekOrigin.Begin);
-                return Enum.GetName(typeof(RDefaultString), br.ReadUInt32());
+                return Enum.GetName(typeof(R_attr), br.ReadUInt32());
             }
         }
     }

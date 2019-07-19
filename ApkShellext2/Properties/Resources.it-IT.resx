@@ -279,9 +279,7 @@ Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un
   <data name="strAdbPath" xml:space="preserve">
     <value>Specifica il percorso di adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Sostituire lo spazio con _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Ricordami la nuova versione</value>
   </data>
@@ -306,6 +304,8 @@ Per impostazione predefinita il Menu verrà mostrato quando si seleziona solo un
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Al fine di visualizzare correttamente le icone e le miniature è necessario pulire la cache, pulire adesso?</value>
   </data>
+  
+  
   
   
   

@@ -279,9 +279,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>الرجاء تحديد مسار adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>استبدال المسافة بـ _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>تذكير بالإصدار الجديد</value>
   </data>
@@ -306,6 +304,8 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>لعرض رمز وصورة مصغرة بشكل صحيح، تحتاج ذاكرة التخزين المؤقت للتنظيف، امسحها الآن؟</value>
   </data>
+  
+  
   
   
   

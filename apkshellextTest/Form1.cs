@@ -13,6 +13,7 @@ using ApkQuickReader;
 using ICSharpCode.SharpZipLib.Zip;
 using ApkShellext2.ApkChunk;
 using System.Drawing.Drawing2D;
+using System.Text.RegularExpressions;
 
 namespace apkshellextTest
 {
@@ -33,6 +34,22 @@ namespace apkshellextTest
         }
 
         private void Button2_Click(object sender, EventArgs e) {
+
+            //string TipPattern = @"Magisk Manager\r\ncom.topjohnwu.magisk\r\nVersion: 7.2.0 213\r\n%Attr(manifest/uses-sdk,minSdkVersion)%";// @"%Attr(mainifest/application,icon)%";
+            //textBox1.Text = TipPattern;
+            string TipPattern = textBox1.Text;
+            Regex rx = new Regex(textBox3.Text);
+            Match m = rx.Match(TipPattern);
+            textBox4.Text = m.Success.ToString();
+            if (m.Success) {
+                foreach (Group c in m.Groups) {
+                    textBox4.Text = textBox4.Text + "||" + c.Value;
+                }
+            }
+
+            //textBox4.Text = ApkContextMenu.ReplaceVariables(TipPattern, reader);
+
+            return;
             AppPackageReader reader = AppPackageReader.Read(textBox1.Text);
             reader.setFlag("ImageSize", 48);
             pictureBox2.Image = reader.Icon;

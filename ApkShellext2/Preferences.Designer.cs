@@ -57,6 +57,7 @@
             this.pnlButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnResetInfoTipPattern = new System.Windows.Forms.Button();
+            this.btnPatreon = new System.Windows.Forms.Button();
             this.pnlContextMenu = new System.Windows.Forms.TableLayoutPanel();
             this.ckShowGoogle = new System.Windows.Forms.CheckBox();
             this.ckShowAmazon = new System.Windows.Forms.CheckBox();
@@ -122,7 +123,7 @@
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlLeft.Size = new System.Drawing.Size(144, 378);
+            this.pnlLeft.Size = new System.Drawing.Size(144, 447);
             this.pnlLeft.TabIndex = 16;
             // 
             // twLeft
@@ -134,7 +135,7 @@
             this.twLeft.Name = "twLeft";
             this.twLeft.Scrollable = false;
             this.twLeft.ShowPlusMinus = false;
-            this.twLeft.Size = new System.Drawing.Size(138, 353);
+            this.twLeft.Size = new System.Drawing.Size(138, 716);
             this.twLeft.TabIndex = 7;
             this.twLeft.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.twLeft_AfterSelect);
             // 
@@ -168,7 +169,7 @@
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlRenaming.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.pnlRenaming.Size = new System.Drawing.Size(436, 84);
+            this.pnlRenaming.Size = new System.Drawing.Size(484, 84);
             this.pnlRenaming.TabIndex = 21;
             // 
             // llbPatternVariables
@@ -177,7 +178,7 @@
             this.llbPatternVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.llbPatternVariables.Location = new System.Drawing.Point(3, 71);
             this.llbPatternVariables.Name = "llbPatternVariables";
-            this.llbPatternVariables.Size = new System.Drawing.Size(430, 13);
+            this.llbPatternVariables.Size = new System.Drawing.Size(478, 13);
             this.llbPatternVariables.TabIndex = 23;
             this.llbPatternVariables.TabStop = true;
             this.llbPatternVariables.Text = "Refer to wiki";
@@ -187,7 +188,7 @@
             this.txtRenamePattern.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRenamePattern.Location = new System.Drawing.Point(3, 16);
             this.txtRenamePattern.Name = "txtRenamePattern";
-            this.txtRenamePattern.Size = new System.Drawing.Size(430, 20);
+            this.txtRenamePattern.Size = new System.Drawing.Size(478, 20);
             this.txtRenamePattern.TabIndex = 15;
             this.txtRenamePattern.Text = "%label%_%versionName%_%versionCode%";
             this.txtRenamePattern.TextChanged += new System.EventHandler(this.txtRename_TextChanged);
@@ -208,7 +209,7 @@
             this.pnlRenamingReplace.Name = "pnlRenamingReplace";
             this.pnlRenamingReplace.RowCount = 1;
             this.pnlRenamingReplace.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRenamingReplace.Size = new System.Drawing.Size(430, 26);
+            this.pnlRenamingReplace.Size = new System.Drawing.Size(478, 26);
             this.pnlRenamingReplace.TabIndex = 22;
             // 
             // ckReplaceSpace
@@ -229,14 +230,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReplaceWhiteSpace.Location = new System.Drawing.Point(118, 3);
             this.txtReplaceWhiteSpace.Name = "txtReplaceWhiteSpace";
-            this.txtReplaceWhiteSpace.Size = new System.Drawing.Size(309, 20);
+            this.txtReplaceWhiteSpace.Size = new System.Drawing.Size(357, 20);
             this.txtReplaceWhiteSpace.TabIndex = 22;
             this.txtReplaceWhiteSpace.TextChanged += new System.EventHandler(this.TxtReplaceWhiteSpace_TextChanged);
             // 
             // btnResetRenamePattern
             // 
             this.btnResetRenamePattern.AutoSize = true;
-            this.btnResetRenamePattern.Location = new System.Drawing.Point(168, 3);
+            this.btnResetRenamePattern.Location = new System.Drawing.Point(216, 3);
             this.btnResetRenamePattern.Name = "btnResetRenamePattern";
             this.btnResetRenamePattern.Size = new System.Drawing.Size(119, 23);
             this.btnResetRenamePattern.TabIndex = 17;
@@ -267,7 +268,7 @@
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlIcon.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlIcon.Size = new System.Drawing.Size(436, 167);
+            this.pnlIcon.Size = new System.Drawing.Size(484, 167);
             this.pnlIcon.TabIndex = 22;
             // 
             // ckShowIPA
@@ -368,16 +369,17 @@
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlGeneral.Size = new System.Drawing.Size(442, 79);
+            this.pnlGeneral.Size = new System.Drawing.Size(490, 79);
             this.pnlGeneral.TabIndex = 21;
             // 
             // lblCurrentVersion
             // 
+            this.lblCurrentVersion.AutoSize = true;
             this.lblCurrentVersion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCurrentVersion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblCurrentVersion.Location = new System.Drawing.Point(3, 66);
             this.lblCurrentVersion.Name = "lblCurrentVersion";
-            this.lblCurrentVersion.Size = new System.Drawing.Size(436, 13);
+            this.lblCurrentVersion.Size = new System.Drawing.Size(484, 13);
             this.lblCurrentVersion.TabIndex = 11;
             this.lblCurrentVersion.Text = "Current version";
             this.lblCurrentVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -388,7 +390,7 @@
             this.lblNewVer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNewVer.Location = new System.Drawing.Point(3, 53);
             this.lblNewVer.Name = "lblNewVer";
-            this.lblNewVer.Size = new System.Drawing.Size(436, 13);
+            this.lblNewVer.Size = new System.Drawing.Size(484, 13);
             this.lblNewVer.TabIndex = 10;
             this.lblNewVer.Text = "About--NewVersion";
             this.lblNewVer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -408,7 +410,7 @@
             this.combLanguage.FormattingEnabled = true;
             this.combLanguage.Location = new System.Drawing.Point(3, 16);
             this.combLanguage.Name = "combLanguage";
-            this.combLanguage.Size = new System.Drawing.Size(436, 21);
+            this.combLanguage.Size = new System.Drawing.Size(484, 21);
             this.combLanguage.TabIndex = 8;
             this.combLanguage.SelectedIndexChanged += new System.EventHandler(this.combLanguage_SelectedIndexChanged);
             // 
@@ -427,7 +429,7 @@
             // 
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(293, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(341, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(67, 25);
             this.btnUpdate.TabIndex = 24;
@@ -484,29 +486,31 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlRight.Size = new System.Drawing.Size(442, 378);
+            this.pnlRight.Size = new System.Drawing.Size(336, 447);
             this.pnlRight.TabIndex = 24;
             this.pnlRight.Visible = false;
             // 
             // pnlButtons
             // 
+            this.pnlButtons.AutoSize = true;
             this.pnlButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlButtons.Controls.Add(this.btnOK);
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnResetRenamePattern);
             this.pnlButtons.Controls.Add(this.btnResetInfoTipPattern);
+            this.pnlButtons.Controls.Add(this.btnPatreon);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.pnlButtons.Location = new System.Drawing.Point(3, 657);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(436, 31);
+            this.pnlButtons.Size = new System.Drawing.Size(484, 62);
             this.pnlButtons.TabIndex = 21;
             // 
             // btnOK
             // 
             this.btnOK.AutoSize = true;
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOK.Location = new System.Drawing.Point(366, 3);
+            this.btnOK.Location = new System.Drawing.Point(414, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(67, 25);
             this.btnOK.TabIndex = 0;
@@ -517,13 +521,24 @@
             // btnResetInfoTipPattern
             // 
             this.btnResetInfoTipPattern.AutoSize = true;
-            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(47, 3);
+            this.btnResetInfoTipPattern.Location = new System.Drawing.Point(95, 3);
             this.btnResetInfoTipPattern.Name = "btnResetInfoTipPattern";
             this.btnResetInfoTipPattern.Size = new System.Drawing.Size(115, 23);
             this.btnResetInfoTipPattern.TabIndex = 2;
             this.btnResetInfoTipPattern.Text = "ResetInfoTipPattern";
             this.btnResetInfoTipPattern.UseVisualStyleBackColor = true;
             this.btnResetInfoTipPattern.Click += new System.EventHandler(this.btnResetTooltipPattern_Click);
+            // 
+            // btnPatreon
+            // 
+            this.btnPatreon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPatreon.Location = new System.Drawing.Point(361, 34);
+            this.btnPatreon.Name = "btnPatreon";
+            this.btnPatreon.Size = new System.Drawing.Size(120, 25);
+            this.btnPatreon.TabIndex = 25;
+            this.btnPatreon.Text = "Support on Patron";
+            this.btnPatreon.UseVisualStyleBackColor = true;
+            this.btnPatreon.Click += new System.EventHandler(this.BtnPatreon_Click);
             // 
             // pnlContextMenu
             // 
@@ -552,7 +567,7 @@
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlContextMenu.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlContextMenu.Size = new System.Drawing.Size(436, 184);
+            this.pnlContextMenu.Size = new System.Drawing.Size(484, 184);
             this.pnlContextMenu.TabIndex = 24;
             // 
             // ckShowGoogle
@@ -643,7 +658,7 @@
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.pnlInfoTip.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pnlInfoTip.Size = new System.Drawing.Size(436, 116);
+            this.pnlInfoTip.Size = new System.Drawing.Size(484, 116);
             this.pnlInfoTip.TabIndex = 25;
             // 
             // lblInfoTipPattern
@@ -661,7 +676,7 @@
             this.txtToolTipPattern.Location = new System.Drawing.Point(3, 16);
             this.txtToolTipPattern.Multiline = true;
             this.txtToolTipPattern.Name = "txtToolTipPattern";
-            this.txtToolTipPattern.Size = new System.Drawing.Size(430, 84);
+            this.txtToolTipPattern.Size = new System.Drawing.Size(478, 84);
             this.txtToolTipPattern.TabIndex = 1;
             this.txtToolTipPattern.TextChanged += new System.EventHandler(this.txtToolTipPattern_TextChanged);
             // 
@@ -671,7 +686,7 @@
             this.llbInfoTipPattVar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.llbInfoTipPattVar.Location = new System.Drawing.Point(3, 103);
             this.llbInfoTipPattVar.Name = "llbInfoTipPattVar";
-            this.llbInfoTipPattVar.Size = new System.Drawing.Size(430, 13);
+            this.llbInfoTipPattVar.Size = new System.Drawing.Size(478, 13);
             this.llbInfoTipPattVar.TabIndex = 3;
             this.llbInfoTipPattVar.TabStop = true;
             this.llbInfoTipPattVar.Text = "refer to wiki";
@@ -680,6 +695,7 @@
             // pnlMain
             // 
             this.pnlMain.AutoSize = true;
+            this.pnlMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlMain.ColumnCount = 2;
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.pnlMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -690,7 +706,7 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.RowCount = 1;
             this.pnlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlMain.Size = new System.Drawing.Size(598, 384);
+            this.pnlMain.Size = new System.Drawing.Size(492, 453);
             this.pnlMain.TabIndex = 25;
             // 
             // Preferences
@@ -699,7 +715,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(598, 384);
+            this.ClientSize = new System.Drawing.Size(492, 453);
             this.Controls.Add(this.pnlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Preferences";
@@ -709,6 +725,7 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Preferences_FormClosed);
             this.Load += new System.EventHandler(this.Preferences_Load);
+            this.ResizeBegin += new System.EventHandler(this.Preferences_ResizeBegin);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
@@ -782,5 +799,6 @@
         private System.Windows.Forms.LinkLabel llbPatternVariables;
         private System.Windows.Forms.TableLayoutPanel pnlRenamingReplace;
         private System.Windows.Forms.TextBox txtReplaceWhiteSpace;
+        private System.Windows.Forms.Button btnPatreon;
     }
 }

@@ -281,9 +281,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>Вкажіть шлях до adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Заміняти пробіл нижнім підкресленням "_"</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Повідомляти про нові версії</value>
   </data>
@@ -308,6 +306,8 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Для коректного відображення значків і мініатюр, кеш повинен бути очищений, продовжити?</value>
   </data>
+  
+  
   
   
   

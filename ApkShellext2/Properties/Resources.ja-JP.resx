@@ -257,9 +257,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>adb.exeのパスを指定してください。</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>スペースを_に置き換える</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>アプリの更新をコンテキストメニューで知らせる</value>
   </data>
@@ -270,6 +268,8 @@
   <data name="strHelpTranslate" xml:space="preserve">
     <value>このプロジェクトの翻訳を助けてください。</value>
   </data>
+  
+  
   
   
   

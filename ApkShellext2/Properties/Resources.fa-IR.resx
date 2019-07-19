@@ -279,9 +279,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>لطفا مسیر adb.exe را تعیین کنید</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>جایگزینی فاصله با _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>یادآوری نسخه جدید</value>
   </data>
@@ -306,6 +304,8 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>به منظور درست نمایش دادن آیکون و تصویر بند انگشتی ، حافظه موقت نیاز به پاک شدن دارد، آن را پاک می کنید؟</value>
   </data>
+  
+  
   
   
   

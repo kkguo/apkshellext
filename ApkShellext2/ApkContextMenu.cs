@@ -362,44 +362,58 @@ namespace ApkShellext2 {
         }
 
         public static string ReplaceVariables(string ori, AppPackageReader reader) {
-            string newStr = ori;
-            if (newStr.Contains(NonLocalizeResources.varAppName))
-                newStr = newStr.Replace(NonLocalizeResources.varAppName, reader.AppName);
-            if (newStr.Contains(NonLocalizeResources.varPackage))
-                newStr = newStr.Replace(NonLocalizeResources.varPackage, reader.PackageName);
-            if (newStr.Contains(NonLocalizeResources.varPublisher))
-                newStr = newStr.Replace(NonLocalizeResources.varPublisher, reader.Publisher);
-            if (newStr.Contains(NonLocalizeResources.varVersion))
-                newStr = newStr.Replace(NonLocalizeResources.varVersion, reader.Version);
-            if (newStr.Contains(NonLocalizeResources.varRevision))
-                newStr = newStr.Replace(NonLocalizeResources.varRevision, reader.Revision);
-            if (newStr.Contains(NonLocalizeResources.varFileSize))
-                newStr = newStr.Replace(NonLocalizeResources.varFileSize, Utility.getFileSize(reader.FileName));
-            if (newStr.Contains(NonLocalizeResources.varOS))
-                newStr = newStr.Replace(NonLocalizeResources.varOS, 
-                    reader.Type == AppPackageReader.AppType.AndroidApp ? "Android" 
-                    : (reader.Type == AppPackageReader.AppType.iOSApp ? "iOS" 
-                    : "Windows"));
-            if (newStr.Contains(NonLocalizeResources.varLastModify))
-                newStr = newStr.Replace(NonLocalizeResources.varLastModify,
-                File.GetLastWriteTime(reader.FileName).ToString("dd/MM/yy HH:mm:ss"));
-            if (newStr.Contains(NonLocalizeResources.varDebuggable))
-                newStr = newStr.Replace(NonLocalizeResources.varDebuggable,
-                    (reader.Type == AppPackageReader.AppType.AndroidApp)?
-                    (((ApkReader)reader).Debuggable?"Debug":"Release"):"");
-            if (reader.Type == AppPackageReader.AppType.AndroidApp) {
-                var apkreader = reader as ApkReader;
-                Regex rx = new Regex(NonLocalizeResources.varAttribute);
-                Match m = rx.Match(newStr);
-                if (m.Success) {
-                    if (m.Captures.Count == 3) {
-                        string tag = m.Captures[1].Value;
-                        string attr = m.Captures[2].Value;
-                        rx.Replace(newStr, apkreader.QuickSearchManifestXml(tag, attr));
+            string[] tokens = ori.Split(new char[] { '%' });
+            string newstr = "";
+            bool inpattern = false;
+            foreach(string t in tokens) {
+                if (!inpattern) {
+                    newstr = newstr + t;
+                } else {
+                    string replacement = "";
+                    if (t == NonLocalizeResources.varAppName)
+                        replacement = reader.AppName;
+                    else if (t == NonLocalizeResources.varPackage)
+                        replacement = reader.PackageName;
+                    else if (t == NonLocalizeResources.varPublisher)
+                        replacement = reader.Publisher;
+                    else if (t == NonLocalizeResources.varVersion)
+                        replacement = reader.Version;
+                    else if (t == NonLocalizeResources.varRevision)
+                        replacement = reader.Revision;
+                    else if (t == NonLocalizeResources.varFileSize)
+                        replacement = Utility.getFileSize(reader.FileName);
+                    else if (t == NonLocalizeResources.varOS)
+                        replacement = (reader.Type == AppPackageReader.AppType.AndroidApp ? "Android"
+                            : (reader.Type == AppPackageReader.AppType.iOSApp ? "iOS"
+                            : "Windows"));
+                    else if (t == NonLocalizeResources.varLastModify)
+                        replacement = File.GetLastWriteTime(reader.FileName).ToString("dd/MM/yy HH:mm:ss");
+                    else if (t == NonLocalizeResources.varDebuggable)
+                        replacement = (reader.Type == AppPackageReader.AppType.AndroidApp) ?
+                            (((ApkReader)reader).Debuggable ? "Debug" : "Release") : "";
+                    else if (reader.Type == AppPackageReader.AppType.AndroidApp) {
+                        try {
+                            var apkreader = reader as ApkReader;
+                            string regstr = NonLocalizeResources.varAttribute;
+                            Regex rx = new Regex(regstr);
+                            Match m = rx.Match(t);
+                            if (m.Success) {
+                                string tag = m.Groups[1].Value;
+                                string attr = m.Groups[2].Value;
+                                replacement = apkreader.QuickSearchManifestXml(tag, attr);
+                            }
+                        } catch (Exception ex) {
+                            Utility.Log(null, "Replace variables", ex.Message + "\nError happens during replacing " + NonLocalizeResources.varAttribute);
+                        }
                     }
+                    newstr = newstr + replacement;
                 }
+                inpattern = !inpattern;
             }
-            return newStr;
+            if (inpattern) {
+                Utility.Log(null, "Replace variable", "% is not in pair.");
+            }
+            return newstr;
         }
 
         private void renameWithVersion() {

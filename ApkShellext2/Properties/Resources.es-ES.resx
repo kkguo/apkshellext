@@ -279,9 +279,7 @@ Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Re
   <data name="strAdbPath" xml:space="preserve">
     <value>Por favor especifica la ruta de adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Reemplazar los espacios con «_»</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Avisar sobre nueva versión</value>
   </data>
@@ -306,6 +304,8 @@ Tildando eso, cambia el nombre del archivo de app a %NombreDeApp%_%Versión%_%Re
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Debe limpiarse la caché para poder mostrar los iconos y miniaturas correctamente. ¿Hacerlo ahora?</value>
   </data>
+  
+  
   
   
   

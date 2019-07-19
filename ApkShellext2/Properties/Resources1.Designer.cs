@@ -441,6 +441,24 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Support me!.
+        /// </summary>
+        internal static string strPatreonBtn {
+            get {
+                return ResourceManager.GetString("strPatreonBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support me on Patreon.
+        /// </summary>
+        internal static string strPatreonTip {
+            get {
+                return ResourceManager.GetString("strPatreonTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ApkShellext2 Preferences.
         /// </summary>
         internal static string strPreferencesCaption {

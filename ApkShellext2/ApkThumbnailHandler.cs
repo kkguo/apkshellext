@@ -22,7 +22,7 @@ namespace ApkShellext2 {
         protected override Bitmap GetThumbnailImage(uint width) {
             Bitmap m_icon = null;
 
-            Log("Thumbnail is using setting file from: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+            //Log("Thumbnail is using setting file from: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
 
             //if (!Settings.Default.EnableThumbnail) {
             //    return null;

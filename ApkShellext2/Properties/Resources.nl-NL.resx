@@ -278,9 +278,7 @@ Standaard, toon het menu alleen met één geselecteerd bestand</value>
   <data name="strAdbPath" xml:space="preserve">
     <value>Specificeer de locatie van adb.exe</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>Vervang spatie met _</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>Herinnering voor nieuwe versies</value>
   </data>
@@ -305,6 +303,8 @@ Standaard, toon het menu alleen met één geselecteerd bestand</value>
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>Om de iconen en thumbnails goed weer te geven moet het cache geleegd worden. Nu legen?</value>
   </data>
+  
+  
   
   
   

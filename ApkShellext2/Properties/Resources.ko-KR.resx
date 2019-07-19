@@ -252,9 +252,7 @@
   <data name="strAdbPath" xml:space="preserve">
     <value>adb.exe의 경로를 지정해 주십시오.</value>
   </data>
-  <data name="strReplaceSpaceWith_" xml:space="preserve">
-    <value>공백을 밑줄(_)로 바꿉니다.</value>
-  </data>
+  
   <data name="strShowNewVerInfo" xml:space="preserve">
     <value>새 버전 알리기</value>
   </data>
@@ -273,6 +271,8 @@
   <data name="dialogNeedClearCache" xml:space="preserve">
     <value>아이콘 및 미리 보기 이미지를 올바르게 표시하려면 캐시를 삭제해야 합니다. 지금 삭제하시겠습니까?</value>
   </data>
+  
+  
   
   
   
