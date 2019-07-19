@@ -6,11 +6,11 @@ A Windows shell extension supporting icon for files of
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
-This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
+This is the code repository, please visit the project page http://apkshellext.com for Download and no more Information.
 
 #### Please help this project
-
- * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
+ * Here is a [Patreon page](https://www.patreon.com/apkshellext), I will be flattered if you buy me a beer.
+ * Translators please read this first : [Translate Wiki page](https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
  * Project page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
  * Beta testers are always needed. Be prepared for your computer to explode.
 
