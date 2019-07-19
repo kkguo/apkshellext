@@ -9,7 +9,7 @@ A Windows shell extension supporting icon for files of
 This is the code repository, please visit the project page http://apkshellext.com for Download and no more Information.
 
 #### Please help this project
- * [<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width="170" height="36" >](https://www.patreon.com/apkshellext) and buy me a beer, I will be flattered.
+ * [<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width="170" height="36" >and buy me a beer](https://www.patreon.com/apkshellext) , I will be flattered.
  * Translators please read this first : [Translate Wiki page](https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
  * Project page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
  * Beta testers are always needed. Be prepared for your computer to explode.
