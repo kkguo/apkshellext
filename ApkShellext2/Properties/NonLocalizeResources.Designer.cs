@@ -61,7 +61,7 @@ namespace ApkShellext2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe.
+        ///   Looks up a localized string similar to taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; cd /d %USERPROFILE%\AppData\Local &amp; del IconCache.db &amp; start explorer.exe.
         /// </summary>
         internal static string cmdClearCache {
             get {

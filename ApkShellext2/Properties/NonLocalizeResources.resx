@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cmdClearCache" xml:space="preserve">
-    <value>taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; start explorer.exe</value>
+    <value>taskkill /f /im explorer.exe &amp; cd /d %USERPROFILE%\AppData\Local\Microsoft\Windows\Explorer &amp; attrib -h *.db &amp; del thumbcache_*.db iconcache_*.db &amp; cd /d %USERPROFILE%\AppData\Local &amp; del IconCache.db &amp; start explorer.exe</value>
+    <comment>command for deleting iconcache, force windows to rebuild it</comment>
   </data>
   <data name="strRenamePatternDefault" xml:space="preserve">
     <value>%AppName%_%Version%</value>
