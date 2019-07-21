@@ -6,13 +6,13 @@ A Windows shell extension supporting icon for files of
 * .ipa (iOS app package)
 * .appx .appxbundle (Windows phone 8.1/10 app package, .xap is not supported)
 
-This is the code repository, please visit the project page http://apkshellext.com for Download and more Information.
+This is the code repository, please visit the project page http://apkshellext.com for Download and no more Information.
 
 #### Please help this project
-
- * Translators please read this first : [Translate Wiki page] (https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
- * Project page is under re-construction, [Thanasis Georgiou](https://github.com/sakisds) is taking control.
- * Beta testers are always needed. Be prepared for your computer to explode.
+ * [<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width="170" height="36" >and buy me a beer](https://www.patreon.com/apkshellext) , I will be flattered.
+ * Translators please read this first : [Translate Wiki page](https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
+ * Project page needs web people to maintain.
+ * Beta testers are always needed.
 
 #### Say something to this project
  * :email: issue@apkshellext.com
@@ -52,6 +52,6 @@ This is the code repository, please visit the project page http://apkshellext.co
 | [Ultimate Social](https://www.iconfinder.com/iconsets/ultimate-social) | A free icon set for social medias           |
 | [SVG](https://github.com/vvvv/SVG)                                  | SVG format renderer                            |
 | [WebP-Wrapper](https://github.com/JosePineiro/WebP-wrapper)         | WebP format renderer
-
+| [Thanasis Georgiou](https://github.com/sakisds)                     | Project web page |
 --------------
 Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
