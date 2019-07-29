@@ -55,4 +55,4 @@ This is the code repository, please visit the project page http://apkshellext.co
 | [WebP-Wrapper](https://github.com/JosePineiro/WebP-wrapper)         | WebP format renderer
 | [Thanasis Georgiou](https://github.com/sakisds)                     | Project web page |
 --------------
-Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
+Originally this project hosted on [GoogleCode](code.google.com/p/apkshellext), now moved to [:octocat:Github](https://github.com/kkguo/apkshellext) and fully re-writen with a native apk reader. The active developing code is on [ApkShellext2 branch](https://github.com/kkguo/apkshellext/tree/ApkShellext2). The obsolete code is on [master branch](https://github.com/kkguo/apkshellext/tree/master)
