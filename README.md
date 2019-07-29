@@ -9,16 +9,17 @@ A Windows shell extension supporting icon for files of
 This is the code repository, please visit the project page http://apkshellext.com for Download and no more Information.
 
 #### Please help this project
- * [<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width="170" height="36" >and buy me a beer](https://www.patreon.com/apkshellext) , I will be flattered.
+ * [<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width="170" height="36" > and buy me a beer](https://www.patreon.com/apkshellext) , I will be flattered.
  * Translators please read this first : [Translate Wiki page](https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
  * Project page needs web people to maintain.
  * Beta testers are always needed.
-
-#### Say something to this project
- * :email: issue@apkshellext.com
- * Join discussion on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
- * Feature request & Bug report, please go [Issues](https://github.com/kkguo/apkshellext/issues)
  * Pull request is always welcome.
+
+#### Have issue?
+ * check the [list](https://github.com/kkguo/apkshellext/wiki/Known-issues-and-solution) first.
+ * Join discussion on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
+  * go [Issues](https://github.com/kkguo/apkshellext/issues)
+  * :email: issue@apkshellext.com
 
 #### [Features]
  - [x] Display app icon in Windows:registered: File Explorer with best resolution. __DOES NOT work with other file manager due to .NET restriction__
