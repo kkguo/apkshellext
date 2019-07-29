@@ -16,7 +16,7 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Pull request is always welcome.
 
 #### Have issue?
- * check the [list](https://github.com/kkguo/apkshellext/wiki/Known-issues-and-solution) first.
+ * check the [Known issue list](https://github.com/kkguo/apkshellext/wiki/Known-issues-and-solution) first.
  * Join discussion on Telegram[![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)@apkshellext](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
   * go [Issues](https://github.com/kkguo/apkshellext/issues)
   * :email: issue@apkshellext.com
