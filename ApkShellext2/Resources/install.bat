@@ -39,6 +39,12 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 :--------------------------------------
 
+REM Remove old menu handlers
+reg.exe delete "HKCR\.apk" /f
+reg.exe delete "HKCR\apk.1" /f
+reg.exe delete "HKCU\Software\Classes\.apk" /f
+reg.exe delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.apk" /f
+
 REM SYSTEMINFO | FIND /i "x64-based pc"
 echo %PROCESSOR_IDENTIFIER% | FIND /i "x86"
 
