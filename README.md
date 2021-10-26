@@ -12,17 +12,17 @@ This is the code repository, please visit the project page http://apkshellext.co
  * Become a Sponsor, I will be more glad to update your request.
  * Translators please read this first : [Translate Wiki page](https://github.com/kkguo/apkshellext/wiki/Translation-and-Multi-language-support#1-translate) 
  * Project pages needs web people to maintain.
- * Become a beta testers, join [![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)Telegram group](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug)
+ * Become a beta testers, join [![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)Telegram group](https://t.me/ApkShellExt2)
  * Pull request is always welcome.
 
 #### Have issue?
  * Check the [Known issue list](https://github.com/kkguo/apkshellext/wiki/Known-issues-and-solution) first.
- * Look for help on [![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)Telegram group](https://telegram.me/joinchat/BrcZsQAtOKWeA7ThTyq3Ug) (Preferred)
+ * Look for help on [![telegram](https://github.com/kkguo/apkshellext/blob/ApkShellext2/ApkShellext2/Resources/telegram_s.png)Telegram group](https://t.me/ApkShellExt2) (Preferred)
   * Go raise [Issues](https://github.com/kkguo/apkshellext/issues) (Preferred)
   * Send to :email: issue@apkshellext.com
 
 #### [Features]
- - [x] Display app icon in Windows:registered: File Explorer with best resolution. __DOES NOT work with other file manager due to .NET restriction__
+ - [x] Display app icon in Windows File Explorer with best resolution. __DOES NOT work with other file manager due to .NET restriction__
  - [x] Customize-able Info-Tip for showing package information.
  - [x] Context menu for batch renaming, use customize-able patterns.
  - [x] Go to app store from context menu.
